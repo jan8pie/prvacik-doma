@@ -183,6 +183,18 @@ button{font:inherit;color:inherit}
 .kid .eq{font-size:36px}
 .about{font-size:13.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;margin-top:10px}
 .about p{margin:0 0 6px}
+.about a{color:var(--muted)}
+.new.plan{background:var(--soft);color:var(--muted);border:1px dashed var(--line)}
+.tiles.words{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
+.kid .tiles.words{grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
+.wordtile{aspect-ratio:auto;min-height:72px;font-family:var(--f-head);font-weight:600;font-size:clamp(20px,5.5vw,30px)}
+.kid .wordtile{font-size:clamp(28px,7vw,48px);min-height:110px}
+.cmp{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;background:var(--soft);border-radius:14px;padding:12px}
+.cmp .slot{font-family:var(--f-head);font-size:34px;font-weight:700;min-width:44px;text-align:center;color:var(--c)}
+.cmp .num{font-family:var(--f-head);font-size:48px;font-weight:700}
+.signs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.signs .btn{justify-content:center;font-family:var(--f-head);font-size:30px;min-height:60px}
+.kid .cmp .num{font-size:72px}.kid .signs .btn{font-size:42px;min-height:84px}
 </style>
 </head>
 <body>
@@ -197,6 +209,7 @@ button{font:inherit;color:inherit}
   <footer class="about">
     <p><b>O stránke.</b> Súkromný rodičovský projekt, nie oficiálny materiál školy. Úlohy sú pôvodné a riadia sa Štátnym vzdelávacím programom pre 1. cyklus (od 2026/27). Postavičky sú vymyslené.</p>
     <p>Stránka nezbiera žiadne údaje. Čítanie nahlas používa hlas zabudovaný v zariadení.</p>
+    <p id="nahlad-link"></p>
   </footer>
 </div>
 
@@ -224,7 +237,11 @@ const DEN = 864e5;
 const datum = (s) => { const [y,m,d]=s.split("-").map(Number); return new Date(y,m-1,d); };
 const DNES = (()=>{ const d=new Date(); d.setHours(0,0,0,0); return d; })();
 const pondelok = (d) => { const x=new Date(d); x.setDate(x.getDate()-((x.getDay()+6)%7)); return x; };
+/* Zásoba: karty s dátumom v budúcnosti sa ukážu až v ten deň. Rodič ich vidí vopred cez adresu s ?nahlad */
+const NAHLAD = new URLSearchParams(location.search).has("nahlad");
+const zverejnena = (k) => datum(k.datum) <= DNES;
 function tyzden(s){
+  if(datum(s) > DNES) return "Naplánované (vidíte len v náhľade)";
   const t = Math.round((pondelok(DNES)-pondelok(datum(s)))/(7*DEN));
   return t<=0 ? "Tento týždeň" : t===1 ? "Minulý týždeň" : `Pred ${t} týždňami`;
 }
@@ -251,12 +268,14 @@ function blokHTML(b, kid, i){
      <div class="btns"><button class="btn" data-say="${esc(b.text)}" data-lang="${b.napoveda?"en-GB":"sk-SK"}">${svg("pocuvanie")}Prečítaj nahlas</button>
      <button class="btn" data-reveal>Ukáž odpoveď</button></div><div class="ans" hidden>${esc(b.odpoved)}</div></div>`;
   if(b.typ==="pocuvanie") return `<div class="blk">${h("Počúvanie")}${KIDBTN}<p>${esc(b.text)}</p>
-     <div class="tiles">${b.slova.map(([e,w])=>`<button class="tile" data-say="${w}" data-lang="en-GB">${e}<small>${w}</small></button>`).join("")}</div></div>`;
+     <div class="tiles${b.citanie?" words":""}">${b.slova.map(([e,w,povedz])=>b.citanie
+       ? `<button class="tile wordtile" data-say="${esc(povedz||w)}" data-lang="${b.jazyk||"sk-SK"}">${esc(w)}</button>`
+       : `<button class="tile" data-say="${esc(povedz||w)}" data-lang="${b.jazyk||"en-GB"}">${e}<small>${esc(w)}</small></button>`).join("")}</div></div>`;
   if(b.typ==="aktivita"){
     if(b.hra.druh==="vyber"){
       return `<div class="blk">${h("Aktivita")}${KIDBTN}<div class="btns"><button class="btn" data-say="${esc(b.text)}" data-lang="sk-SK">${svg("pocuvanie")}Prečítaj zadanie</button></div>
         <p>${esc(b.text)}</p><div class="tiles">${b.hra.polozky.map(([e,w])=>`<button class="tile" data-pick="${w}" data-good="${w.toUpperCase().startsWith(b.hra.spravne)}" aria-label="${w}">${e}</button>`).join("")}</div>
-        <div class="status" aria-live="polite"></div></div>`;
+        <div class="status" aria-live="polite" data-pismeno="${esc(b.hra.spravne)}"></div></div>`;
     }
     return `<div class="blk">${h("Aktivita")}${KIDBTN}<div data-hra='${esc(JSON.stringify(b.hra))}' data-text="${esc(b.text)}"></div></div>`;
   }
@@ -267,10 +286,10 @@ function kartaHTML(k){
   const p = PREDMETY[k.predmet];
   const typy = [...new Set(k.bloky.map(b=>b.typ))];
   if(k.bloky.some(b=>b.typ==="aktivita"||b.typ==="pocuvanie"||b.typ==="hadanka") && !typy.includes("pocuvanie")) typy.push("pocuvanie");
-  const nove = (DNES - datum(k.datum)) / DEN <= 3;
+  const nove = zverejnena(k) && (DNES - datum(k.datum)) / DEN <= 3;
   return `<article class="card" style="--c:${p.c}" id="${k.id}">
     <button class="head" aria-expanded="false" aria-controls="b-${k.id}">
-      <span class="row1"><span class="subj">${p.n}</span><span>· pridané ${fmt(k.datum)}</span>${nove?'<span class="new">NOVÉ</span>':""}</span>
+      <span class="row1"><span class="subj">${p.n}</span><span>· ${zverejnena(k)?"pridané":"zverejní sa"} ${fmt(k.datum)}</span>${nove?'<span class="new">NOVÉ</span>':""}${zverejnena(k)?"":'<span class="new plan">NAPLÁNOVANÉ</span>'}</span>
       <h2 class="title">${esc(k.nazov)}</h2>
       <p class="teaser">${esc(k.uvod)}</p>
       <span class="meta">${k.meta.map(m=>`<span>${esc(m)}</span>`).join("")}</span>
@@ -284,12 +303,16 @@ function kartaHTML(k){
 }
 
 let html="", tyz="";
-[...KARTY].sort((a,b)=>b.datum.localeCompare(a.datum)).forEach(k=>{
+KARTY.filter(k=>NAHLAD||zverejnena(k)).sort((a,b)=>b.datum.localeCompare(a.datum)).forEach(k=>{
   const t=tyzden(k.datum);
   if(t!==tyz){ tyz=t; html+=`<div class="week">${tyz}</div>`; }
   html+=kartaHTML(k);
 });
 const feed = document.getElementById("feed"); feed.innerHTML = html;
+const pocetPlan = KARTY.filter(k=>!zverejnena(k)).length;
+document.getElementById("nahlad-link").innerHTML = NAHLAD
+  ? `<a href="?">Skryť naplánované karty</a>`
+  : pocetPlan ? `<a href="?nahlad">Pre rodiča: ukázať naplánované karty (${pocetPlan})</a>` : "";
 
 /* ===== HRY =====
    Každá hra vráti: text (zadanie), hlas (čo sa prečíta, ak sa líši), html (scéna a tlačidlá s data-v),
@@ -350,6 +373,19 @@ const HRY = {
     return { text:`${uvod} ${text}`, hlas:`${uvod} ${hlas}`,
       html:`<div class="line"><span class="stand" aria-hidden="true">🍦<small>stánok</small></span>${rad.map(([e,m],i)=>`<button class="tile" data-v="${i}" aria-label="${m}">${e}</button>`).join("")}</div>`,
       spravne:t, ok:`Áno! To je ${PORADIE[t]} zvieratko`, zle:(v)=>`To je ${PORADIE[v]} zvieratko. Skús ešte raz.` };
+  },
+  porovnaj(hra, u){
+    const max = u===0 ? 4 : 6;
+    let a=1+nahodne(max), b=1+nahodne(max);
+    if(Math.random()<.2) b=a;
+    const znak = a<b ? "<" : a>b ? ">" : "=";
+    const slovne = a<b ? "je menej ako" : a>b ? "je viac ako" : "je rovnako ako";
+    const tanier = (x) => u===2 ? `<span class="num">${x}</span>` : `<div class="plate">${"🍪".repeat(x)}</div>`;
+    return { text: u===2 ? "Ktorý znak patrí medzi čísla?" : "Kde je viac sušienok? Vyber znak, ktorý patrí medzi taniere.",
+      html:`<div class="cmp">${tanier(a)}<span class="slot">?</span>${tanier(b)}</div>
+        <div class="signs">${["<","=",">"].map(z=>`<button class="btn" data-v="${esc(z)}" aria-label="${z==="<"?"menší ako":z===">"?"väčší ako":"rovná sa"}">${esc(z)}</button>`).join("")}</div>`,
+      spravne:znak, ok:`Áno! ${a} ${slovne} ${b}`, zle: u===2 ? "Skús ešte raz. Ktoré číslo je väčšie?" : "Skús ešte raz. Spočítaj sušienky na oboch tanieroch.",
+      poOk:(g)=>{ g.querySelector(".slot").textContent=znak; } };
   },
   sucet(hra, u){
     if(u===2){
@@ -515,7 +551,7 @@ document.addEventListener("click", e=>{
     if(p.dataset.good==="true"){ p.classList.add("ok"); p.innerHTML += `<small>${p.dataset.pick}</small>`; p.dataset.pick=""; }
     else if(p.dataset.pick){ p.classList.add("no"); }
     const left=blk.querySelectorAll('[data-good="true"]:not(.ok)').length;
-    st.style.color= left?"var(--muted)":"var(--ok)"; st.textContent = left?`Ešte ${left} ${left===1?"obrázok":"obrázky"} na L.`:"Výborne, všetky slová na L sú nájdené!";
+    st.style.color= left?"var(--muted)":"var(--ok)"; st.textContent = left?`Ešte ${left} ${left===1?"obrázok":left<5?"obrázky":"obrázkov"} na ${st.dataset.pismeno}.`:`Výborne, všetky slová na ${st.dataset.pismeno} sú nájdené!`;
     if(!left && ov.contains(blk)) docitane.then(()=>pockaj(PO_HLASE_MS)).then(hotovo); }
   const kb=e.target.closest("[data-kid]"); if(kb){ openKid(kb.closest(".blk"), kb.closest(".card")); return; }
   if(e.target.closest("[data-close]")) closeKid();
