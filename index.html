@@ -361,11 +361,12 @@ const HRY = {
 
 document.querySelectorAll("[data-hra]").forEach(el=>{
   const hra=JSON.parse(el.dataset.hra), uvod=el.dataset.text;
-  let uroven=hra.predvolena||0, kola=0, kolo=null, hovor=false;
+  let uroven=hra.predvolena||0, kola=0, kolo=null, hovor=false, cislo=0;
   el.innerHTML = `<div class="lvl" role="group" aria-label="Obťažnosť">${hra.urovne.map(([d,n],i)=>`<button class="lvlbtn" data-lvl="${i}" aria-pressed="${i===uroven}"><span class="d">${d}</span>${n}</button>`).join("")}</div>
     <div class="game"></div>`;
   const game=el.querySelector(".game");
   function nova(){
+    const moje = ++cislo;   /* ak medzitým príde nové kolo (zmena obťažnosti), staré čakanie sa zahodí */
     kolo = HRY[hra.druh](hra, uroven, uvod);
     const hlas = kolo.hlas || kolo.text;
     game.innerHTML = `<div class="btns"><button class="btn${kolo.opakuj?" primary":""}" data-say="${esc(hlas)}" data-lang="sk-SK">${svg("pocuvanie")}${kolo.opakuj?"Vypočuj":"Prečítaj zadanie"}</button></div>
@@ -376,9 +377,12 @@ document.querySelectorAll("[data-hra]").forEach(el=>{
       if(hotove) return;
       const st=game.querySelector(".status"), v=b.dataset.v;
       if(String(v)===String(kolo.spravne)){
-        hotove=true; b.classList.add("ok"); st.style.color="var(--ok)"; st.textContent=kolo.ok; say(kolo.ok,"sk-SK"); kolo.poOk?.(game);
+        hotove=true; b.classList.add("ok"); st.style.color="var(--ok)"; st.textContent=kolo.ok; const docitane=say(kolo.ok,"sk-SK"); kolo.poOk?.(game);
         kola++; hovor=true;
-        if(ov.contains(el) && kola>=(hra.kol||3)){ kola=0; setTimeout(()=>{hotovo(); nova();},2000); } else setTimeout(nova,2400);
+        docitane.then(()=>pockaj(PO_HLASE_MS)).then(()=>{
+          if(moje!==cislo) return;
+          if(ov.contains(el) && kola>=(hra.kol||3)){ kola=0; hovor=false; hotovo(); nova(); hovor=true; } else nova();
+        });
       } else {
         b.classList.remove("no"); void b.offsetWidth; b.classList.add("no");
         const z = typeof kolo.zle==="function" ? kolo.zle(+v) : kolo.zle;
@@ -412,10 +416,18 @@ function say(t, lang){
     u.rate = String(t).trim().length<=8 ? .7 : .9;
     ss.speak(warm);   /* hneď, ešte počas ťuknutia – iPad inak hlas nepustí */
     sayTimer = setTimeout(()=>ss.speak(u), PAUZA_MS);
-    return true;
+    /* Vráti „sľub“, ktorý sa splní, keď hlas dočíta. Poistka: ak prehliadač koniec neohlási,
+       odhadneme dĺžku podľa počtu znakov. */
+    return new Promise(res=>{
+      const poistka = setTimeout(()=>res(false), PAUZA_MS + 1500 + String(t).length*110);
+      u.onend = u.onerror = () => { clearTimeout(poistka); res(true); };
+    });
   }
-  catch(e){ return false; }
+  catch(e){ return Promise.resolve(false); }
 }
+/* Po dočítaní ešte chvíľu počkáme, kým príde ďalšia úloha. */
+const PO_HLASE_MS = 700;
+const pockaj = (ms) => new Promise(r=>setTimeout(r,ms));
 
 /* režim pre dieťa: úloha na celú obrazovku */
 const ov=document.createElement("div"); ov.className="kid"; ov.hidden=true; ov.setAttribute("role","dialog"); ov.setAttribute("aria-modal","true");
@@ -455,13 +467,13 @@ document.addEventListener("click", e=>{
     head.querySelector(".lbl").textContent = open?"Zavrieť":"Otvoriť"; return; }
   const s=e.target.closest("[data-say]"); if(s){ say(s.dataset.say, s.dataset.lang); }
   const p=e.target.closest("[data-pick]");
-  if(p){ const blk=p.closest(".blk"), st=blk.querySelector(".status"); say(p.dataset.pick,"sk-SK");
+  if(p){ const blk=p.closest(".blk"), st=blk.querySelector(".status"); const docitane=say(p.dataset.pick,"sk-SK");
     p.classList.remove("no"); void p.offsetWidth;
     if(p.dataset.good==="true"){ p.classList.add("ok"); p.innerHTML += `<small>${p.dataset.pick}</small>`; p.dataset.pick=""; }
     else if(p.dataset.pick){ p.classList.add("no"); }
     const left=blk.querySelectorAll('[data-good="true"]:not(.ok)').length;
     st.style.color= left?"var(--muted)":"var(--ok)"; st.textContent = left?`Ešte ${left} ${left===1?"obrázok":"obrázky"} na L.`:"Výborne, všetky slová na L sú nájdené!";
-    if(!left && ov.contains(blk)) setTimeout(hotovo,1400); }
+    if(!left && ov.contains(blk)) docitane.then(()=>pockaj(PO_HLASE_MS)).then(hotovo); }
   const kb=e.target.closest("[data-kid]"); if(kb){ openKid(kb.closest(".blk"), kb.closest(".card")); return; }
   if(e.target.closest("[data-close]")) closeKid();
   const r=e.target.closest("[data-reveal]"); if(r){ const a=r.closest(".blk").querySelector(".ans"); a.hidden=!a.hidden; r.textContent=a.hidden?"Ukáž odpoveď":"Skry odpoveď"; }
