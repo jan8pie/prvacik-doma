@@ -18,7 +18,7 @@ window.KARTY = [
 /* ---------- 2. 11. 2026 ---------- */
 { id:"sjl-slabiky-i", datum:"2026-11-02", predmet:"SJL", kod:"SJL-PP-2",
   nazov:"Slabiky s novým písmenom I: mi, li, mí, lí",
-  uvod:"Hlas povie slabiku, napríklad „mi“ alebo „lá“, a dieťa ťukne na správnu kartičku. Slabiky môžete čítať aj vy sami (prepínač „Hovorí rodič“) a tablet ich len zopakuje.",
+  uvod:"Hlas povie slabiku, napríklad „mi“ alebo „lá“, a dieťa ťukne na správnu kartičku. Slabiky môžete čítať aj vy sami (prepínač „Kto číta: Rodič“) a tablet ich len zopakuje.",
   meta:["dieťa samo","2 minúty","tablet so zvukom"],
   stdn:"ŠVP SJL, Písaná produkcia: „sluchové identifikovanie a rozlišovanie zvukov, slov, slabík, hlások“",
   bloky:[

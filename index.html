@@ -103,7 +103,7 @@ button{font:inherit;color:inherit}
 @media (prefers-reduced-motion:reduce){.tile.no{animation:none}.more svg{transition:none}}
 .status{font-weight:700;min-height:1.5em}
 .nuts{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:30px}
-.game{display:flex;flex-direction:column;gap:10px}
+.game{display:flex;flex-direction:column;gap:12px}
 .scene{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap;background:var(--soft);border-radius:14px;padding:12px 14px}
 .nuts{flex:1;min-width:0}
 .squirrel{display:flex;align-items:flex-end;gap:2px}
@@ -111,11 +111,21 @@ button{font:inherit;color:inherit}
 .sack{width:62px;height:62px;transform-origin:50% 90%}
 .sack.opened{animation:hop .5s}
 @keyframes hop{40%{transform:translateY(-8px) rotate(-6deg)}}
-.lvl{display:flex;gap:6px;flex-wrap:wrap;align-self:flex-start}
-.lvlbtn{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:6px 12px;border-radius:99px;border:1px solid var(--line);background:var(--card);cursor:pointer;font-size:14px;font-weight:700;color:var(--muted)}
-.lvlbtn .d{color:var(--c);font-size:10px;letter-spacing:1px}
-.lvlbtn[aria-pressed="true"]{background:var(--c);border-color:var(--c);color:var(--accent-ink)}
-.lvlbtn[aria-pressed="true"] .d{color:var(--accent-ink)}
+/* Ovládanie aktivity: prepínače ako segmenty v jednej lište (rovnaká šírka, rovnaké zaoblenie) */
+[data-hra]{display:flex;flex-direction:column;gap:16px}
+.ctrl{display:flex;flex-wrap:wrap;gap:12px 16px}
+.seg-g{display:flex;flex-direction:column;gap:6px;flex:1 1 230px;min-width:0}
+.seg-l{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:4px;padding:4px;border-radius:12px;background:var(--soft);border:1px solid var(--line)}
+.segbtn{display:flex;align-items:center;justify-content:center;gap:6px;min-height:40px;padding:6px 8px;border:0;border-radius:9px;background:transparent;cursor:pointer;font-size:14px;font-weight:700;color:var(--muted);white-space:nowrap;min-width:0}
+.segbtn:hover{color:var(--ink)}
+.segbtn[aria-pressed="true"]{background:var(--card);color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--c),0 1px 2px rgba(0,0,0,.12)}
+.segbtn .d{color:var(--c);font-size:9px;letter-spacing:1px}
+.segbtn svg{width:17px;height:17px;flex:none;color:var(--c)}
+/* jedna farba na kartu: hlavné tlačidlo má farbu predmetu */
+.card .btn.primary,.kid .btn.primary{background:var(--c);border-color:var(--c);color:var(--accent-ink)}
+.card .kidrow .btn.primary{background:var(--soft);color:var(--ink);border-color:var(--line)}
+.kidrow .btn svg{color:var(--c)}
 @media (prefers-reduced-motion:reduce){.sack.opened{animation:none}}
 [hidden]{display:none!important}
 .kidrow{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px}
@@ -140,9 +150,8 @@ button{font:inherit;color:inherit}
 .kid .nums .btn{width:64px;min-height:64px;font-size:28px}
 .kid .nuts{font-size:clamp(36px,9vw,52px)}
 .kid .sq{font-size:64px}.kid .sack{width:84px;height:84px}
-.kid .lvl{gap:10px}
-.kid .lvlbtn{min-height:52px;padding:8px 18px;font-size:18px}
-.kid .lvlbtn .d{font-size:13px}
+.kid .segbtn{min-height:52px;font-size:17px}
+.kid .segbtn .d{font-size:12px}
 .kid-done{margin:auto;text-align:center;display:flex;flex-direction:column;gap:16px;align-items:center;font-family:var(--f-head);font-size:28px;line-height:1.3}
 .kid-done p{margin:0}
 .kid-done .star{font-size:80px;line-height:1}
@@ -154,7 +163,7 @@ button{font:inherit;color:inherit}
 /* Nové hry (2. 11. 2026): slabiky, poradie, súčet */
 .syl{font-family:var(--f-head);font-size:clamp(30px,9vw,44px);font-weight:600}
 .tiles.t3{grid-template-columns:repeat(3,minmax(0,1fr))}
-.tile.sel{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 14%,var(--card))}
+.tile.sel{border-color:var(--c);background:color-mix(in srgb,var(--c) 14%,var(--card))}
 .word{display:flex;align-items:center;gap:14px;background:var(--soft);border-radius:14px;padding:10px 14px;font-size:44px;line-height:1}
 .word .w{font-family:var(--f-head);font-size:20px;color:var(--muted)}
 .line{display:flex;align-items:flex-end;gap:4px;background:var(--soft);border-radius:14px;padding:10px 8px}
@@ -385,8 +394,12 @@ document.querySelectorAll("[data-hra]").forEach(el=>{
   const hra=JSON.parse(el.dataset.hra), uvod=el.dataset.text;
   let uroven=hra.predvolena||0, kola=0, kolo=null, hovor=false, cislo=0, rodic=false;
   const mozeRodic = hra.rodic && RODIC[hra.druh];
-  el.innerHTML = `<div class="lvl" role="group" aria-label="Obťažnosť">${hra.urovne.map(([d,n],i)=>`<button class="lvlbtn" data-lvl="${i}" aria-pressed="${i===uroven}"><span class="d">${d}</span>${n}</button>`).join("")}</div>
-    ${mozeRodic?`<div class="lvl" role="group" aria-label="Kto hovorí"><button class="lvlbtn" data-mode="tablet" aria-pressed="true">🔊 Hovorí tablet</button><button class="lvlbtn" data-mode="rodic" aria-pressed="false">🗣️ Hovorí rodič</button></div>`:""}
+  const IK_TABLET = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><path d="M11 18h2"/></svg>';
+  const IK_RODIC = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0"/><path d="M17 7.5a4 4 0 0 1 0 5M19.5 5a7.5 7.5 0 0 1 0 10"/></svg>';
+  el.innerHTML = `<div class="ctrl">
+      <div class="seg-g"><span class="seg-l" id="o-${hra.druh}">Obťažnosť</span><div class="seg" role="group" aria-labelledby="o-${hra.druh}">${hra.urovne.map(([d,n],i)=>`<button class="segbtn" data-lvl="${i}" aria-pressed="${i===uroven}"><span class="d" aria-hidden="true">${d}</span>${n}</button>`).join("")}</div></div>
+      ${mozeRodic?`<div class="seg-g"><span class="seg-l" id="k-${hra.druh}">Kto číta</span><div class="seg" role="group" aria-labelledby="k-${hra.druh}"><button class="segbtn" data-mode="tablet" aria-pressed="true">${IK_TABLET}Tablet</button><button class="segbtn" data-mode="rodic" aria-pressed="false">${IK_RODIC}Rodič</button></div></div>`:""}
+    </div>
     <div class="game"></div>`;
   const game=el.querySelector(".game");
   function nova(){
