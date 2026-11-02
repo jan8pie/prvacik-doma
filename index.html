@@ -368,7 +368,7 @@ document.querySelectorAll("[data-hra]").forEach(el=>{
   function nova(){
     kolo = HRY[hra.druh](hra, uroven, uvod);
     const hlas = kolo.hlas || kolo.text;
-    game.innerHTML = `<div class="btns"><button class="btn" data-say="${esc(hlas)}" data-lang="sk-SK">${svg("pocuvanie")}${kolo.opakuj?"Vypočuj znova":"Prečítaj zadanie"}</button></div>
+    game.innerHTML = `<div class="btns"><button class="btn${kolo.opakuj?" primary":""}" data-say="${esc(hlas)}" data-lang="sk-SK">${svg("pocuvanie")}${kolo.opakuj?"Vypočuj":"Prečítaj zadanie"}</button></div>
       <p>${esc(kolo.text)}</p>${kolo.html}<div class="status" aria-live="polite"></div>`;
     if(hovor) say(hlas,"sk-SK");
     let hotove=false;
@@ -386,7 +386,7 @@ document.querySelectorAll("[data-hra]").forEach(el=>{
       }
     });
   }
-  el.addEventListener("reset",()=>{ kola=0; hovor=false; nova(); });
+  el.addEventListener("reset",()=>{ kola=0; hovor=true; nova(); });
   el.querySelectorAll("[data-lvl]").forEach(b=>b.onclick=()=>{
     uroven=+b.dataset.lvl; kola=0; hovor=true;
     el.querySelectorAll("[data-lvl]").forEach(x=>x.setAttribute("aria-pressed", x===b));
@@ -396,8 +396,24 @@ document.querySelectorAll("[data-hra]").forEach(el=>{
 });
 
 /* hlas */
+/* Zariadenie často zapne zvuk až so začiatkom reči a prvé zvuky sa stratia (hlas „nabieha“).
+   Preto pred každou vetou najprv potichu „rozohrejeme“ hlas a vložíme krátku pauzu.
+   Krátke slabiky a slová čítame pomalšie. */
+const PAUZA_MS = 250;
+let sayTimer = null;
 function say(t, lang){
-  try{ if(!("speechSynthesis" in window)) throw 0; speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(t); u.lang=lang||"sk-SK"; u.rate=.9; speechSynthesis.speak(u); return true; }
+  try{
+    if(!("speechSynthesis" in window)) throw 0;
+    const ss = window.speechSynthesis;
+    ss.cancel(); clearTimeout(sayTimer);
+    const L = lang||"sk-SK";
+    const warm = new SpeechSynthesisUtterance("a"); warm.lang=L; warm.volume=0; warm.rate=1;
+    const u = new SpeechSynthesisUtterance(t); u.lang=L;
+    u.rate = String(t).trim().length<=8 ? .7 : .9;
+    ss.speak(warm);   /* hneď, ešte počas ťuknutia – iPad inak hlas nepustí */
+    sayTimer = setTimeout(()=>ss.speak(u), PAUZA_MS);
+    return true;
+  }
   catch(e){ return false; }
 }
 
