@@ -154,6 +154,7 @@ button{font:inherit;color:inherit}
 /* Nové hry (2. 11. 2026): slabiky, poradie, súčet */
 .syl{font-family:var(--f-head);font-size:clamp(30px,9vw,44px);font-weight:600}
 .tiles.t3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.tile.sel{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 14%,var(--card))}
 .word{display:flex;align-items:center;gap:14px;background:var(--soft);border-radius:14px;padding:10px 14px;font-size:44px;line-height:1}
 .word .w{font-family:var(--f-head);font-size:20px;color:var(--muted)}
 .line{display:flex;align-items:flex-end;gap:4px;background:var(--soft);border-radius:14px;padding:10px 8px}
@@ -359,14 +360,38 @@ const HRY = {
   }
 };
 
+/* ===== VARIANT „HOVORÍ RODIČ“ =====
+   Rodič prečíta nahlas jednu z kartičiek, dieťa ťukne, tablet kartičku zopakuje (bez hodnotenia).
+   Kartička, na ktorú dieťa ťuklo, sa po dočítaní vymení za novú. */
+const RODIC = {
+  slabiky(game, u){
+    const pool = u===0 ? SLABIKY_KRATKE : SLABIKY_VSETKY, n = [3,4,6][u];
+    let zobrazene = zamiesaj(pool).slice(0,n);
+    game.innerHTML = `<p>Prečítaj nahlas jednu slabiku. Dieťa na ňu ťukne a tablet ju zopakuje, takže si to hneď skontrolujete.</p>
+      <div class="tiles ${n===3||n===6?"t3":""}">${zobrazene.map((s,i)=>`<button class="tile syl" data-r="${i}">${s}</button>`).join("")}</div>`;
+    let zaneprazdnene=false;
+    game.querySelectorAll("[data-r]").forEach(b=>b.onclick=()=>{
+      if(zaneprazdnene) return; zaneprazdnene=true;
+      const i=+b.dataset.r; b.classList.add("sel");
+      say(zobrazene[i],"sk-SK").then(()=>pockaj(400)).then(()=>{
+        const nove = zamiesaj(pool.filter(s=>!zobrazene.includes(s)))[0] || zobrazene[i];
+        zobrazene[i]=nove; b.textContent=nove; b.classList.remove("sel"); zaneprazdnene=false;
+      });
+    });
+  }
+};
+
 document.querySelectorAll("[data-hra]").forEach(el=>{
   const hra=JSON.parse(el.dataset.hra), uvod=el.dataset.text;
-  let uroven=hra.predvolena||0, kola=0, kolo=null, hovor=false, cislo=0;
+  let uroven=hra.predvolena||0, kola=0, kolo=null, hovor=false, cislo=0, rodic=false;
+  const mozeRodic = hra.rodic && RODIC[hra.druh];
   el.innerHTML = `<div class="lvl" role="group" aria-label="Obťažnosť">${hra.urovne.map(([d,n],i)=>`<button class="lvlbtn" data-lvl="${i}" aria-pressed="${i===uroven}"><span class="d">${d}</span>${n}</button>`).join("")}</div>
+    ${mozeRodic?`<div class="lvl" role="group" aria-label="Kto hovorí"><button class="lvlbtn" data-mode="tablet" aria-pressed="true">🔊 Hovorí tablet</button><button class="lvlbtn" data-mode="rodic" aria-pressed="false">🗣️ Hovorí rodič</button></div>`:""}
     <div class="game"></div>`;
   const game=el.querySelector(".game");
   function nova(){
     const moje = ++cislo;   /* ak medzitým príde nové kolo (zmena obťažnosti), staré čakanie sa zahodí */
+    if(rodic){ RODIC[hra.druh](game, uroven); return; }
     kolo = HRY[hra.druh](hra, uroven, uvod);
     const hlas = kolo.hlas || kolo.text;
     game.innerHTML = `<div class="btns"><button class="btn${kolo.opakuj?" primary":""}" data-say="${esc(hlas)}" data-lang="sk-SK">${svg("pocuvanie")}${kolo.opakuj?"Vypočuj":"Prečítaj zadanie"}</button></div>
@@ -390,10 +415,15 @@ document.querySelectorAll("[data-hra]").forEach(el=>{
       }
     });
   }
-  el.addEventListener("reset",()=>{ kola=0; hovor=true; nova(); });
+  el.addEventListener("reset",()=>{ kola=0; hovor=!rodic; nova(); });
   el.querySelectorAll("[data-lvl]").forEach(b=>b.onclick=()=>{
     uroven=+b.dataset.lvl; kola=0; hovor=true;
     el.querySelectorAll("[data-lvl]").forEach(x=>x.setAttribute("aria-pressed", x===b));
+    nova();
+  });
+  el.querySelectorAll("[data-mode]").forEach(b=>b.onclick=()=>{
+    rodic = b.dataset.mode==="rodic"; kola=0; hovor=!rodic;
+    el.querySelectorAll("[data-mode]").forEach(x=>x.setAttribute("aria-pressed", x===b));
     nova();
   });
   nova();
