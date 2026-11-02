@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="sk"><head><meta charset="utf-8"><title>Číslo 6 – pracovný list</title>
+<link rel="stylesheet" href="list.css">
+<style>
+  .ramce{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm}
+  .ramce .r .pic{width:10mm;height:10mm;stroke-width:5}
+  .ramce .r{border:1.2px solid #111;border-radius:4mm;height:30mm;display:flex;flex-wrap:wrap;align-content:center;justify-content:center;gap:1.5mm;padding:2mm}
+  .ramce .r.vol{align-content:space-around;justify-content:space-around}
+  .riadok{display:flex;align-items:center;gap:3mm;padding:0.5mm 0}
+  .riadok .pic{width:17mm;height:17mm}
+  .riadok + .riadok{border-top:1px dotted #bbb}
+  .orechy{display:flex;gap:1mm;width:72mm}
+  .kocka{width:17mm;height:17mm;border:1.4px solid #111;border-radius:3mm;position:relative}
+  .kocka i{position:absolute;width:3.4mm;height:3.4mm;border-radius:50%;background:#111;transform:translate(-50%,-50%)}
+  .kocka i.x::before,.kocka i.x::after{content:"";position:absolute;left:50%;top:50%;width:6.5mm;height:.5mm;background:#111;transform:translate(-50%,-50%) rotate(45deg)}
+  .kocka i.x::after{transform:translate(-50%,-50%) rotate(-45deg)}
+  .kocka i.x{background:#fff;border:1px solid #111}
+  .priklad{display:flex;align-items:center;gap:3mm}
+</style></head>
+<body>
+<div class="list">
+
+  <header class="hlava">
+    <div><div class="znacka">Prváčik doma <span class="predmet">Matematika</span></div>
+      <h1>Číslo 6</h1></div>
+    <div class="meno">Meno:<span></span></div>
+  </header>
+
+  <!-- 1 -->
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span>Obtiahni šestky. Potom napíš ďalšie sám.<span class="uroven">●</span></div>
+    <div class="linka">
+      <svg class="obtiahni" viewBox="0 0 64 100"><text x="2" y="92">6</text></svg>
+      <svg class="obtiahni" viewBox="0 0 64 100"><text x="2" y="92">6</text></svg>
+      <svg class="obtiahni" viewBox="0 0 64 100"><text x="2" y="92">6</text></svg>
+      <svg class="obtiahni" viewBox="0 0 64 100"><text x="2" y="92">6</text></svg>
+      <div class="prazdne"></div><div class="prazdne"></div><div class="prazdne"></div>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span>Zakrúžkuj rámčeky, v ktorých je presne 6 vecí.<span class="uroven">●</span></div>
+    <div class="ramce">
+      <div class="r" style="display:grid;grid-template-columns:repeat(3,auto);gap:3mm 4mm"><svg class="pic s"><use href="#hviezda"/></svg><svg class="pic s"><use href="#hviezda"/></svg><svg class="pic s"><use href="#hviezda"/></svg><svg class="pic s"><use href="#hviezda"/></svg><svg class="pic s"><use href="#hviezda"/></svg><svg class="pic s"><use href="#hviezda"/></svg></div>
+      <div class="r vol"><svg class="pic s"><use href="#jablko"/></svg><svg class="pic s"><use href="#jablko"/></svg><svg class="pic s"><use href="#jablko"/></svg><svg class="pic s"><use href="#jablko"/></svg><svg class="pic s"><use href="#jablko"/></svg></div>
+      <div class="r vol"><svg class="pic s"><use href="#lopta"/></svg><svg class="pic s" style="margin-top:3mm"><use href="#lopta"/></svg><svg class="pic s"><use href="#lopta"/></svg><svg class="pic s" style="margin-top:-1mm"><use href="#lopta"/></svg><svg class="pic s"><use href="#lopta"/></svg><svg class="pic s" style="margin-top:3mm"><use href="#lopta"/></svg></div>
+      <div class="r"><svg class="pic s"><use href="#kvet"/></svg><svg class="pic s"><use href="#kvet"/></svg><svg class="pic s"><use href="#kvet"/></svg><svg class="pic s"><use href="#kvet"/></svg><svg class="pic s"><use href="#kvet"/></svg><svg class="pic s"><use href="#kvet"/></svg><svg class="pic s"><use href="#kvet"/></svg></div>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span>Veverička má 6 orieškov. Koľko schovala do vrecúška?<span class="uroven">●●</span></div>
+    <div class="plocha" id="orechy"></div>
+  </section>
+
+  <!-- 4 -->
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span>Spočítaj bodky. Koľko je spolu?<span class="uroven">●● / ●●●</span></div>
+    <div class="plocha" style="display:flex;flex-direction:column;gap:4mm">
+      <div class="rad" id="sucty"></div>
+      <div class="rad" style="justify-content:flex-start;gap:6mm">
+        <div class="priklad" id="rozdiel"></div>
+        <div style="font-size:14px;max-width:70mm"><b>●●● Výzva:</b> Prečiarknuté bodky ježko zjedol. Koľko zostalo?</div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Zadanie dieťaťu prečítajte. Pri úlohe 3 môže dieťa oriešky ukazovať prstom
+      a dopočítať do 6 (v škole: rozklad čísla). Riešenie: 2 – rámčeky s hviezdami a loptami · 3 – 2, 5, 3 · 4 – 5, 6, 3.
+      <span class="std">MAT-CO-1, MAT-CO-3, MAT-CO-4 · ŠVP MAT, Čísla a operácie s číslami: „porozumenie a modelovanie čísel ako počtu prvkov množiny…“,
+      „modelovanie a využívanie rôznych rozkladov čísel“, „porozumenie pojmov sčítanec, súčet…“</span></div>
+    <div class="darilo">Ako sa mi darilo? Vyfarbi.<br>
+      <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="17"/><circle cx="14" cy="16" r="1.5"/><circle cx="26" cy="16" r="1.5"/><path d="M12 24 Q20 31 28 24"/></svg><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="17"/><circle cx="14" cy="16" r="1.5"/><circle cx="26" cy="16" r="1.5"/><path d="M13 26 H27"/></svg><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="17"/><circle cx="14" cy="16" r="1.5"/><circle cx="26" cy="16" r="1.5"/><path d="M12 28 Q20 21 28 28"/></svg>
+    </div>
+  </footer>
+</div>
+
+<script src="obrazky.js"></script>
+<script>
+/* úloha 3: koľko orieškov je vidno (spolu je vždy 6) */
+document.getElementById("orechy").innerHTML = [4,1,3].map(n => `
+  <div class="riadok">
+    <div class="orechy">${'<svg class="pic s"><use href="#oriesok"/></svg>'.repeat(n)}</div>
+    <span class="znak">+</span><svg class="pic"><use href="#vrecusko"/></svg>
+    <span style="font-size:15px;margin-left:4mm">Vo vrecúšku je</span><span class="okno"></span>
+  </div>`).join("");
+
+/* kocky: rozmiestnenie bodiek ako na hracej kocke */
+const P = {1:[[50,50]],2:[[28,28],[72,72]],3:[[26,26],[50,50],[74,74]],4:[[28,28],[72,28],[28,72],[72,72]],
+           5:[[26,26],[74,26],[50,50],[26,74],[74,74]],6:[[28,24],[72,24],[28,50],[72,50],[28,76],[72,76]]};
+const kocka = (n, x=0) => `<div class="kocka">${P[n].map(([l,t],i)=>`<i class="${i>=n-x?'x':''}" style="left:${l}%;top:${t}%"></i>`).join("")}</div>`;
+document.getElementById("sucty").innerHTML = [[3,2],[4,2]].map(([a,b]) =>
+  `<div class="priklad">${kocka(a)}<span class="znak">+</span>${kocka(b)}<span class="znak">=</span><span class="okno"></span></div>`).join("");
+document.getElementById("rozdiel").innerHTML = `${kocka(5,2)}<span class="znak">=</span><span class="okno"></span>`;
+</script>
+</body></html>
