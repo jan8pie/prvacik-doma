@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Prváčik doma</title>
+<meta name="description" content="Krátke úlohy a námety na rozhovor k učivu 1. ročníka ZŠ.">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Lexend:wght@500;600;700&display=swap">
+<style>
+/* Rozloženie: jeden stĺpec kariet pod sebou (ako sociálna sieť), najnovšie navrchu, delené po týždňoch. */
+:root{
+  --bg:#EDF1F5; --card:#FFFFFF; --ink:#1C2633; --muted:#5A6676; --line:#D8DFE7; --soft:#F5F7FA;
+  --accent:#2B62C9; --accent-ink:#FFFFFF;
+  --sjl:#C2423A; --mat:#2B62C9; --anj:#24865A; --cap:#B7741A;
+  --ok:#1F8A4C; --no:#B9473F;
+  --sack:#B07A44; --sack-dark:#6E4520; --sack-ink:#FFF4E2;
+  --f-head:"Lexend", "Trebuchet MS", system-ui, sans-serif;
+  --f-body:"Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12171E; --card:#1B222C; --ink:#E7ECF2; --muted:#9AA6B5; --line:#2D3745; --soft:#222B37;
+  --accent:#6E9BEF; --accent-ink:#0D1420;
+  --sjl:#EE7A70; --mat:#6E9BEF; --anj:#5BC48F; --cap:#E2A54C; --ok:#5BC48F; --no:#EE7A70; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12171E; --card:#1B222C; --ink:#E7ECF2; --muted:#9AA6B5; --line:#2D3745; --soft:#222B37;
+  --accent:#6E9BEF; --accent-ink:#0D1420;
+  --sjl:#EE7A70; --mat:#6E9BEF; --anj:#5BC48F; --cap:#E2A54C; --ok:#5BC48F; --no:#EE7A70; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 60px}
+.wrap{max-width:620px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+h1,h2,h3{font-family:var(--f-head);text-wrap:balance;margin:0}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
+
+.top{display:flex;flex-direction:column;gap:6px;padding-block:4px 6px}
+.top h1{font-size:30px;letter-spacing:-.01em}
+.top p{margin:0;color:var(--muted)}
+.proto{font-size:14px;background:var(--soft);border:1px dashed var(--line);border-radius:10px;padding:10px 12px;color:var(--muted)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:14px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:5px}
+
+.week{font-family:var(--f-head);font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-top:10px}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.head{all:unset;box-sizing:border-box;display:flex;flex-direction:column;gap:8px;width:100%;padding:16px 18px;cursor:pointer}
+.head:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
+.row1{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
+.subj{font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--c)}
+.subj::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--c);margin-right:6px;vertical-align:1px}
+.new{background:var(--accent);color:var(--accent-ink);font-weight:700;font-size:12px;padding:1px 8px;border-radius:99px;letter-spacing:.03em}
+.title{font-size:21px;line-height:1.25}
+.teaser{margin:0;color:var(--ink)}
+.meta{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:14px;color:var(--muted)}
+.foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:2px}
+.icons{display:flex;gap:6px;flex-wrap:wrap}
+.ic{display:inline-flex;align-items:center;gap:5px;font-size:13px;padding:4px 9px 4px 7px;border-radius:99px;background:var(--soft);border:1px solid var(--line);color:var(--ink)}
+.ic svg,.legend svg{width:17px;height:17px;flex:none}
+.more{font-size:14px;font-weight:700;color:var(--accent);white-space:nowrap;display:inline-flex;align-items:center;gap:4px}
+.more svg{width:16px;height:16px;transition:transform .2s}
+.card.open .more svg{transform:rotate(180deg)}
+
+.body{border-top:1px solid var(--line);padding:6px 18px 18px;display:flex;flex-direction:column;gap:4px}
+.blk{padding-block:12px;display:flex;flex-direction:column;gap:8px}
+.blk + .blk{border-top:1px dashed var(--line)}
+.blk h3{font-size:16px;display:flex;align-items:center;gap:7px}
+.blk h3 svg{width:19px;height:19px;color:var(--c)}
+.blk p{margin:0}
+.q{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.q li{display:flex;gap:10px}
+.dots{flex:none;width:34px;color:var(--c);font-size:12px;letter-spacing:1px;padding-top:4px}
+.forpar{font-size:15px;background:var(--soft);border-radius:10px;padding:10px 12px}
+.forpar b{font-family:var(--f-head);font-weight:600}
+.std{font-size:12.5px;color:var(--muted);padding-top:10px;border-top:1px solid var(--line);margin-top:6px}
+
+.btn{display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:8px 16px;border-radius:12px;border:1px solid var(--line);background:var(--soft);cursor:pointer;font-weight:700;font-size:15px}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn svg{width:18px;height:18px}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.note{font-size:13px;color:var(--muted)}
+
+/* Na tlač – náhľad listu */
+.print{display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap}
+.sheet{width:120px;aspect-ratio:210/297;max-width:100%;background:#fff;border:1px solid #CBD3DC;border-radius:4px;padding:10px 9px;display:flex;flex-direction:column;gap:7px;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+.sheet i{display:block;height:1px;background:#C9D2DC}
+.sheet .big{font-family:var(--f-head);font-size:30px;color:#9AA7B6;line-height:1;font-weight:700;-webkit-text-stroke:1px #6E7C8C;color:transparent}
+.sheet .pics{display:flex;gap:5px}
+.sheet .pics span{width:22px;height:22px;border:1.5px solid #9AA7B6;border-radius:50%}
+.print-txt{flex:1;min-width:180px;display:flex;flex-direction:column;gap:8px}
+
+/* Aktivita */
+.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.tile{aspect-ratio:1;border:2px solid var(--line);border-radius:14px;background:var(--soft);font-size:clamp(28px,8vw,40px);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;gap:2px;user-select:none;touch-action:manipulation}
+.tile small{font-size:12px;font-family:var(--f-body);color:var(--muted)}
+.tile.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 14%,var(--card))}
+.tile.no{border-color:var(--no);animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+@media (prefers-reduced-motion:reduce){.tile.no{animation:none}.more svg{transition:none}}
+.status{font-weight:700;min-height:1.5em}
+.nuts{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:30px}
+.game{display:flex;flex-direction:column;gap:10px}
+.scene{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap;background:var(--soft);border-radius:14px;padding:12px 14px}
+.nuts{flex:1;min-width:0}
+.squirrel{display:flex;align-items:flex-end;gap:2px}
+.sq{font-size:44px;line-height:1}
+.sack{width:62px;height:62px;transform-origin:50% 90%}
+.sack.opened{animation:hop .5s}
+@keyframes hop{40%{transform:translateY(-8px) rotate(-6deg)}}
+.lvl{display:flex;gap:6px;flex-wrap:wrap;align-self:flex-start}
+.lvlbtn{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:6px 12px;border-radius:99px;border:1px solid var(--line);background:var(--card);cursor:pointer;font-size:14px;font-weight:700;color:var(--muted)}
+.lvlbtn .d{color:var(--c);font-size:10px;letter-spacing:1px}
+.lvlbtn[aria-pressed="true"]{background:var(--c);border-color:var(--c);color:var(--accent-ink)}
+.lvlbtn[aria-pressed="true"] .d{color:var(--accent-ink)}
+@media (prefers-reduced-motion:reduce){.sack.opened{animation:none}}
+[hidden]{display:none!important}
+.kidrow{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px}
+.kidrow .note{flex:1;min-width:200px}
+
+/* Režim pre dieťa */
+.kid{position:fixed;inset:0;z-index:50;background:var(--bg);display:flex;flex-direction:column;gap:12px;overflow:auto;
+  padding-top:calc(env(safe-area-inset-top,0px) + 12px);padding-bottom:calc(env(safe-area-inset-bottom,0px) + 24px);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.kid-bar{display:flex;justify-content:space-between;align-items:center;gap:10px;max-width:760px;width:100%;margin:0 auto}
+.kid-t{font-family:var(--f-head);font-weight:600;color:var(--muted);font-size:15px;min-width:0}
+.kid-x{flex:none;cursor:pointer;min-height:44px;padding:8px 14px;border-radius:99px;border:1px solid var(--line);font-weight:700;font-size:14px;color:var(--ink);user-select:none;-webkit-user-select:none;touch-action:none;
+  background:linear-gradient(var(--accent),var(--accent)) no-repeat left / 0% 100%, var(--soft);transition:background-size .9s linear}
+.kid-x small{font-weight:400;color:inherit;opacity:.8}
+.kid-x.hold{background-size:100% 100%,auto;color:var(--accent-ink)}
+.kid-in{max-width:760px;width:100%;margin:auto;font-size:22px}
+.kid .blk{gap:16px;padding:0}
+.kid .blk h3,.kid .kidrow{display:none}
+.kid .tiles{gap:12px}
+.kid .tile{font-size:clamp(44px,12vw,72px);border-radius:20px}
+.kid .tile small{font-size:16px}
+.kid .nums .btn{width:64px;min-height:64px;font-size:28px}
+.kid .nuts{font-size:clamp(36px,9vw,52px)}
+.kid .sq{font-size:64px}.kid .sack{width:84px;height:84px}
+.kid .lvl{gap:10px}
+.kid .lvlbtn{min-height:52px;padding:8px 18px;font-size:18px}
+.kid .lvlbtn .d{font-size:13px}
+.kid-done{margin:auto;text-align:center;display:flex;flex-direction:column;gap:16px;align-items:center;font-family:var(--f-head);font-size:28px;line-height:1.3}
+.kid-done p{margin:0}
+.kid-done .star{font-size:80px;line-height:1}
+.nums{display:flex;gap:8px;flex-wrap:wrap}
+.nums .btn{width:52px;justify-content:center;font-size:20px;font-family:var(--f-head)}
+.ans{background:var(--soft);border-radius:10px;padding:10px 12px;font-weight:700}
+</style>
+<style>
+/* Nové hry (2. 11. 2026): slabiky, poradie, súčet */
+.syl{font-family:var(--f-head);font-size:clamp(30px,9vw,44px);font-weight:600}
+.tiles.t3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.word{display:flex;align-items:center;gap:14px;background:var(--soft);border-radius:14px;padding:10px 14px;font-size:44px;line-height:1}
+.word .w{font-family:var(--f-head);font-size:20px;color:var(--muted)}
+.line{display:flex;align-items:flex-end;gap:4px;background:var(--soft);border-radius:14px;padding:10px 8px}
+.stand{display:flex;flex-direction:column;align-items:center;font-size:clamp(28px,8vw,40px);line-height:1;padding-right:4px;border-right:2px dashed var(--line)}
+.stand small{font-size:11px;color:var(--muted);font-family:var(--f-body);margin-top:4px}
+.line .tile{aspect-ratio:auto;flex:1;min-width:0;padding:8px 0;font-size:clamp(26px,7.5vw,40px)}
+.plates{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;background:var(--soft);border-radius:14px;padding:12px}
+.plate{display:flex;flex-wrap:wrap;justify-content:center;gap:2px;max-width:150px;min-width:70px;padding:10px 12px;border-radius:50%/40%;background:var(--card);border:2px solid var(--line);font-size:28px;line-height:1.1}
+.plate .gone{opacity:.3;position:relative}
+.plate .gone::after{content:"✕";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--no);font-size:.9em;font-weight:700;opacity:1}
+.op{font-family:var(--f-head);font-size:30px;color:var(--muted)}
+.eq{font-family:var(--f-head);font-size:26px;text-align:center;letter-spacing:.04em}
+.kid .syl{font-size:clamp(44px,12vw,72px)}
+.kid .word{font-size:72px}
+.kid .line .tile{font-size:clamp(34px,9vw,60px)}
+.kid .plate{font-size:40px;max-width:220px}
+.kid .eq{font-size:36px}
+.about{font-size:13.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;margin-top:10px}
+.about p{margin:0 0 6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1>Prváčik doma</h1>
+    <p>Krátke témy a úlohy k tomu, čo sa práve preberá v 1. ročníku. Nové pribúdajú navrchu.</p>
+    <div class="proto"><b>Testovacia verzia.</b> Názov, farby aj ikony sú pracovné. Sťahovanie PDF ešte nefunguje.</div>
+    <div class="legend" id="legend"></div>
+  </header>
+  <main class="wrap" id="feed" style="gap:14px"></main>
+  <footer class="about">
+    <p><b>O stránke.</b> Súkromný rodičovský projekt, nie oficiálny materiál školy. Úlohy sú pôvodné a riadia sa Štátnym vzdelávacím programom pre 1. cyklus (od 2026/27). Postavičky sú vymyslené.</p>
+    <p>Stránka nezbiera žiadne údaje. Čítanie nahlas používa hlas zabudovaný v zariadení.</p>
+  </footer>
+</div>
+
+<script src="karty.js"></script>
+<script>
+/* ===== IKONY (jednotná sada, dajú sa vymeniť na jednom mieste) ===== */
+const IKONY = {
+  rozhovor: {nazov:"Na rozhovor", svg:'<path d="M4 5h16v10H9l-5 4z"/>'},
+  aktivita: {nazov:"Aktivita", svg:'<path d="M9 11V5a1.5 1.5 0 0 1 3 0v5m0-1a1.5 1.5 0 0 1 3 0v2m0-1a1.5 1.5 0 0 1 3 0v4a6 6 0 0 1-6 6h-1a6 6 0 0 1-5-3l-2.5-4a1.5 1.5 0 0 1 2.5-1.6L9 15"/>'},
+  pocuvanie:{nazov:"Počúvanie", svg:'<path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/>'},
+  tlac:     {nazov:"Na tlač", svg:'<path d="M7 9V3h10v6M7 17H4v-7h16v7h-3"/><path d="M7 14h10v7H7z"/>'},
+  hadanka:  {nazov:"Hádanka", svg:'<path d="M9 9a3 3 0 1 1 4.5 2.6c-1 .6-1.5 1.2-1.5 2.4"/><circle cx="12" cy="18" r=".6"/><circle cx="12" cy="12" r="9.5"/>'},
+  spolu:    {nazov:"Spolu s rodičom", svg:'<circle cx="8" cy="7" r="2.5"/><circle cx="16.5" cy="9" r="2"/><path d="M3.5 20a4.5 4.5 0 0 1 9 0M13 20a3.5 3.5 0 0 1 7 0"/>'}
+};
+const svg = (k) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IKONY[k].svg}</svg>`;
+const KIDBTN = `<div class="kidrow"><button class="btn primary" data-kid><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>Podať dieťaťu</button>
+  <span class="note">Otvorí sa len táto úloha, na celú obrazovku a s veľkými tlačidlami. Trvá do 2 minút. Späť sa vrátite podržaním tlačidla hore.</span></div>`;
+const PREDMETY = {SJL:{n:"Slovenčina",c:"var(--sjl)"}, MAT:{n:"Matematika",c:"var(--mat)"}, ANJ:{n:"Angličtina",c:"var(--anj)"}, CAP:{n:"Človek a príroda",c:"var(--cap)"}};
+
+/* ===== OBSAH je v súbore karty.js ===== */
+const KARTY = window.KARTY || [];
+
+/* ===== ŠABLÓNA ===== */
+const DEN = 864e5;
+const datum = (s) => { const [y,m,d]=s.split("-").map(Number); return new Date(y,m-1,d); };
+const DNES = (()=>{ const d=new Date(); d.setHours(0,0,0,0); return d; })();
+const pondelok = (d) => { const x=new Date(d); x.setDate(x.getDate()-((x.getDay()+6)%7)); return x; };
+function tyzden(s){
+  const t = Math.round((pondelok(DNES)-pondelok(datum(s)))/(7*DEN));
+  return t<=0 ? "Tento týždeň" : t===1 ? "Minulý týždeň" : `Pred ${t} týždňami`;
+}
+const fmt = (s) => { const x=datum(s); return x.getDate()+". "+(x.getMonth()+1)+"."; };
+const esc = (s) => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const nahodne = (n) => Math.floor(Math.random()*n);
+const zamiesaj = (a) => { a=[...a]; for(let i=a.length-1;i>0;i--){ const j=nahodne(i+1); [a[i],a[j]]=[a[j],a[i]]; } return a; };
+
+document.getElementById("legend").innerHTML = Object.keys(IKONY).map(k=>`<span>${svg(k)}${IKONY[k].nazov}</span>`).join("");
+
+function blokHTML(b, kid, i){
+  const h = (t) => `<h3>${svg(b.typ)}${t}</h3>`;
+  if(b.typ==="rozhovor") return `<div class="blk">${h("Na rozhovor")}
+     <p><b>Začni takto:</b> ${esc(b.zacni)}</p>
+     <ul class="q">${b.otazky.map((o,j)=>`<li><span class="dots" aria-label="úroveň ${j+1}">${"●".repeat(j+1)}</span><span>${esc(o)}</span></li>`).join("")}</ul>
+     <div class="forpar"><b>Pre teba:</b> ${esc(b.preteba)}</div></div>`;
+  if(b.typ==="tlac") return `<div class="blk">${h("Na tlač")}
+     <div class="print"><div class="sheet" aria-hidden="true"><i></i><i></i><div class="pics"><span></span><span></span><span></span></div><i></i><i></i><i></i></div>
+     <div class="print-txt"><p>${esc(b.text)}</p><div class="btns"><button class="btn primary" data-pdf>${svg("tlac")}Stiahnuť PDF</button></div>
+     <span class="note"></span></div></div></div>`;
+  if(b.typ==="spolu") return `<div class="blk">${h("Spolu s rodičom")}<p>${esc(b.text)}</p></div>`;
+  if(b.typ==="hadanka") return `<div class="blk">${h("Hádanka")}
+     <p style="font-size:19px">${esc(b.text)}</p>${b.napoveda?`<p class="note">Po slovensky: ${esc(b.napoveda)}</p>`:""}
+     <div class="btns"><button class="btn" data-say="${esc(b.text)}" data-lang="${b.napoveda?"en-GB":"sk-SK"}">${svg("pocuvanie")}Prečítaj nahlas</button>
+     <button class="btn" data-reveal>Ukáž odpoveď</button></div><div class="ans" hidden>${esc(b.odpoved)}</div></div>`;
+  if(b.typ==="pocuvanie") return `<div class="blk">${h("Počúvanie")}${KIDBTN}<p>${esc(b.text)}</p>
+     <div class="tiles">${b.slova.map(([e,w])=>`<button class="tile" data-say="${w}" data-lang="en-GB">${e}<small>${w}</small></button>`).join("")}</div></div>`;
+  if(b.typ==="aktivita"){
+    if(b.hra.druh==="vyber"){
+      return `<div class="blk">${h("Aktivita")}${KIDBTN}<div class="btns"><button class="btn" data-say="${esc(b.text)}" data-lang="sk-SK">${svg("pocuvanie")}Prečítaj zadanie</button></div>
+        <p>${esc(b.text)}</p><div class="tiles">${b.hra.polozky.map(([e,w])=>`<button class="tile" data-pick="${w}" data-good="${w.toUpperCase().startsWith(b.hra.spravne)}" aria-label="${w}">${e}</button>`).join("")}</div>
+        <div class="status" aria-live="polite"></div></div>`;
+    }
+    return `<div class="blk">${h("Aktivita")}${KIDBTN}<div data-hra='${esc(JSON.stringify(b.hra))}' data-text="${esc(b.text)}"></div></div>`;
+  }
+  return "";
+}
+
+function kartaHTML(k){
+  const p = PREDMETY[k.predmet];
+  const typy = [...new Set(k.bloky.map(b=>b.typ))];
+  if(k.bloky.some(b=>b.typ==="aktivita"||b.typ==="pocuvanie"||b.typ==="hadanka") && !typy.includes("pocuvanie")) typy.push("pocuvanie");
+  const nove = (DNES - datum(k.datum)) / DEN <= 3;
+  return `<article class="card" style="--c:${p.c}" id="${k.id}">
+    <button class="head" aria-expanded="false" aria-controls="b-${k.id}">
+      <span class="row1"><span class="subj">${p.n}</span><span>· pridané ${fmt(k.datum)}</span>${nove?'<span class="new">NOVÉ</span>':""}</span>
+      <h2 class="title">${esc(k.nazov)}</h2>
+      <p class="teaser">${esc(k.uvod)}</p>
+      <span class="meta">${k.meta.map(m=>`<span>${esc(m)}</span>`).join("")}</span>
+      <span class="foot"><span class="icons">${typy.map(t=>`<span class="ic">${svg(t)}${IKONY[t].nazov}</span>`).join("")}</span>
+      <span class="more"><span class="lbl">Otvoriť</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></span></span>
+    </button>
+    <div class="body" id="b-${k.id}" hidden>
+      ${k.bloky.map((b,i)=>blokHTML(b,k.id,i)).join("")}
+      <div class="std">${k.kod} · ${esc(k.stdn)}</div>
+    </div></article>`;
+}
+
+let html="", tyz="";
+[...KARTY].sort((a,b)=>b.datum.localeCompare(a.datum)).forEach(k=>{
+  const t=tyzden(k.datum);
+  if(t!==tyz){ tyz=t; html+=`<div class="week">${tyz}</div>`; }
+  html+=kartaHTML(k);
+});
+const feed = document.getElementById("feed"); feed.innerHTML = html;
+
+/* ===== HRY =====
+   Každá hra vráti: text (zadanie), hlas (čo sa prečíta, ak sa líši), html (scéna a tlačidlá s data-v),
+   spravne (hodnota data-v), ok a zle (text po odpovedi). */
+const cisla = (max) => `<div class="nums">${Array.from({length:max+1},(_,i)=>`<button class="btn" data-v="${i}">${i}</button>`).join("")}</div>`;
+const VRECKO = `<svg class="sack" viewBox="0 0 64 64" aria-hidden="true"><path d="M24 14c-3-4 1-8 8-5 7-3 11 1 8 5" fill="none" stroke="var(--sack-dark)" stroke-width="3" stroke-linecap="round"/><path d="M25 16h14c9 8 15 18 15 28 0 9-9 14-22 14S10 53 10 44c0-10 6-20 15-28z" fill="var(--sack)" stroke="var(--sack-dark)" stroke-width="2.5"/><path d="M24 17h16" stroke="var(--sack-dark)" stroke-width="4" stroke-linecap="round"/><text x="32" y="48" text-anchor="middle" font-family="Lexend, sans-serif" font-weight="700" font-size="22" fill="var(--sack-ink)">?</text></svg>`;
+
+const SLABIKY_KRATKE = ["ma","me","mi","la","le","li"];
+const SLABIKY_VSETKY = ["ma","má","me","mé","mi","mí","la","lá","le","lé","li","lí"];
+const SLOVA_SLABIKY = [["👩","mama","ma"],["🦙","lama","la"],["🍉","melón","me"],["🍭","lízanka","lí"],["👶","mimino","mi"],["🧑‍⚕️","lekár","le"],["🪢","lano","la"]];
+const ZVIERATA = [["🐻","medveď"],["🐰","zajac"],["🦊","líška"],["🐸","žaba"],["🐷","prasiatko"],["🐱","mačka"]];
+const PORADIE = ["prvé","druhé","tretie","štvrté","piate","šieste"];
+const PORADIE_7 = ["prvým","druhým","tretím","štvrtým","piatym","šiestym"];
+const jahody = (n) => n===1 ? "je 1 jahoda" : n<5 ? `sú ${n} jahody` : `je ${n} jahôd`;
+
+const HRY = {
+  rozklad(hra, u, uvod){
+    const spolu=hra.urovne[u][2], skryte=1+nahodne(spolu-1);
+    return { text:`${uvod} Spolu je ${spolu} orieškov. Koľko ich je vo vrecúšku?`,
+      html:`<div class="scene"><div class="nuts">${"🌰".repeat(spolu-skryte)}</div><div class="squirrel"><span class="sq" aria-hidden="true">🐿️</span>${VRECKO}</div></div>${cisla(spolu)}`,
+      spravne:skryte, ok:`Áno! ${spolu-skryte} a ${skryte} je spolu ${spolu}`, zle:`Skús ešte raz. Koľko chýba do ${spolu}`,
+      poOk:(g)=>g.querySelector(".sack")?.classList.add("opened") };
+  },
+  slabiky(hra, u){
+    if(u===2){
+      const [e,slovo,syl]=SLOVA_SLABIKY[nahodne(SLOVA_SLABIKY.length)];
+      const volby=zamiesaj([syl,...zamiesaj(SLABIKY_VSETKY.filter(s=>s!==syl)).slice(0,3)]);
+      return { text:"Akou slabikou sa začína slovo? Vypočuj si ho.", hlas:slovo, opakuj:slovo,
+        html:`<div class="word"><span aria-hidden="true">${e}</span><span class="w" hidden>${slovo}</span></div><div class="tiles">${volby.map(s=>`<button class="tile syl" data-v="${s}">${s}</button>`).join("")}</div>`,
+        spravne:syl, ok:`Áno! ${slovo} sa začína na ${syl}`, zle:`Skús ešte raz. ${slovo}`,
+        poOk:(g)=>{ g.querySelector(".w").hidden=false; } };
+    }
+    const pool = u===0 ? SLABIKY_KRATKE : SLABIKY_VSETKY, n = u===0 ? 3 : 4;
+    const syl = pool[nahodne(pool.length)];
+    let ine = zamiesaj(pool.filter(s=>s!==syl));
+    if(u===1){ const par = syl.length===2 && /[áéí]/.test(syl) ? syl.normalize("NFD").replace(/́/g,"") : syl.replace(/[aei]$/,c=>({a:"á",e:"é",i:"í"}[c]));
+      ine = [par, ...ine.filter(s=>s!==par)]; }
+    const volby = zamiesaj([syl, ...ine.slice(0,n-1)]);
+    return { text:"Počúvaj a ťukni na slabiku, ktorú počuješ.", hlas:syl, opakuj:syl,
+      html:`<div class="tiles ${n===3?"t3":""}">${volby.map(s=>`<button class="tile syl" data-v="${s}">${s}</button>`).join("")}</div>`,
+      spravne:syl, ok:`Áno, ${syl}`, zle:`Skús ešte raz. ${syl}` };
+  },
+  poradie(hra, u, uvod){
+    const n = u===0 ? 3 : 6, rad = zamiesaj(ZVIERATA).slice(0,n);
+    let t, text, hlas;
+    if(u===2){
+      const za = Math.random()<.5;
+      const ref = za ? nahodne(n-1) : 1+nahodne(n-1);
+      t = za ? ref+1 : ref-1;
+      text = `Ťukni na zvieratko, ktoré stojí hneď ${za?"za":"pred"} ${PORADIE_7[ref]} (${ref+1}.)`;
+      hlas = `Ťukni na zvieratko, ktoré stojí hneď ${za?"za":"pred"} ${PORADIE_7[ref]}.`;
+    } else {
+      t = nahodne(n);
+      const posl = u===1 && t===n-1 && Math.random()<.5;
+      text = posl ? "Ťukni na posledné zvieratko v rade." : `Ťukni na ${PORADIE[t]} (${t+1}.) zvieratko v rade.`;
+      hlas = posl ? text : `Ťukni na ${PORADIE[t]} zvieratko v rade.`;
+    }
+    return { text:`${uvod} ${text}`, hlas:`${uvod} ${hlas}`,
+      html:`<div class="line"><span class="stand" aria-hidden="true">🍦<small>stánok</small></span>${rad.map(([e,m],i)=>`<button class="tile" data-v="${i}" aria-label="${m}">${e}</button>`).join("")}</div>`,
+      spravne:t, ok:`Áno! To je ${PORADIE[t]} zvieratko`, zle:(v)=>`To je ${PORADIE[v]} zvieratko. Skús ešte raz.` };
+  },
+  sucet(hra, u){
+    if(u===2){
+      const n=3+nahodne(4), k=1+nahodne(n-1), r=n-k;
+      return { text:`Na tanieri ${jahody(n)}. Ježko Bodliak ${k===1?"jednu":k} zjedol. Koľko jahôd zostalo?`,
+        html:`<div class="plates"><div class="plate">${Array.from({length:n},(_,i)=>i>=r?'<span class="gone">🍓</span>':'<span>🍓</span>').join("")}</div><span style="font-size:40px" aria-hidden="true">🦔</span></div>
+          <div class="eq">${n} − ${k} = <span class="r">?</span></div>${cisla(6)}`,
+        spravne:r, ok:`Áno! ${n} mínus ${k} je ${r}`, zle:"Skús ešte raz. Spočítaj jahody, ktoré nie sú prečiarknuté.",
+        poOk:(g)=>{ g.querySelector(".r").textContent=r; } };
+    }
+    const max = u===0 ? 4 : 6, a=1+nahodne(max-1), b=1+nahodne(max-a);
+    const tanier = (x) => `<div class="plate">${"🍓".repeat(x)}</div>`;
+    return { text:`Na jednom tanieri ${jahody(a)} a na druhom ${jahody(b)}. Koľko jahôd je spolu?`,
+      html:`<div class="plates">${tanier(a)}<span class="op">+</span>${tanier(b)}</div><div class="eq">${a} + ${b} = <span class="r">?</span></div>${cisla(6)}`,
+      spravne:a+b, ok:`Áno! ${a} a ${b} je spolu ${a+b}`, zle:"Skús ešte raz. Spočítaj jahody na oboch tanieroch.",
+      poOk:(g)=>{ g.querySelector(".r").textContent=a+b; } };
+  }
+};
+
+document.querySelectorAll("[data-hra]").forEach(el=>{
+  const hra=JSON.parse(el.dataset.hra), uvod=el.dataset.text;
+  let uroven=hra.predvolena||0, kola=0, kolo=null, hovor=false;
+  el.innerHTML = `<div class="lvl" role="group" aria-label="Obťažnosť">${hra.urovne.map(([d,n],i)=>`<button class="lvlbtn" data-lvl="${i}" aria-pressed="${i===uroven}"><span class="d">${d}</span>${n}</button>`).join("")}</div>
+    <div class="game"></div>`;
+  const game=el.querySelector(".game");
+  function nova(){
+    kolo = HRY[hra.druh](hra, uroven, uvod);
+    const hlas = kolo.hlas || kolo.text;
+    game.innerHTML = `<div class="btns"><button class="btn" data-say="${esc(hlas)}" data-lang="sk-SK">${svg("pocuvanie")}${kolo.opakuj?"Vypočuj znova":"Prečítaj zadanie"}</button></div>
+      <p>${esc(kolo.text)}</p>${kolo.html}<div class="status" aria-live="polite"></div>`;
+    if(hovor) say(hlas,"sk-SK");
+    let hotove=false;
+    game.querySelectorAll("[data-v]").forEach(b=>b.onclick=()=>{
+      if(hotove) return;
+      const st=game.querySelector(".status"), v=b.dataset.v;
+      if(String(v)===String(kolo.spravne)){
+        hotove=true; b.classList.add("ok"); st.style.color="var(--ok)"; st.textContent=kolo.ok; say(kolo.ok,"sk-SK"); kolo.poOk?.(game);
+        kola++; hovor=true;
+        if(ov.contains(el) && kola>=(hra.kol||3)){ kola=0; setTimeout(()=>{hotovo(); nova();},2000); } else setTimeout(nova,2400);
+      } else {
+        b.classList.remove("no"); void b.offsetWidth; b.classList.add("no");
+        const z = typeof kolo.zle==="function" ? kolo.zle(+v) : kolo.zle;
+        st.style.color="var(--no)"; st.textContent=z; say(z,"sk-SK");
+      }
+    });
+  }
+  el.addEventListener("reset",()=>{ kola=0; hovor=false; nova(); });
+  el.querySelectorAll("[data-lvl]").forEach(b=>b.onclick=()=>{
+    uroven=+b.dataset.lvl; kola=0; hovor=true;
+    el.querySelectorAll("[data-lvl]").forEach(x=>x.setAttribute("aria-pressed", x===b));
+    nova();
+  });
+  nova();
+});
+
+/* hlas */
+function say(t, lang){
+  try{ if(!("speechSynthesis" in window)) throw 0; speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(t); u.lang=lang||"sk-SK"; u.rate=.9; speechSynthesis.speak(u); return true; }
+  catch(e){ return false; }
+}
+
+/* režim pre dieťa: úloha na celú obrazovku */
+const ov=document.createElement("div"); ov.className="kid"; ov.hidden=true; ov.setAttribute("role","dialog"); ov.setAttribute("aria-modal","true");
+ov.innerHTML=`<div class="kid-bar"><span class="kid-t"></span><button class="kid-x" id="kid-x">Späť k rodičovi <small>(podrž)</small></button></div>
+  <div class="kid-in"></div>
+  <div class="kid-done" hidden><div class="star" aria-hidden="true">🌟</div><p>Hotovo, výborne!<br>Podaj tablet späť.</p><button class="btn" data-close>Späť na kartu</button></div>`;
+document.body.appendChild(ov);
+let ph=null, moved=null;
+function openKid(blk, card){
+  ph=document.createComment("miesto"); blk.before(ph); moved=blk;
+  ov.style.setProperty("--c", card.style.getPropertyValue("--c"));
+  ov.querySelector(".kid-t").textContent=card.querySelector(".title").textContent;
+  ov.querySelector(".kid-in").appendChild(blk); ov.querySelector(".kid-in").hidden=false; ov.querySelector(".kid-done").hidden=true;
+  blk.querySelectorAll("[data-good]").forEach(t=>{ t.classList.remove("ok","no"); t.dataset.pick=t.getAttribute("aria-label"); t.querySelector("small")?.remove(); });
+  const st=blk.querySelector(":scope > .status"); if(st) st.textContent="";
+  blk.querySelector("[data-hra]")?.dispatchEvent(new Event("reset"));
+  ov.hidden=false; document.body.style.overflow="hidden";
+  try{ const r=document.documentElement.requestFullscreen?.(); r&&r.catch(()=>{}); }catch(err){}
+}
+function closeKid(){
+  if(!moved) return; ph.replaceWith(moved); moved=null; ov.hidden=true; document.body.style.overflow="";
+  try{ if(document.fullscreenElement) document.exitFullscreen().catch(()=>{}); }catch(err){}
+}
+function hotovo(){ if(ov.hidden) return; ov.querySelector(".kid-in").hidden=true; ov.querySelector(".kid-done").hidden=false; say("Hotovo, výborne! Podaj tablet späť","sk-SK"); }
+const kx=ov.querySelector("#kid-x"); let tm;
+kx.addEventListener("pointerdown",()=>{ kx.classList.add("hold"); tm=setTimeout(closeKid,900); });
+["pointerup","pointerleave","pointercancel"].forEach(n=>kx.addEventListener(n,()=>{ clearTimeout(tm); kx.classList.remove("hold"); }));
+kx.addEventListener("click",e=>{ if(e.detail===0) closeKid(); });
+kx.addEventListener("contextmenu",e=>e.preventDefault());
+document.addEventListener("keydown",e=>{ if(e.key==="Escape" && !ov.hidden) closeKid(); });
+
+/* udalosti – fungujú pre myš aj dotyk */
+document.addEventListener("click", e=>{
+  const head=e.target.closest(".head");
+  if(head){ const card=head.parentElement, body=card.querySelector(".body"), open=body.hidden;
+    body.hidden=!open; card.classList.toggle("open",open); head.setAttribute("aria-expanded",open);
+    head.querySelector(".lbl").textContent = open?"Zavrieť":"Otvoriť"; return; }
+  const s=e.target.closest("[data-say]"); if(s){ say(s.dataset.say, s.dataset.lang); }
+  const p=e.target.closest("[data-pick]");
+  if(p){ const blk=p.closest(".blk"), st=blk.querySelector(".status"); say(p.dataset.pick,"sk-SK");
+    p.classList.remove("no"); void p.offsetWidth;
+    if(p.dataset.good==="true"){ p.classList.add("ok"); p.innerHTML += `<small>${p.dataset.pick}</small>`; p.dataset.pick=""; }
+    else if(p.dataset.pick){ p.classList.add("no"); }
+    const left=blk.querySelectorAll('[data-good="true"]:not(.ok)').length;
+    st.style.color= left?"var(--muted)":"var(--ok)"; st.textContent = left?`Ešte ${left} ${left===1?"obrázok":"obrázky"} na L.`:"Výborne, všetky slová na L sú nájdené!";
+    if(!left && ov.contains(blk)) setTimeout(hotovo,1400); }
+  const kb=e.target.closest("[data-kid]"); if(kb){ openKid(kb.closest(".blk"), kb.closest(".card")); return; }
+  if(e.target.closest("[data-close]")) closeKid();
+  const r=e.target.closest("[data-reveal]"); if(r){ const a=r.closest(".blk").querySelector(".ans"); a.hidden=!a.hidden; r.textContent=a.hidden?"Ukáž odpoveď":"Skry odpoveď"; }
+  const d=e.target.closest("[data-pdf]"); if(d){ const n=d.closest(".print-txt").querySelector(".note"); n.textContent="PDF sa ešte nesťahuje. Na hotovom webe sa tu otvorí súbor na tlač."; }
+});
+</script>
+</body>
+</html>
