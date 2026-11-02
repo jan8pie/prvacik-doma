@@ -403,7 +403,7 @@ document.querySelectorAll("[data-hra]").forEach(el=>{
 /* Zariadenie často zapne zvuk až so začiatkom reči a prvé zvuky sa stratia (hlas „nabieha“).
    Preto pred každou vetou najprv potichu „rozohrejeme“ hlas a vložíme krátku pauzu.
    Krátke slabiky a slová čítame pomalšie. */
-const PAUZA_MS = 250;
+const PAUZA_MS = 500;
 let sayTimer = null;
 function say(t, lang){
   try{
@@ -411,7 +411,7 @@ function say(t, lang){
     const ss = window.speechSynthesis;
     ss.cancel(); clearTimeout(sayTimer);
     const L = lang||"sk-SK";
-    const warm = new SpeechSynthesisUtterance("a"); warm.lang=L; warm.volume=0; warm.rate=1;
+    const warm = new SpeechSynthesisUtterance("a"); warm.lang=L; warm.volume=0.02;  /* nie úplne 0: pri nule niektoré zariadenia zvuk vôbec nezapnú */ warm.rate=1;
     const u = new SpeechSynthesisUtterance(t); u.lang=L;
     u.rate = String(t).trim().length<=8 ? .7 : .9;
     ss.speak(warm);   /* hneď, ešte počas ťuknutia – iPad inak hlas nepustí */
