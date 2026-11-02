@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="sk"><head><meta charset="utf-8"><title>Slabiky s I – pracovný list</title>
+<link rel="stylesheet" href="list.css">
+<style>
+  .obr6{display:grid;grid-template-columns:repeat(6,1fr);gap:2mm;text-align:center}
+  .obr6 .kruzok{margin-top:1mm}
+  .obr6 .pic{width:18mm;height:18mm}
+  .husenica{display:flex;align-items:center;justify-content:center;flex-wrap:nowrap}
+  .husenica .seg{width:17mm;height:17mm;border:1.5px solid #111;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;margin-left:-1.5mm;background:#fff}
+  .husenica .seg:nth-child(odd){transform:translateY(-3mm)}
+  .husenica .seg:nth-child(even){transform:translateY(3mm)}
+  .spoj{display:grid;grid-template-columns:auto 1fr auto;align-items:center}
+  .spoj .lavy,.spoj .pravy{display:flex;flex-direction:column;gap:1.5mm}
+  .spoj .lavy div{display:flex;align-items:center;gap:3mm;font-size:30px;font-weight:700;height:12mm}
+  .spoj .pravy div{display:flex;align-items:center;gap:3mm;height:12mm}
+  .bod{width:3mm;height:3mm;border-radius:50%;background:#111;display:inline-block}
+  .pravy .pic{width:14mm;height:14mm;stroke-width:4;margin:-1mm 0}
+  .kresli{display:grid;grid-template-columns:1fr 1fr;gap:5mm}
+  .kresli div{border:1.2px solid #111;border-radius:4mm;height:27mm;padding:2mm 4mm;font-size:24px;font-weight:700}
+</style></head>
+<body>
+<div class="list">
+
+  <header class="hlava">
+    <div><div class="znacka">Prváčik doma <span class="predmet">Slovenský jazyk</span></div>
+      <h1>Slabiky s I</h1></div>
+    <div class="meno">Meno:<span></span></div>
+  </header>
+
+  <!-- 1 -->
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span>Povedz názov obrázka. Počuješ v ňom I? Vyfarbi krúžok.<span class="uroven">●</span></div>
+    <div class="plocha obr6" style="padding:3mm 5mm">
+      <div><svg class="pic"><use href="#iglu"/></svg><br><span class="kruzok"></span></div>
+      <div><svg class="pic"><use href="#slnko"/></svg><br><span class="kruzok"></span></div>
+      <div><svg class="pic"><use href="#list"/></svg><br><span class="kruzok"></span></div>
+      <div><svg class="pic"><use href="#dom"/></svg><br><span class="kruzok"></span></div>
+      <div><svg class="pic"><use href="#kniha"/></svg><br><span class="kruzok"></span></div>
+      <div><svg class="pic"><use href="#auto"/></svg><br><span class="kruzok"></span></div>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span>Vyfarbi húsenicu: <u>li</u> nažlto, <u>mi</u> namodro.<span class="uroven">●</span></div>
+    <div class="plocha" style="padding:4mm 5mm">
+      <div class="husenica">
+        <div class="seg" style="width:20mm;height:20mm;font-size:12px">
+          <svg viewBox="0 0 40 40" style="width:15mm;height:15mm;fill:none;stroke:#111;stroke-width:2;stroke-linecap:round"><circle cx="14" cy="16" r="2.2" fill="#111"/><circle cx="26" cy="16" r="2.2" fill="#111"/><path d="M13 25 Q20 31 27 25"/><path d="M14 6 L10 0 M26 6 L30 0"/></svg></div>
+        <div class="seg">li</div><div class="seg">ma</div><div class="seg">mi</div><div class="seg">li</div><div class="seg">la</div>
+        <div class="seg">mi</div><div class="seg">lí</div><div class="seg">li</div><div class="seg">me</div><div class="seg">mi</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span>Prečítaj slabiku. Spoj ju s obrázkom, ktorý sa tak začína.<span class="uroven">●●</span></div>
+    <div class="plocha spoj">
+      <div class="lavy">
+        <div>ma <span class="bod"></span></div><div>li <span class="bod"></span></div><div>me <span class="bod"></span></div>
+        <div>lí <span class="bod"></span></div><div>mi <span class="bod"></span></div><div>la <span class="bod"></span></div>
+      </div>
+      <div></div>
+      <div class="pravy">
+        <div><span class="bod"></span><svg class="pic"><use href="#melon"/></svg></div>
+        <div><span class="bod"></span><svg class="pic"><use href="#misa"/></svg></div>
+        <div><span class="bod"></span><svg class="pic"><use href="#malina"/></svg></div>
+        <div><span class="bod"></span><svg class="pic"><use href="#lavica"/></svg></div>
+        <div><span class="bod"></span><svg class="pic"><use href="#limonada"/></svg></div>
+        <div><span class="bod"></span><svg class="pic"><use href="#lizanka"/></svg></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span>Prečítaj a nakresli.<span class="uroven">●●●</span></div>
+    <div class="kresli"><div>malá lama</div><div>Ema a mama</div></div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Zadania prečítajte dieťaťu. Úloha 1: iglu, slnko, list, dom, kniha, auto (I je v slovách iglu, list, kniha).
+      Úloha 3: malina, limonáda, melón, lízanka, misa, lavica. Slabiky čítajte ťahavo („mmmi“).
+      <span class="std">SJL-PP-2, SJL-RV-1 · ŠVP SJL, Písaná produkcia: „sluchové identifikovanie a rozlišovanie zvukov, slov, slabík, hlások“;
+      Elementárne čítanie: „čítanie slabík, slov, viet a krátkych textov s postupne sa zvyšujúcou náročnosťou“</span></div>
+    <div class="darilo">Ako sa mi darilo? Vyfarbi.<br>
+      <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="17"/><circle cx="14" cy="16" r="1.5"/><circle cx="26" cy="16" r="1.5"/><path d="M12 24 Q20 31 28 24"/></svg><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="17"/><circle cx="14" cy="16" r="1.5"/><circle cx="26" cy="16" r="1.5"/><path d="M13 26 H27"/></svg><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="17"/><circle cx="14" cy="16" r="1.5"/><circle cx="26" cy="16" r="1.5"/><path d="M12 28 Q20 21 28 28"/></svg>
+    </div>
+  </footer>
+</div>
+<script src="obrazky.js"></script>
+</body></html>

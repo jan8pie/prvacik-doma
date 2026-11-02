@@ -87,6 +87,10 @@ button{font:inherit;color:inherit}
 /* Na tlač – náhľad listu */
 .print{display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap}
 .sheet{width:120px;aspect-ratio:210/297;max-width:100%;background:#fff;border:1px solid #CBD3DC;border-radius:4px;padding:10px 9px;display:flex;flex-direction:column;gap:7px;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+.sheet.img{padding:0;overflow:hidden;display:block}
+.sheet.img img{width:100%;height:100%;display:block;object-fit:cover}
+a.btn{text-decoration:none;color:inherit}
+a.btn.primary{color:var(--accent-ink)}
 .sheet i{display:block;height:1px;background:#C9D2DC}
 .sheet .big{font-family:var(--f-head);font-size:30px;color:#9AA7B6;line-height:1;font-weight:700;-webkit-text-stroke:1px #6E7C8C;color:transparent}
 .sheet .pics{display:flex;gap:5px}
@@ -259,9 +263,9 @@ function blokHTML(b, kid, i){
      <ul class="q">${b.otazky.map((o,j)=>`<li><span class="dots" aria-label="úroveň ${j+1}">${"●".repeat(j+1)}</span><span>${esc(o)}</span></li>`).join("")}</ul>
      <div class="forpar"><b>Pre teba:</b> ${esc(b.preteba)}</div></div>`;
   if(b.typ==="tlac") return `<div class="blk">${h("Na tlač")}
-     <div class="print"><div class="sheet" aria-hidden="true"><i></i><i></i><div class="pics"><span></span><span></span><span></span></div><i></i><i></i><i></i></div>
-     <div class="print-txt"><p>${esc(b.text)}</p><div class="btns"><button class="btn primary" data-pdf>${svg("tlac")}Stiahnuť PDF</button></div>
-     <span class="note"></span></div></div></div>`;
+     <div class="print"><a class="sheet img" href="tlac/pdf/${esc(b.subor)}" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="tlac/pdf/${esc(b.subor.replace(/\.pdf$/,".png"))}" alt="" loading="lazy"></a>
+     <div class="print-txt"><p>${esc(b.text)}</p><div class="btns"><a class="btn primary" href="tlac/pdf/${esc(b.subor)}" download target="_blank" rel="noopener">${svg("tlac")}Stiahnuť PDF</a></div>
+     <span class="note">A4, čiernobiele. Riešenie je dole na liste pre rodiča.</span></div></div></div>`;
   if(b.typ==="spolu") return `<div class="blk">${h("Spolu s rodičom")}<p>${esc(b.text)}</p></div>`;
   if(b.typ==="hadanka") return `<div class="blk">${h("Hádanka")}
      <p style="font-size:19px">${esc(b.text)}</p>${b.napoveda?`<p class="note">Po slovensky: ${esc(b.napoveda)}</p>`:""}
@@ -556,7 +560,6 @@ document.addEventListener("click", e=>{
   const kb=e.target.closest("[data-kid]"); if(kb){ openKid(kb.closest(".blk"), kb.closest(".card")); return; }
   if(e.target.closest("[data-close]")) closeKid();
   const r=e.target.closest("[data-reveal]"); if(r){ const a=r.closest(".blk").querySelector(".ans"); a.hidden=!a.hidden; r.textContent=a.hidden?"Ukáž odpoveď":"Skry odpoveď"; }
-  const d=e.target.closest("[data-pdf]"); if(d){ const n=d.closest(".print-txt").querySelector(".note"); n.textContent="PDF sa ešte nesťahuje. Na hotovom webe sa tu otvorí súbor na tlač."; }
 });
 </script>
 </body>

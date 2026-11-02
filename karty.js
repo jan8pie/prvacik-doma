@@ -183,6 +183,7 @@ window.KARTY = [
   bloky:[
     {typ:"aktivita", text:"Počúvaj a ťukni na slabiku, ktorú počuješ.",
      hra:{druh:"slabiky", urovne:[["●","Ľahšie"],["●●","Bežné"],["●●●","Výzva"]], predvolena:0, kol:5, rodic:true}},
+    {typ:"tlac", text:"Pracovný list na 1 stranu A4: počuješ I?, vyfarbi húsenicu, spoj slabiku s obrázkom, prečítaj a nakresli.", subor:"sjl-slabiky-i.pdf"},
     {typ:"rozhovor", zacni:"„Viem slovo, ktoré sa začína na mi: mi-mi-no. Vymyslíš iné?“",
      otazky:["Čo v kuchyni sa začína na ma alebo me?","Počuješ v slove lístok krátke i alebo dlhé í? A v slove list?","Povedz mi slovo po slabikách a ja budem hádať, čo to je."],
      preteba:"Slabiky čítaj ťahavo a spolu („mmmi“), nie po písmenách („em-í“). Dlhé í sa v škole volá í s dĺžňom."}
@@ -209,6 +210,7 @@ window.KARTY = [
   bloky:[
     {typ:"aktivita", text:"Koľko jahôd je spolu?",
      hra:{druh:"sucet", urovne:[["●","Ľahšie"],["●●","Bežné"],["●●●","Výzva"]], predvolena:1, kol:4}},
+    {typ:"tlac", text:"Pracovný list Číslo 6 na 1 stranu A4: obtiahni šestky, nájdi rámčeky so 6 vecami, veverička a vrecúško, spočítaj bodky na kockách.", subor:"mat-cislo-6.pdf"},
     {typ:"spolu", text:"Hra „Dve ruky“: dajte do jednej dlane 1 až 3 gombíky a do druhej tiež 1 až 3. Otvorte najprv jednu ruku, potom druhú. Dieťa povie, koľko je spolu, a potom si vymeníte úlohy."},
     {typ:"rozhovor", zacni:"„Kúpil som 3 rožky a ty si do košíka pridal ešte 2. Koľko ich nesieme domov?“",
      otazky:["Koľko rožkov je spolu? Ako si to zistil?","Keď 2 rožky zjeme cestou, koľko ich ostane?","Vymysli úlohu ty mne a ja ti ju zapíšem ako príklad."],
@@ -224,7 +226,6 @@ window.KARTY = [
   bloky:[
     {typ:"aktivita", text:"Ťukni na obrázky, ktoré sa začínajú na L. Keď ťukneš, obrázok sa ozve.",
      hra:{druh:"vyber", spravne:"L", polozky:[["🦁","lev"],["⚽","lopta"],["🐱","mačka"],["🍃","list"],["🥄","lyžica"],["🚗","auto"],["🐟","ryba"],["🦊","líška"]]}},
-    {typ:"tlac", text:"Pracovný list na 1 stranu A4: obtiahni L, zakrúžkuj obrázky na L, nakresli vlastný.", subor:"pismeno-L.pdf"},
     {typ:"rozhovor", zacni:"„Vidím niečo, čo sa začína na Lll… Uhádneš?“",
      otazky:["Čo ešte okolo nás sa začína na L?","Počuješ L na začiatku alebo na konci slova stôl?","Vymysli ty slovo na L a ja budem hádať."],
      preteba:"Hovor „hláska“, keď ide o zvuk, a „písmeno“, keď ide o to, čo píšeme. L vyslovuj krátko: „lll“, nie „el“."}
@@ -240,8 +241,7 @@ window.KARTY = [
      hra:{druh:"rozklad", urovne:[["●","Ľahšie",5],["●●","Bežné",6],["●●●","Výzva",10]], predvolena:1, kol:3}},
     {typ:"rozhovor", zacni:"„Na stole je 6 lyžičiek, ale budeme jesť štyria. Zostane nejaká navyše?“",
      otazky:["Koľko lyžičiek zostane? Ako si na to prišiel?","Mám v ruke 2 oriešky. Koľko ich treba, aby bolo 6?","Teraz zadaj úlohu ty mne. Možno sa schválne pomýlim."],
-     preteba:"V škole sa tomu hovorí rozklad čísla. Prsty a predmety sú v poriadku, nemusí to byť spamäti."},
-    {typ:"tlac", text:"Kartičky 0 – 6 na vystrihnutie, hodia sa na hru „schovaj a hádaj“.", subor:"karticky-0-6.pdf"}
+     preteba:"V škole sa tomu hovorí rozklad čísla. Prsty a predmety sú v poriadku, nemusí to byť spamäti."}
   ]},
 
 { id:"anj-school", datum:"2026-10-27", predmet:"ANJ", kod:"ANJ-RE-2",
