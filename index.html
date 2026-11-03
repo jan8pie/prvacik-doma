@@ -246,7 +246,12 @@ const zverejnena = (k) => datum(k.datum) <= DNES;
 function tyzden(s){
   if(datum(s) > DNES) return "Naplánované (vidíte len v náhľade)";
   const t = Math.round((pondelok(DNES)-pondelok(datum(s)))/(7*DEN));
-  return t<=0 ? "Tento týždeň" : t===1 ? "Minulý týždeň" : `Pred ${t} týždňami`;
+  if(t<=0) return "Tento týždeň";
+  if(t===1) return "Minulý týždeň";
+  /* staršie týždne: aj rozsah dátumov, napr. „Pred 9 týždňami · 31. 8. – 6. 9.“ */
+  const po=pondelok(datum(s)), ne=new Date(po); ne.setDate(po.getDate()+6);
+  const d=(x)=>x.getDate()+". "+(x.getMonth()+1)+".";
+  return `Pred ${t} týždňami · ${d(po)} – ${d(ne)}`;
 }
 const fmt = (s) => { const x=datum(s); return x.getDate()+". "+(x.getMonth()+1)+"."; };
 const esc = (s) => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
