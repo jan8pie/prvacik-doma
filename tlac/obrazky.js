@@ -86,7 +86,7 @@ const O = {
           <path class="w" d="M21 30 L11 34 L21 37 Z"/><path class="w" d="M23 40 C21 47 27 48 27 42"/>
           <path d="M46 80 V92 M62 80 V92 M46 92 L39 97 M46 92 L46 98 M46 92 L52 97 M62 92 L55 97 M62 92 L62 98 M62 92 L68 97"/>`,
   pesBok: `<path d="M80 50 C88 42 90 34 86 28"/>
-          <path d="M30 64 V90 H36 M40 66 V90 H46 M64 66 V90 H70 M74 64 V90 H80"/>
+          <path d="M30 64 V90 H24 M40 66 V90 H34 M64 66 V90 H58 M74 64 V90 H68"/>
           <path class="w" d="M26 52 C26 44 34 42 42 42 H70 C80 42 84 48 84 56 C84 64 78 68 70 68 H34 C28 68 26 60 26 52 Z"/>
           <circle class="w" cx="24" cy="34" r="14"/>
           <path class="w" d="M14 34 C8 34 4 36 4 40 C4 46 10 48 16 46 C20 46 24 44 24 42"/>
@@ -120,14 +120,14 @@ const O = {
           <path class="w" d="M20 40 L8 44 L20 48 Z"/><circle class="f" cx="28" cy="38" r="2.2"/>
           <path d="M40 72 V88 M54 72 V88 M40 88 L34 92 M40 88 L40 94 M40 88 L46 92 M54 88 L48 92 M54 88 L54 94 M54 88 L60 92"/>`,
   mackaBok:`<path d="M80 52 C92 46 92 30 84 24"/>
-          <path d="M30 64 V90 H36 M40 66 V90 H46 M64 66 V90 H70 M74 64 V90 H80"/>
+          <path d="M30 64 V90 H24 M40 66 V90 H34 M64 66 V90 H58 M74 64 V90 H68"/>
           <path class="w" d="M26 52 C26 44 34 42 42 42 H70 C80 42 84 48 84 56 C84 64 78 68 70 68 H34 C28 68 26 60 26 52 Z"/>
           <path class="w" d="M10 22 L12 8 L20 16 H28 L36 8 L38 22 C42 32 36 42 24 42 C12 42 6 32 10 22 Z"/>
           <ellipse class="f" cx="18" cy="26" rx="1.8" ry="2.6"/><ellipse class="f" cx="30" cy="26" rx="1.8" ry="2.6"/><path class="f" d="M22 32 H26 L24 34 Z"/>
           <path d="M18 33 L4 31 M18 35 L5 38 M30 33 L44 31" style="stroke-width:1.4"/>`,
 
   /* ================= ĎALŠIE ZVIERATÁ ================= */
-  lama:  `<path class="w" d="M36 66 V92 H41 M46 68 V92 H51 M70 68 V92 H75 M80 66 V92 H85"/>
+  lama:  `<path class="w" d="M36 66 V92 H31 M46 68 V92 H41 M70 68 V92 H65 M80 66 V92 H75"/>
           <path class="w" d="M30 56 C26 50 30 44 36 46 C38 40 46 40 48 44 C52 40 58 40 60 44 C64 40 70 40 72 44 C76 40 84 42 84 48 C90 50 90 58 86 62 C88 68 82 72 76 70 C72 74 66 74 62 70 C58 74 50 74 46 70 C42 74 34 72 34 68 C28 68 26 60 30 56 Z"/>
           <path class="w" d="M86 50 C92 48 96 52 94 58 C92 60 88 60 86 58"/>
           <path class="w" d="M24 30 C22 38 24 48 30 56 C34 52 38 50 40 46 C38 40 38 32 38 24"/>
@@ -316,7 +316,7 @@ const O = {
   oko:   `<path class="w" d="M6 52 C28 22 72 22 94 52 C72 82 28 82 6 52 Z"/><circle cx="50" cy="52" r="17"/><circle class="f" cx="50" cy="52" r="8"/><circle class="w" cx="55" cy="47" r="3" style="stroke:none"/>
           <path d="M22 38 L15 28 M36 31 L32 19 M50 29 V16 M64 31 L68 19 M78 38 L85 28" style="stroke-width:2.6"/>`,
   /* ---- väčšia plocha na pravej strane: krokodíl na porovnávanie (ústa sa otvárajú k väčšiemu) ---- */
-  krokodil: ["0 0 160 100", `<path class="w" d="M96 74 L106 92 H116 L112 76 M134 70 L142 88 H152 L146 68"/>
+  krokodil: ["0 0 160 100", `<path class="w" d="M108 76 L102 92 H92 L98 78 M146 68 L140 88 H130 L136 70"/>
           <path class="w" d="M70 46 C76 36 88 34 98 38 C112 40 128 40 140 46 C152 52 158 60 160 70 C152 66 144 66 136 70 C122 78 104 82 88 82 L74 80 Z"/>
           <path d="M104 40 l4 -6 l4 6 l4 -6 l4 6 l4 -5 l4 6 l4 -4 l4 6" style="stroke-width:2"/>
           <path d="M96 56 c6 4 14 4 20 0 M120 56 c6 4 12 4 18 -1" style="stroke-width:1.6"/>
