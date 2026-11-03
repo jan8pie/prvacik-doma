@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="sk"><head><meta charset="utf-8"><title>Koľko je spolu? – pracovný list (3 úrovne)</title>
+<link rel="stylesheet" href="list.css">
+<style>
+  /* korálky */
+  .koralky{display:flex;align-items:center;gap:2mm;position:relative;padding:0 5mm;justify-self:start}
+  .koralky::before{content:"";position:absolute;left:0;right:0;top:50%;border-top:1.2px solid #111}
+  .koralky span{width:9.4mm;height:9.4mm;border:1.4px solid #111;border-radius:50%;background:#fff;position:relative}
+  .koralky span.p{background:#111}
+  .koralky span.s{background:repeating-linear-gradient(45deg,#111 0 .5mm,#fff .5mm 1.6mm)}
+  .kor-rad{display:grid;grid-template-columns:24mm 1fr auto;align-items:center;gap:4mm;padding:1.3mm 0}
+  .kor-rad + .kor-rad{border-top:1px dotted #bbb}
+  .kor-rad .ex{font-size:24px;font-weight:700;letter-spacing:1px}
+  .vzor{color:#777;font-size:24px;font-weight:700;display:flex;align-items:center;justify-content:center}
+  /* debnička s jablkami (+1) */
+  .debna{border:1.4px solid #111;border-radius:3mm;padding:1.5mm 2mm;display:flex;gap:1mm;align-items:center}
+  .debna .pic{width:9.5mm;height:9.5mm;stroke-width:5.5}
+  .debna .miesto{width:9.5mm;height:9.5mm;border:1.4px dashed #777;border-radius:50%}
+  /* domček čísla */
+  .domcek{width:48mm}
+  .domcek svg{display:block;width:48mm;height:17mm;overflow:visible}
+  .domcek table{width:100%;border-collapse:collapse}
+  .domcek td{border:1.4px solid #111;height:9.4mm;text-align:center;font-size:22px;font-weight:700;width:50%}
+  /* mozaika */
+  .mozaika{display:grid;grid-template-columns:repeat(5,14mm);grid-auto-rows:12mm;border:1.4px solid #111}
+  .mozaika div{border:.8px solid #555;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700}
+  /* pyramída */
+  .pyr{display:flex;flex-direction:column;align-items:center}
+  .pyr .r{display:flex}
+  .pyr span{width:14mm;height:10mm;border:1.4px solid #111;margin:-.7px;display:flex;align-items:center;justify-content:center;font-size:21px;font-weight:700;background:#fff}
+  .tab{border-collapse:collapse;font-size:20px;font-weight:700}
+  .tab td{border:1.2px solid #111;width:22mm;height:7.6mm;text-align:center}
+  .tab th{padding-bottom:1mm}
+  .tab th .pic{width:12mm;height:12mm}
+  .ramik{border:1.2px solid #111;border-radius:3mm;padding:2mm 3mm;font-size:15px}
+</style></head>
+<body>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 1 – ĽAHŠIE                                                     -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="1">
+  <header class="hlava" data-predmet="Matematika">Koľko je spolu?</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span>Spočítaj jahody na oboch tanieroch. Koľko je ich spolu?</div>
+    <div class="plocha dva">
+      <div class="priklad"><div class="tanier"><i o="jahoda" n="2"></i></div><span class="znak">+</span><div class="tanier"><i o="jahoda"></i></div><span class="znak">=</span><span class="okno"></span></div>
+      <div class="priklad"><div class="tanier"><i o="jahoda" n="3"></i></div><span class="znak">+</span><div class="tanier"><i o="jahoda" n="2"></i></div><span class="znak">=</span><span class="okno"></span></div>
+      <div class="priklad"><div class="tanier"><i o="jahoda"></i></div><span class="znak">+</span><div class="tanier"><i o="jahoda" n="3"></i></div><span class="znak">=</span><span class="okno"></span></div>
+      <div class="priklad"><div class="tanier"><i o="jahoda" n="2"></i></div><span class="znak">+</span><div class="tanier"><i o="jahoda" n="2"></i></div><span class="znak">=</span><span class="okno"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Vyfarbi korálky: prvé číslo jednou farbičkou, druhé inou. Koľko korálok je spolu?
+      <span class="pozn">Prvý riadok je vzor.</span></span></div>
+    <div class="plocha" style="padding:1.5mm 5mm">
+      <div class="kor-rad"><span class="ex" style="color:#777">2 + 1</span><div class="koralky"><span class="p"></span><span class="p"></span><span class="s"></span><span></span><span></span><span></span></div><span class="okno vzor">3</span></div>
+      <div class="kor-rad"><span class="ex">3 + 2</span><div class="koralky"><span></span><span></span><span></span><span></span><span></span><span></span></div><span class="okno"></span></div>
+      <div class="kor-rad"><span class="ex">1 + 3</span><div class="koralky"><span></span><span></span><span></span><span></span><span></span><span></span></div><span class="okno"></span></div>
+      <div class="kor-rad"><span class="ex">4 + 2</span><div class="koralky"><span></span><span></span><span></span><span></span><span></span><span></span></div><span class="okno"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span>Do prázdneho krúžku nakresli ešte 1 jablko. Koľko jabĺk je teraz v debničke?</div>
+    <div class="rad">
+      <div class="priklad"><div class="debna"><i o="jablko" n="2"></i><span class="miesto"></span></div><span class="okno m"></span></div>
+      <div class="priklad"><div class="debna"><i o="jablko" n="4"></i><span class="miesto"></span></div><span class="okno m"></span></div>
+      <div class="priklad"><div class="debna"><i o="jablko" n="3"></i><span class="miesto"></span></div><span class="okno m"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span>Na lúke sedia 3 zajace. Pribehli ešte 2. Koľko zajacov je teraz na lúke? Zakrúžkuj číslo.</div>
+    <div class="plocha rad" style="padding:2mm 5mm">
+      <svg viewBox="0 0 430 100" style="width:122mm;height:28.4mm;fill:none;stroke:#111;stroke-linecap:round;stroke-linejoin:round">
+        <path d="M0 96 H430" style="stroke-width:2.2"/>
+        <path d="M60 96 c2 -6 4 -8 6 -9 M66 96 c0 -5 1 -8 3 -10 M190 96 c2 -6 4 -8 6 -9 M196 96 c0 -5 1 -8 3 -10 M402 96 c2 -6 4 -8 6 -9 M408 96 c0 -5 1 -8 3 -10" style="stroke-width:2"/>
+        <use href="#zajac" x="0" y="12" width="84" height="84" style="stroke-width:3.6"/>
+        <use href="#zajac" x="66" y="12" width="84" height="84" style="stroke-width:3.6"/>
+        <use href="#zajac" x="132" y="12" width="84" height="84" style="stroke-width:3.6"/>
+        <use href="#zajac" x="236" y="2" width="80" height="80" style="stroke-width:3.6"/>
+        <use href="#zajac" x="336" y="12" width="84" height="84" style="stroke-width:3.6"/>
+        <path d="M300 84 Q318 50 338 84 M402 84 Q414 62 428 76" style="stroke-width:2.2;stroke-dasharray:2 6"/>
+      </svg>
+      <div class="vyber"><span>4</span><span>5</span><span>6</span></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Zadania dieťaťu prečítajte. Pri úlohe 2 potrebuje dve farbičky: vyfarbí prvé číslo jednou farbou, druhé inou a spočíta všetky vyfarbené korálky. Počítanie po jednom aj na prstoch je v poriadku.
+      <b>Riešenie:</b> 1 – 3, 5, 4, 4 · 2 – 5, 4, 6 · 3 – 3, 5, 4 · 4 – 5. Išlo to ľahko? Skúste úroveň ●●○.
+      <span class="std">MAT-CO-3, MAT-CO-5 · ŠVP MAT, Čísla a operácie s číslami: „porozumenie pojmov sčítanec, súčet, menšenec, menšiteľ, rozdiel“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 2 – BEŽNÉ                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="2">
+  <header class="hlava" data-predmet="Matematika">Koľko je spolu?</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span>Napíš príklad ku každému obrázku.</div>
+    <div class="plocha rad" style="align-items:flex-start">
+      <div class="stlpec"><div class="priklad"><div class="tanier m"><i o="jahoda" n="3"></i></div><span class="znak">+</span><div class="tanier m"><i o="jahoda" n="3"></i></div></div>
+        <div class="priklad"><span class="okno m"></span><span class="znak">+</span><span class="okno m"></span><span class="znak">=</span><span class="okno m"></span></div></div>
+      <div class="stlpec"><div class="priklad"><div class="tanier m"><i o="jahoda" n="4"></i></div><span class="znak">+</span><div class="tanier m"><i o="jahoda" n="2"></i></div></div>
+        <div class="priklad"><span class="okno m"></span><span class="znak">+</span><span class="okno m"></span><span class="znak">=</span><span class="okno m"></span></div></div>
+      <div class="stlpec"><div class="priklad"><div class="tanier m"><i o="jahoda" n="2"></i></div><span class="znak">+</span><div class="tanier m"><i o="jahoda" n="3"></i></div></div>
+        <div class="priklad"><span class="okno m"></span><span class="znak">+</span><span class="okno m"></span><span class="znak">=</span><span class="okno m"></span></div></div>
+    </div>
+  </section>
+
+  <div style="display:grid;grid-template-columns:auto 1fr;gap:7mm">
+    <section class="uloha">
+      <div class="zadanie"><span class="c">2</span><span>Domček čísla 6<span class="pozn">Na každom poschodí je spolu 6.<br>Dopíš, koľko chýba.</span></span></div>
+      <div class="domcek">
+        <svg viewBox="0 0 100 36"><path d="M2 35 L50 3 L98 35 Z" fill="#fff" stroke="#111" stroke-width="2.6" stroke-linejoin="round"/><text x="50" y="30" text-anchor="middle" style="font:700 19px Andika">6</text></svg>
+        <table><tr><td>5</td><td></td></tr><tr><td>4</td><td></td></tr><tr><td></td><td>3</td></tr><tr><td>2</td><td></td></tr><tr><td></td><td>5</td></tr><tr><td>6</td><td></td></tr></table>
+      </div>
+    </section>
+    <section class="uloha">
+      <div class="zadanie"><span class="c">3</span><span>Tajný obrázok<span class="pozn">Vypočítaj každé políčko. Kde vyjde 6, políčko vyfarbi. Čo sa objavilo?</span></span></div>
+      <div class="stred"><div class="mozaika" id="mozaika2"></div></div>
+    </section>
+  </div>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span>Príbehy o ježkovi. Napíš príklad a výsledok.</div>
+    <div class="dva">
+      <div class="plocha" style="display:flex;gap:3mm;align-items:center">
+        <i o="jezko" class="l"></i>
+        <div style="display:flex;flex-direction:column;gap:2.5mm;font-size:15.5px">Ježko mal 4 jablká. Pod stromom našiel ešte 2. Koľko jabĺk má teraz?
+          <div class="priklad"><span class="okno m"></span><span class="znak">+</span><span class="okno m"></span><span class="znak">=</span><span class="okno m"></span></div></div>
+      </div>
+      <div class="plocha" style="display:flex;gap:3mm;align-items:center">
+        <i o="vevericka" class="l"></i>
+        <div style="display:flex;flex-direction:column;gap:2.5mm;font-size:15.5px">Ježko mal 6 jabĺk. Veveričke dal 2. Koľko jabĺk mu zostalo?
+          <div class="priklad"><span class="okno m"></span><span class="znak">−</span><span class="okno m"></span><span class="znak">=</span><span class="okno m"></span></div></div>
+      </div>
+    </div>
+  </section>
+
+    <section class="uloha">
+    <div class="zadanie"><span class="c">5</span>Dokresli jahody na prázdny tanier, aby ich bolo spolu 6.</div>
+    <div class="plocha rad">
+      <div class="priklad"><div class="tanier m"><i o="jahoda" n="4"></i></div><span class="znak">+</span><div class="tanier m"></div></div>
+      <div class="priklad"><div class="tanier m"><i o="jahoda" n="1"></i></div><span class="znak">+</span><div class="tanier m"></div></div>
+      <div class="priklad"><div class="tanier m"><i o="jahoda" n="3"></i></div><span class="znak">+</span><div class="tanier m"></div></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Zadania prečítajte. Domček čísla je v škole bežná pomôcka: na každom poschodí je dvojica čísel, ktoré dajú spolu číslo na streche (rozklad čísla). Pri tajnom obrázku stačí počítať na prstoch, dôležité je nevynechať políčko.
+      <b>Riešenie:</b> 1 – 3+3=6, 4+2=6, 2+3=5 · 2 – 1, 2, 3, 4, 1, 0 · 3 – srdce · 4 – 4+2=6, 6−2=4 · 5 – dokreslí 2, 5, 3.
+      <span class="std">MAT-CO-3, MAT-CO-4, MAT-CO-5 · ŠVP MAT, Čísla a operácie s číslami: „porozumenie pojmov sčítanec, súčet, menšenec, menšiteľ, rozdiel“; „modelovanie a využívanie rôznych rozkladov čísel“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 3 – VÝZVA                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="3">
+  <header class="hlava" data-predmet="Matematika">Koľko je spolu?</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span>Koľko jahôd sa skrýva pod obrúskom?</div>
+    <div class="plocha" style="display:flex;flex-direction:column;gap:3mm">
+      <div class="rad">
+        <div class="stlpec"><b style="font-size:15px">Spolu je 6</b><div class="tanier v"><div class="kopa"><i o="jahoda" n="4"></i></div><i o="obrusok" style="position:absolute;right:-2mm;top:0;width:18mm;height:18mm;stroke-width:4"></i></div><span>Pod obrúskom: <span class="okno m"></span></span></div>
+        <div class="stlpec"><b style="font-size:15px">Spolu je 5</b><div class="tanier v"><div class="kopa"><i o="jahoda"></i></div><i o="obrusok" style="position:absolute;right:-2mm;top:0;width:20mm;height:20mm;stroke-width:4"></i></div><span>Pod obrúskom: <span class="okno m"></span></span></div>
+        <div class="stlpec"><b style="font-size:15px">Spolu je 6</b><div class="tanier v"><i o="obrusok" style="position:absolute;left:5mm;top:-1mm;width:25mm;height:23mm;stroke-width:3.6"></i></div><span>Pod obrúskom: <span class="okno m"></span></span></div>
+      </div>
+      <div class="rad" style="font-size:26px;font-weight:700">
+        <div class="priklad">2 + <span class="okno m"></span> = 6</div>
+        <div class="priklad"><span class="okno m"></span> + 1 = 5</div>
+        <div class="priklad">6 = 3 + <span class="okno m"></span></div>
+        <div class="priklad">4 + <span class="okno m"></span> = 4</div>
+      </div>
+    </div>
+  </section>
+
+  <div style="display:grid;grid-template-columns:1.05fr 1fr;gap:6mm">
+    <section class="uloha">
+      <div class="zadanie"><span class="c">2</span><span>Číselné pyramídy<span class="pozn">Číslo v tehle je súčet dvoch tehál pod ňou.</span></span></div>
+      <div class="plocha" style="display:flex;flex-direction:column;gap:3mm;align-items:center">
+        <div style="display:flex;align-items:center;gap:3mm;font-size:13px;color:#444">Vzor:
+          <div class="pyr" style="transform:scale(.72);transform-origin:left center;margin-right:-8mm"><div class="r"><span>3</span></div><div class="r"><span>1</span><span>2</span></div></div>1 + 2 = 3</div>
+        <div style="display:flex;gap:5mm;align-items:flex-end">
+          <div class="pyr"><div class="r"><span></span></div><div class="r"><span></span><span></span></div><div class="r"><span>2</span><span>1</span><span>3</span></div></div>
+          <div class="pyr"><div class="r"><span>6</span></div><div class="r"><span>4</span><span></span></div><div class="r"><span>3</span><span></span><span>1</span></div></div>
+        </div>
+      </div>
+    </section>
+    <section class="uloha">
+      <div class="zadanie"><span class="c">3</span><span>Ježko dáva 6 jabĺk do dvoch košíkov. Ako všelijako to môže urobiť?<span class="pozn">Nájdi všetky spôsoby.</span></span></div>
+      <div class="stred" style="gap:4mm;align-items:flex-start">
+        <table class="tab">
+          <tr><th><i o="kosik"></i></th><th><i o="kosik"></i></th></tr>
+          <tr><td>6</td><td>0</td></tr><tr><td></td><td></td></tr><tr><td></td><td></td></tr><tr><td></td><td></td></tr><tr><td></td><td></td></tr><tr><td></td><td></td></tr><tr><td></td><td></td></tr>
+        </table>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:2mm;font-size:14px;padding-top:16mm;text-align:center">Koľko spôsobov<br>si našiel?<span class="okno"></span></div>
+      </div>
+    </section>
+  </div>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span>Dva kroky a vlastný príbeh</div>
+    <div class="dva">
+      <div class="plocha" style="display:flex;flex-direction:column;gap:2mm;font-size:15.5px">
+        <div>Na tanieri bolo 6 jahôd. Ježko 2 zjedol. Potom mama 1 pridala. Koľko jahôd je teraz na tanieri?</div>
+        <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:3mm"><span class="drobne">Môžeš si to nakresliť.</span><div style="width:44mm;height:15mm;border:1px dashed #999;border-radius:2mm"></div><span class="okno"></span></div>
+      </div>
+      <div class="plocha" style="display:flex;flex-direction:column;gap:2mm;font-size:15.5px">
+        <div>Vymysli príbeh k príkladu <b style="font-size:20px">3 + 2 = 5</b> a nakresli ho.</div>
+        <div style="flex:1;min-height:17mm;border:1px dashed #999;border-radius:2mm"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Výzva je pre deti, ktorým bežné úlohy idú ľahko. Úloha 1 je hľadanie chýbajúceho čísla: dieťa môže dopočítavať od viditeľných jahôd až po celkový počet. V pyramíde vpravo treba počítať aj „odzadu“ (koľko chýba). Pri úlohe 3 pochváľte, ak dieťa postupuje po poradí (6 a 0, 5 a 1, 4 a 2…), je to dôležitá stratégia.
+      <b>Riešenie:</b> 1 – 2, 4, 6; 4, 4, 3, 0 · 2 – vľavo 3, 4, 7; vpravo 2 a dole 1 · 3 – 7 spôsobov: 6+0, 5+1, 4+2, 3+3, 2+4, 1+5, 0+6 · 4 – 5.
+      <span class="std">MAT-CO-3, MAT-CO-4, MAT-CO-5 · ŠVP MAT, Čísla a operácie s číslami: „porozumenie pojmov sčítanec, súčet, menšenec, menšiteľ, rozdiel“; „modelovanie a využívanie rôznych rozkladov čísel“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<script src="obrazky.js"></script>
+<script>
+/* tajný obrázok (úroveň 2): 1 = políčko so súčtom 6 (srdce) */
+(function(){
+  const vzor = ["01010","11111","11111","01110","00100"];
+  const sest = ["3+3","4+2","2+4","5+1","1+5","6+0","0+6"], ine = ["3+2","4+1","2+2","1+3","2+3","1+4","5+0","3+1","1+1","2+1"];
+  let a = 0, b = 0;
+  document.getElementById("mozaika2").innerHTML = vzor.join("").split("").map(c =>
+    `<div>${c==="1" ? sest[(a++*3)%sest.length] : ine[b++%ine.length]}</div>`).join("");
+})();
+</script>
+<script src="nastroje.js"></script>
+</body></html>

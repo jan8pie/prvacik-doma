@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="sk"><head><meta charset="utf-8"><title>Kto býva vedľa? – pracovný list (3 úrovne)</title>
+<link rel="stylesheet" href="list.css">
+<style>
+  .scena{fill:none;stroke:#111;stroke-linecap:round;stroke-linejoin:round}
+  .scena text{font-family:Andika;fill:#111;stroke:none}
+  .ulica{display:flex;justify-content:space-around;align-items:flex-end;border-bottom:1.6px solid #111;padding-bottom:0}
+  .domcek2{width:21mm;height:24mm}
+  .susedia{display:flex;justify-content:space-around;flex-wrap:wrap;gap:3mm}
+  .trojica{display:flex;align-items:center;gap:1.5mm;border:1px solid #bbb;border-radius:3mm;padding:2mm 2.5mm}
+  .trojica b{width:11mm;height:11mm;border:2px solid #111;border-radius:2mm;display:flex;align-items:center;justify-content:center;font-size:24px;background:#f1f1f1}
+  .rada{display:flex;gap:1.5mm;align-items:center;font-size:24px;font-weight:700}
+  .rada span{width:11mm;height:11mm;flex:none;border:1.3px solid #111;border-radius:2mm;display:flex;align-items:center;justify-content:center}
+  .rada span:empty{border-style:dashed}
+  .rada.mala span{width:9.5mm;height:9.5mm}
+  .rada.mala{gap:1mm}
+  .hadanky{display:grid;grid-template-columns:1fr 1fr;gap:2.5mm 7mm;font-size:15.5px}
+  .hadanky div{display:flex;align-items:center;justify-content:space-between;gap:2mm}
+  .strany{display:grid;grid-template-columns:auto 1fr;gap:2mm 4mm;align-items:center;font-size:14px}
+</style></head>
+<body>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 1 – ĽAHŠIE                                                     -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="1">
+  <header class="hlava" data-predmet="Matematika">Kto býva vedľa?</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span>Čísla bývajú na ulici v rade. Dopíš na domčeky čísla, ktoré chýbajú.</div>
+    <div class="plocha"><div class="ulica" data-domy="0 1 _ 3 _ 5 _"></div></div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Kto býva vedľa? Dopíš susedov.<span class="pozn">Pomôže ti ulica hore.</span></span></div>
+    <div class="plocha susedia">
+      <div class="trojica"><span class="okno"></span><b>2</b><span class="okno"></span></div>
+      <div class="trojica"><span class="okno"></span><b>4</b><span class="okno"></span></div>
+      <div class="trojica"><span class="okno"></span><b>1</b><span class="okno"></span></div>
+    </div>
+  </section>
+
+  <div class="dva" style="grid-template-columns:1.2fr 1fr">
+    <section class="uloha">
+      <div class="zadanie"><span class="c">3</span><span>Spoj bodky od 1 do 8. Čo vzniklo?<span class="pozn">Nakoniec spoj 8 s 1.</span></span></div>
+      <div class="plocha stred"><svg class="scena" id="spoj1" viewBox="0 0 200 150" style="width:82mm;height:61.5mm;stroke-width:2"></svg></div>
+    </section>
+    <section class="uloha">
+      <div class="zadanie"><span class="c">4</span><span>Raketa odpočítava. Dopíš čísla.</span></div>
+      <div class="plocha" style="display:flex;align-items:center;gap:4mm;justify-content:center">
+        <i o="raketa" class="xl" style="width:30mm;height:46mm"></i>
+        <div style="display:flex;flex-direction:column;gap:1.5mm;align-items:center" class="rada">
+          <span>6</span><span>5</span><span></span><span>3</span><span></span><span>1</span><span></span><div style="font-size:17px">ŠTART!</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Zadania prečítajte. Susedia sú čísla tesne pred a tesne za (v škole: predchodca a nasledovník). Dieťa môže ukazovať prstom na ulici: „pred dvojkou býva jednotka, za ňou trojka“. Pri raketke počítajte spolu nahlas odzadu.
+      <b>Riešenie:</b> 1 – 2, 4, 6 · 2 – 1 a 3, 3 a 5, 0 a 2 · 3 – ryba · 4 – 4, 2, 0. Išlo to ľahko? Skúste úroveň ●●○.
+      <span class="std">MAT-CO-2 · ŠVP MAT, Čísla a operácie s číslami: „porozumenie a modelovanie čísel ako počtu prvkov množiny, ako poradie, ako predchodcu alebo nasledovníka“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 2 – BEŽNÉ                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="2">
+  <header class="hlava" data-predmet="Matematika">Číslo pred a za</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span>Dopíš susedov: číslo hneď pred a hneď za.</div>
+    <div class="plocha susedia" style="display:grid;grid-template-columns:repeat(3,auto);justify-content:space-around">
+      <div class="trojica"><span class="okno m"></span><b>3</b><span class="okno m"></span></div>
+      <div class="trojica"><span class="okno m"></span><b>5</b><span class="okno m"></span></div>
+      <div class="trojica"><span class="okno m"></span><b>1</b><span class="okno m"></span></div>
+      <div class="trojica"><span class="okno m"></span><b>4</b><span class="okno m"></span></div>
+      <div class="trojica"><span class="okno m"></span><b>2</b><span class="okno m"></span></div>
+      <div class="trojica"><span class="okno m"></span><b>6</b><span class="okno m"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Žabka skáče po číselnej osi. Kde pristane?<span class="pozn">Nakresli skoky oblúčikom a napíš číslo.</span></span></div>
+    <div class="plocha" style="display:flex;flex-direction:column;gap:3mm">
+      <svg class="scena" id="zaba2" viewBox="0 0 1000 150" style="width:100%;height:27mm;stroke-width:3"></svg>
+      <div class="hadanky">
+        <div>Žabka sedí na 2. Skočí o 1 dopredu. <span class="okno m"></span></div>
+        <div>Žabka sedí na 5. Skočí o 1 dozadu. <span class="okno m"></span></div>
+        <div>Žabka sedí na 3. Skočí 2-krát dopredu. <span class="okno m"></span></div>
+        <div>Žabka sedí na 6. Skočí 3-krát dozadu. <span class="okno m"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span>Dopíš čísla v rade.</div>
+    <div class="plocha" style="display:flex;flex-direction:column;gap:2.5mm;align-items:center">
+      <div class="rada"><span>0</span><span></span><span>2</span><span></span><span></span><span>5</span><span></span></div>
+      <div class="rada"><i o="raketa" class="s"></i><span>6</span><span></span><span></span><span>3</span><span></span><span></span><span>0</span><span style="border:none;width:auto;font-size:17px">ŠTART!</span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span>Hádanky. Ktoré číslo som?</div>
+    <div class="plocha hadanky">
+      <div>Bývam hneď za 4. <span class="okno m"></span></div>
+      <div>Bývam hneď pred 6. <span class="okno m"></span></div>
+      <div>Bývam medzi 2 a 4. <span class="okno m"></span></div>
+      <div>Bývam hneď pred 1. <span class="okno m"></span></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Zadania prečítajte. Pri žabke nech dieťa najprv položí prst na číslo, kde žabka sedí, a potom „skáče“ prstom. Skok dopredu = číslo väčšie, skok dozadu = menšie. Slovo „medzi“ si môžete ukázať na troch hračkách v rade.
+      <b>Riešenie:</b> 1 – 2 a 4, 4 a 6, 0 a 2, 3 a 5, 1 a 3, 5 a 7 · 2 – 3, 4, 5, 3 · 3 – 1, 3, 4, 6; 5, 4, 2, 1 · 4 – 5, 5, 3, 0.
+      <span class="std">MAT-CO-2 · ŠVP MAT, Čísla a operácie s číslami: „porozumenie a modelovanie čísel ako počtu prvkov množiny, ako poradie, ako predchodcu alebo nasledovníka“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 3 – VÝZVA                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="3">
+  <header class="hlava" data-predmet="Matematika">Susedia, skoky a ulice</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Hádanky pre detektívov. Ktoré číslo som?</span></div>
+    <div class="plocha hadanky">
+      <div>Som väčšie ako 3 a menšie ako 5. <span class="okno m"></span></div>
+      <div>Moji susedia sú 6 a 8. <span class="okno m"></span></div>
+      <div>Môj sused za mnou je 1. <span class="okno m"></span></div>
+      <div>Keď sčítaš mojich dvoch susedov, je to 10. <span class="okno m"></span></div>
+    </div>
+  </section>
+
+  <div class="dva" style="grid-template-columns:1fr 1.05fr">
+    <section class="uloha">
+      <div class="zadanie"><span class="c">2</span><span>Spoj bodky, ale skáč po dvoch: 2, 4, 6, 8 … až po 30.<span class="pozn">Nakoniec spoj 30 s 2.</span></span></div>
+      <div class="plocha stred"><svg class="scena" id="spoj3" viewBox="0 0 200 200" style="width:70mm;height:70mm;stroke-width:1.6"></svg></div>
+    </section>
+    <section class="uloha">
+      <div class="zadanie"><span class="c">3</span>Kto ako skáče? Pokračuj.</div>
+      <div class="plocha" style="display:flex;flex-direction:column;gap:3mm">
+        <div class="priklad"><i o="zaba" class="m"></i><span class="drobne" style="width:15mm">po 2</span><div class="rada mala" style="font-size:19px"><span>0</span><span>2</span><span>4</span><span></span><span></span><span></span></div></div>
+        <div class="priklad"><i o="zajac" class="m"></i><span class="drobne" style="width:15mm">späť po 1</span><div class="rada mala" style="font-size:19px"><span>10</span><span>9</span><span></span><span></span><span></span><span></span></div></div>
+        <div class="priklad"><i o="lev" class="m"></i><span class="drobne" style="width:15mm">po 3</span><div class="rada mala" style="font-size:19px"><span>0</span><span>3</span><span></span><span></span><span></span></div></div>
+        <div class="priklad"><i o="slimak" class="m"></i><span class="drobne" style="width:15mm">po 5</span><div class="rada mala" style="font-size:19px"><span>0</span><span>5</span><span></span><span></span></div></div>
+      </div>
+    </section>
+  </div>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Bádateľ: Na ulici majú domy na jednej strane iné čísla ako na druhej. Dopíš čísla, ktoré chýbajú.<span class="pozn">Pozri sa, aké čísla majú domy na vašej ulici!</span></span></div>
+    <div class="plocha strany">
+      <span>vľavo</span><div class="ulica" data-domy="1 3 5 _ 9 _" style="justify-content:flex-start;gap:4mm"></div>
+      <span>vpravo</span><div class="ulica" data-domy="2 4 _ 8 _ 12" style="justify-content:flex-start;gap:4mm"></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Výzva siaha za šestku, lebo šikovné deti často počítajú ďalej. Pri hádankách s dvoma stopami musí dieťa splniť obe naraz. Úloha 4 je malý objav: domy na jednej strane ulice majú nepárne čísla, na druhej párne; na prechádzke si to môžete overiť.
+      <b>Riešenie:</b> 1 – 4, 7, 0, 5 · 2 – raketa · 3 – 6, 8, 10; 8, 7, 6, 5; 6, 9, 12; 10, 15 · 4 – vľavo 7, 11; vpravo 6, 10.
+      <span class="std">MAT-CO-2, MAT-CO-6 · ŠVP MAT, Čísla a operácie s číslami: „porozumenie a modelovanie čísel ako počtu prvkov množiny, ako poradie, ako predchodcu alebo nasledovníka“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<script src="obrazky.js"></script>
+<script>
+/* domčeky s číslami (_ = prázdne okienko) */
+document.querySelectorAll("[data-domy]").forEach(u => {
+  u.innerHTML = u.dataset.domy.split(" ").map(c => `<svg class="scena domcek2" viewBox="0 0 70 80" style="stroke-width:2.4">
+    <path d="M8 34 L35 8 L62 34" /><path d="M14 30 V80 H56 V30" fill="#fff"/>
+    ${c==="_" ? `<rect x="19" y="40" width="32" height="32" rx="5" style="stroke-dasharray:4 3"/>`
+              : `<text x="35" y="66" text-anchor="middle" style="font:700 30px Andika">${c}</text>`}</svg>`).join("");
+});
+
+/* spoj bodky: [x, y, číslo] */
+function spoj(id, body, extra){
+  document.getElementById(id).innerHTML = (extra||"") + body.map(([x,y,n]) =>
+    `<circle cx="${x}" cy="${y}" r="2.6" fill="#111" stroke="none"/><text x="${x+4}" y="${y-4}" font-size="11">${n}</text>`).join("");
+}
+/* ryba (1 – 8) */
+spoj("spoj1", [[20,75,1],[70,35,2],[125,55,3],[180,22,4],[180,128,5],[125,95,6],[70,115,7],[38,98,8]],
+  `<circle cx="52" cy="66" r="5" style="stroke-width:2"/><circle cx="53" cy="66" r="2" fill="#111" stroke="none"/>`);
+/* raketa (2, 4, 6 … 30) */
+const R = [[100,8],[122,38],[130,80],[130,125],[162,160],[162,185],[130,165],[118,190],[82,190],[70,165],[38,185],[38,160],[70,125],[70,80],[78,38]];
+spoj("spoj3", R.map(([x,y],i)=>[16+x*.9,14+y*.9,(i+1)*2]), `<circle cx="106" cy="70" r="9" style="stroke-dasharray:3 3"/>`);
+/* číselná os so žabkou (úroveň 2) */
+(function(){
+  let t = `<line x1="40" y1="110" x2="985" y2="110"/><path d="M975 102 L987 110 L975 118"/>`;
+  for(let i=0;i<=10;i++){ const x = 60+i*90; t += `<line x1="${x}" y1="100" x2="${x}" y2="120"/><text x="${x}" y="148" text-anchor="middle" style="font:700 30px Andika">${i}</text>`; }
+  t += `<use href="#zaba" x="0" y="20" width="62" height="62" style="stroke-width:4.6"/>`;
+  document.getElementById("zaba2").innerHTML = t;
+})();
+</script>
+<script src="nastroje.js"></script>
+</body></html>

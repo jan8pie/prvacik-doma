@@ -8,6 +8,8 @@
    Karta s budúcim dátumom sa ukáže až v ten deň (zásoba). Náhľad: adresa s ?nahlad
    Každá sada má vždy kartu pre Slovenčinu, Matematiku aj Angličtinu.
    Angličtina zatiaľ bez pracovných listov na tlač, len aktivity so zvukom.
+   Na tlač: {typ:"tlac", urovne:3, text:"…", subor:"id-karty.pdf"} = list v 3 úrovniach
+   (●○○ Ľahšie, ●●○ Bežné, ●●● Výzva). Súbory tlac/pdf/id-karty-1.pdf … -3.pdf a .png vyrobí tlac/vyrob-pdf.js.
 
    predmet: SJL, MAT, ANJ, CAP
    kod:     kód témy z mapy učiva (prehlad/01_mapa_uciva_1_rocnik.md)
@@ -34,6 +36,7 @@ window.KARTY = [
   bloky:[
     {typ:"pocuvanie", citanie:true, jazyk:"sk-SK", text:"Najprv prečítaj slovo nahlas. Potom naň ťukni a skontroluj sa.",
      slova:[["","mama"],["","lama"],["","Ema"],["","Ela"],["","Emil"],["","malá"],["","milá"],["","mám"]]},
+    {typ:"tlac", urovne:3, text:"Prvé slová a vety z písmen M, A, E, L, I: spoj s obrázkom, nájdi rovnaké slovo, prečítaj a nakresli. Výzva: prvá krížovka a zlepené slová.", subor:"sjl-citame-slova.pdf"},
     {typ:"spolu", text:"Napíšte spolu jedno z týchto slov veľkými tlačenými písmenami na papierik. Dieťa ho večer prečíta niekomu z rodiny ako prekvapenie."}
   ]},
 
@@ -44,6 +47,7 @@ window.KARTY = [
   stdn:"ŠVP MAT, Čísla a operácie s číslami: „porozumenie a modelovanie čísel ako počtu prvkov množiny, ako poradie, ako predchodcu alebo nasledovníka“",
   bloky:[
     {typ:"spolu", text:"Nakreslite ulicu so siedmimi domčekmi a napíšte na ne čísla 0 až 6. Jeden domček prikryte papierikom. Dieťa háda, ktoré číslo je schované, a povie, kto sú jeho susedia. Potom skrýva dieťa a hádate vy."},
+    {typ:"tlac", urovne:3, text:"Čísla pred a za: ulica s domčekmi, žabka na číselnej osi, raketa odpočítava. Výzva: hádanky, skoky po dvoch až po 30, párne a nepárne domy.", subor:"mat-susedia.pdf"},
     {typ:"rozhovor", zacni:"„Na schodoch stojím na treťom schode. Na ktorý stúpim, keď pôjdem o jeden vyššie?“",
      otazky:["Ktoré číslo príde hneď po 5?","Ktoré číslo je hneď pred 3?","Ja poviem číslo a ty mi povieš oboch susedov. Potom sa vymeníme."],
      preteba:"Číslo hneď pred sa v škole volá predchodca, číslo hneď za nasledovník. Doma stačí „sused pred“ a „sused za“."}
@@ -70,6 +74,7 @@ window.KARTY = [
   bloky:[
     {typ:"aktivita", text:"Ťukni na obrázky, ktoré sa začínajú na A. Keď ťukneš, obrázok sa ozve.",
      hra:{druh:"vyber", spravne:"A", polozky:[["🚗","auto"],["🍍","ananás"],["🍎","jablko"],["🚌","autobus"],["🐒","opica"],["🥑","avokádo"],["⚓","kotva"],["✈️","lietadlo"]]}},
+    {typ:"tlac", urovne:3, text:"Čo patrí do aktovky, tajné auto z písmen, kde počuješ A, krátke a a dlhé á, čítanie po schodoch. Výzva: tajné zvieratká a objav pravidlo.", subor:"sjl-a-zaciatok.pdf"},
     {typ:"rozhovor", zacni:"„Ááá, zívam. Ááá… a na A sa začína aj auto! Čo ešte?“",
      otazky:["Čo okolo nás sa začína na A?","Je v slove mama tiež A? Koľkokrát?","Nájdeš slovo, ktoré sa na A končí?"],
      preteba:"Krátke a a dlhé á sú v šlabikári zvlášť. Pri hre nevadí, ak dieťa povie aj slovo s á."}
@@ -82,6 +87,7 @@ window.KARTY = [
   stdn:"ŠVP MAT, Čísla a operácie s číslami: „porozumenie pojmov sčítanec, súčet, menšenec, menšiteľ, rozdiel“",
   bloky:[
     {typ:"spolu", text:"Striedajte sa. Kto má v kole väčší súčet, dostane fazuľku. Ak je súčet rovnaký, fazuľku dostanú obaja. Vyhráva ten, kto má prvý päť fazuliek."},
+    {typ:"tlac", urovne:3, text:"Bodky na kocke, súčet dvoch kociek, hra pre dvoch a kockové bingo. Výzva: tajomstvo protiľahlých stien a všetky spôsoby, ako hodiť 6.", subor:"mat-kocka.pdf"},
     {typ:"rozhovor", zacni:"„Padla mi trojka a potom dvojka. Koľko to je spolu?“",
      otazky:["Ako si to spočítal? Ukážeš mi to na prstoch?","Prvá padla štvorka. Čo musí padnúť, aby bol súčet 6?","Ktoré dva hody dajú spolu 6? Nájdeš všetky?"],
      preteba:"Výsledok sčítania sa v škole volá súčet. Bodky je dobré najprv spočítať; časom ich dieťa začne poznávať naraz."}
@@ -109,6 +115,7 @@ window.KARTY = [
     {typ:"hadanka", text:"Me – lón. Čo je to?", odpoved:"Melón 🍉"},
     {typ:"hadanka", text:"Lí – zan – ka. Čo je to?", odpoved:"Lízanka 🍭"},
     {typ:"hadanka", text:"La – vi – ca. Čo je to?", odpoved:"Lavica"},
+    {typ:"tlac", urovne:3, text:"Tlieskanie slabík, vláčiky so slabikami, chýbajúca slabika. Výzva: slová z prvých slabík, slabikový reťaz a chyták, ktoré slovo je dlhšie.", subor:"sjl-spoj-slabiky.pdf"},
     {typ:"spolu", text:"Vymeňte si úlohy: dieťa povie slovo po slabikách a vy hádate. Na každú slabiku môžete tlesknúť alebo poskočiť."}
   ]},
 
@@ -120,6 +127,7 @@ window.KARTY = [
   bloky:[
     {typ:"aktivita", text:"Porovnaj sušienky na tanieroch.",
      hra:{druh:"porovnaj", urovne:[["●","Ľahšie"],["●●","Bežné"],["●●●","Výzva"]], predvolena:1, kol:4}},
+    {typ:"tlac", urovne:3, text:"Viac, menej, rovnako: taniere, myšky a syry, znaky <, >, =. Výzva: najprv vypočítaj, potom porovnaj, váhy a oprava zlých znakov.", subor:"mat-porovnaj.pdf"},
     {typ:"rozhovor", zacni:"„Ty máš na tanieri 4 kúsky jablka a ja 3. Kto má viac?“",
      otazky:["Kto má viac? Ako si to zistil?","Čo urobíme, aby sme mali rovnako?","Nakresli mi znak „menší ako“. Ako si pamätáš, na ktorú stranu sa otvára?"],
      preteba:"Pomôcka, ktorú deti poznajú: znak sa otvára ako hladné ústa k väčšiemu číslu. V škole hovoria „je väčší ako“, „je menší ako“, „rovná sa“."}
@@ -146,7 +154,7 @@ window.KARTY = [
   bloky:[
     {typ:"aktivita", text:"Ťukni na obrázky, ktoré sa začínajú na M. Keď ťukneš, obrázok sa ozve.",
      hra:{druh:"vyber", spravne:"M", polozky:[["🐭","myš"],["🍉","melón"],["🚲","bicykel"],["🌙","mesiac"],["🐝","včela"],["🥛","mlieko"],["🍋","citrón"],["🐻","medveď"]]}},
-    {typ:"tlac", text:"Pracovný list Písmeno M na 1 stranu A4: čo sa začína na M, obtiahni M a m, nájdi písmeno v rade, kde počuješ M, prečítaj slová.", subor:"sjl-pismeno-m.pdf"},
+    {typ:"tlac", urovne:3, text:"Balóny s obrázkami na M, bludisko z písmen, kde počuješ M (začiatok, stred, koniec). Výzva: tajné slová, počítanie hlások a čarovanie mama – lama.", subor:"sjl-m-zaciatok.pdf"},
     {typ:"rozhovor", zacni:"„Mňam, mám chuť na niečo, čo sa začína na Mmm… Uhádneš, na čo?“",
      otazky:["Čo v kuchyni sa začína na M?","Počuješ M na začiatku alebo na konci slova dom?","Vymysli slovo, v ktorom je M dvakrát."],
      preteba:"M vyslovuj ako dlhé „mmm“, nie „em“. Keď dieťa nájde M v strede slova, spýtaj sa, kde presne ho počuje."}
@@ -159,7 +167,7 @@ window.KARTY = [
   stdn:"ŠVP MAT, Čísla a operácie s číslami: „porozumenie a modelovanie čísel ako počtu prvkov množiny, ako poradie, ako predchodcu alebo nasledovníka“",
   bloky:[
     {typ:"spolu", text:"Lov na šestky: každú nájdenú šestku (6 lyžičiek, 6 gombíkov, 6 bodiek) si zapíšte čiarkou alebo nakreslite. Keď sa vec nedá spočítať naraz, ukladajte ju po jednej do radu."},
-    {typ:"tlac", text:"Pracovný list Lov na šestky na 1 stranu A4: dokresli vajíčka do krabičky, dokresli mravcom nohy, tabuľka na lov šestiek doma.", subor:"mat-lov-na-sestky.pdf"},
+    {typ:"tlac", urovne:3, text:"Šestka v krabičke vajec, na krídlach motýľa, na domine aj doma. Výzva: nohy zvieratiek, spravodlivé delenie orieškov a hádanky.", subor:"mat-6-okolo.pdf"},
     {typ:"rozhovor", zacni:"„V krabičke je 6 vajíčok. Myslíš, že by sa tam zmestilo aj siedme?“",
      otazky:["Koľko vajíčok zostane, keď 1 použijeme na palacinky?","Ako ukážeš 6 na prstoch? Dá sa to aj inak?","Mravec má 6 nôh. Koľko nôh majú 2 mravce? Skús to nakresliť."],
      preteba:"Nevadí, ak dieťa ráta po jednom. Pomáha, keď pri každom predmete ukáže prstom."}
@@ -186,7 +194,7 @@ window.KARTY = [
   bloky:[
     {typ:"aktivita", text:"Počúvaj a ťukni na slabiku, ktorú počuješ.",
      hra:{druh:"slabiky", urovne:[["●","Ľahšie"],["●●","Bežné"],["●●●","Výzva"]], predvolena:0, kol:5, rodic:true}},
-    {typ:"tlac", text:"Pracovný list na 1 stranu A4: počuješ I?, vyfarbi húsenicu, spoj slabiku s obrázkom, prečítaj a nakresli.", subor:"sjl-slabiky-i.pdf"},
+    {typ:"tlac", urovne:3, text:"Slabiky mi, li, mí, lí: húsenica, bludisko zo slabík, krátke i a dlhé í. Výzva: tajný obrázok len z dlhých í a skladanie slov.", subor:"sjl-slabiky-i.pdf"},
     {typ:"rozhovor", zacni:"„Viem slovo, ktoré sa začína na mi: mi-mi-no. Vymyslíš iné?“",
      otazky:["Čo v kuchyni sa začína na ma alebo me?","Počuješ v slove lístok krátke i alebo dlhé í? A v slove list?","Povedz mi slovo po slabikách a ja budem hádať, čo to je."],
      preteba:"Slabiky čítaj ťahavo a spolu („mmmi“), nie po písmenách („em-í“). Dlhé í sa v škole volá í s dĺžňom."}
@@ -200,6 +208,7 @@ window.KARTY = [
   bloky:[
     {typ:"aktivita", text:"Zvieratká čakajú na zmrzlinu. Prvé stojí pri stánku.",
      hra:{druh:"poradie", urovne:[["●","Ľahšie"],["●●","Bežné"],["●●●","Výzva"]], predvolena:1, kol:4}},
+    {typ:"tlac", urovne:3, text:"Rad na zmrzlinu, vláčik a preteky: kto je prvý, tretí, posledný. Výzva: detektívka, kto stojí kde, a vzor korálok až po 10.", subor:"mat-poradie.pdf"},
     {typ:"rozhovor", zacni:"„Pozri, pri pokladni sú pred nami traja ľudia. Koľkí v rade sme my?“",
      otazky:["Kto je v rade prvý a kto posledný?","Keď jeden človek zaplatí a odíde, koľkí budeme potom?","Postav hračky do radu a daj mi úlohu: ktorá je piata?"],
      preteba:"V škole sa tomu hovorí poradie. Zapisuje sa číslom s bodkou (3. = tretí). Ukážte si vždy, odkiaľ rad začína."}
@@ -213,7 +222,7 @@ window.KARTY = [
   bloky:[
     {typ:"aktivita", text:"Koľko jahôd je spolu?",
      hra:{druh:"sucet", urovne:[["●","Ľahšie"],["●●","Bežné"],["●●●","Výzva"]], predvolena:1, kol:4}},
-    {typ:"tlac", text:"Pracovný list Číslo 6 na 1 stranu A4: obtiahni šestky, nájdi rámčeky so 6 vecami, veverička a vrecúško, spočítaj bodky na kockách.", subor:"mat-cislo-6.pdf"},
+    {typ:"tlac", urovne:3, text:"Súčet do 6 s jahodami, korálkami a ježkom. Výzva: jahody pod obrúskom, číselné pyramídy a všetky spôsoby, ako rozdeliť 6 jabĺk.", subor:"mat-sucet-6.pdf"},
     {typ:"spolu", text:"Hra „Dve ruky“: dajte do jednej dlane 1 až 3 gombíky a do druhej tiež 1 až 3. Otvorte najprv jednu ruku, potom druhú. Dieťa povie, koľko je spolu, a potom si vymeníte úlohy."},
     {typ:"rozhovor", zacni:"„Kúpil som 3 rožky a ty si do košíka pridal ešte 2. Koľko ich nesieme domov?“",
      otazky:["Koľko rožkov je spolu? Ako si to zistil?","Keď 2 rožky zjeme cestou, koľko ich ostane?","Vymysli úlohu ty mne a ja ti ju zapíšem ako príklad."],

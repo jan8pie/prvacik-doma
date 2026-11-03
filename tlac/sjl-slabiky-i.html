@@ -1,93 +1,233 @@
 <!doctype html>
-<html lang="sk"><head><meta charset="utf-8"><title>Slabiky s I – pracovný list</title>
+<html lang="sk"><head><meta charset="utf-8"><title>Slabiky s I – pracovný list (3 úrovne)</title>
 <link rel="stylesheet" href="list.css">
 <style>
-  .obr6{display:grid;grid-template-columns:repeat(6,1fr);gap:2mm;text-align:center}
-  .obr6 .kruzok{margin-top:1mm}
-  .obr6 .pic{width:18mm;height:18mm}
-  .husenica{display:flex;align-items:center;justify-content:center;flex-wrap:nowrap}
-  .husenica .seg{width:17mm;height:17mm;border:1.5px solid #111;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;margin-left:-1.5mm;background:#fff}
-  .husenica .seg:nth-child(odd){transform:translateY(-3mm)}
-  .husenica .seg:nth-child(even){transform:translateY(3mm)}
-  .spoj{display:grid;grid-template-columns:auto 1fr auto;align-items:center}
-  .spoj .lavy,.spoj .pravy{display:flex;flex-direction:column;gap:1.5mm}
-  .spoj .lavy div{display:flex;align-items:center;gap:3mm;font-size:30px;font-weight:700;height:12mm}
-  .spoj .pravy div{display:flex;align-items:center;gap:3mm;height:12mm}
-  .bod{width:3mm;height:3mm;border-radius:50%;background:#111;display:inline-block}
-  .pravy .pic{width:14mm;height:14mm;stroke-width:4;margin:-1mm 0}
-  .kresli{display:grid;grid-template-columns:1fr 1fr;gap:5mm}
-  .kresli div{border:1.2px solid #111;border-radius:4mm;height:27mm;padding:2mm 4mm;font-size:24px;font-weight:700}
+  /* húsenica */
+  .husenica{display:flex;align-items:center;justify-content:center;padding:2mm 0}
+  .husenica .seg{width:15.5mm;height:15.5mm;border:1.5px solid #111;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:23px;font-weight:700;margin-left:-1.6mm;background:#fff}
+  .husenica .seg:nth-child(odd){transform:translateY(-2.6mm)}
+  .husenica .seg:nth-child(even){transform:translateY(2.6mm)}
+  .husenica .hlavicka{width:19mm;height:19mm}
+  .husenica .hlavicka svg{width:16mm;height:16mm;fill:none;stroke:#111;stroke-width:2.2;stroke-linecap:round}
+  /* spájanie: slabiky hore, obrázky dole */
+  .spoj-hd{display:grid;grid-template-columns:repeat(3,1fr);justify-items:center;row-gap:18mm;padding:5mm}
+  .spoj-hd .pic{width:22mm;height:22mm}
+  .obr8 .pic{width:18mm;height:18mm}
+  .spoj-hd>div{display:flex;flex-direction:column;align-items:center;gap:1.5mm}
+  /* veľké a malé slabiky */
+  .pary{display:grid;grid-template-columns:repeat(5,1fr);justify-items:center;row-gap:9mm}
+  .pary>div{display:flex;flex-direction:column;align-items:center;gap:1.5mm}
+  /* bludisko */
+  .bludisko{display:flex;align-items:center;justify-content:center;gap:2mm}
+  .bludisko .siet{grid-template-columns:repeat(7,17.5mm);grid-auto-rows:11mm}
+  .bludisko .siet span{font-size:22px}
+  .bludisko .start{align-self:flex-start;margin-top:-1mm}
+  .bludisko .ciel{align-self:flex-end;margin-bottom:-1mm}
+  /* tajný obrázok */
+  .tajny{display:flex;align-items:center;justify-content:center;gap:6mm}
+  .tajny .siet{grid-template-columns:repeat(9,12mm);grid-auto-rows:10mm}
+  .tajny .siet span{font-size:17px}
+  .tajny .otazka{display:flex;flex-direction:column;align-items:center;gap:2mm;font-size:14px;text-align:center;width:34mm}
+  /* čo nepatrí */
+  .nepatri{display:grid;grid-template-columns:1fr 1fr;gap:3mm 8mm}
+  .nepatri>div{display:flex;gap:2.5mm;align-items:center}
+  .nepatri .pis{min-width:0;flex:1;height:8mm}
+  /* kresli */
+  .prehod{display:grid;grid-template-columns:1fr 1fr;gap:3mm 10mm}
+  .prehod>div{display:flex;align-items:center;gap:2mm}
+  .prehod .pis{flex:1;min-width:0;height:9mm}
+  .sip{font-size:22px;font-weight:700;margin:0 1mm}
+  .kresli2{display:grid;grid-template-columns:1fr 1fr;gap:5mm}
+  .kresli2 div{border:1.2px solid #111;border-radius:4mm;height:37mm;padding:2mm 4mm;font-size:26px;font-weight:700}
+  .banka{display:flex;gap:3mm;justify-content:center;flex-wrap:wrap}
+  .slova{display:grid;grid-template-columns:repeat(3,1fr);gap:1mm 7mm;margin-top:2mm}
+  .slova .pis{min-width:0;width:100%}
 </style></head>
 <body>
-<div class="list">
 
-  <header class="hlava">
-    <div><div class="znacka">Prváčik doma <span class="predmet">Slovenský jazyk</span></div>
-      <h1>Slabiky s I</h1></div>
-    <div class="meno">Meno:<span></span></div>
-  </header>
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 1 – ĽAHŠIE                                                     -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="1">
+  <header class="hlava" data-predmet="Slovenský jazyk">Písmeno I a slabiky</header>
 
-  <!-- 1 -->
   <section class="uloha">
-    <div class="zadanie"><span class="c">1</span>Povedz názov obrázka. Počuješ v ňom I? Vyfarbi krúžok.<span class="uroven">●</span></div>
-    <div class="plocha obr6" style="padding:3mm 5mm">
-      <div><svg class="pic"><use href="#iglu"/></svg><br><span class="kruzok"></span></div>
-      <div><svg class="pic"><use href="#slnko"/></svg><br><span class="kruzok"></span></div>
-      <div><svg class="pic"><use href="#list"/></svg><br><span class="kruzok"></span></div>
-      <div><svg class="pic"><use href="#dom"/></svg><br><span class="kruzok"></span></div>
-      <div><svg class="pic"><use href="#kniha"/></svg><br><span class="kruzok"></span></div>
-      <div><svg class="pic"><use href="#auto"/></svg><br><span class="kruzok"></span></div>
+    <div class="zadanie"><span class="c">1</span><span>Obtiahni veľké I a malé i. Pri malom i nezabudni na bodku.</span></div>
+    <div class="plocha"><div class="linka" style="justify-content:space-around">
+      <i obtiahni="I" w="40"></i><i obtiahni="I" w="40"></i><i obtiahni="I" w="40"></i><i obtiahni="I" w="40"></i>
+      <span style="width:6mm"></span>
+      <i obtiahni="i" w="40"></i><i obtiahni="i" w="40"></i><i obtiahni="i" w="40"></i><i obtiahni="i" w="40"></i>
+    </div></div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Povedz, čo je na obrázku. Počuješ v slove I? Vyfarbi krúžok.</span></div>
+    <div class="plocha obr-mriezka obr8" style="grid-template-columns:repeat(8,1fr);padding:3.5mm 3mm">
+      <div><i o="iglu" class="s"></i><span class="kruzok"></span></div>
+      <div><i o="slnko" class="s"></i><span class="kruzok"></span></div>
+      <div><i o="list" class="s"></i><span class="kruzok"></span></div>
+      <div><i o="auto" class="s"></i><span class="kruzok"></span></div>
+      <div><i o="ihla" class="s"></i><span class="kruzok"></span></div>
+      <div><i o="dom" class="s"></i><span class="kruzok"></span></div>
+      <div><i o="kiwi" class="s"></i><span class="kruzok"></span></div>
+      <div><i o="ryba" class="s"></i><span class="kruzok"></span></div>
     </div>
   </section>
 
-  <!-- 2 -->
   <section class="uloha">
-    <div class="zadanie"><span class="c">2</span>Vyfarbi húsenicu: <u>li</u> nažlto, <u>mi</u> namodro.<span class="uroven">●</span></div>
-    <div class="plocha" style="padding:4mm 5mm">
+    <div class="zadanie"><span class="c">3</span><span>Vyfarbi na húsenici všetky kolieska so slabikou <u>mi</u>.<span class="pozn">Koľko ich je? Napíš číslo do okienka.</span></span></div>
+    <div class="plocha" style="display:flex;align-items:center;justify-content:center;gap:6mm">
       <div class="husenica">
-        <div class="seg" style="width:20mm;height:20mm;font-size:12px">
-          <svg viewBox="0 0 40 40" style="width:15mm;height:15mm;fill:none;stroke:#111;stroke-width:2;stroke-linecap:round"><circle cx="14" cy="16" r="2.2" fill="#111"/><circle cx="26" cy="16" r="2.2" fill="#111"/><path d="M13 25 Q20 31 27 25"/><path d="M14 6 L10 0 M26 6 L30 0"/></svg></div>
-        <div class="seg">li</div><div class="seg">ma</div><div class="seg">mi</div><div class="seg">li</div><div class="seg">la</div>
-        <div class="seg">mi</div><div class="seg">lí</div><div class="seg">li</div><div class="seg">me</div><div class="seg">mi</div>
+        <div class="seg hlavicka"><svg viewBox="0 0 40 40"><circle cx="14" cy="17" r="2.4" fill="#111" stroke="none"/><circle cx="26" cy="17" r="2.4" fill="#111" stroke="none"/><path d="M13 26 Q20 32 27 26"/><path d="M13 7 L9 1 M27 7 L31 1"/></svg></div>
+        <div class="seg">mi</div><div class="seg">ma</div><div class="seg">mi</div><div class="seg">me</div><div class="seg">li</div>
+        <div class="seg">mi</div><div class="seg">ma</div><div class="seg">mi</div><div class="seg">la</div><div class="seg">mi</div>
       </div>
+      <span class="okno"></span>
     </div>
   </section>
 
-  <!-- 3 -->
   <section class="uloha">
-    <div class="zadanie"><span class="c">3</span>Prečítaj slabiku. Spoj ju s obrázkom, ktorý sa tak začína.<span class="uroven">●●</span></div>
-    <div class="plocha spoj">
-      <div class="lavy">
-        <div>ma <span class="bod"></span></div><div>li <span class="bod"></span></div><div>me <span class="bod"></span></div>
-        <div>lí <span class="bod"></span></div><div>mi <span class="bod"></span></div><div>la <span class="bod"></span></div>
-      </div>
-      <div></div>
-      <div class="pravy">
-        <div><span class="bod"></span><svg class="pic"><use href="#melon"/></svg></div>
-        <div><span class="bod"></span><svg class="pic"><use href="#misa"/></svg></div>
-        <div><span class="bod"></span><svg class="pic"><use href="#malina"/></svg></div>
-        <div><span class="bod"></span><svg class="pic"><use href="#lavica"/></svg></div>
-        <div><span class="bod"></span><svg class="pic"><use href="#limonada"/></svg></div>
-        <div><span class="bod"></span><svg class="pic"><use href="#lizanka"/></svg></div>
-      </div>
+    <div class="zadanie"><span class="c">4</span><span>Prečítaj slabiku. Spoj ju s obrázkom, ktorý sa tak začína.</span></div>
+    <div class="plocha spoj-hd">
+      <div><span class="slab">mi</span><span class="bod"></span></div>
+      <div><span class="slab">li</span><span class="bod"></span></div>
+      <div><span class="slab">ma</span><span class="bod"></span></div>
+      <div><span class="bod"></span><i o="malina" class="s"></i></div>
+      <div><span class="bod"></span><i o="misa" class="s"></i></div>
+      <div><span class="bod"></span><i o="limonada" class="s"></i></div>
     </div>
-  </section>
-
-  <!-- 4 -->
-  <section class="uloha">
-    <div class="zadanie"><span class="c">4</span>Prečítaj a nakresli.<span class="uroven">●●●</span></div>
-    <div class="kresli"><div>malá lama</div><div>Ema a mama</div></div>
   </section>
 
   <footer class="pata">
-    <div class="rodic"><b>Pre rodiča:</b> Zadania prečítajte dieťaťu. Úloha 1: iglu, slnko, list, dom, kniha, auto (I je v slovách iglu, list, kniha).
-      Úloha 3: malina, limonáda, melón, lízanka, misa, lavica. Slabiky čítajte ťahavo („mmmi“).
-      <span class="std">SJL-PP-2, SJL-RV-1 · ŠVP SJL, Písaná produkcia: „sluchové identifikovanie a rozlišovanie zvukov, slov, slabík, hlások“;
-      Elementárne čítanie: „čítanie slabík, slov, viet a krátkych textov s postupne sa zvyšujúcou náročnosťou“</span></div>
-    <div class="darilo">Ako sa mi darilo? Vyfarbi.<br>
-      <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="17"/><circle cx="14" cy="16" r="1.5"/><circle cx="26" cy="16" r="1.5"/><path d="M12 24 Q20 31 28 24"/></svg><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="17"/><circle cx="14" cy="16" r="1.5"/><circle cx="26" cy="16" r="1.5"/><path d="M13 26 H27"/></svg><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="17"/><circle cx="14" cy="16" r="1.5"/><circle cx="26" cy="16" r="1.5"/><path d="M12 28 Q20 21 28 28"/></svg>
-    </div>
+    <div class="rodic"><b>Pre rodiča:</b> Zadania prečítajte. Obrázky: iglu, slnko, list, auto, ihla, dom, kiwi, ryba. Slabiky čítajte ťahavo a spolu („mmmi“), nie po písmenách („em-i“).
+      <b>Riešenie:</b> 2 – iglu, list, ihla, kiwi · 3 – 5 · 4 – mi misa, li limonáda, ma malina. Išlo to ľahko? Skúste úroveň ●●○.
+      <span class="std">SJL-PP-2 · ŠVP SJL, Písaná produkcia: „sluchové identifikovanie a rozlišovanie zvukov, slov, slabík, hlások“</span></div>
+    <div class="darilo"></div>
   </footer>
 </div>
-<script src="obrazky.js"></script>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 2 – BEŽNÉ                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="2">
+  <header class="hlava" data-predmet="Slovenský jazyk">Slabiky mi, li, mí, lí</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Pomôž myške k syru. Môže stúpiť len na slabiky s <u>i</u> alebo <u>í</u>.<span class="pozn">Nakresli cestu čiarou. Pozor, sú tam aj slepé uličky.</span></span></div>
+    <div class="plocha bludisko">
+      <i o="myska" class="start" style="width:17mm;height:17mm"></i>
+      <div class="siet">
+        <span>mi</span><span>li</span><span>ma</span><span>le</span><span>lí</span><span>má</span><span>la</span>
+        <span>me</span><span>mí</span><span>la</span><span>mi</span><span>li</span><span>mí</span><span>mé</span>
+        <span>lá</span><span>li</span><span>mi</span><span>lí</span><span>ma</span><span>li</span><span>le</span>
+        <span>ma</span><span>mi</span><span>me</span><span>lé</span><span>la</span><span>mi</span><span>má</span>
+        <span>le</span><span>lí</span><span>má</span><span>ma</span><span>mé</span><span>lí</span><span>li</span>
+      </div>
+      <i o="syr" class="ciel" style="width:17mm;height:17mm"></i>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Krátke i alebo dlhé í? Povedz slovo pomaly nahlas a zakrúžkuj.</span></div>
+    <div class="plocha obr-mriezka" style="grid-template-columns:repeat(6,1fr)">
+      <div><i o="list" class="s"></i><div class="vol"><span>i</span><span>í</span></div></div>
+      <div><i o="liska" class="s"></i><div class="vol"><span>i</span><span>í</span></div></div>
+      <div><i o="ihla" class="s"></i><div class="vol"><span>i</span><span>í</span></div></div>
+      <div><i o="lizanka" class="s"></i><div class="vol"><span>i</span><span>í</span></div></div>
+      <div><i o="mimino" class="s"></i><div class="vol"><span>i</span><span>í</span></div></div>
+      <div><i o="pila" class="s"></i><div class="vol"><span>i</span><span>í</span></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Spoj veľkú slabiku s rovnakou malou.</span></div>
+    <div class="plocha pary">
+      <div><span class="slab">MI</span><span class="bod"></span></div>
+      <div><span class="slab">LÍ</span><span class="bod"></span></div>
+      <div><span class="slab">ME</span><span class="bod"></span></div>
+      <div><span class="slab">LI</span><span class="bod"></span></div>
+      <div><span class="slab">MÍ</span><span class="bod"></span></div>
+      <div><span class="bod"></span><span class="slab">li</span></div>
+      <div><span class="bod"></span><span class="slab">mí</span></div>
+      <div><span class="bod"></span><span class="slab">mi</span></div>
+      <div><span class="bod"></span><span class="slab">lí</span></div>
+      <div><span class="bod"></span><span class="slab">me</span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Prečítaj a nakresli.</span></div>
+    <div class="kresli2"><div>malá lama</div><div>milá mama</div></div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Zadania prečítajte, slabiky a slová nech číta dieťa. Pri úlohe 2 vyslovujte spolu s dieťaťom pomaly a preťahujte: „lííí-ška“. Obrázky: list, líška, ihla, lízanka, mimino, píla.
+      <b>Riešenie:</b> 1 – cesta mi, li, mí, li, mi, lí, mi, li, mí, li, mi, lí, li · 2 – i, í, i, í, i, í · 3 – MI mi, LÍ lí, ME me, LI li, MÍ mí.
+      <span class="std">SJL-PP-2, SJL-RV-1 · ŠVP SJL, Písaná produkcia: „sluchové identifikovanie a rozlišovanie zvukov, slov, slabík, hlások“; Elementárne čítanie: „čítanie slabík, slov, viet a krátkych textov s postupne sa zvyšujúcou náročnosťou“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 3 – VÝZVA                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="3">
+  <header class="hlava" data-predmet="Slovenský jazyk">Slabikový detektív</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Tajný obrázok. Vyfarbi iba políčka s dlhým í: mí, lí, MÍ, LÍ.<span class="pozn">Pozor na krátke mi a li, tie nefarbi. Čo sa ukázalo?</span></span></div>
+    <div class="plocha tajny">
+      <div class="siet" id="tajny"></div>
+      <div class="otazka">Ukázalo sa:<span class="okno siroke" style="height:16mm"></span>Na akú hlásku sa to začína?<span class="okno"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Čo sem nepatrí? Prečiarkni. Povedz, prečo.<span class="pozn">Niekedy môže byť správnych odpovedí viac. Dôležité je vysvetliť, prečo.</span></span></div>
+    <div class="plocha nepatri">
+      <div><span class="slab m">mi</span><span class="slab m">li</span><span class="slab m">ma</span><span class="slab m">mí</span></div>
+      <div><span class="slab m">ma</span><span class="slab m">me</span><span class="slab m">mi</span><span class="slab m">la</span></div>
+      <div><span class="slab m">lí</span><span class="slab m">mí</span><span class="slab m">li</span><span class="slab m">lá</span></div>
+      <div><span class="slab m">MI</span><span class="slab m">mi</span><span class="slab m">Mi</span><span class="slab m">LI</span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Skladaj slová zo slabík. Slabiky môžeš použiť aj viackrát.<span class="pozn">Napíš každé slovo, ktoré nájdeš. Nájdeš aspoň 6?</span></span></div>
+    <div class="plocha">
+      <div class="banka"><span class="slab">ma</span><span class="slab">la</span><span class="slab">mi</span><span class="slab">lá</span><span class="slab">le</span><span class="slab">E</span><span class="slab">A</span></div>
+      <div class="slova"><span class="pis"></span><span class="pis"></span><span class="pis"></span><span class="pis"></span><span class="pis"></span><span class="pis"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Slabiky sa poprehadzovali. Daj ich do správneho poradia a napíš slovo.</span></div>
+    <div class="plocha prehod">
+      <div><span class="slab m">lá</span><span class="slab m">ma</span><span class="sip">→</span><span class="pis"></span></div>
+      <div><span class="slab m">ma</span><span class="slab m">E</span><span class="sip">→</span><span class="pis"></span></div>
+      <div><span class="slab m">le</span><span class="slab m">a</span><span class="sip">→</span><span class="pis"></span></div>
+      <div><span class="slab m">lá</span><span class="slab m">mi</span><span class="sip">→</span><span class="pis"></span></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Výzva je pre deti, ktoré už slabiky čítajú isto. V úlohe 1 musí dieťa všímať dĺžeň, inak obrázok nevyjde. V úlohe 2 sa pýtajte „prečo?“ a prijmite každé dobré vysvetlenie.
+      <b>Riešenie:</b> 1 – iglu, začína sa na I · 2 – ma (nemá i), la (nezačína sa na m), li (jediná krátka; aj lá, lebo nemá í), LI (iná slabika) · 3 – napr. mama, lama, malá, milá, Ema, Ela, ale, Mila, Lea · 4 – malá, Ema, ale, milá.
+      <span class="std">SJL-PP-2, SJL-RV-1 · ŠVP SJL, Písaná produkcia: „sluchové identifikovanie a rozlišovanie zvukov, slov, slabík, hlások“; Elementárne čítanie: „čítanie slabík, slov, viet a krátkych textov s postupne sa zvyšujúcou náročnosťou“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<script>
+/* tajný obrázok: X = slabika s dlhým í (vyfarbiť) */
+(function(){
+  const vzor = ["...XXX...", "..XXXXX..", ".XXXXXXX.", "XXXXXXXXX", "XXX...XXX", "XXX...XXX"];
+  const dlhe = ["mí","lí","mí","MÍ","lí","LÍ","mí","lí"];
+  const ine  = ["mi","li","ma","MI","le","lá","me","LI","má","mi","la","li","mé","lé"];
+  let a = 0, b = 0, h = "";
+  vzor.forEach(r => [...r].forEach(c => { h += `<span>${c==="X" ? dlhe[a++ % dlhe.length] : ine[b++ % ine.length]}</span>`; }));
+  document.getElementById("tajny").innerHTML = h;
+})();
+</script>
+<script src="obrazky.js"></script><script src="nastroje.js"></script>
 </body></html>

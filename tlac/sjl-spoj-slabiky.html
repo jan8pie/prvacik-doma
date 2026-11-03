@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="sk"><head><meta charset="utf-8"><title>Spoj slabiky – pracovný list (3 úrovne)</title>
+<link rel="stylesheet" href="list.css">
+<style>
+  .scena{fill:none;stroke:#111;stroke-linecap:round;stroke-linejoin:round}
+  .scena text{font-family:Andika;font-weight:700;fill:#111;stroke:none}
+  /* tlieskaj a vyfarbi vagóny */
+  .tlieskaj{display:grid;grid-template-columns:1fr 1fr;gap:3mm 10mm}
+  .tlieskaj>div{display:flex;align-items:center;gap:5mm}
+  .tlieskaj .pic{width:17mm;height:17mm}
+  .tlieskaj svg.scena{height:14mm}
+  /* dvojice obrázkov */
+  .dvojice{display:grid;grid-template-columns:auto 1fr auto;align-items:center}
+  .dvojice .st{display:flex;flex-direction:column;gap:2.5mm}
+  .dvojice .st>div{display:flex;align-items:center;gap:3mm;height:16mm}
+  .dvojice .pic{width:16mm;height:16mm}
+  /* hádaj a nakresli */
+  .hadaj{display:grid;grid-template-columns:repeat(3,1fr);gap:5mm}
+  .hadaj div{border:1.2px solid #111;border-radius:4mm;height:40mm;padding:1.5mm 3mm;font-size:12px;color:#555}
+  /* vláčiky so slabikami */
+  .vlaky{display:flex;flex-direction:column;gap:2.5mm}
+  .vlaky>div{display:flex;align-items:center;gap:4mm}
+  .vlaky svg.scena{height:16mm;flex:none}
+  .vlaky .sip{font-size:24px;font-weight:700}
+  .vlaky .moznosti{display:flex;gap:6mm;margin-left:auto;margin-right:4mm}
+  .vlaky .pic{width:16mm;height:16mm}
+  /* roztrieď do vláčikov */
+  .triedenie{display:grid;grid-template-columns:repeat(8,1fr);justify-items:center;row-gap:14mm}
+  .triedenie>div{display:flex;flex-direction:column;align-items:center;gap:1.5mm}
+  .triedenie .pic{width:16mm;height:16mm}
+  .triedenie .vlak{grid-column:span 2}
+  .triedenie svg.scena{height:12.5mm}
+  /* chýbajúca slabika */
+  .chyba{display:grid;grid-template-columns:1fr 1fr;gap:4mm 8mm}
+  .chyba>div{display:flex;align-items:center;gap:2mm}
+  .chyba .pic{width:16mm;height:16mm;margin-right:2mm}
+  .chyba .slab{min-width:13mm;height:11mm;font-size:22px}
+  .chyba .slab.p{border-style:dashed;border-color:#777;min-width:15mm}
+  .banka{display:flex;gap:3mm;align-items:center;justify-content:center;margin-bottom:3mm;font-size:14px}
+  /* tajné slová zo slabík */
+  .zoslabik{display:flex;flex-direction:column;gap:1.5mm}
+  .zoslabik>div{display:flex;align-items:center;gap:2.5mm}
+  .zoslabik .pic{width:13mm;height:13mm}
+  .zoslabik .z{font-size:22px;font-weight:700;width:5mm;text-align:center}
+  .zoslabik .kr{width:34mm;height:14mm;border:1.2px dashed #777;border-radius:3mm;margin-left:auto}
+  /* reťaz */
+  .retaz{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:0 4mm}
+  .retaz .st{display:flex;flex-direction:column;gap:2mm}
+  .retaz .st>div{display:flex;align-items:center;gap:3mm;height:13mm}
+  .retaz .pic{width:13mm;height:13mm}
+  .retaz .priklad{flex-direction:column;align-items:center;gap:1.5mm;font-size:14px;color:#333;text-align:center}
+  /* chytáky */
+  .chytaky{display:grid;grid-template-columns:1fr 1fr;gap:3mm 6mm}
+  .chytaky>div{display:flex;align-items:flex-end;justify-content:space-around;border:1px solid #bbb;border-radius:3mm;padding:2mm 3mm;height:24mm}
+  .chytaky .pic{flex:none}
+</style></head>
+<body>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 1 – ĽAHŠIE                                                     -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="1">
+  <header class="hlava" data-predmet="Slovenský jazyk">Tlieskame slabiky</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Povedz slovo a pri každej slabike tleskni. Vyfarbi toľko vagónikov, koľkokrát si tleskol.</span></div>
+    <div class="plocha tlieskaj">
+      <div><i o="dom"></i><svg class="scena vlak3"></svg></div>
+      <div><i o="lopta"></i><svg class="scena vlak3"></svg></div>
+      <div><i o="malina"></i><svg class="scena vlak3"></svg></div>
+      <div><i o="auto"></i><svg class="scena vlak3"></svg></div>
+      <div><i o="list"></i><svg class="scena vlak3"></svg></div>
+      <div><i o="jahoda"></i><svg class="scena vlak3"></svg></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Spoj dvojice obrázkov, ktoré sa začínajú rovnakou slabikou.<span class="pozn">Príklad: <b>ma</b>-ma a <b>ma</b>-li-na.</span></span></div>
+    <div class="plocha dvojice">
+      <div class="st"><div><i o="melon"></i><span class="bod"></span></div><div><i o="jahoda"></i><span class="bod"></span></div><div><i o="lizanka"></i><span class="bod"></span></div><div><i o="koruna"></i><span class="bod"></span></div></div>
+      <div></div>
+      <div class="st"><div><span class="bod"></span><i o="kosik"></i></div><div><span class="bod"></span><i o="mesiac"></i></div><div><span class="bod"></span><i o="liska"></i></div><div><span class="bod"></span><i o="jablko"></i></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Hádaj! Rodič povie slovo po slabikách. Ty ho spoj, povedz celé a nakresli.</span></div>
+    <div class="hadaj"><div>rodič povie: ba – lón</div><div>rodič povie: ra – ke – ta</div><div>rodič povie: zmrz – li – na</div></div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Zadania prečítajte. Slabiky vyslovujte zreteľne s krátkou pauzou, dieťa môže tlieskať, skákať alebo ťukať po stole. Obrázky: dom, lopta, malina, auto, list, jahoda; melón, jahoda, lízanka, koruna, košík, mesiac, líška, jablko.
+      <b>Riešenie:</b> 1 – 1, 2, 3, 2, 1, 3 · 2 – melón mesiac, jahoda jablko, lízanka líška, koruna košík · 3 – balón, raketa, zmrzlina. Išlo to ľahko? Skúste úroveň ●●○.
+      <span class="std">SJL-PP-2 · ŠVP SJL, Písaná produkcia: „sluchové identifikovanie a rozlišovanie zvukov, slov, slabík, hlások“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 2 – BEŽNÉ                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="2">
+  <header class="hlava" data-predmet="Slovenský jazyk">Spoj slabiky do slova</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Prečítaj slabiky vo vláčiku. Aké slovo vzniklo? Zakrúžkuj obrázok.</span></div>
+    <div class="plocha vlaky">
+      <div><svg class="scena" data-vlak="la ma"></svg><span class="sip">→</span><span class="moznosti"><i o="mama"></i><i o="lampa"></i><i o="lama"></i></span></div>
+      <div><svg class="scena" data-vlak="ma ma"></svg><span class="sip">→</span><span class="moznosti"><i o="mak"></i><i o="mama"></i><i o="mimino"></i></span></div>
+      <div><svg class="scena" data-vlak="E mil"></svg><span class="sip">→</span><span class="moznosti"><i o="dievca"></i><i o="mama"></i><i o="chlapec"></i></span></div>
+      <div><svg class="scena" data-vlak="ma lá|la ma"></svg><span class="sip">→</span><span class="moznosti"><i o="lama" style="width:21mm;height:21mm;margin-top:-5mm"></i><i o="lama" style="width:10mm;height:10mm;align-self:flex-end"></i><i o="mama"></i></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Koľko slabík má slovo? Spoj obrázok s vláčikom, ktorý má toľko vagónov.</span></div>
+    <div class="plocha triedenie">
+      <div><i o="melon"></i><span class="bod"></span></div>
+      <div><i o="lev"></i><span class="bod"></span></div>
+      <div><i o="vevericka"></i><span class="bod"></span></div>
+      <div><i o="lizanka"></i><span class="bod"></span></div>
+      <div><i o="dom"></i><span class="bod"></span></div>
+      <div><i o="limonada"></i><span class="bod"></span></div>
+      <div><i o="motyl"></i><span class="bod"></span></div>
+      <div><i o="krokodil" style="width:24mm"></i><span class="bod"></span></div>
+      <div class="vlak"><span class="bod"></span><svg class="scena" data-prazdny="1"></svg></div>
+      <div class="vlak"><span class="bod"></span><svg class="scena" data-prazdny="2"></svg></div>
+      <div class="vlak"><span class="bod"></span><svg class="scena" data-prazdny="3"></svg></div>
+      <div class="vlak"><span class="bod"></span><svg class="scena" data-prazdny="4"></svg></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Jedna slabika sa stratila. Dopíš ju do prázdneho okienka.</span></div>
+    <div class="plocha">
+      <div class="banka">Vyber si:<span class="slab m">ma</span><span class="slab m">me</span><span class="slab m">li</span><span class="slab m">la</span></div>
+      <div class="chyba">
+        <div><i o="malina"></i><span class="slab">ma</span><span class="slab p"></span><span class="slab">na</span></div>
+        <div><i o="melon"></i><span class="slab p"></span><span class="slab">lón</span></div>
+        <div><i o="lavica"></i><span class="slab p"></span><span class="slab">vi</span><span class="slab">ca</span></div>
+        <div><i o="mamut"></i><span class="slab p"></span><span class="slab">mut</span></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Zadania prečítajte. V úlohe 1 dieťa číta slabiky samo, posledný vláčik vezie dve slová. V úlohe 2 tlieskajte spolu. Obrázky: melón, lev, veverička, lízanka, dom, limonáda, motýľ, krokodíl.
+      <b>Riešenie:</b> 1 – lama, mama, Emil (chlapec), malá lama · 2 – 1: lev, dom; 2: melón, motýľ; 3: lízanka, krokodíl; 4: veverička, limonáda · 3 – li, me, la, ma.
+      <span class="std">SJL-PP-2, SJL-RV-1 · ŠVP SJL, Písaná produkcia: „sluchové identifikovanie a rozlišovanie zvukov, slov, slabík, hlások“; Elementárne čítanie: „čítanie slabík, slov, viet a krátkych textov s postupne sa zvyšujúcou náročnosťou“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 3 – VÝZVA                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="3">
+  <header class="hlava" data-predmet="Slovenský jazyk">Slabikové hádanky</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Z každého obrázka zober len prvú slabiku. Spoj ich. Aké slovo vzniklo? Nakresli ho.<span class="pozn">Príklad: <b>ma</b>-mut + <b>ma</b>-li-na = mama.</span></span></div>
+    <div class="plocha zoslabik">
+      <div><i o="kosik"></i><span class="z">+</span><i o="zajac"></i><span class="z">=</span><span class="kr"></span></div>
+      <div><i o="lavica"></i><span class="z">+</span><i o="mamut"></i><span class="z">=</span><span class="kr"></span></div>
+      <div><i o="mamut"></i><span class="z">+</span><i o="limonada"></i><span class="z">+</span><i o="nanuk"></i><span class="z">=</span><span class="kr"></span></div>
+      <div><i o="kosik"></i><span class="z">+</span><i o="ruka"></i><span class="z">+</span><i o="nanuk"></i><span class="z">=</span><span class="kr"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Slabikový reťaz. Slovo sa končí slabikou, ktorou sa začína ďalšie slovo. Spoj dvojice.</span></div>
+    <div class="plocha retaz">
+      <div class="st"><div><i o="koruna"></i><span class="bod"></span></div><div><i o="vaza"></i><span class="bod"></span></div><div><i o="lopta"></i><span class="bod"></span></div></div>
+      <div class="stred priklad"><span>Príklad:</span><span style="font-size:19px;font-weight:700">ma – li – <u>na</u> → <u>na</u> – nuk</span></div>
+      <div class="st"><div><span class="bod"></span><i o="zajac"></i></div><div><span class="bod"></span><i o="taxi"></i></div><div><span class="bod"></span><i o="nanuk"></i></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Chyták! Ktoré SLOVO je dlhšie? Zakrúžkuj ho.<span class="pozn">Nepýtame sa, ktoré zviera je väčšie. Tlieskaj slabiky a porovnaj.</span></span></div>
+    <div class="plocha chytaky">
+      <div><i o="had" style="width:30mm;height:21mm"></i><i o="mravec" style="width:9mm;height:9mm"></i></div>
+      <div><i o="pes" style="width:17mm;height:17mm"></i><i o="krokodil" style="width:33mm;height:21mm"></i></div>
+      <div><i o="lev" style="width:21mm;height:21mm"></i><i o="slimak" style="width:11mm;height:11mm"></i></div>
+      <div><i o="strom" style="width:21mm;height:21mm"></i><i o="jahoda" style="width:10mm;height:10mm"></i></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Výzva trénuje skladanie slov v hlave, čo je základ plynulého čítania. Obrázky v úlohe 1: košík, zajac; lavica, mamut; mamut, limonáda, nanuk; košík, ruka, nanuk. Úloha 3 učí rozlišovať slovo a vec: had je dlhý, ale slovo „had“ je krátke.
+      <b>Riešenie:</b> 1 – koza, lama, malina, koruna · 2 – koruna – nanuk, váza – zajac, lopta – taxi · 3 – mravec, krokodíl, slimák, jahoda.
+      <span class="std">SJL-PP-2 · ŠVP SJL, Písaná produkcia: „sluchové identifikovanie a rozlišovanie zvukov, slov, slabík, hlások“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<script>
+/* vláčiky: lokomotíva + vagóny */
+function lokomotiva(){ return `<path d="M4 40 V20 H26 V6 H46 V40 Z" fill="#fff"/><path d="M8 20 V10 H16 V20" fill="#fff"/><rect x="31" y="11" width="10" height="8" rx="1.5"/>
+  <circle cx="14" cy="44" r="5" fill="#fff"/><circle cx="36" cy="44" r="5" fill="#fff"/>`; }
+function vagon(x, text, w){ return `<line x1="${x-4}" y1="34" x2="${x}" y2="34"/><rect x="${x}" y="14" width="${w}" height="26" rx="3" fill="#fff"/>
+  <circle cx="${x+9}" cy="44" r="5" fill="#fff"/><circle cx="${x+w-9}" cy="44" r="5" fill="#fff"/>
+  ${text ? `<text x="${x+w/2}" y="35" text-anchor="middle" style="font-size:21px">${text}</text>` : ""}`; }
+function vlak(svg, slabiky, w, sloboda){
+  let t = lokomotiva(), x = 50;
+  slabiky.forEach(s => { if(s === "|"){ x += 10; return; } t += vagon(x, s, w); x += w + 4; });
+  svg.setAttribute("viewBox", `0 0 ${x} 50`); svg.style.width = (x/50*(parseFloat(getComputedStyle(svg).height)||40)) + "px";
+  svg.style.strokeWidth = 2; svg.innerHTML = t;
+}
+document.querySelectorAll("svg.vlak3").forEach(s => vlak(s, ["","",""], 30));
+document.querySelectorAll("svg[data-prazdny]").forEach(s => vlak(s, Array(+s.dataset.prazdny).fill(""), 26));
+document.querySelectorAll("svg[data-vlak]").forEach(s => vlak(s, s.dataset.vlak.replace("|"," | ").split(/\s+/), 40));
+</script>
+<script src="obrazky.js"></script><script src="nastroje.js"></script>
+</body></html>
