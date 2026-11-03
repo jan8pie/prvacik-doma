@@ -7,6 +7,7 @@
    Týždne („Tento týždeň“, „Minulý týždeň“) a štítok NOVÉ sa počítajú samy.
    Karta s budúcim dátumom sa ukáže až v ten deň (zásoba). Náhľad: adresa s ?nahlad
    Každá sada má vždy kartu pre Slovenčinu, Matematiku aj Angličtinu.
+   Angličtina zatiaľ bez pracovných listov na tlač, len aktivity so zvukom.
 
    predmet: SJL, MAT, ANJ, CAP
    kod:     kód témy z mapy učiva (prehlad/01_mapa_uciva_1_rocnik.md)
@@ -172,7 +173,6 @@ window.KARTY = [
   bloky:[
     {typ:"pocuvanie", text:"Ťukni na číslo a vypočuj si, ako sa povie po anglicky.",
      slova:[["1️⃣","one"],["2️⃣","two"],["3️⃣","three"],["4️⃣","four"],["5️⃣","five"],["6️⃣","six"]]},
-    {typ:"tlac", text:"Pracovný list Numbers one to six na 1 stranu A4: počúvaj a vyfarbi lopty, How many?, spájaj bodky podľa anglických čísel. Pokyny po anglicky sú v pätičke.", subor:"anj-numbers.pdf"},
     {typ:"hadanka", text:"One, two, three, four, five… What comes next?", napoveda:"Čo nasleduje po päť?", odpoved:"Six – šesť 6️⃣"}
   ]},
 
