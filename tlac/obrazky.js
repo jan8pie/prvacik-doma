@@ -105,11 +105,11 @@ const O = {
           <path d="M86 50 L80 54" style="stroke-width:2"/>
           <path d="M36 44 c3 4 3 8 0 12 M46 40 c3 5 3 15 0 20 M54 42 c3 4 3 12 0 16" style="stroke-width:1.6"/>
           <circle cx="92" cy="32" r="3" style="stroke-width:1.6"/><circle cx="95" cy="22" r="2" style="stroke-width:1.6"/>`,
-  slimak:`<path class="w" d="M10 84 C8 72 14 66 22 66 L24 56 M30 66 L30 54" />
-          <circle class="w" cx="24" cy="54" r="3.5"/><circle class="w" cx="31" cy="51" r="3.5"/>
-          <path class="w" d="M10 84 C10 76 18 70 26 72 L36 76 H86 C92 76 94 82 88 84 Z"/><circle class="f" cx="20" cy="76" r="1.8"/>
-          <circle class="w" cx="58" cy="52" r="26"/>
-          <path d="M58 52 m0 -4 a4 4 0 1 1 -4 4 a8 8 0 1 1 8 8 a12 12 0 1 1 -12 -12 a16 16 0 1 1 16 16 a20 20 0 1 1 -20 -20"/>`,
+  slimak:`<path class="w" d="M8 84 C6 72 12 62 22 62 C30 62 32 70 34 76 H84 C94 76 96 84 88 84 Z"/>
+          <path d="M20 63 L15 47 M26 63 L29 46"/><circle class="w" cx="15" cy="45" r="3.2"/><circle class="w" cx="29" cy="44" r="3.2"/>
+          <circle class="f" cx="20" cy="71" r="2"/><path d="M12 77 C15 79 18 79 20 77" style="stroke-width:1.6"/>
+          <circle class="w" cx="58" cy="50" r="24.5"/>
+          <path d="M55.5 50.0 L55.3 49.3 L55.3 48.5 L55.5 47.7 L56.0 46.9 L56.7 46.2 L57.7 45.7 L58.8 45.5 L60.0 45.5 L61.3 45.9 L62.4 46.7 L63.4 47.8 L64.1 49.1 L64.4 50.7 L64.3 52.4 L63.8 54.0 L62.8 55.6 L61.4 56.8 L59.7 57.8 L57.7 58.2 L55.6 58.2 L53.5 57.6 L51.5 56.5 L49.9 54.8 L48.6 52.7 L47.9 50.3 L47.9 47.8 L48.5 45.2 L49.7 42.8 L51.6 40.7 L54.0 39.1 L56.8 38.2 L59.8 38.0 L62.8 38.5 L65.7 39.8 L68.2 41.8 L70.2 44.5 L71.5 47.6 L72.0 51.1 L71.5 54.6 L70.2 57.9 L68.1 60.9 L65.2 63.4 L61.8 65.0 L57.9 65.8 L53.9 65.6 L50.1 64.4 L46.6 62.2 L43.6 59.1 L41.5 55.4 L40.4 51.2 L40.4 46.7 L41.5 42.3 L43.6 38.3 L46.8 34.9 L50.8 32.3 L55.3 30.7 L60.2 30.4 L65.1 31.3 L69.7 33.4 L73.7 36.6 L76.8 40.7 L78.8 45.6" style="stroke-width:2.2"/>`,
   mravec:`<path d="M44 58 L34 76 M50 60 L50 80 M56 58 L66 76 M44 46 L34 28 M50 44 L50 24 M56 46 L66 28"/>
           <path d="M20 42 C16 32 12 28 8 28 M26 42 C28 32 32 28 36 26"/>
           <circle class="w" cx="24" cy="51" r="10"/><ellipse class="w" cx="50" cy="52" rx="10" ry="8"/><ellipse class="w" cx="78" cy="53" rx="16" ry="12"/>
@@ -279,10 +279,12 @@ const O = {
   mama:  `<path class="w" d="M36 36 C34 20 40 8 50 8 C60 8 66 20 64 36 Z"/><circle class="w" cx="50" cy="5" r="5"/>
           <path class="w" d="M50 36 L28 92 H72 Z"/><path d="M40 50 L28 66 M60 50 L72 66"/><path d="M42 92 V98 M58 92 V98"/>
           <circle class="w" cx="50" cy="24" r="11"/><path d="M39 22 C42 14 54 12 61 22" /><circle class="f" cx="46" cy="25" r="1.6"/><circle class="f" cx="54" cy="25" r="1.6"/><path d="M46 29 C48 31 52 31 54 29" style="stroke-width:1.6"/>`,
-  dievca:`<circle class="w" cx="28" cy="34" r="6"/><circle class="w" cx="72" cy="34" r="6"/><path d="M33 32 L36 34 M67 32 L64 34"/>
-          <path class="w" d="M50 54 L30 88 H70 Z"/><path d="M42 62 L32 76 M58 62 L68 76"/><path d="M42 88 V97 M58 88 V97"/>
-          <circle class="w" cx="50" cy="38" r="16"/><path d="M34 36 C36 22 46 18 50 26 C54 18 64 22 66 36"/>
-          <circle class="f" cx="44" cy="40" r="1.9"/><circle class="f" cx="56" cy="40" r="1.9"/><path d="M45 46 C48 49 52 49 55 46" style="stroke-width:1.8"/>`,
+  dievca:`<path class="w" d="M31 42 C28 20 40 15 50 15 C60 15 72 20 69 42 C71 52 70 59 66 62 H34 C30 59 29 52 31 42 Z"/>
+          <path class="w" d="M50 53 L30 88 H70 Z"/><path d="M43 62 L33 76 M57 62 L67 76"/><path d="M42 88 V97 M58 88 V97"/>
+          <circle class="w" cx="50" cy="39" r="15"/>
+          <path class="w" d="M35 37 C35 25 43 22 50 24 C57 22 65 25 65 37 C60 31 55 30 50 32 C45 30 40 31 35 37 Z"/>
+          <path class="w" d="M50 15 L41 9 V21 Z M50 15 L59 9 V21 Z" style="stroke-width:2"/><circle class="f" cx="50" cy="15" r="2.6"/>
+          <circle class="f" cx="44.5" cy="41" r="1.9"/><circle class="f" cx="55.5" cy="41" r="1.9"/><path d="M45.5 47 C48 49.5 52 49.5 54.5 47" style="stroke-width:1.8"/>`,
   chlapec: `<path class="w" d="M34 56 H66 V80 H34 Z"/><path d="M34 60 L26 76 M66 60 L74 76"/><path class="w" d="M36 80 V96 H48 V84 H52 V96 H64 V80 Z"/>
           <circle class="w" cx="50" cy="38" r="16"/><path class="w" d="M33 38 C30 20 46 16 56 22 C62 22 68 28 67 38 C62 30 56 28 50 32 C46 28 40 28 33 38 Z"/>
           <circle class="f" cx="44" cy="41" r="1.9"/><circle class="f" cx="56" cy="41" r="1.9"/><path d="M45 47 C48 50 52 50 55 47" style="stroke-width:1.8"/>`,
