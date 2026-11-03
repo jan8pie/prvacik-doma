@@ -27,7 +27,15 @@ const O = {
   lopta: `<circle cx="50" cy="50" r="38"/><path d="M12 50 H88 M50 12 C34 30 34 70 50 88 M50 12 C66 30 66 70 50 88"/>`,
   kvet:  `<circle cx="50" cy="50" r="10"/><circle cx="50" cy="24" r="14"/><circle cx="76" cy="50" r="14"/><circle cx="50" cy="76" r="14"/><circle cx="24" cy="50" r="14"/>`,
   oriesok:`<path d="M24 46 C24 76 40 92 50 92 C60 92 76 76 76 46 Z"/><path d="M18 46 C18 30 32 22 50 22 C68 22 82 30 82 46 Z"/><path d="M50 22 V10"/><path d="M30 36 h6 M44 32 h6 M58 34 h6 M66 40 h6"/>`,
-  vrecusko:`<path d="M30 30 C14 50 12 92 50 92 C88 92 86 50 70 30 Z"/><path d="M30 30 C38 24 62 24 70 30"/><path d="M34 22 L42 30 M66 22 L58 30 M42 18 C46 26 54 26 58 18"/>`
+  vrecusko:`<path d="M30 30 C14 50 12 92 50 92 C88 92 86 50 70 30 Z"/><path d="M30 30 C38 24 62 24 70 30"/><path d="M34 22 L42 30 M66 22 L58 30 M42 18 C46 26 54 26 58 18"/>`,
+  /* ---- pridané 3. 11. 2026 ---- */
+  mesiac:`<path d="M62 12 C36 16 22 38 26 60 C30 80 50 92 72 88 C52 80 42 62 46 44 C50 28 58 18 62 12 Z"/><path d="M78 26 l3 6 l6 1 l-5 4 l1 6 l-5 -3 l-5 3 l1 -6 l-5 -4 l6 -1 Z"/>`,
+  mys:   `<path d="M14 72 C14 50 34 38 56 42 C74 45 84 58 84 72 Z"/><circle cx="30" cy="40" r="10"/><circle cx="24" cy="66" r="2" fill="#111"/><path d="M14 72 l-4 2 M84 72 C92 72 94 62 90 56"/><path d="M20 74 H80 M30 74 v6 M66 74 v6"/>`,
+  mrkva: `<path d="M36 30 L66 34 C62 60 52 80 44 92 C40 76 36 54 36 30 Z"/><path d="M42 30 C36 18 30 12 24 10 M50 31 C50 18 54 10 58 6 M58 32 C64 22 72 18 80 18"/><path d="M40 46 h8 M42 60 h7 M44 74 h5"/>`,
+  vajce: `<path d="M50 12 C30 12 18 44 18 62 C18 80 32 92 50 92 C68 92 82 80 82 62 C82 44 70 12 50 12 Z"/>`,
+  mravec:`<circle cx="22" cy="50" r="10"/><ellipse cx="44" cy="52" rx="10" ry="8"/><ellipse cx="72" cy="54" rx="16" ry="12"/><path d="M18 40 C14 30 10 26 6 26 M24 40 C26 30 30 26 34 24"/>
+         <path d="M40 58 L32 76 M46 60 L46 80 M52 58 L62 76 M40 46 L32 30 M46 44 L48 28 M52 46 L62 30"/>`,
+  ceruzka:`<path d="M20 80 L28 62 L74 16 L84 26 L38 72 Z"/><path d="M20 80 L28 62 L38 72 Z M24 72 l-4 8 l8 -4"/><path d="M66 24 L76 34"/>`
 };
 const ns = "http://www.w3.org/2000/svg";
 const defs = Object.entries(O).map(([k,v]) => `<symbol id="${k}" viewBox="0 0 100 100">${v}</symbol>`).join("");
