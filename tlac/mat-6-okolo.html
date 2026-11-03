@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="sk"><head><meta charset="utf-8"><title>Kde sa skrýva šestka? – pracovný list (3 úrovne)</title>
+<link rel="stylesheet" href="list.css">
+<style>
+  .krabica{display:grid;grid-template-columns:repeat(3,12.5mm);gap:1.3mm;border:1.4px solid #111;border-radius:3mm;padding:2mm;background:#fff}
+  .krabica .j{width:12.5mm;height:12.5mm;border:1px dotted #888;border-radius:50%;display:flex;align-items:center;justify-content:center}
+  .krabica .pic{width:10.5mm;height:10.5mm;stroke-width:5}
+  .scena{fill:none;stroke:#111;stroke-linecap:round;stroke-linejoin:round}
+  .karty{display:grid;grid-template-columns:repeat(5,1fr);gap:2.5mm}
+  .karta{border:1.3px solid #111;border-radius:3mm;height:23mm;display:flex;align-items:center;justify-content:center;gap:1mm;flex-wrap:wrap;padding:1.5mm;font-size:30px;font-weight:700}
+  .karta .pic{width:7.5mm;height:7.5mm;stroke-width:6}
+  .tab{width:100%;border-collapse:collapse;font-size:14px}
+  .tab td{border:1.2px solid #111;height:13mm;padding:1mm 2.5mm;vertical-align:top;color:#555}
+  .tab td:first-child{width:58%}
+  .nohy{display:grid;grid-template-columns:repeat(3,1fr);gap:3mm}
+  .nohy .karta{height:auto;flex-direction:column;flex-wrap:nowrap;justify-content:space-between;font-size:14px;font-weight:400;padding:1.5mm 2mm;gap:1mm}
+  .nohy .obr{display:flex;align-items:flex-end;justify-content:center;gap:.5mm;height:17mm}
+  .nohy .obr .pic{width:13mm;height:13mm;stroke-width:4.5}
+  .delenie{display:grid;grid-template-columns:1fr 1.4fr;gap:4mm}
+  .delenie .plocha{display:flex;flex-direction:column;gap:1mm}
+  .ver{display:flex;justify-content:space-around;align-items:flex-end}
+  .ver .pic{width:15mm;height:15mm;stroke-width:4}
+  .miska{height:11mm;border-top:1.2px solid #111;margin:0 2mm}
+</style></head>
+<body>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 1 – ĽAHŠIE                                                     -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="1">
+  <header class="hlava" data-predmet="Matematika">Kde sa skrýva šestka?</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span>Obtiahni šestky. Potom napíš ďalšie sám.</div>
+    <div class="linka"><i obtiahni="6"></i><i obtiahni="6"></i><i obtiahni="6"></i><i obtiahni="6"></i><div class="prazdne"></div><div class="prazdne"></div><div class="prazdne"></div></div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span>Do krabičky sa zmestí 6 vajíčok. Dokresli, koľko chýba.</div>
+    <div class="plocha rad" id="krabice1"></div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Motýľ má na každom krídle 3 bodky. Dokresli bodky, ktoré chýbajú.<span class="pozn">Koľko bodiek má motýľ spolu?</span></span></div>
+    <div class="plocha rad" id="motyle1"></div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span>Vyfarbi presne 6 balónov.</div>
+    <div class="plocha rad" style="gap:0"><i o="balon" n="9" class="l" style="width:18mm;height:24mm"></i></div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Zadania prečítajte. Pri obťahovaní dbajte, aby dieťa začínalo šestku hore a ťahalo oblúk dolu do bruška. Pri vajíčkach a bodkách môže dopočítavať: „štyri, päť, šesť – dokreslil som dve“.
+      <b>Riešenie:</b> 2 – dokreslí 2, 1, 4 · 3 – dokreslí 2 a 3 bodky, spolu je vždy 6. Išlo to ľahko? Skúste úroveň ●●○.
+      <span class="std">MAT-CO-1, MAT-CO-4 · ŠVP MAT, Čísla a operácie s číslami: „porozumenie a modelovanie čísel ako počtu prvkov množiny, ako poradie, ako predchodcu alebo nasledovníka“; „modelovanie a využívanie rôznych rozkladov čísel“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 2 – BEŽNÉ                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="2">
+  <header class="hlava" data-predmet="Matematika">Kde sa skrýva šestka?</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Šestka má veľa tvárí. Zakrúžkuj každú kartičku, na ktorej je 6.<span class="pozn">Pozor, nie všetky!</span></span></div>
+    <div class="karty">
+      <div class="karta"><i kocka="6" class="l"></i></div>
+      <div class="karta"><i o="hviezda" n="6"></i></div>
+      <div class="karta">9</div>
+      <div class="karta"><i domino="4 2" class="lezi"></i></div>
+      <div class="karta">3 + 3</div>
+      <div class="karta"><i kocka="5" class="l"></i></div>
+      <div class="karta">6</div>
+      <div class="karta" style="gap:.6mm"><i o="jablko" n="7" style="width:6.4mm;height:6.4mm"></i></div>
+      <div class="karta">4 + 1</div>
+      <div class="karta"><i domino="1 5" class="lezi"></i></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span>Mravec má 6 nôh. Dokresli každému mravcovi nohy, aby ich mal 6.</div>
+    <div class="plocha rad" id="mravce2"></div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span>Dokresli bodky na prázdnu polovicu, aby bolo na domine spolu 6.</div>
+    <div class="plocha rad"><i domino="1 -" data-k="n"></i><i domino="4 -" data-k="n"></i><i domino="- 3" data-k="n"></i><i domino="2 -" data-k="n"></i><i domino="6 -" data-k="n"></i></div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Lov na šestky doma. Čo si našiel? Nakresli alebo napíš.<span class="pozn">Napríklad 6 lyžičiek, 6 gombíkov, 6 bodiek na kocke.</span></span></div>
+    <table class="tab"><tr><td>Našiel som 6 …</td><td>Kde?</td></tr><tr><td></td><td></td></tr><tr><td></td><td></td></tr><tr><td></td><td></td></tr></table>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Zadania prečítajte. Pri úlohe 1 sa oplatí zastaviť pri čísle 9: je to „otočená šestka“. Pri domine môže dieťa dopočítavať na prstoch. Za dieťa pri love môžete písať vy, stačí aj kresba.
+      <b>Riešenie:</b> 1 – kocka 6, 6 hviezd, domino 4 a 2, 3 + 3, číslo 6, domino 1 a 5 · 2 – dokreslí 3, 2, 5 nôh · 3 – 5, 2, 3, 4, 0 (nič).
+      <span class="std">MAT-CO-1, MAT-CO-4 · ŠVP MAT, Čísla a operácie s číslami: „porozumenie a modelovanie čísel ako počtu prvkov množiny, ako poradie, ako predchodcu alebo nasledovníka“; „modelovanie a využívanie rôznych rozkladov čísel“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 3 – VÝZVA                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="3">
+  <header class="hlava" data-predmet="Matematika">Kde sa skrýva šestka?</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Koľko nôh? Spočítaj nohy v každej skupinke. Zakrúžkuj skupinky, ktoré majú spolu presne 6 nôh.</span></div>
+    <div class="nohy">
+      <div class="karta"><div class="obr"><i o="sliepka" n="3"></i></div><span class="priklad" style="gap:1.5mm">nôh: <span class="okno m" style="width:9mm;height:9mm"></span></span></div>
+      <div class="karta"><div class="obr"><i o="pesBok" style="width:17mm;height:17mm"></i><i o="vtak"></i></div><span class="priklad" style="gap:1.5mm">nôh: <span class="okno m" style="width:9mm;height:9mm"></span></span></div>
+      <div class="karta"><div class="obr"><i o="pavuk" style="width:17mm;height:17mm"></i></div><span class="priklad" style="gap:1.5mm">nôh: <span class="okno m" style="width:9mm;height:9mm"></span></span></div>
+      <div class="karta"><div class="obr"><i o="mravec" style="width:17mm;height:17mm"></i></div><span class="priklad" style="gap:1.5mm">nôh: <span class="okno m" style="width:9mm;height:9mm"></span></span></div>
+      <div class="karta"><div class="obr"><i o="pesBok" style="width:16mm;height:16mm"></i><i o="pesBok" style="width:16mm;height:16mm"></i></div><span class="priklad" style="gap:1.5mm">nôh: <span class="okno m" style="width:9mm;height:9mm"></span></span></div>
+      <div class="karta"><div class="obr"><i o="mackaBok" style="width:15mm;height:15mm"></i><i o="ryba"></i><i o="slimak"></i></div><span class="priklad" style="gap:1.5mm">nôh: <span class="okno m" style="width:9mm;height:9mm"></span></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Spravodlivo! Rozdeľ 6 orieškov tak, aby mala každá veverička rovnako. Nakresli ich pod veveričky.</span></div>
+    <div class="delenie">
+      <div class="plocha"><div class="ver"><i o="vevericka"></i><i o="vevericka"></i></div><div class="miska"></div><div class="drobne" style="text-align:center">Každá má <span class="okno m"></span></div></div>
+      <div class="plocha"><div class="ver"><i o="vevericka"></i><i o="vevericka"></i><i o="vevericka"></i></div><div class="miska"></div><div class="drobne" style="text-align:center">Každá má <span class="okno m"></span></div></div>
+    </div>
+    <div class="drobne" style="font-size:14px"><b>Bádateľ:</b> A keby boli 4 veveričky? Dá sa 6 orieškov rozdeliť spravodlivo? Skús to s ozajstnými orieškami alebo gombíkmi.</div>
+  </section>
+
+  <div class="dva" style="grid-template-columns:1.1fr 1fr">
+    <section class="uloha">
+      <div class="zadanie"><span class="c">3</span><span>Na troch kockách padlo spolu 6. Nakresli bodky.<span class="pozn">Nájdeš 3 rôzne spôsoby?</span></span></div>
+      <div class="plocha" style="display:flex;flex-direction:column;gap:2.5mm;align-items:center">
+        <div class="priklad"><i kocka=""></i><span class="znak">+</span><i kocka=""></i><span class="znak">+</span><i kocka=""></i><span class="znak">= 6</span></div>
+        <div class="priklad"><i kocka=""></i><span class="znak">+</span><i kocka=""></i><span class="znak">+</span><i kocka=""></i><span class="znak">= 6</span></div>
+        <div class="priklad"><i kocka=""></i><span class="znak">+</span><i kocka=""></i><span class="znak">+</span><i kocka=""></i><span class="znak">= 6</span></div>
+      </div>
+    </section>
+    <section class="uloha">
+      <div class="zadanie"><span class="c">4</span>Hádanky. Kto som?</div>
+      <div class="plocha" style="display:flex;flex-direction:column;gap:3mm;font-size:15.5px">
+        <div class="priklad" style="justify-content:space-between">Keď ku mne pridáš 2, budem 6. <span class="okno m"></span></div>
+        <div class="priklad" style="justify-content:space-between">Keď odo mňa uberieš 3, zostanú 3. <span class="okno m"></span></div>
+        <div class="priklad" style="justify-content:space-between">Som o 1 menej ako 6. <span class="okno m"></span></div>
+        <div class="priklad" style="justify-content:space-between">Som 6 a 6 dokopy. <span class="okno m"></span></div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Úloha 1 spája počítanie so skúsenosťou: koľko nôh má pes, vták, pavúk? Dieťa môže nohy na obrázku odškrtávať. Pri delení pomáhajú skutočné oriešky alebo gombíky. Na otázku so 4 veveričkami je správna odpoveď „nedá sa, 2 oriešky zvýšia“.
+      <b>Riešenie:</b> 1 – 6, 6, 8, 6, 8, 4 nôh; zakrúžkovať 3 sliepky, psa s vtákom, mravca · 2 – po 3, po 2 · 3 – napr. 1+1+4, 1+2+3, 2+2+2 · 4 – 4, 6, 5, 12.
+      <span class="std">MAT-CO-1, MAT-CO-4, MAT-CO-6 · ŠVP MAT, Čísla a operácie s číslami: „porozumenie a modelovanie čísel ako počtu prvkov množiny, ako poradie, ako predchodcu alebo nasledovníka“; „modelovanie a využívanie rôznych rozkladov čísel“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<script src="obrazky.js"></script>
+<script>
+/* krabičky: je v nich n vajíčok, do 6 treba dokresliť */
+document.getElementById("krabice1").innerHTML = [4,5,2].map(n => `<div class="stlpec"><div class="krabica">${
+  Array.from({length:6},(_,i)=>`<div class="j">${i<n?'<i o="vajce"></i>':''}</div>`).join("")}</div>
+  <div class="priklad" style="font-size:14px">Dokreslil som <span class="okno m"></span></div></div>`).join("");
+
+/* motýle: [bodky na ľavom krídle, bodky na pravom krídle] */
+const BL = [[24,28],[34,38],[20,42]], BP = [[76,28],[66,38],[80,42]];
+const motyl = ([l,p]) => `<div class="stlpec"><svg class="scena" viewBox="0 0 100 100" style="width:40mm;height:40mm;stroke-width:2.6">
+  <use href="#motyl"/>${BL.slice(0,l).map(([x,y])=>`<circle cx="${x}" cy="${y}" r="4.2" fill="#111" stroke="none"/>`).join("")}${BP.slice(0,p).map(([x,y])=>`<circle cx="${x}" cy="${y}" r="4.2" fill="#111" stroke="none"/>`).join("")}</svg>
+  <div class="priklad" style="font-size:14px">Spolu <span class="okno m"></span></div></div>`;
+document.getElementById("motyle1").innerHTML = [[3,1],[1,0]].map(motyl).join("");
+
+/* mravce s n nohami (pohľad zhora) */
+const NOHY = ["M44 58 L36 74","M52 60 L52 78","M60 58 L70 74","M44 44 L36 28","M52 42 L52 24","M60 44 L70 28"];
+const mravec = (n) => `<svg class="scena" viewBox="0 0 110 100" style="width:44mm;height:32mm;stroke-width:2.6">
+  ${NOHY.slice(0,n).map(d=>`<path d="${d}"/>`).join("")}
+  <path d="M20 41 C16 31 12 28 8 28 M27 41 C29 31 33 28 37 26"/>
+  <circle cx="24" cy="50" r="10" fill="#fff"/><ellipse cx="52" cy="51" rx="11" ry="9" fill="#fff"/><ellipse cx="84" cy="52" rx="18" ry="13" fill="#fff"/><circle cx="20" cy="48" r="2" fill="#111" stroke="none"/></svg>`;
+document.getElementById("mravce2").innerHTML = [3,4,1].map(mravec).join("");
+</script>
+<script src="nastroje.js"></script>
+</body></html>

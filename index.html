@@ -96,6 +96,12 @@ a.btn.primary{color:var(--accent-ink)}
 .sheet .pics{display:flex;gap:5px}
 .sheet .pics span{width:22px;height:22px;border:1.5px solid #9AA7B6;border-radius:50%}
 .print-txt{flex:1;min-width:180px;display:flex;flex-direction:column;gap:8px}
+.urovne{display:grid;grid-template-columns:repeat(3,minmax(0,150px));gap:12px;margin:4px 0 10px}
+.uroven{display:flex;flex-direction:column;gap:6px;text-decoration:none;color:inherit}
+.uroven .sheet{width:100%;transition:transform .15s,box-shadow .15s}
+.uroven:hover .sheet,.uroven:focus-visible .sheet{transform:translateY(-2px);box-shadow:0 6px 14px rgba(0,0,0,.14)}
+.ur-t{display:flex;flex-direction:column;align-items:center;font-weight:700;font-size:14px;line-height:1.2}
+.ur-t .dots{width:auto;padding:0;color:var(--c,var(--accent));letter-spacing:2px;font-size:12px}
 
 /* Aktivita */
 .tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
@@ -266,6 +272,16 @@ function blokHTML(b, kid, i){
      <p><b>Začni takto:</b> ${esc(b.zacni)}</p>
      <ul class="q">${b.otazky.map((o,j)=>`<li><span class="dots" aria-label="úroveň ${j+1}">${"●".repeat(j+1)}</span><span>${esc(o)}</span></li>`).join("")}</ul>
      <div class="forpar"><b>Pre teba:</b> ${esc(b.preteba)}</div></div>`;
+  if(b.typ==="tlac" && b.urovne){
+    const n = esc(b.subor.replace(/\.pdf$/,""));
+    const U = [["●○○","Ľahšie"],["●●○","Bežné"],["●●●","Výzva"]];
+    return `<div class="blk">${h("Na tlač")}<p>${esc(b.text)}</p>
+     <div class="urovne">${U.map(([d,t],j)=>`<a class="uroven" href="tlac/pdf/${n}-${j+1}.pdf" target="_blank" rel="noopener">
+       <span class="sheet img"><img src="tlac/pdf/${n}-${j+1}.png" alt="Náhľad listu, úroveň ${t}" loading="lazy"></span>
+       <span class="ur-t"><span class="dots" aria-hidden="true">${d}</span>${t}</span></a>`).join("")}</div>
+     <div class="btns"><a class="btn primary" href="tlac/pdf/${esc(b.subor)}" download target="_blank" rel="noopener">${svg("tlac")}Stiahnuť všetky 3 (PDF)</a></div>
+     <span class="note">Ťuknite na list a otvorí sa len ten jeden. Ľahšie = na rozbeh, Bežné = podľa osnov, Výzva = pre šikovných. A4, čiernobiele, riešenie je dole na liste.</span></div>`;
+  }
   if(b.typ==="tlac") return `<div class="blk">${h("Na tlač")}
      <div class="print"><a class="sheet img" href="tlac/pdf/${esc(b.subor)}" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="tlac/pdf/${esc(b.subor.replace(/\.pdf$/,".png"))}" alt="" loading="lazy"></a>
      <div class="print-txt"><p>${esc(b.text)}</p><div class="btns"><a class="btn primary" href="tlac/pdf/${esc(b.subor)}" download target="_blank" rel="noopener">${svg("tlac")}Stiahnuť PDF</a></div>

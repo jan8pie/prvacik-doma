@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="sk"><head><meta charset="utf-8"><title>Čo sa začína na A – pracovný list (3 úrovne)</title>
+<link rel="stylesheet" href="list.css">
+<style>
+  /* aktovka v strede */
+  .aktovka{display:grid;grid-template-columns:repeat(5,1fr);grid-template-rows:repeat(2,26mm);gap:3mm 4mm;align-items:center;justify-items:center}
+  .aktovka .pic{width:19mm;height:19mm}
+  .aktovka .stred{grid-column:3;grid-row:1 / span 2}
+  .aktovka .stred .pic{width:34mm;height:34mm}
+  /* tajný obrázok z písmen */
+  .tajny{display:flex;align-items:center;justify-content:center;gap:8mm}
+  .tajny .siet{grid-template-columns:repeat(9,14.5mm);grid-auto-rows:14mm}
+  .tajny .siet span{font-size:28px}
+  .tajny .otazka{display:flex;flex-direction:column;align-items:center;gap:2mm;font-size:14px;text-align:center;width:32mm}
+  /* kde počuješ A */
+  .pozicie{display:grid;grid-template-columns:repeat(6,1fr);gap:2mm;text-align:center}
+  .pozicie>div{display:flex;flex-direction:column;align-items:center;gap:2mm}
+  .pozicie .pic{width:19mm;height:19mm}
+  .legenda{display:flex;align-items:center;gap:3mm;font-size:13px;color:#333;margin:0 0 2.5mm 1mm}
+  .obr-mriezka .pic{width:17mm;height:17mm}
+  /* doplň A alebo E */
+  .dopln{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm 6mm}
+  .dopln>div{display:flex;align-items:center;gap:2.5mm}
+  .dopln .slovo{font-size:27px;font-weight:700;letter-spacing:1.5px;display:flex;align-items:center;gap:1mm}
+  .dopln .slovo .okno{width:10mm;height:11mm;border-style:dashed}
+  .dopln .pic{width:17mm;height:17mm}
+  /* tajné zvieratko */
+  .tajne{display:grid;grid-template-columns:1fr 1fr;gap:2.5mm 8mm}
+  .tajne .r.cela{grid-column:1 / span 2;max-width:110mm}
+  .tajne .r{display:flex;align-items:center;gap:3mm}
+  .tajne .r>div{display:flex;flex-direction:column;align-items:center;gap:1mm}
+  .tajne .pic{width:13mm;height:13mm}
+  .tajne .okno{width:9.5mm;height:9.5mm}
+  .tajne .rovna{font-size:24px;font-weight:700}
+  .tajne .kr{width:30mm;height:21mm;border:1.2px dashed #777;border-radius:3mm;margin-left:auto}
+  /* koľko A */
+  .hl{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5mm 6mm}
+  .hl>div{display:flex;align-items:center;gap:3mm}
+  .hl .pic{width:14mm;height:14mm}
+  /* čo nepatrí */
+  .nepatri{display:flex;flex-direction:column;gap:1.5mm}
+  .nepatri>div{display:flex;align-items:center;gap:6mm}
+  .nepatri .pic{width:12mm;height:12mm}
+  .nepatri .pis{flex:1;min-width:0;height:9mm}
+  .nepatri .ob{display:flex;gap:4mm}
+  /* rady */
+  .schody{display:flex;justify-content:space-around;align-items:flex-end}
+  .schody svg{flex:none}
+  .scena{fill:none;stroke:#111;stroke-linecap:round;stroke-linejoin:round}
+  .scena text{font-family:Andika;font-weight:700;fill:#111;stroke:none}
+  .rady{display:grid;grid-template-columns:1fr 1fr;gap:3mm 8mm}
+  .rady>div{display:flex;align-items:center;gap:1.6mm;font-size:23px;font-weight:700}
+  .rady .okno{width:9.5mm;height:10mm}
+</style></head>
+<body>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 1 – ĽAHŠIE                                                     -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="1">
+  <header class="hlava" data-predmet="Slovenský jazyk">Písmeno A</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Obtiahni veľké A a malé a.</span></div>
+    <div class="plocha"><div class="linka" style="justify-content:space-around">
+      <i obtiahni="A" w="80"></i><i obtiahni="A" w="80"></i><i obtiahni="A" w="80"></i>
+      <span style="width:4mm"></span>
+      <i obtiahni="a" w="64"></i><i obtiahni="a" w="64"></i><i obtiahni="a" w="64"></i>
+    </div></div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Čo sa začína na A, patrí do aktovky. Spoj to čiarou s aktovkou.<span class="pozn">Aj aktovka sa začína na A!</span></span></div>
+    <div class="plocha aktovka">
+      <i o="auto"></i><i o="kotva"></i><div class="stred"><i o="aktovka"></i></div><i o="ananas"></i><i o="slnko"></i>
+      <i o="ryba"></i><i o="anjel"></i><i o="jablko"></i><i o="autobus"></i>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Vyfarbi všetky políčka s písmenom A alebo a. Čo sa ukáže?<span class="pozn">Pozor, o a e vyzerajú podobne ako a.</span></span></div>
+    <div class="plocha tajny">
+      <div class="siet" id="tajny1"></div>
+      <div class="otazka">Ukázalo sa:<span class="okno siroke" style="height:16mm"></span>Začína sa to na A?<span class="vyber" style="font-size:20px;gap:5mm"><span>áno</span><span>nie</span></span></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Zadania prečítajte. Hlásku A vyslovujte zreteľne ako „aaa“. Obrázky v úlohe 2: auto, kotva, ananás, slnko, ryba, anjel, jablko, autobus. Kotva a ryba majú A na konci, nie na začiatku; ak ich dieťa spojí, spýtajte sa, kde A počuje.
+      <b>Riešenie:</b> 2 – auto, ananás, anjel, autobus · 3 – auto, áno. Išlo to ľahko? Skúste úroveň ●●○.
+      <span class="std">SJL-PP-2 · ŠVP SJL, Písaná produkcia: „sluchové identifikovanie a rozlišovanie zvukov, slov, slabík, hlások“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 2 – BEŽNÉ                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="2">
+  <header class="hlava" data-predmet="Slovenský jazyk">Kde počuješ A?</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Povedz slovo pomaly. Kde počuješ A? Vyfarbi okienko.<span class="pozn">Niektoré slová majú A dvakrát. Vtedy vyfarbi obe okienka.</span></span></div>
+    <div class="plocha">
+      <div class="legenda"><span class="poz"><i style="background:#111"></i><i></i><i></i></span>začiatok
+        <span class="poz" style="margin-left:4mm"><i></i><i style="background:#111"></i><i></i></span>stred
+        <span class="poz" style="margin-left:4mm"><i></i><i></i><i style="background:#111"></i></span>koniec</div>
+      <div class="pozicie">
+        <div><i o="auto"></i><span class="poz"><i></i><i></i><i></i></span></div>
+        <div><i o="had"></i><span class="poz"><i></i><i></i><i></i></span></div>
+        <div><i o="ryba"></i><span class="poz"><i></i><i></i><i></i></span></div>
+        <div><i o="aktovka"></i><span class="poz"><i></i><i></i><i></i></span></div>
+        <div><i o="lama"></i><span class="poz"><i></i><i></i><i></i></span></div>
+        <div><i o="mak"></i><span class="poz"><i></i><i></i><i></i></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Krátke a alebo dlhé á? Povedz slovo nahlas a zakrúžkuj.</span></div>
+    <div class="plocha obr-mriezka" style="grid-template-columns:repeat(6,1fr)">
+      <div><i o="mak"></i><div class="vol"><span>a</span><span>á</span></div></div>
+      <div><i o="vaza"></i><div class="vol"><span>a</span><span>á</span></div></div>
+      <div><i o="had"></i><div class="vol"><span>a</span><span>á</span></div></div>
+      <div><i o="slimak"></i><div class="vol"><span>a</span><span>á</span></div></div>
+      <div><i o="dazdnik"></i><div class="vol"><span>a</span><span>á</span></div></div>
+      <div><i o="lopta"></i><div class="vol"><span>a</span><span>á</span></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>A alebo E? Pozri na obrázok a dopíš písmeno, ktoré chýba.</span></div>
+    <div class="plocha dopln">
+      <div><i o="mama"></i><span class="slovo">M<span class="okno"></span>MA</span></div>
+      <div><i o="lev"></i><span class="slovo">L<span class="okno"></span>V</span></div>
+      <div><i o="auto"></i><span class="slovo"><span class="okno"></span>UTO</span></div>
+      <div><i o="melon"></i><span class="slovo">M<span class="okno"></span>LÓN</span></div>
+      <div><i o="lama"></i><span class="slovo">L<span class="okno"></span>MA</span></div>
+      <div><i o="dievca"></i><span class="slovo"><span class="okno"></span>MA</span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Čítanie po schodoch. Prečítaj každý schod nahlas a vyjdi až hore.<span class="pozn">Hore do rámčeka nakresli, čo si prečítal.</span></span></div>
+    <div class="plocha schody">
+      <svg class="scena" data-schody="a|ma|mal|malá"></svg>
+      <svg class="scena" data-schody="a|la|lam|lama"></svg>
+      <svg class="scena" data-schody="E|Em|Ema"></svg>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Zadania prečítajte. Pri úlohách 1 a 2 vyslovujte spolu s dieťaťom pomaly a preťahujte („slimááák“). Obrázky: auto, had, ryba, aktovka, lama, mak; mak, váza, had, slimák, dáždnik, lopta. V úlohe 3 je dievčatko Ema. Pri schodoch nech dieťa číta každé slovo ťahavo a celé naraz.
+      <b>Riešenie:</b> 1 – začiatok; stred; koniec; začiatok a koniec; stred a koniec; stred · 2 – a, á, a, á, á, a · 3 – MAMA, LEV, AUTO, MELÓN, LAMA, EMA.
+      <span class="std">SJL-PP-2 · ŠVP SJL, Písaná produkcia: „sluchové identifikovanie a rozlišovanie zvukov, slov, slabík, hlások“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 3 – VÝZVA                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="3">
+  <header class="hlava" data-predmet="Slovenský jazyk">Detektív hlások</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Tajné zvieratká. Prvé hlásky obrázkov ti prezradia, kto sa skrýva. Nakresli ho.<span class="pozn">Písmeno napíš do okienka alebo ho povedz nahlas.</span></span></div>
+    <div class="plocha tajne">
+      <div class="r"><div><i o="hviezda"></i><span class="okno"></span></div><div><i o="auto"></i><span class="okno"></span></div><div><i o="dom"></i><span class="okno"></span></div><span class="rovna">=</span><span class="kr"></span></div>
+      <div class="r"><div><i o="oko"></i><span class="okno"></span></div><div><i o="slnko"></i><span class="okno"></span></div><div><i o="auto"></i><span class="okno"></span></div><span class="rovna">=</span><span class="kr"></span></div>
+      <div class="r cela"><div><i o="slnko"></i><span class="okno"></span></div><div><i o="oko"></i><span class="okno"></span></div><div><i o="vajce"></i><span class="okno"></span></div><div><i o="auto"></i><span class="okno"></span></div><span class="rovna">=</span><span class="kr"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Koľkokrát počuješ v slove A alebo Á? Vyfarbi toľko krúžkov.</span></div>
+    <div class="plocha hl">
+      <div><i o="ananas"></i><span class="hlasky"><i></i><i></i><i></i><i></i></span></div>
+      <div><i o="auto"></i><span class="hlasky"><i></i><i></i><i></i><i></i></span></div>
+      <div><i o="lampa"></i><span class="hlasky"><i></i><i></i><i></i><i></i></span></div>
+      <div><i o="slimak"></i><span class="hlasky"><i></i><i></i><i></i><i></i></span></div>
+      <div><i o="aktovka"></i><span class="hlasky"><i></i><i></i><i></i><i></i></span></div>
+      <div><i o="malina"></i><span class="hlasky"><i></i><i></i><i></i><i></i></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Čo nepatrí do radu? Prečiarkni. Povedz, prečo.<span class="pozn">Tip: počúvaj, kde v slove je A.</span></span></div>
+    <div class="plocha nepatri">
+      <div><span class="ob"><i o="auto"></i><i o="ananas"></i><i o="kotva"></i><i o="aktovka"></i></span></div>
+      <div><span class="ob"><i o="ryba"></i><i o="ruka"></i><i o="had"></i><i o="kniha"></i></span></div>
+      <div><span class="ob"><i o="mak"></i><i o="ryba"></i><i o="had"></i><i o="pavuk"></i></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Objav pravidlo a pokračuj.</span></div>
+    <div class="plocha rady">
+      <div>A M A M A <span class="okno"></span></div>
+      <div>A A M A A M <span class="okno"></span><span class="okno"></span></div>
+      <div>L A L A A L A A A <span class="okno"></span></div>
+      <div>ma la me le mi <span class="okno" style="width:13mm"></span></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Výzva je pre deti, ktoré hlásky už počujú isto. Obrázky v úlohe 1: hviezda, auto, dom; oko, slnko, auto; slnko, oko, vajce, auto. Neznáme písmená môže dieťa len povedať. V úlohe 3 je viac riešení dobrých, ak ich dieťa vie zdôvodniť.
+      <b>Riešenie:</b> 1 – had, osa, sova · 2 – ananás 3, auto 1, lampa 2, slimák 1, aktovka 2, malina 2 · 3 – kotva (nezačína sa na A), had (nemá A na konci), ryba (A nie je v strede) · 4 – M; A A; L; li.
+      <span class="std">SJL-PP-2 · ŠVP SJL, Písaná produkcia: „sluchové identifikovanie a rozlišovanie zvukov, slov, slabík, hlások“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<script>
+/* schody na čítanie (úroveň 2) */
+document.querySelectorAll("svg[data-schody]").forEach(sv => {
+  const k = sv.dataset.schody.split("|"), n = k.length, W = 40, H = 23, T = 60, Wt = n*W + 22, bx = (n-2)*W + 14;
+  let t = `<rect x="${bx}" y="2" width="${Wt-bx-2}" height="${T-8}" rx="4" style="stroke-dasharray:4 3"/>`;
+  k.forEach((s,i) => { const y = T + (n-1-i)*H;
+    t += `<rect x="${i*W+1}" y="${y}" width="${Wt-i*W-2}" height="${H}" fill="#fff"/><text x="${i*W+7}" y="${y+H-5.5}" style="font-size:20px">${s}</text>`; });
+  const Ht = T + n*H + 2;
+  sv.setAttribute("viewBox", `0 0 ${Wt} ${Ht}`); sv.style.height = (Ht/154*46) + "mm"; sv.style.width = (Wt/154*46) + "mm"; sv.style.strokeWidth = 1.6;
+  sv.innerHTML = t;
+});
+/* tajný obrázok z písmen (úroveň 1): X = A alebo a */
+(function(){
+  const vzor = ["...XXX...", "..X.X.X..", "XXXXXXXXX", "XXXXXXXXX", ".XX...XX."];
+  const a = ["A","a","a","A","a","A","a","a"], ine = ["o","M","e","l","O","i","m","E","L","e","o","I"];
+  let i = 0, j = 0, h = "";
+  vzor.forEach(r => [...r].forEach(c => { h += `<span>${c==="X" ? a[i++ % a.length] : ine[j++ % ine.length]}</span>`; }));
+  document.getElementById("tajny1").innerHTML = h;
+})();
+</script>
+<script src="obrazky.js"></script><script src="nastroje.js"></script>
+</body></html>

@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="sk"><head><meta charset="utf-8"><title>Kocka a súčet – pracovný list (3 úrovne)</title>
+<link rel="stylesheet" href="list.css">
+<style>
+  .cislice{display:flex;justify-content:space-around;font-size:34px;font-weight:700}
+  .cislice span{width:15mm;text-align:center}
+  .nadkockou{display:flex;flex-direction:column;align-items:center;gap:1.5mm;font-size:26px;font-weight:700}
+  .plan{display:grid;grid-template-columns:repeat(9,1fr);gap:2mm}
+  .pole{height:19mm;border:1.4px solid #111;border-radius:3mm;display:flex;align-items:center;justify-content:center;font-size:14px;color:#555;position:relative}
+  .pole .pic{width:8mm;height:8mm;stroke-width:6}
+  .pole.start,.pole.ciel{font-weight:700;color:#111;font-size:13px}
+  .bingo{border-collapse:collapse}
+  .bingo td{border:1.5px solid #111;width:15mm;height:13mm;text-align:center;font-size:28px;font-weight:700}
+  .bingo caption{font-weight:700;font-size:15px;padding-bottom:1.5mm}
+  .pravidla{font-size:14.5px;line-height:1.35}
+  .pravidla li{margin-left:4.5mm}
+  .dole{display:flex;flex-direction:column;align-items:center;gap:1mm;font-size:13px;color:#444}
+  .sipka{font-size:20px;line-height:1}
+</style></head>
+<body>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 1 – ĽAHŠIE                                                     -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="1">
+  <header class="hlava" data-predmet="Matematika">Bodky na kocke</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span>Spoj kocku s číslom, ktoré ukazuje.</div>
+    <div class="plocha" style="display:flex;flex-direction:column;gap:13mm;padding:4mm 6mm">
+      <div class="rad"><i kocka="4"></i><i kocka="1"></i><i kocka="6"></i><i kocka="3"></i><i kocka="5"></i><i kocka="2"></i></div>
+      <div class="cislice"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span></div>
+    </div>
+  </section>
+
+  <div class="dva" style="grid-template-columns:1fr 1fr">
+    <section class="uloha">
+      <div class="zadanie"><span class="c">2</span>Nakresli toľko bodiek, koľko ukazuje číslo.</div>
+      <div class="plocha rad">
+        <div class="nadkockou">2<i kocka="" class="l"></i></div><div class="nadkockou">3<i kocka="" class="l"></i></div><div class="nadkockou">5<i kocka="" class="l"></i></div><div class="nadkockou">4<i kocka="" class="l"></i></div>
+      </div>
+    </section>
+    <section class="uloha">
+      <div class="zadanie"><span class="c">3</span>Koľko bodiek je na kockách spolu?</div>
+      <div class="plocha" style="display:flex;flex-direction:column;gap:2mm;align-items:center">
+        <div class="priklad"><i kocka="2"></i><span class="znak">+</span><i kocka="1"></i><span class="znak">=</span><span class="okno"></span></div>
+        <div class="priklad"><i kocka="3"></i><span class="znak">+</span><i kocka="2"></i><span class="znak">=</span><span class="okno"></span></div>
+      </div>
+    </section>
+  </div>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Hra pre dvoch: Kto bude prvý v cieli?<span class="pozn">Každý má gombík na štarte. Striedate sa: hodíš kockou a posunieš sa o toľko polí, koľko bodiek padlo. Na poli s hviezdou hádžeš ešte raz.</span></span></div>
+    <div class="plocha" id="plan1" style="display:flex;flex-direction:column;gap:2mm"></div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">5</span>Zakrúžkuj každú kocku s 3 bodkami. Koľko ich je?</div>
+    <div class="plocha rad"><i kocka="3" class="m"></i><i kocka="2" class="m"></i><i kocka="5" class="m"></i><i kocka="3" class="m"></i><i kocka="1" class="m"></i><i kocka="4" class="m"></i><i kocka="6" class="m"></i><i kocka="3" class="m"></i><i kocka="2" class="m"></i><span class="okno"></span></div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Zadania prečítajte. Na hru potrebujete hraciu kocku a dva gombíky. Pri posúvaní nech dieťa počíta nahlas každé pole („jeden, dva, tri“), nie pole, na ktorom stojí. Časom začne bodky na kocke poznávať naraz, bez počítania.
+      <b>Riešenie:</b> 1 – kocky zľava: 4, 1, 6, 3, 5, 2 · 3 – 3, 5 · 5 – 3 kocky. Išlo to ľahko? Skúste úroveň ●●○.
+      <span class="std">MAT-CO-1, MAT-CO-3 · ŠVP MAT, Čísla a operácie s číslami: „porozumenie a modelovanie čísel ako počtu prvkov množiny, ako poradie, ako predchodcu alebo nasledovníka“; „porozumenie pojmov sčítanec, súčet, menšenec, menšiteľ, rozdiel“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 2 – BEŽNÉ                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="2">
+  <header class="hlava" data-predmet="Matematika">Kocka a súčet do 6</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span>Napíš príklad ku kockám.</div>
+    <div class="plocha dva">
+      <div class="priklad"><i kocka="3" class="m"></i><i kocka="3" class="m"></i><span class="znak" style="font-size:20px">→</span><span class="okno m"></span>+<span class="okno m"></span>=<span class="okno m"></span></div>
+      <div class="priklad"><i kocka="4" class="m"></i><i kocka="2" class="m"></i><span class="znak" style="font-size:20px">→</span><span class="okno m"></span>+<span class="okno m"></span>=<span class="okno m"></span></div>
+      <div class="priklad"><i kocka="2" class="m"></i><i kocka="3" class="m"></i><span class="znak" style="font-size:20px">→</span><span class="okno m"></span>+<span class="okno m"></span>=<span class="okno m"></span></div>
+      <div class="priklad"><i kocka="1" class="m"></i><i kocka="4" class="m"></i><span class="znak" style="font-size:20px">→</span><span class="okno m"></span>+<span class="okno m"></span>=<span class="okno m"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span>Dokresli bodky na druhú kocku, aby bolo spolu 6.</div>
+    <div class="plocha rad">
+      <div class="priklad"><i kocka="4"></i><span class="znak">+</span><i kocka=""></i></div>
+      <div class="priklad"><i kocka="1"></i><span class="znak">+</span><i kocka=""></i></div>
+      <div class="priklad"><i kocka="3"></i><span class="znak">+</span><i kocka=""></i></div>
+      <div class="priklad"><i kocka="5"></i><span class="znak">+</span><i kocka=""></i></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span>Kockové bingo pre dvoch</div>
+    <div class="plocha" style="display:grid;grid-template-columns:auto auto 1fr;gap:6mm;align-items:center">
+      <table class="bingo"><caption>Moja tabuľka</caption><tr><td>2</td><td>5</td><td>3</td></tr><tr><td>6</td><td>4</td><td>2</td></tr><tr><td>3</td><td>6</td><td>5</td></tr></table>
+      <table class="bingo"><caption>Tvoja tabuľka</caption><tr><td>4</td><td>2</td><td>6</td></tr><tr><td>3</td><td>5</td><td>4</td></tr><tr><td>6</td><td>3</td><td>2</td></tr></table>
+      <ol class="pravidla">
+        <li>Hoď kockou dvakrát a spočítaj bodky.</li>
+        <li>Ak je súčet viac ako 6, hádžeš znova.</li>
+        <li>Súčet nájdi vo svojej tabuľke a prečiarkni ho (len jedno políčko).</li>
+        <li>Vyhráva, kto prvý prečiarkne celý riadok alebo stĺpec.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span>Ktoré dve kocky majú spolu najviac bodiek? Zakrúžkuj ich.</div>
+    <div class="plocha rad">
+      <div class="priklad ramcek" style="padding:2mm"><i kocka="2" class="m"></i><i kocka="3" class="m"></i></div>
+      <div class="priklad ramcek" style="padding:2mm"><i kocka="1" class="m"></i><i kocka="5" class="m"></i></div>
+      <div class="priklad ramcek" style="padding:2mm"><i kocka="4" class="m"></i><i kocka="1" class="m"></i></div>
+      <div class="priklad ramcek" style="padding:2mm"><i kocka="2" class="m"></i><i kocka="2" class="m"></i></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">5</span><span>Hádž ozajstnou kockou. Dvakrát hoď, nakresli, čo padlo, a spočítaj.<span class="pozn">Ak je súčet viac ako 6, hoď znova.</span></span></div>
+    <div class="plocha dva">
+      <div class="priklad"><i kocka="" class="m"></i><span class="znak">+</span><i kocka="" class="m"></i><span class="znak">=</span><span class="okno m"></span></div>
+      <div class="priklad"><i kocka="" class="m"></i><span class="znak">+</span><i kocka="" class="m"></i><span class="znak">=</span><span class="okno m"></span></div>
+      <div class="priklad"><i kocka="" class="m"></i><span class="znak">+</span><i kocka="" class="m"></i><span class="znak">=</span><span class="okno m"></span></div>
+      <div class="priklad"><i kocka="" class="m"></i><span class="znak">+</span><i kocka="" class="m"></i><span class="znak">=</span><span class="okno m"></span></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Zadania prečítajte. Na bingo potrebujete jednu hraciu kocku; každý hráč škrtá vo svojej tabuľke. Pri úlohe 2 môže dieťa dopočítavať od prvej kocky: „štyri… päť, šesť – dokreslím dve bodky“.
+      <b>Riešenie:</b> 1 – 3+3=6, 4+2=6, 2+3=5, 1+4=5 · 2 – 2, 5, 3, 1 · 4 – 1 a 5 (spolu 6).
+      <span class="std">MAT-CO-3, MAT-CO-4 · ŠVP MAT, Čísla a operácie s číslami: „porozumenie pojmov sčítanec, súčet, menšenec, menšiteľ, rozdiel“; „modelovanie a využívanie rôznych rozkladov čísel“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 3 – VÝZVA                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="3">
+  <header class="hlava" data-predmet="Matematika">Tajomstvá kocky</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Bádateľ: Na kocke majú horná a dolná stena spolu vždy 7 bodiek. Over si to na ozajstnej kocke!<span class="pozn">Potom nakresli, koľko bodiek je dole.</span></span></div>
+    <div class="plocha rad">
+      <div class="dole">hore<i kocka="1"></i><span class="sipka">↓</span><i kocka=""></i>dole</div>
+      <div class="dole">hore<i kocka="3"></i><span class="sipka">↓</span><i kocka=""></i>dole</div>
+      <div class="dole">hore<i kocka="5"></i><span class="sipka">↓</span><i kocka=""></i>dole</div>
+      <div class="dole">hore<i kocka="2"></i><span class="sipka">↓</span><i kocka=""></i>dole</div>
+      <div class="dole">hore<i kocka="6"></i><span class="sipka">↓</span><i kocka=""></i>dole</div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Dvoma kockami padlo spolu 6. Ako to mohlo padnúť? Nakresli všetky možnosti.<span class="pozn">Prvá kocka je biela, druhá šedá: 1 a 5 nie je to isté ako 5 a 1.</span></span></div>
+    <div class="plocha" style="display:flex;justify-content:space-between;align-items:center">
+      <div class="priklad ramcek" style="padding:1.5mm"><i kocka="1" class="m"></i><i kocka="5" class="m" style="background:#e3e3e3"></i></div>
+      <div class="priklad ramcek" style="padding:1.5mm"><i kocka="" class="m"></i><i kocka="" class="m" style="background:#e3e3e3"></i></div>
+      <div class="priklad ramcek" style="padding:1.5mm"><i kocka="" class="m"></i><i kocka="" class="m" style="background:#e3e3e3"></i></div>
+      <div class="priklad ramcek" style="padding:1.5mm"><i kocka="" class="m"></i><i kocka="" class="m" style="background:#e3e3e3"></i></div>
+      <div class="priklad ramcek" style="padding:1.5mm"><i kocka="" class="m"></i><i kocka="" class="m" style="background:#e3e3e3"></i></div>
+      <div class="stlpec" style="font-size:13px;text-align:center">Koľko<br>možností?<span class="okno m"></span></div>
+    </div>
+  </section>
+
+  <div class="dva" style="grid-template-columns:1fr 1fr">
+    <section class="uloha">
+      <div class="zadanie"><span class="c">3</span>Tri kocky. Dokresli bodky na poslednú.</div>
+      <div class="plocha" style="display:flex;flex-direction:column;gap:2.5mm;align-items:center">
+        <div class="priklad"><i kocka="1" class="m"></i>+<i kocka="2" class="m"></i>+<i kocka="" class="m"></i><span class="znak" style="font-size:24px">= 6</span></div>
+        <div class="priklad"><i kocka="3" class="m"></i>+<i kocka="3" class="m"></i>+<i kocka="" class="m"></i><span class="znak" style="font-size:24px">= 8</span></div>
+        <div class="priklad"><i kocka="5" class="m"></i>+<i kocka="4" class="m"></i>+<i kocka="" class="m"></i><span class="znak" style="font-size:24px">= 10</span></div>
+        <div class="priklad"><i kocka="2" class="m"></i>+<i kocka="" class="m"></i>+<i kocka="2" class="m"></i><span class="znak" style="font-size:24px">= 7</span></div>
+      </div>
+    </section>
+    <section class="uloha">
+      <div class="zadanie"><span class="c">4</span><span>Ježko zjedol bodky. Koľko ich zjedol?<span class="pozn">Nakresli ich alebo napíš číslo.</span></span></div>
+      <div class="plocha" style="display:flex;flex-direction:column;gap:2.5mm;align-items:center">
+        <div class="priklad"><i kocka="6" class="m"></i><span class="znak">−</span><span class="okno m"></span><span class="znak">=</span><i kocka="2" class="m"></i></div>
+        <div class="priklad"><i kocka="5" class="m"></i><span class="znak">−</span><span class="okno m"></span><span class="znak">=</span><i kocka="5" class="m"></i></div>
+        <div class="priklad"><span class="okno m"></span><span class="znak">−</span><i kocka="3" class="m"></i><span class="znak">=</span><i kocka="3" class="m"></i></div>
+        <div class="priklad"><i kocka="4" class="m"></i><span class="znak">−</span><span class="okno m"></span><span class="znak">=</span><i kocka="0" class="m"></i></div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Úloha 1 je malý pokus: otáčajte spolu kockou a hľadajte, čo je dole. Pri úlohe 2 pomáha postupovať po poradí (1 a 5, 2 a 4…). V úlohe 3 sú súčty aj nad 6 – sú pre deti, ktoré už počítajú ďalej; dovoľte prsty aj kresbu. Prázdna kocka v poslednom riadku znamená 0.
+      <b>Riešenie:</b> 1 – 6, 4, 2, 5, 1 · 2 – 1+5, 2+4, 3+3, 4+2, 5+1, spolu 5 možností · 3 – 3, 2, 1, 3 · 4 – 4, 0, 6, 4.
+      <span class="std">MAT-CO-3, MAT-CO-4, MAT-CO-6 · ŠVP MAT, Čísla a operácie s číslami: „porozumenie pojmov sčítanec, súčet, menšenec, menšiteľ, rozdiel“; „modelovanie a využívanie rôznych rozkladov čísel“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<script src="obrazky.js"></script>
+<script>
+/* hracia doska (úroveň 1): 2 rady po 9 polí, hadovito */
+(function(){
+  const hviezdy = [4,9,14];
+  const pole = i => i===0 ? `<div class="pole start">ŠTART</div>` : i===17 ? `<div class="pole ciel"><i o="vlajka"></i></div>`
+    : `<div class="pole">${hviezdy.includes(i)?'<i o="hviezda"></i>':i}</div>`;
+  const r1 = Array.from({length:9},(_,i)=>pole(i)).join("");
+  const r2 = Array.from({length:9},(_,i)=>pole(17-i)).join("");
+  document.getElementById("plan1").innerHTML = `<div class="plan">${r1}</div><div style="text-align:right;font-size:18px;padding-right:6mm;line-height:.6">↓</div><div class="plan">${r2}</div>`;
+})();
+</script>
+<script src="nastroje.js"></script>
+</body></html>

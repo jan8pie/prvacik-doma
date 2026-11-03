@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="sk"><head><meta charset="utf-8"><title>Čo sa začína na M – pracovný list (3 úrovne)</title>
+<link rel="stylesheet" href="list.css">
+<style>
+  .scena{fill:none;stroke:#111;stroke-linecap:round;stroke-linejoin:round}
+  .scena text{font-family:Andika;font-weight:700;fill:#111;stroke:none}
+  /* bludisko s písmenami */
+  .bludisko{display:flex;align-items:center;justify-content:center;gap:2mm}
+  .bludisko .siet{grid-template-columns:repeat(7,16mm);grid-auto-rows:13mm}
+  .bludisko .siet span{font-size:27px}
+  .bludisko .start{align-self:flex-start;margin-top:-2mm}
+  .bludisko .ciel{align-self:flex-end;margin-bottom:-1mm}
+  .kresli1{border:1.2px solid #111;border-radius:4mm;height:100%;min-height:40mm}
+  /* kde počuješ M */
+  .pozicie{display:grid;grid-template-columns:repeat(6,1fr);gap:2mm;text-align:center}
+  .pozicie>div{display:flex;flex-direction:column;align-items:center;gap:2mm}
+  .pozicie .pic{width:19mm;height:19mm}
+  .legenda{display:flex;align-items:center;gap:3mm;font-size:13px;color:#333;margin:0 0 2.5mm 1mm}
+  /* doplň M alebo L */
+  .dopln{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm 6mm}
+  .dopln>div{display:flex;align-items:center;gap:2.5mm}
+  .dopln .slovo{font-size:27px;font-weight:700;letter-spacing:1.5px;display:flex;align-items:center;gap:1mm}
+  .dopln .slovo .okno{width:10mm;height:11mm;border-style:dashed}
+  .dopln .pic{width:17mm;height:17mm}
+  /* spoj slabiky so začiatkom slova */
+  .spoj6{display:grid;grid-template-columns:repeat(6,1fr);justify-items:center;row-gap:15mm}
+  .spoj6>div{display:flex;flex-direction:column;align-items:center;gap:1.5mm}
+  .spoj6 .pic{width:18mm;height:18mm}
+  /* tajné slovo */
+  .tajne{display:flex;flex-direction:column;gap:2mm}
+  .tajne .r{display:flex;align-items:flex-end;gap:2.5mm}
+  .tajne .r>div{display:flex;flex-direction:column;align-items:center;gap:1mm}
+  .tajne .pic{width:12mm;height:12mm}
+  .tajne .okno{width:9.5mm;height:9.5mm}
+  .tajne .rovna{font-size:24px;font-weight:700;margin:0 1mm 2mm}
+  .tajne .nadpis{font-size:13px;color:#333;width:12mm;align-self:center}
+  /* koľko hlások */
+  .hl{display:grid;grid-template-columns:1fr 1fr;gap:2mm 8mm}
+  .hl>div{display:flex;align-items:center;gap:3mm}
+  .hl .pic{width:12mm;height:12mm}
+  /* čarovanie */
+  .carovanie{display:grid;grid-template-columns:auto 1fr auto;align-items:center}
+  .carovanie .st{display:flex;flex-direction:column;gap:3mm}
+  .carovanie .st>div{display:flex;align-items:center;gap:3mm;height:14.5mm}
+  .carovanie .pic{width:14.5mm;height:14.5mm}
+  .carovanie .stred{flex-direction:column;gap:2mm;font-size:13.5px;color:#333;text-align:center}
+  .dvakrat{display:grid;grid-template-columns:repeat(6,1fr);text-align:center}
+  .dvakrat>div{display:flex;flex-direction:column;align-items:center}
+  .dvakrat .pic{width:19mm;height:19mm}
+</style></head>
+<body>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 1 – ĽAHŠIE                                                     -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="1">
+  <header class="hlava" data-predmet="Slovenský jazyk">Písmeno M</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Obtiahni veľké M a malé m.</span></div>
+    <div class="plocha"><div class="linka" style="justify-content:space-around">
+      <i obtiahni="M" w="96"></i><i obtiahni="M" w="96"></i>
+      <span style="width:4mm"></span>
+      <i obtiahni="m" w="96"></i><i obtiahni="m" w="96"></i>
+    </div></div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Ktoré balóny nesú obrázok, ktorý sa začína na M? Vyfarbi ich.</span></div>
+    <div class="plocha stred"><svg class="scena" id="balony" viewBox="0 0 400 156" style="width:180mm;height:70mm;stroke-width:2"></svg></div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Mačka ide k mlieku. Môže stúpiť len na písmeno M alebo m.<span class="pozn">Nakresli jej cestu čiarou.</span></span></div>
+    <div class="plocha bludisko">
+      <i o="mackaBok" class="start" style="width:20mm;height:20mm"></i>
+      <div class="siet">
+        <span>M</span><span>a</span><span>m</span><span>e</span><span>M</span><span>A</span><span>l</span>
+        <span>m</span><span>E</span><span>M</span><span>m</span><span>M</span><span>n</span><span>a</span>
+        <span>M</span><span>m</span><span>M</span><span>N</span><span>m</span><span>A</span><span>l</span>
+        <span>m</span><span>A</span><span>n</span><span>L</span><span>M</span><span>m</span><span>e</span>
+        <span>M</span><span>l</span><span>e</span><span>A</span><span>i</span><span>M</span><span>m</span>
+      </div>
+      <i o="mlieko" class="ciel" style="width:17mm;height:17mm"></i>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Zadania prečítajte. Hlásku M vyslovujte ako dlhé „mmm“, nie „em“. Obrázky na balónoch: auto, myška, melón, mesiac, kniha, slnko, mrkva, ryba.
+      <b>Riešenie:</b> 2 – myška, melón, mesiac, mrkva. Navyše: nech dieťa nakreslí niečo, čo sa začína na M (mak, motýľ, med…). Išlo to ľahko? Skúste úroveň ●●○.
+      <span class="std">SJL-PP-2 · ŠVP SJL, Písaná produkcia: „sluchové identifikovanie a rozlišovanie zvukov, slov, slabík, hlások“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 2 – BEŽNÉ                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="2">
+  <header class="hlava" data-predmet="Slovenský jazyk">Kde počuješ M?</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Povedz slovo pomaly. Kde počuješ M: na začiatku, v strede, alebo na konci? Vyfarbi okienko.</span></div>
+    <div class="plocha">
+      <div class="legenda"><span class="poz"><i style="background:#111"></i><i></i><i></i></span>začiatok
+        <span class="poz" style="margin-left:4mm"><i></i><i style="background:#111"></i><i></i></span>stred
+        <span class="poz" style="margin-left:4mm"><i></i><i></i><i style="background:#111"></i></span>koniec</div>
+      <div class="pozicie">
+        <div><i o="myska"></i><span class="poz"><i></i><i></i><i></i></span></div>
+        <div><i o="dom"></i><span class="poz"><i></i><i></i><i></i></span></div>
+        <div><i o="lampa"></i><span class="poz"><i></i><i></i><i></i></span></div>
+        <div><i o="melon"></i><span class="poz"><i></i><i></i><i></i></span></div>
+        <div><i o="strom"></i><span class="poz"><i></i><i></i><i></i></span></div>
+        <div><i o="lama"></i><span class="poz"><i></i><i></i><i></i></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>M alebo L? Pozri na obrázok a dopíš prvé písmeno.</span></div>
+    <div class="plocha dopln">
+      <div><i o="lama"></i><span class="slovo"><span class="okno"></span>AMA</span></div>
+      <div><i o="mak"></i><span class="slovo"><span class="okno"></span>AK</span></div>
+      <div><i o="lampa"></i><span class="slovo"><span class="okno"></span>AMPA</span></div>
+      <div><i o="mama"></i><span class="slovo"><span class="okno"></span>AMA</span></div>
+      <div><i o="list"></i><span class="slovo"><span class="okno"></span>IST</span></div>
+      <div><i o="melon"></i><span class="slovo"><span class="okno"></span>ELÓN</span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Prečítaj slabiku. Spoj ju s obrázkami, ktoré sa ňou začínajú.<span class="pozn">Ku každej slabike patria dva obrázky.</span></span></div>
+    <div class="plocha spoj6">
+      <div style="grid-column:2"><span class="slab">ma</span><span class="bod"></span></div>
+      <div style="grid-column:3 / span 2"><span class="slab">me</span><span class="bod"></span></div>
+      <div style="grid-column:5"><span class="slab">mi</span><span class="bod"></span></div>
+      <div style="grid-column:1"><span class="bod"></span><i o="melon"></i></div>
+      <div><span class="bod"></span><i o="misa"></i></div>
+      <div><span class="bod"></span><i o="malina"></i></div>
+      <div><span class="bod"></span><i o="mesiac"></i></div>
+      <div><span class="bod"></span><i o="mimino"></i></div>
+      <div><span class="bod"></span><i o="mak"></i></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>V ktorom slove počuješ M dvakrát? Zakrúžkuj.</span></div>
+    <div class="plocha dvakrat">
+      <div><i o="mamut" ></i></div><div><i o="mak" ></i></div><div><i o="mimino" ></i></div>
+      <div><i o="myska" ></i></div><div><i o="mama" ></i></div><div><i o="motyl" ></i></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Zadania prečítajte. V úlohe 1 pomáha slovo vysloviť pomaly a ťahavo („lammmpa“) a ukazovať prstom na okienka. Obrázky: myška, dom, lampa, melón, strom, lama; v úlohe 4 mamut, mak, mimino, myška, mama, motýľ.
+      <b>Riešenie:</b> 1 – začiatok, koniec, stred, začiatok, koniec, stred · 2 – L, M, L, M, L, M · 3 – ma: malina, mak; me: melón, mesiac; mi: misa, mimino · 4 – mamut, mimino, mama.
+      <span class="std">SJL-PP-2 · ŠVP SJL, Písaná produkcia: „sluchové identifikovanie a rozlišovanie zvukov, slov, slabík, hlások“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 3 – VÝZVA                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="3">
+  <header class="hlava" data-predmet="Slovenský jazyk">Čarovanie s hláskami</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Tajné slová. Napíš pod obrázok jeho prvé písmeno. Potom prečítaj, čo vyšlo.</span></div>
+    <div class="plocha tajne">
+      <div class="r"><div><i o="myska"></i><span class="okno"></span></div><div><i o="auto"></i><span class="okno"></span></div><div><i o="mrkva"></i><span class="okno"></span></div><div><i o="ananas"></i><span class="okno"></span></div>
+        <span class="rovna">=</span><span class="pis" style="min-width:36mm;margin-bottom:1mm"></span></div>
+      <div class="r"><div><i o="list"></i><span class="okno"></span></div><div><i o="auto"></i><span class="okno"></span></div><div><i o="melon"></i><span class="okno"></span></div><div><i o="aktovka"></i><span class="okno"></span></div>
+        <span class="rovna">=</span><span class="pis" style="min-width:36mm;margin-bottom:1mm"></span></div>
+      <div class="r"><div><i o="mak"></i><span class="okno"></span></div><div><i o="ananas"></i><span class="okno"></span></div><div><i o="lampa"></i><span class="okno"></span></div><div><i o="ihla"></i><span class="okno"></span></div><div><i o="nanuk"></i><span class="okno"></span></div><div><i o="auto"></i><span class="okno"></span></div>
+        <span class="rovna">=</span><span class="pis" style="min-width:36mm;margin-bottom:1mm"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Koľko hlások počuješ? Za každú hlásku vyfarbi jeden krúžok.<span class="pozn">Príklad: m – a – k sú 3 hlásky.</span></span></div>
+    <div class="plocha hl">
+      <div><i o="mak"></i><span class="hlasky"><i style="background:#111"></i><i style="background:#111"></i><i style="background:#111"></i><i></i><i></i><i></i></span></div>
+      <div><i o="dom"></i><span class="hlasky"><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
+      <div><i o="lama"></i><span class="hlasky"><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
+      <div><i o="mama"></i><span class="hlasky"><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
+      <div><i o="melon"></i><span class="hlasky"><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
+      <div><i o="mrkva"></i><span class="hlasky"><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Čarodejník vymenil v slove prvú hlásku. Spoj dvojice, ktoré sa líšia len prvou hláskou.</span></div>
+    <div class="plocha carovanie">
+      <div class="st"><div><i o="mama"></i><span class="bod"></span></div><div><i o="mackaBok"></i><span class="bod"></span></div><div><i o="oblak"></i><span class="bod"></span></div></div>
+      <div class="stred"><svg class="scena" viewBox="0 0 60 60" style="width:16mm;height:16mm;stroke-width:2.4"><path d="M8 52 L40 20"/><path d="M40 20 L44 8 L48 20 L60 24 L48 28 L44 40 L40 28 L28 24 Z" style="fill:#fff"/></svg>
+        Mmm… čáry máry!<br>Vymyslíš ďalšiu dvojicu?<br><span class="pis" style="min-width:40mm;height:8mm"></span></div>
+      <div class="st"><div><span class="bod"></span><i o="drak"></i></div><div><span class="bod"></span><i o="lama"></i></div><div><span class="bod"></span><i o="kacka"></i></div></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Výzva je pre deti, ktoré hlásky už rozlišujú isto. Hláska je to, čo počujeme; písmeno to, čo píšeme. Obrázky v úlohe 1: myška, auto, mrkva, ananás; list, auto, melón, aktovka; mak, ananás, lampa, ihla, nanuk, auto. V úlohe 3 je mrak (oblak). Ak dieťa písmeno ešte nevie napísať, stačí ho povedať, vy ho zapíšte.
+      <b>Riešenie:</b> 1 – MAMA, LAMA, MALINA · 2 – mak 3, dom 3, lama 4, mama 4, melón 5, mrkva 5 · 3 – mama – lama, mačka – kačka, mrak – drak (ďalšie napr. mak – rak, mys – rys, most – kosť).
+      <span class="std">SJL-PP-2 · ŠVP SJL, Písaná produkcia: „sluchové identifikovanie a rozlišovanie zvukov, slov, slabík, hlások“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<script>
+/* balóny s obrázkami (úroveň 1) */
+(function(){
+  const o = ["auto","myska","melon","kniha","mesiac","slnko","mrkva","ryba"];
+  let t = "";
+  o.forEach((n,i) => {
+    const x = 30 + i*48.5, y = 40 + (i%2)*16;
+    t += `<path d="M${x} ${y+30} C${x-6} ${y+60} ${200+(x-200)*.3} ${y+70} 200 146" style="stroke-width:1.2"/>`;
+  });
+  o.forEach((n,i) => {
+    const x = 30 + i*48.5, y = 40 + (i%2)*16;
+    t += `<path d="M${x} ${y-28} C${x+30} ${y-28} ${x+30} ${y+14} ${x} ${y+28} C${x-30} ${y+14} ${x-30} ${y-28} ${x} ${y-28} Z" fill="#fff"/>`
+       + `<path d="M${x-4} ${y+33} L${x} ${y+27} L${x+4} ${y+33} Z" fill="#fff"/>`
+       + `<use href="#${n}" x="${x-17}" y="${y-19}" width="34" height="34" style="stroke-width:5.5"/>`;
+  });
+  t += `<path d="M192 146 C186 140 186 152 192 148 M208 146 C214 140 214 152 208 148" style="stroke-width:1.6"/>`;
+  document.getElementById("balony").innerHTML = t;
+})();
+</script>
+<script src="obrazky.js"></script><script src="nastroje.js"></script>
+</body></html>

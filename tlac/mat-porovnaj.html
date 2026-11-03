@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="sk"><head><meta charset="utf-8"><title>Viac, menej, rovnako – pracovný list (3 úrovne)</title>
+<link rel="stylesheet" href="list.css">
+<style>
+  .scena{fill:none;stroke:#111;stroke-linecap:round;stroke-linejoin:round}
+  .scena text{font-family:Andika;font-weight:700;fill:#111;stroke:none}
+  .tanier.su{width:23mm;height:17mm}.tanier.su .pic{width:6.2mm;height:6.2mm}
+  .par{border:1px solid #bbb;border-radius:3mm;padding:1.5mm 2mm}
+  .par{display:flex;align-items:center;gap:1.5mm}
+  .cisla{display:grid;grid-template-columns:repeat(3,1fr);gap:3mm 5mm;font-size:30px;font-weight:700}
+  .cisla .priklad{justify-content:center;gap:3mm}
+  .bodky{display:flex;gap:1mm;justify-content:center;min-height:4mm}
+  .bodky i{width:3.6mm;height:3.6mm;border-radius:50%;background:#111;display:block}
+  .vacsie{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm}
+  .vacsie .p{border:1px solid #bbb;border-radius:3mm;padding:2mm 0}
+  .vacsie .p{display:flex;justify-content:center;gap:5mm}
+  .vacsie .p>div{display:flex;flex-direction:column;align-items:center;gap:1.5mm;font-size:34px;font-weight:700;width:13mm}
+  .vacsie .bodky{flex-wrap:wrap;width:12mm}
+  .gulky{display:flex;gap:1mm;align-items:center}
+  .gulky i{width:5.6mm;height:5.6mm;border-radius:50%;border:1.4px solid #111;display:block}
+  .prazdny{width:24mm;height:12mm;border:1.4px dashed #777;border-radius:2mm}
+  .veze{display:flex;align-items:flex-end;gap:6mm;justify-content:center}
+  .veza{display:flex;flex-direction:column-reverse}
+  .veza i{width:8mm;height:5.6mm;border:1.3px solid #111;margin-top:-1.3px;display:block}
+  .detektiv{display:grid;grid-template-columns:repeat(3,1fr);gap:3mm 6mm;font-size:30px;font-weight:700}
+  .detektiv div{display:flex;align-items:center;justify-content:center;gap:3mm}
+  .detektiv .opr{width:12mm;height:10mm;border-bottom:1.2px solid #111}
+</style></head>
+<body>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 1 – ĽAHŠIE                                                     -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="1">
+  <header class="hlava" data-predmet="Matematika">Kde je viac?</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span>Kde je viac sušienok? Zakrúžkuj ten tanier.</div>
+    <div class="plocha rad">
+      <div class="par"><div class="tanier su"><i o="susienka" n="2"></i></div><div class="tanier su"><i o="susienka" n="4"></i></div></div>
+      <div class="par"><div class="tanier su"><i o="susienka" n="5"></i></div><div class="tanier su"><i o="susienka" n="3"></i></div></div>
+      <div class="par"><div class="tanier su"><i o="susienka" n="1"></i></div><div class="tanier su"><i o="susienka" n="2"></i></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Má každá myška svoj syr? Spoj čiarou vždy jednu myšku s jedným syrom.<span class="pozn">Čoho je viac? Zakrúžkuj to dole.</span></span></div>
+    <div class="plocha" style="display:grid;grid-template-columns:1fr auto;align-items:center;gap:6mm">
+      <div style="display:flex;flex-direction:column;gap:9mm">
+        <div class="rad"><i o="myska" n="5" style="width:19mm;height:19mm"></i></div>
+        <div class="rad" style="padding:0 10mm"><i o="syr" n="4" style="width:19mm;height:19mm"></i></div>
+      </div>
+      <div class="stlpec" style="gap:3mm;font-size:14px">Viac je:<div class="priklad"><i o="myska" class="s"></i><i o="syr" class="s"></i></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span>Dokresli sušienky na pravý tanier, aby bolo na oboch rovnako.</div>
+    <div class="plocha rad">
+      <div class="par"><div class="tanier su"><i o="susienka" n="3"></i></div><span class="znak" style="font-size:22px">=</span><div class="tanier su"><i o="susienka" n="1"></i></div></div>
+      <div class="par"><div class="tanier su"><i o="susienka" n="4"></i></div><span class="znak" style="font-size:22px">=</span><div class="tanier su"><i o="susienka" n="2"></i></div></div>
+      <div class="par"><div class="tanier su"><i o="susienka" n="2"></i></div><span class="znak" style="font-size:22px">=</span><div class="tanier su"></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Ktoré číslo je väčšie? Zakrúžkuj ho.<span class="pozn">Bodky pod číslom ti pomôžu.</span></span></div>
+    <div class="plocha vacsie" id="vacsie1"></div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Zadania prečítajte. Pri úlohe 2 je dôležité spájať vždy jednu myšku s jedným syrom; tak dieťa zistí, čoho je viac, aj bez počítania (v škole: priraďovanie). Na tanieroch môže dieťa sušienky aj odškrtávať.
+      <b>Riešenie:</b> 1 – 4, 5, 2 · 2 – viac je myšiek, jedna zostane bez syra · 3 – dokreslí 2, 2, 2 · 4 – 5, 6, 2, 3. Išlo to ľahko? Skúste úroveň ●●○.
+      <span class="std">MAT-CO-2 · ŠVP MAT, Čísla a operácie s číslami: „aplikovanie metód porovnávania – väčší, menší, rovný, najväčší, najmenší“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 2 – BEŽNÉ                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="2">
+  <header class="hlava" data-predmet="Matematika">Viac, menej, rovnako</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Napíš znak &lt;, &gt; alebo =.<span class="pozn">Hladný krokodíl otvára ústa vždy k väčšiemu číslu.</span></span></div>
+    <div class="plocha" style="display:grid;grid-template-columns:auto 1fr;gap:6mm;align-items:center">
+      <div class="stlpec" style="gap:0"><i o="krokodil" style="width:46mm;height:29mm;stroke-width:2.4"></i><span style="font-size:24px;font-weight:700">5 &gt; 3</span></div>
+      <div class="cisla">
+        <div class="priklad">3 <span class="okno m"></span> 5</div><div class="priklad">6 <span class="okno m"></span> 4</div><div class="priklad">2 <span class="okno m"></span> 2</div>
+        <div class="priklad">0 <span class="okno m"></span> 1</div><div class="priklad">5 <span class="okno m"></span> 6</div><div class="priklad">4 <span class="okno m"></span> 3</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span>Dokresli guľôčky do prázdneho rámčeka, aby to platilo.</div>
+    <div class="plocha" style="display:flex;justify-content:space-between;gap:2mm;padding:3mm 3mm">
+      <div class="priklad"><div class="gulky"><i></i><i></i><i></i></div><span class="znak">&lt;</span><div class="prazdny"></div></div>
+      <div class="priklad"><div class="prazdny"></div><span class="znak">&gt;</span><div class="gulky"><i></i><i></i></div></div>
+      <div class="priklad"><div class="gulky"><i></i><i></i><i></i><i></i></div><span class="znak">=</span><div class="prazdny"></div></div>
+    </div>
+  </section>
+
+  <div class="dva" style="grid-template-columns:1fr 1fr">
+    <section class="uloha">
+      <div class="zadanie"><span class="c">3</span><span>Veže z kociek<span class="pozn">Najvyššiu vežu vyfarbi. Najnižšiu prečiarkni. Pod každú napíš, koľko má kociek.</span></span></div>
+      <div class="plocha veze" id="veze2"></div>
+    </section>
+    <section class="uloha">
+      <div class="zadanie"><span class="c">4</span><span>Zoraď čísla od najmenšieho po najväčšie.</span></div>
+      <div class="plocha" style="display:flex;flex-direction:column;gap:2.5mm;align-items:center">
+        <div class="priklad" style="font-size:30px;font-weight:700;gap:6mm">5 <span>2</span><span>6</span><span>0</span><span>3</span></div>
+        <div class="priklad"><span class="okno m"></span><span class="okno m"></span><span class="okno m"></span><span class="okno m"></span><span class="okno m"></span></div>
+        <div class="priklad" style="font-size:30px;font-weight:700;gap:6mm;border-top:1px dotted #999;padding-top:2mm">4 <span>1</span><span>6</span><span>3</span><span>2</span></div>
+        <div class="priklad"><span class="okno m"></span><span class="okno m"></span><span class="okno m"></span><span class="okno m"></span><span class="okno m"></span></div>
+      </div>
+    </section>
+  </div>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">5</span>Kto má viac nálepiek? Zakrúžkuj ho.</div>
+    <div class="plocha" style="display:grid;grid-template-columns:1fr 1fr auto;gap:5mm;align-items:center">
+      <div class="priklad"><i o="dievca" class="l" style="width:22mm;height:22mm"></i><div><b>Ema</b><div class="priklad" style="gap:1mm;flex-wrap:wrap;width:36mm"><i o="hviezda" n="4" class="m"></i></div></div></div>
+      <div class="priklad"><i o="chlapec" class="l" style="width:22mm;height:22mm"></i><div><b>Emil</b><div class="priklad" style="gap:1mm;flex-wrap:wrap;width:36mm"><i o="hviezda" n="6" class="m"></i></div></div></div>
+      <div class="priklad" style="font-size:15px;max-width:52mm">Koľko nálepiek treba dať Eme, aby mali rovnako? <span class="okno m"></span></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Zadania prečítajte. Pomôcka s krokodílom: znak je ako ústa a tie sa otvárajú k väčšiemu číslu; špička ukazuje na menšie. V škole sa číta „je väčší ako“, „je menší ako“, „rovná sa“.
+      <b>Riešenie:</b> 1 – &lt;, &gt;, =, &lt;, &lt;, &gt; · 2 – viac ako 3 (4, 5…), menej ako 2 (0 alebo 1), presne 4 · 3 – 4, 2, 6, 3 kocky · 4 – 0 2 3 5 6; 1 2 3 4 6 · 5 – Emil; 2.
+      <span class="std">MAT-CO-2 · ŠVP MAT, Čísla a operácie s číslami: „aplikovanie metód porovnávania – väčší, menší, rovný, najväčší, najmenší“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 3 – VÝZVA                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="3">
+  <header class="hlava" data-predmet="Matematika">Viac, menej, rovnako</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Najprv vypočítaj, potom porovnaj. Napíš &lt;, &gt; alebo =.</span></div>
+    <div class="plocha cisla" style="font-size:25px">
+      <div class="priklad">2 + 3 <span class="okno m"></span> 4</div><div class="priklad">6 − 1 <span class="okno m"></span> 5</div><div class="priklad">3 + 3 <span class="okno m"></span> 2 + 4</div>
+      <div class="priklad">1 + 4 <span class="okno m"></span> 6 − 2</div><div class="priklad">0 + 5 <span class="okno m"></span> 6</div><div class="priklad">4 − 4 <span class="okno m"></span> 1</div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Ktoré čísla sa hodia do okienka? Napíš všetky.<span class="pozn">Pomôže ti číselná os.</span></span></div>
+    <div class="plocha" style="display:flex;flex-direction:column;gap:3mm">
+      <i os="0 10" style="width:100%;height:12mm"></i>
+      <div class="dva" style="font-size:24px;font-weight:700;gap:4mm 8mm">
+        <div class="priklad"><span class="okno m"></span> &lt; 3 <span class="ciara vyplna"></span></div>
+        <div class="priklad">4 &lt; <span class="okno m"></span> &lt; 7 <span class="ciara vyplna"></span></div>
+        <div class="priklad">6 &gt; <span class="okno m"></span> &gt; 3 <span class="ciara vyplna"></span></div>
+        <div class="priklad">8 &lt; <span class="okno m"></span> <span class="ciara vyplna"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Váhy neklamú. Ťažšia vec ide dolu.<span class="pozn">Pod vec napíš 1, ak je najťažšia, 2 a 3 podľa poradia.</span></span></div>
+    <div class="plocha" style="display:grid;grid-template-columns:1fr 1fr 1.1fr;gap:4mm;align-items:center">
+      <div class="stred" id="vahy1"></div>
+      <div class="stred" id="vahy2"></div>
+      <div class="rad"><div class="stlpec"><i o="lopta" class="s"></i><span class="okno m"></span></div><div class="stlpec"><i o="pierko" class="s"></i><span class="okno m"></span></div><div class="stlpec"><i o="kniha" class="s"></i><span class="okno m"></span></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Detektív: Niektoré znaky sú zlé. Prečiarkni ich a oprav na čiarku.</span></div>
+    <div class="plocha detektiv">
+      <div>5 &gt; 3 <span class="opr"></span></div><div>2 &gt; 4 <span class="opr"></span></div><div>6 = 6 <span class="opr"></span></div>
+      <div>1 &lt; 0 <span class="opr"></span></div><div>3 &lt; 5 <span class="opr"></span></div><div>4 &gt; 4 <span class="opr"></span></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Výzva spája porovnávanie s počítaním a logikou. Pri úlohe 2 je viac správnych čísel, dieťa ich hľadá na osi (pri poslednom ich je nekonečne veľa, stačí pár). Pri váhach je kniha ťažšia ako lopta a lopta ťažšia ako pierko, preto je kniha najťažšia, aj keď spolu s pierkom na váhe nie je.
+      <b>Riešenie:</b> 1 – &gt;, =, =, &gt;, &lt;, &lt; · 2 – 0, 1, 2 · 5, 6 · 4, 5 · 9, 10… · 3 – kniha 1, lopta 2, pierko 3 · 4 – zlé: 2 &gt; 4 (má byť &lt;), 1 &lt; 0 (&gt;), 4 &gt; 4 (=).
+      <span class="std">MAT-CO-2, MAT-CO-3, MAT-CO-6 · ŠVP MAT, Čísla a operácie s číslami: „aplikovanie metód porovnávania – väčší, menší, rovný, najväčší, najmenší“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<script src="obrazky.js"></script>
+<script>
+/* úroveň 1: ktoré číslo je väčšie (s bodkami) */
+const bod = n => `<div class="bodky">${"<i></i>".repeat(n)}</div>`;
+document.getElementById("vacsie1").innerHTML = [[3,5],[6,4],[2,1],[0,3]].map(([a,b]) =>
+  `<div class="p"><div>${a}${bod(a)}</div><div>${b}${bod(b)}</div></div>`).join("");
+
+/* úroveň 2: veže z kociek */
+document.getElementById("veze2").innerHTML = [4,2,6,3].map(n =>
+  `<div class="stlpec"><div class="veza">${"<i></i>".repeat(n)}</div><span class="okno m"></span></div>`).join("");
+
+/* úroveň 3: váhy – ľavá strana ťažšia (ide dolu) */
+const vahy = (l, p) => `<svg class="scena" viewBox="0 0 200 130" style="width:52mm;height:34mm;stroke-width:2.6">
+  <path d="M100 30 V112 M70 118 H130 M84 118 L100 104 L116 118"/>
+  <path d="M28 50 L172 10"/><circle cx="100" cy="30" r="4" fill="#111"/>
+  <path d="M28 50 L12 82 M28 50 L44 82 M172 10 L156 42 M172 10 L188 42"/>
+  <path d="M8 82 H48 C46 92 10 92 8 82 Z" fill="#fff"/><path d="M152 42 H192 C190 52 154 52 152 42 Z" fill="#fff"/>
+  <use href="#${l}" x="8" y="44" width="40" height="40" style="stroke-width:6"/>
+  <use href="#${p}" x="152" y="4" width="40" height="40" style="stroke-width:6"/></svg>`;
+document.getElementById("vahy1").innerHTML = vahy("kniha","lopta");
+document.getElementById("vahy2").innerHTML = vahy("lopta","pierko");
+</script>
+<script src="nastroje.js"></script>
+</body></html>

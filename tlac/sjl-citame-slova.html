@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="sk"><head><meta charset="utf-8"><title>Čítame prvé slová – pracovný list (3 úrovne)</title>
+<link rel="stylesheet" href="list.css">
+<style>
+  .slovo{font-size:28px;font-weight:700;letter-spacing:.5px}
+  /* slovo – obrázok */
+  .spoj4{display:grid;grid-template-columns:repeat(4,1fr);justify-items:center;row-gap:14mm}
+  .spoj4>div{display:flex;flex-direction:column;align-items:center;gap:1.8mm}
+  .spoj4 .pic{width:21mm;height:21mm}
+  /* nájdi rovnaké slovo */
+  .hladaj{display:flex;flex-direction:column;gap:2.5mm}
+  .hladaj>div{display:flex;align-items:center;gap:5mm}
+  .hladaj .vzor{border:1.6px solid #111;border-radius:2.5mm;padding:0 3mm;min-width:24mm;text-align:center;background:#fff}
+  .hladaj .rad{flex:1;justify-content:space-between}
+  .hladaj .rad span{font-size:25px;font-weight:700}
+  /* vyber obrázok */
+  .dvojobr{display:grid;grid-template-columns:1fr 1fr;gap:4mm 8mm}
+  .dvojobr>div{display:flex;flex-direction:column;align-items:center;gap:2mm}
+  .dvojobr .moznosti{display:flex;gap:6mm;align-items:flex-end}
+  .dvojobr .moznost{border:1px solid #bbb;border-radius:3mm;padding:1.5mm 2mm;display:flex;align-items:flex-end;gap:0;height:24mm}
+  .kresli2{display:grid;grid-template-columns:1fr 1fr;gap:5mm}
+  .kresli2 div{border:1.2px solid #111;border-radius:4mm;height:38mm;padding:2mm 4mm;font-size:26px;font-weight:700}
+  /* vety */
+  .vety{display:flex;flex-direction:column;gap:2.5mm}
+  .vety>div{display:flex;align-items:center;gap:6mm}
+  .vety .slovo{width:56mm}
+  .vety .moznost{border:1px solid #bbb;border-radius:3mm;padding:1mm 2mm;display:flex;align-items:flex-end;height:20mm}
+  .vety .pic{width:17mm;height:17mm}
+  /* slovo k obrázku */
+  .k-obr{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm}
+  .k-obr>div{display:flex;flex-direction:column;align-items:center;gap:2mm}
+  .k-obr .pic{width:20mm;height:20mm}
+  .k-obr .vyber{font-size:22px;gap:4mm}
+  .pary{display:grid;grid-template-columns:repeat(5,1fr);justify-items:center;row-gap:11mm}
+  .pary>div{display:flex;flex-direction:column;align-items:center;gap:1.5mm}
+  .pary .slovo{font-size:22px}
+  /* krížovka */
+  .krizovka{display:flex;align-items:center;justify-content:space-around;gap:6mm}
+  .kriz{display:grid;grid-template-columns:repeat(5,13mm);grid-template-rows:repeat(4,13mm)}
+  .kriz span{border:1.4px solid #111;margin:-.7px;position:relative;background:#fff}
+  .kriz span b{position:absolute;left:1mm;top:.3mm;font-size:10px}
+  .napovedy{display:flex;flex-direction:column;gap:2mm;font-size:14px}
+  .napovedy>div{display:flex;align-items:center;gap:3mm}
+  .napovedy .pic{width:15mm;height:15mm}
+  .napovedy .c2{width:6mm;height:6mm;border:1.3px solid #111;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700}
+  /* zlepené slová */
+  .zlepene{display:grid;grid-template-columns:1fr 1fr;gap:4mm 8mm}
+  .zlepene span{font-size:30px;font-weight:700;letter-spacing:4.5px}
+  /* vymeň písmeno */
+  .vymen{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm}
+  .vymen>div{display:flex;flex-direction:column;align-items:center;gap:1.2mm;border:1px solid #bbb;border-radius:3mm;padding:2mm 1mm}
+  .vymen .r{display:flex;align-items:center;gap:2mm}
+  .vymen .slovo{display:flex;align-items:center;gap:1mm;font-size:21px;letter-spacing:1px}
+  .vymen .okno{width:8mm;height:9.5mm;border-style:dashed}
+  .vymen .pic{width:13mm;height:13mm}
+  .vymen .tip{font-size:12.5px;color:#444}
+  .banka{display:flex;gap:3mm;justify-content:center}
+  .slova{display:grid;grid-template-columns:repeat(4,1fr);gap:1mm 6mm;margin-top:1mm}
+  .slova .pis{min-width:0;width:100%}
+</style></head>
+<body>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 1 – ĽAHŠIE                                                     -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="1">
+  <header class="hlava" data-predmet="Slovenský jazyk">Prvé slová</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Prečítaj slovo. Spoj ho s obrázkom.</span></div>
+    <div class="plocha spoj4">
+      <div><span class="slovo">mama</span><span class="bod"></span></div>
+      <div><span class="slovo">lama</span><span class="bod"></span></div>
+      <div><span class="slovo">Ema</span><span class="bod"></span></div>
+      <div><span class="slovo">Emil</span><span class="bod"></span></div>
+      <div><span class="bod"></span><i o="chlapec"></i></div>
+      <div><span class="bod"></span><i o="mama"></i></div>
+      <div><span class="bod"></span><i o="lama"></i></div>
+      <div><span class="bod"></span><i o="dievca"></i></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Nájdi v rade slovo z rámčeka. Zakrúžkuj ho vždy, keď ho uvidíš.</span></div>
+    <div class="plocha hladaj">
+      <div><span class="slovo vzor">mama</span><div class="rad"><span>mama</span><span>lama</span><span>mama</span><span>Ema</span><span>mám</span><span>mama</span></div></div>
+      <div><span class="slovo vzor">lama</span><div class="rad"><span>mala</span><span>lama</span><span>mama</span><span>lama</span><span>Ela</span><span>lama</span></div></div>
+      <div><span class="slovo vzor">Ema</span><div class="rad"><span>Ema</span><span>Ela</span><span>Emil</span><span>Ema</span><span>mama</span><span>Ema</span></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Prečítaj. Zakrúžkuj obrázok, ktorý k tomu patrí.</span></div>
+    <div class="plocha dvojobr">
+      <div><span class="slovo">malá lama</span>
+        <div class="moznosti"><span class="moznost"><i o="lama" style="width:21mm;height:21mm"></i></span><span class="moznost"><i o="lama" style="width:10mm;height:10mm"></i></span></div></div>
+      <div><span class="slovo">mama a Ema</span>
+        <div class="moznosti"><span class="moznost"><i o="mama" style="width:20mm;height:20mm"></i><i o="chlapec" style="width:14mm;height:14mm"></i></span><span class="moznost"><i o="mama" style="width:20mm;height:20mm"></i><i o="dievca" style="width:14mm;height:14mm"></i></span></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Prečítaj a nakresli.</span></div>
+    <div class="kresli2"><div>lama</div><div>mama</div></div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Slová sú len z písmen, ktoré dieťa pozná (M, A, E, L, I). Nech číta nahlas a ťahavo, slovo celé naraz, nie po písmenách. Pomôže prst pod slovom. Chlapec na obrázkoch je Emil, dievčatko Ema.
+      <b>Riešenie:</b> 1 – mama, lama, Ema (dievčatko), Emil (chlapec) · 2 – vždy 3-krát · 3 – malá lama vpravo, mama a Ema vpravo. Išlo to ľahko? Skúste úroveň ●●○.
+      <span class="std">SJL-RV-1 · ŠVP SJL, Elementárne čítanie: „čítanie slabík, slov, viet a krátkych textov s postupne sa zvyšujúcou náročnosťou“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 2 – BEŽNÉ                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="2">
+  <header class="hlava" data-predmet="Slovenský jazyk">Čítame slová a vety</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Prečítaj vetu. Zakrúžkuj obrázok, ktorý k nej patrí.</span></div>
+    <div class="plocha vety">
+      <div><span class="slovo">Ema a mama.</span><span class="moznost"><i o="chlapec"></i><i o="mama"></i></span><span class="moznost"><i o="dievca"></i><i o="mama"></i></span></div>
+      <div><span class="slovo">Emil a lama.</span><span class="moznost"><i o="chlapec"></i><i o="lama"></i></span><span class="moznost"><i o="dievca"></i><i o="lama"></i></span></div>
+      <div><span class="slovo">Ela a Emil.</span><span class="moznost"><i o="dievca"></i><i o="mama"></i></span><span class="moznost"><i o="dievca"></i><i o="chlapec"></i></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Ktoré slovo patrí k obrázku? Zakrúžkuj ho.</span></div>
+    <div class="plocha k-obr">
+      <div><i o="lama"></i><div class="vyber"><span>mama</span><span>lama</span><span>malá</span></div></div>
+      <div><i o="mama"></i><div class="vyber"><span>Ema</span><span>mám</span><span>mama</span></div></div>
+      <div><i o="chlapec"></i><div class="vyber"><span>Ela</span><span>Emil</span><span>Ema</span></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>To isté slovo, raz veľkými a raz malými písmenami. Spoj ich.</span></div>
+    <div class="plocha pary">
+      <div><span class="slovo">MAMA</span><span class="bod"></span></div>
+      <div><span class="slovo">EMIL</span><span class="bod"></span></div>
+      <div><span class="slovo">LAMA</span><span class="bod"></span></div>
+      <div><span class="slovo">MALÁ</span><span class="bod"></span></div>
+      <div><span class="slovo">EMA</span><span class="bod"></span></div>
+      <div><span class="bod"></span><span class="slovo">lama</span></div>
+      <div><span class="bod"></span><span class="slovo">Ema</span></div>
+      <div><span class="bod"></span><span class="slovo">mama</span></div>
+      <div><span class="bod"></span><span class="slovo">Emil</span></div>
+      <div><span class="bod"></span><span class="slovo">malá</span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Prečítaj a nakresli.</span></div>
+    <div class="kresli2"><div>Ema a lama</div><div>malá Ela</div></div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Zadania prečítajte, slová a vety nech číta dieťa. Pri vetách si všimnite veľké písmeno na začiatku a bodku na konci. Chlapec na obrázkoch je Emil, dievčatko Ema alebo Ela.
+      <b>Riešenie:</b> 1 – vpravo, vľavo, vpravo · 2 – lama, mama, Emil · 3 – MAMA mama, EMIL Emil, LAMA lama, MALÁ malá, EMA Ema.
+      <span class="std">SJL-RV-1, SJL-RV-2 · ŠVP SJL, Elementárne čítanie: „čítanie slabík, slov, viet a krátkych textov s postupne sa zvyšujúcou náročnosťou“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 3 – VÝZVA                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="3">
+  <header class="hlava" data-predmet="Slovenský jazyk">Kúzla so slovami</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Moja prvá krížovka. Napíš slová do políčok, do každého jedno písmeno.<span class="pozn">Číslo ukazuje, kde slovo začína. Šípka ukazuje smer.</span></span></div>
+    <div class="plocha krizovka">
+      <div class="kriz" id="kriz"></div>
+      <div class="napovedy">
+        <div><span class="c2">1</span>→<i o="lama"></i></div>
+        <div><span class="c2">2</span>↓<i o="mama"></i></div>
+        <div><span class="c2">3</span>→<i o="chlapec"></i><span>Volá sa E _ _ _</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Slová sa zlepili. Rozdeľ ich čiarou. Potom vetu prečítaj nahlas.<span class="pozn">Príklad: Ela|a|mama</span></span></div>
+    <div class="plocha zlepene"><span>Emaamama</span><span>malálama</span><span>milámama</span><span>Emilalama</span></div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Kúzlo: vymeň jedno písmeno a vznikne nové slovo. Dopíš ho.</span></div>
+    <div class="plocha vymen">
+      <div><div class="r"><span class="slovo">MAMA</span>→<span class="slovo"><span class="okno"></span>AMA</span></div><i o="lama"></i></div>
+      <div><div class="r"><span class="slovo">MALÁ</span>→<span class="slovo">M<span class="okno"></span>LÁ</span></div><i o="srdce"></i><span class="tip">keď je niekto dobrý a milý</span></div>
+      <div><div class="r"><span class="slovo">EMA</span>→<span class="slovo">E<span class="okno"></span>A</span></div><i o="dievca"></i><span class="tip">iné dievčenské meno</span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Koľko slov poskladáš z týchto písmen? Písmená môžeš použiť aj viackrát.<span class="pozn">Napíš ich. Nájdeš aspoň 8?</span></span></div>
+    <div class="plocha">
+      <div class="banka"><span class="slab">M</span><span class="slab">A</span><span class="slab">L</span><span class="slab">E</span><span class="slab">I</span><span class="slab">Á</span></div>
+      <div class="slova"><span class="pis"></span><span class="pis"></span><span class="pis"></span><span class="pis"></span><span class="pis"></span><span class="pis"></span><span class="pis"></span><span class="pis"></span></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Výzva je pre deti, ktoré už plynulo čítajú slová. V úlohe 2 nech dieťa číta nahlas a hľadá, kde jedno slovo končí; pomáha prst. V úlohe 4 neexistujú zlé pokusy: vymyslené slovo prečítajte spolu a rozhodnite, či znamená niečo skutočné.
+      <b>Riešenie:</b> 1 – LAMA, MAMA, EMIL · 2 – Ema|a|mama, malá|lama, milá|mama, Emil|a|lama · 3 – LAMA, MILÁ, ELA · 4 – napr. mama, lama, Ema, Ela, Emil, ale, malá, milá, mám, mal, mali, Mila, Lili, Lea.
+      <span class="std">SJL-RV-1, SJL-PP-4 · ŠVP SJL, Elementárne čítanie: „čítanie slabík, slov, viet a krátkych textov s postupne sa zvyšujúcou náročnosťou“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<script>
+/* krížovka: LAMA →, MAMA ↓ (od M v LAMA), EMIL → (cez druhé M) */
+(function(){
+  const bunky = {"0,0":1,"0,1":0,"0,2":2,"0,3":0,"1,2":0,"2,1":3,"2,2":0,"2,3":0,"2,4":0,"3,2":0};
+  let h = "";
+  for(let r=0;r<4;r++) for(let c=0;c<5;c++){
+    const k = r+","+c;
+    h += k in bunky ? `<span>${bunky[k] ? `<b>${bunky[k]}</b>` : ""}</span>` : `<span style="border:none;background:none"></span>`;
+  }
+  document.getElementById("kriz").innerHTML = h;
+})();
+</script>
+<script src="obrazky.js"></script><script src="nastroje.js"></script>
+</body></html>
