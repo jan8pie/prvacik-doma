@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="sk"><head><meta charset="utf-8"><title>Hra na zvuky – pracovný list (3 úrovne)</title>
+<link rel="stylesheet" href="list.css">
+<style>
+  /* zvieratko + krúžok */
+  .zvery{display:grid;grid-template-columns:repeat(6,1fr);justify-items:center}
+  .zvery>div{display:flex;flex-direction:column;align-items:center;gap:2mm}
+  .zvery .pic{width:24mm;height:24mm}
+  .zvery .kruzok{width:9mm;height:9mm}
+  /* dvojice hlasno – potichu */
+  .dvojice{display:grid;grid-template-columns:repeat(3,1fr);gap:5mm}
+  .dvojice>div{display:flex;justify-content:space-around;align-items:center;border:1px solid #bbb;border-radius:3mm;padding:3mm 2mm;gap:2mm}
+  .dvojice .pic{width:19mm;height:19mm}
+  /* rovnaký obrázok */
+  .rovnaky{display:flex;flex-direction:column;gap:2mm}
+  .rovnaky>div{display:flex;align-items:center;gap:4mm}
+  .rovnaky .vzor{border:1.6px solid #111;border-radius:3mm;padding:1.5mm 2.5mm;background:#fff}
+  .rovnaky .rad{flex:1;justify-content:space-around}
+  .rovnaky .pic{width:16mm;height:16mm}
+  .zrkadlo{transform:scaleX(-1)}
+  /* rad – pokračuj */
+  .vzorec{display:flex;flex-direction:column;gap:4mm}
+  .vzorec>div{display:flex;align-items:center;gap:3mm}
+  .vzorec .pic{width:16mm;height:16mm}
+  .vzorec .prazdne{width:18mm;height:18mm;border:1.3px dashed #888;border-radius:2.5mm;flex:none}
+  .tvar{width:15mm;height:15mm;fill:none;stroke:#111;stroke-width:3;flex:none}
+  /* tlieskanie */
+  .tlesk{display:flex;justify-content:space-between}
+  .tlesk>div{display:flex;align-items:center;gap:1.4mm;border:1px solid #bbb;border-radius:3mm;padding:1.6mm 2mm}
+  .tlesk .kruzok{width:7mm;height:7mm}
+  .tlesk .pic{width:13mm;height:13mm}
+  .tlesk .c2{width:7mm;height:7mm;border:1.3px solid #111;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex:none}
+  /* spoj zvuk s vecou */
+  .spojzvuk{display:grid;grid-template-columns:repeat(4,1fr);row-gap:13mm;justify-items:center}
+  .spojzvuk .l{display:flex;flex-direction:column;align-items:center;gap:2.5mm;font-size:22px;font-weight:700}
+  .spojzvuk .r{display:flex;flex-direction:column;align-items:center;gap:2mm}
+  .spojzvuk .pic{width:19mm;height:19mm}
+  /* rozdiely */
+  .rozdiely{display:grid;grid-template-columns:1fr 1fr;gap:6mm}
+  .scena{position:relative;height:47mm;border:1.4px solid #111;border-radius:3mm;overflow:hidden;background:#fff}
+  .scena .pic{position:absolute}
+  .scena .zem{position:absolute;left:0;right:0;bottom:9mm;border-top:1.4px solid #111}
+  /* pamäť – očísluj */
+  .pamat{display:grid;grid-template-columns:repeat(3,1fr);row-gap:3mm;justify-items:center}
+  .pamat>div{display:flex;align-items:flex-end;gap:2mm}
+  .pamat .pic{width:17mm;height:17mm}
+  .pamat .okno{width:11mm;height:11mm}
+  /* zoraď 1 – 3 */
+  .zorad{display:flex;flex-direction:column;gap:2mm}
+  .zorad>div{display:flex;justify-content:space-around;align-items:flex-end;border:1px solid #bbb;border-radius:3mm;padding:1.5mm}
+  .zorad .s{display:flex;align-items:flex-end;gap:2mm}
+  .zorad .pic{width:16mm;height:16mm}
+  .zorad .okno{width:9mm;height:9mm}
+  /* nepatrí */
+  .nepatri{display:flex;flex-direction:column;gap:2.5mm}
+  .nepatri>div{display:flex;justify-content:space-around;border:1px solid #bbb;border-radius:3mm;padding:1.5mm}
+  .nepatri .pic{width:15mm;height:15mm}
+  /* kreslenie */
+  .kresli2{display:grid;grid-template-columns:1fr 1fr;gap:5mm}
+  .kresli2 div{border:1.2px solid #111;border-radius:4mm;height:33mm;padding:2mm 4mm;font-size:24px;font-weight:700}
+</style></head>
+<body>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 1 – ĽAHŠIE                                                     -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="1">
+  <header class="hlava" data-predmet="Slovenský jazyk">Počúvam a pozerám</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Kto takto robí? Rodič napodobní zvieratko. Vyfarbi krúžok pod ním.<span class="pozn">Rodič urobí tri zvuky, jeden po druhom.</span></span></div>
+    <div class="plocha zvery">
+      <div><i o="pes"></i><span class="kruzok"></span></div>
+      <div><i o="macka"></i><span class="kruzok"></span></div>
+      <div><i o="kacka"></i><span class="kruzok"></span></div>
+      <div><i o="zaba"></i><span class="kruzok"></span></div>
+      <div><i o="sova"></i><span class="kruzok"></span></div>
+      <div><i o="sliepka"></i><span class="kruzok"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Čo je hlasnejšie? Zakrúžkuj to v každom rámčeku.</span></div>
+    <div class="plocha dvojice">
+      <div><i o="myska"></i><i o="lev"></i></div>
+      <div><i o="bubon"></i><i o="pierko"></i></div>
+      <div><i o="slimak"></i><i o="rusen"></i></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Nájdi v rade obrázok, ktorý je v rámčeku. Zakrúžkuj ho.</span></div>
+    <div class="plocha rovnaky">
+      <div><span class="vzor"><i o="zvoncek"></i></span><div class="rad"><i o="bubon"></i><i o="kluce"></i><i o="zvoncek"></i><i o="hodiny"></i></div></div>
+      <div><span class="vzor"><i o="hodiny"></i></span><div class="rad"><i o="hodiny"></i><i o="zvoncek"></i><i o="lopta"></i><i o="kluce"></i></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Čo príde ďalej? Dokresli do prázdnych rámčekov.</span></div>
+    <div class="plocha vzorec">
+      <div>
+        <svg class="tvar" viewBox="0 0 40 40"><circle cx="20" cy="20" r="16"/></svg><svg class="tvar" viewBox="0 0 40 40"><path d="M20 4 L37 35 H3 Z"/></svg>
+        <svg class="tvar" viewBox="0 0 40 40"><circle cx="20" cy="20" r="16"/></svg><svg class="tvar" viewBox="0 0 40 40"><path d="M20 4 L37 35 H3 Z"/></svg>
+        <svg class="tvar" viewBox="0 0 40 40"><circle cx="20" cy="20" r="16"/></svg><span class="prazdne"></span><span class="prazdne"></span>
+      </div>
+      <div><i o="srdce"></i><i o="hviezda"></i><i o="srdce"></i><i o="hviezda"></i><span class="prazdne"></span><span class="prazdne"></span></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Na začiatku prvej triedy sa deti učia pozorne počúvať a pozerať. Z toho neskôr vyrastie počúvanie hlások a čítanie. V úlohe 1 povedzte: „haf, haf“, potom „kvák, kvák“ a nakoniec „hú, hú“. Ďalšie zvuky si môžete vymyslieť sami (mňau, kač-kač, kot-kot-kodák).
+      <b>Riešenie:</b> 1 – pes, žaba, sova · 2 – lev, bubon, rušeň · 3 – tretí obrázok, prvý obrázok · 4 – trojuholník a krúžok, srdce a hviezda. Išlo to ľahko? Skúste úroveň ●●○.
+      <span class="std">SJL-PP-2, SJL-PP-1 · ŠVP SJL, Elementárne čítanie: „sluchové identifikovanie a rozlišovanie zvukov, slov, slabík, hlások“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 2 – BEŽNÉ                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="2">
+  <header class="hlava" data-predmet="Slovenský jazyk">Detektív zvukov</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Rodič tlieska. Počítaj potichu. Vyfarbi toľko krúžkov, koľkokrát tlesol.</span></div>
+    <div class="plocha tlesk" style="padding:2.5mm 3mm">
+      <div><span class="c2">1</span><span class="kruzok"></span><span class="kruzok"></span><span class="kruzok"></span><span class="kruzok"></span><span class="kruzok"></span></div>
+      <div><span class="c2">2</span><span class="kruzok"></span><span class="kruzok"></span><span class="kruzok"></span><span class="kruzok"></span><span class="kruzok"></span></div>
+      <div><span class="c2">3</span><span class="kruzok"></span><span class="kruzok"></span><span class="kruzok"></span><span class="kruzok"></span><span class="kruzok"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Rodič prečíta zvuk. Čo takto znie? Spoj čiarou.<span class="pozn">Zvuky číta rodič, dieťa ich zatiaľ nečíta.</span></span></div>
+    <div class="plocha spojzvuk">
+      <div class="l">cink, cink<span class="bod"></span></div><div class="l">tik, tak<span class="bod"></span></div>
+      <div class="l">bum, bum<span class="bod"></span></div><div class="l">tú, tú<span class="bod"></span></div>
+      <div class="r"><span class="bod"></span><i o="hodiny"></i></div><div class="r"><span class="bod"></span><i o="rusen"></i></div>
+      <div class="r"><span class="bod"></span><i o="zvoncek"></i></div><div class="r"><span class="bod"></span><i o="bubon"></i></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Ktorý obrázok je úplne rovnaký ako v rámčeku? Zakrúžkuj ho.<span class="pozn">Pozor, niektoré sa pozerajú na druhú stranu.</span></span></div>
+    <div class="plocha rovnaky">
+      <div><span class="vzor"><i o="pesBok"></i></span><div class="rad"><i o="pesBok" class="zrkadlo"></i><i o="mackaBok"></i><i o="pesBok"></i><i o="pesBok" class="zrkadlo"></i></div></div>
+      <div><span class="vzor"><i o="vtak"></i></span><div class="rad"><i o="vtak" class="zrkadlo"></i><i o="vtak"></i><i o="slimak"></i><i o="vtak" class="zrkadlo"></i></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Obrázky sa líšia v troch veciach. Nájdi ich a zakrúžkuj na pravom obrázku.</span></div>
+    <div class="plocha rozdiely">
+      <div class="scena"><span class="zem"></span>
+        <i o="slnko" style="left:4mm;top:3mm;width:15mm;height:15mm"></i>
+        <i o="oblak" style="left:45mm;top:3mm;width:18mm;height:14mm"></i>
+        <i o="dom" style="left:22mm;top:15mm;width:26mm;height:26mm"></i>
+        <i o="strom" style="left:55mm;top:17mm;width:22mm;height:24mm"></i>
+        <i o="pes" style="left:5mm;top:28mm;width:14mm;height:14mm"></i>
+      </div>
+      <div class="scena"><span class="zem"></span>
+        <i o="slnko" style="left:4mm;top:3mm;width:15mm;height:15mm"></i>
+        <i o="dom" style="left:22mm;top:15mm;width:26mm;height:26mm"></i>
+        <i o="strom" style="left:55mm;top:17mm;width:22mm;height:24mm"></i>
+        <i o="macka" style="left:5mm;top:28mm;width:14mm;height:14mm"></i>
+        <i o="balon" style="left:68mm;top:1mm;width:11mm;height:15mm"></i>
+      </div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> V úlohe 1 tlesknite najprv 2-krát, potom 4-krát a nakoniec 3-krát, pomaly a zreteľne. Dieťa sa počas tlieskania nepozerá na vaše ruky. V úlohe 2 čítajte zvuky výrazne, ako keby ste ich hrali. Pri úlohe 4 nech dieťa porozpráva, čo na obrázku vidí.
+      <b>Riešenie:</b> 1 – 2, 4, 3 krúžky · 2 – cink: zvonček, tik-tak: budík, bum: bubon, tú-tú: vlak · 3 – tretí a druhý obrázok · 4 – chýba oblak, pribudol balón, mačka namiesto psa.
+      <span class="std">SJL-PP-2, SJL-HP-1 · ŠVP SJL, Elementárne čítanie: „sluchové identifikovanie a rozlišovanie zvukov, slov, slabík, hlások“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 3 – VÝZVA                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="3">
+  <header class="hlava" data-predmet="Slovenský jazyk">Majster počúvania</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Zvuková pamäť. Rodič urobí štyri zvuky za sebou. Očísluj obrázky v tom poradí, ako si ich počul.<span class="pozn">Do rámčeka napíš číslo alebo nakresli toľko bodiek. Dva obrázky zostanú prázdne.</span></span></div>
+    <div class="plocha pamat">
+      <div><i o="pes"></i><span class="okno"></span></div>
+      <div><i o="hodiny"></i><span class="okno"></span></div>
+      <div><i o="zaba"></i><span class="okno"></span></div>
+      <div><i o="zvoncek"></i><span class="okno"></span></div>
+      <div><i o="bubon"></i><span class="okno"></span></div>
+      <div><i o="kacka"></i><span class="okno"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Od najtichšieho po najhlasnejšie. Napíš 1 k najtichšiemu, 3 k najhlasnejšiemu.</span></div>
+    <div class="plocha zorad">
+      <div><span class="s"><i o="pes"></i><span class="okno"></span></span><span class="s"><i o="lev"></i><span class="okno"></span></span><span class="s"><i o="myska"></i><span class="okno"></span></span></div>
+      <div><span class="s"><i o="bubon"></i><span class="okno"></span></span><span class="s"><i o="pierko"></i><span class="okno"></span></span><span class="s"><i o="kluce"></i><span class="okno"></span></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Čo nepatrí do radu? Prečiarkni to a povedz prečo.</span></div>
+    <div class="plocha nepatri">
+      <div><i o="zvoncek"></i><i o="bubon"></i><i o="kniha"></i><i o="hodiny"></i></div>
+      <div><i o="pes"></i><i o="kacka"></i><i o="ryba"></i><i o="macka"></i></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Vymysli a nakresli. Potom zahraj ten zvuk rodičovi a nech háda.</span></div>
+    <div class="kresli2"><div>BUM!</div><div>pssst…</div></div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> V úlohe 1 povedzte pomaly: „kvák – cink – haf – tik-tak“. Najprv celé počúvanie, až potom číslovanie. Ak je to ťažké, skúste len tri zvuky. Úlohy 2 a 3 nemajú len jedno správne riešenie: dôležité je, aby dieťa povedalo, prečo to tak myslí.
+      <b>Riešenie:</b> 1 – žaba 1, zvonček 2, pes 3, budík 4 · 2 – myška, pes, lev; pierko, kľúče, bubon · 3 – kniha (nerobí zvuk sama), ryba (nevydáva hlas) · 4 – napríklad bubon, padajúca kniha; had, šepot, vietor.
+      <span class="std">SJL-PP-2, SJL-HP-1 · ŠVP SJL, Elementárne čítanie: „sluchové identifikovanie a rozlišovanie zvukov, slov, slabík, hlások“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<script src="obrazky.js"></script><script src="nastroje.js"></script>
+</body></html>

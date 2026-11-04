@@ -255,7 +255,8 @@ window.KARTY = [
      hra:{druh:"vyber", spravne:"L", polozky:[["🦁","lev"],["⚽","lopta"],["🐱","mačka"],["🍃","list"],["🥄","lyžica"],["🚗","auto"],["🐟","ryba"],["🦊","líška"]]}},
     {typ:"rozhovor", zacni:"„Vidím niečo, čo sa začína na Lll… Uhádneš?“",
      otazky:["Čo ešte okolo nás sa začína na L?","Počuješ L na začiatku alebo na konci slova stôl?","Vymysli ty slovo na L a ja budem hádať."],
-     preteba:"Hovor „hláska“, keď ide o zvuk, a „písmeno“, keď ide o to, čo píšeme. L vyslovuj krátko: „lll“, nie „el“."}
+     preteba:"Hovor „hláska“, keď ide o zvuk, a „písmeno“, keď ide o to, čo píšeme. L vyslovuj krátko: „lll“, nie „el“."},
+    {typ:"tlac", urovne:3, text:"Obťahovanie L, čo sa začína na lll, malá a veľká lama, L alebo M. Výzva: otočené slabiky la – al, slová s viacerými riešeniami a rýchločítanie.", subor:"sjl-l.pdf"}
   ]},
 
 { id:"mat-6", datum:"2026-10-29", predmet:"MAT", kod:"MAT-CO-4",
@@ -295,29 +296,32 @@ window.KARTY = [
     {typ:"spolu", text:"Dajte kocku ľadu na tanierik. Najprv hádajte, za ako dlho sa roztopí, potom kontrolujte každých 10 minút. Kto bol bližšie?"}
   ]},
 
-{ id:"sjl-i", datum:"2026-10-22", predmet:"SJL", kod:"SJL-PP-2",
-  nazov:"Hádanky na písmeno I",
-  uvod:"„Je tenká a ostrá, má očko, ale nevidí. Čo je to?“",
-  meta:["spolu s rodičom","2 minúty","bez pomôcok"],
-  stdn:"ŠVP SJL, Písaná produkcia: „sluchové identifikovanie a rozlišovanie zvukov, slov, slabík, hlások“",
-  bloky:[
-    {typ:"hadanka", text:"Je tenká a ostrá, má očko, ale nevidí. Čo je to?", odpoved:"Ihla"},
-    {typ:"hadanka", text:"Domček zo snehu a ľadu, bývajú v ňom ľudia na severe. Čo je to?", odpoved:"Iglu"},
-    {typ:"hadanka", text:"Je malá a horúca, vyskočí z ohňa a hneď zhasne. Čo je to?", odpoved:"Iskra"},
-    {typ:"rozhovor", zacni:"„Ja viem jedno slovo na I: ihrisko. Poznáš ešte iné?“",
-     otazky:["Nájdeš slovo, kde je I na začiatku?","Je I aj v slove lipa? Kde?","Vymysli hádanku ty mne."],
-     preteba:"Krátke i a dlhé í sú v šlabikári zvlášť. Nič neopravuj, len zopakuj slovo správne."}
-  ]},
-
 /* =========================================================
    OD ZAČIATKU ŠKOLSKÉHO ROKA (september – október 2026)
-   Doplnené 3. 11. 2026 dodatočne. Učivo je ODHAD podľa učebníc
-   (Šlabikár do s. 42, MAT s Lienkou do s. 34, Beehive Starter
-   úvod a Unit 1) a mapy učiva, nie podľa fotiek strán.
+   Doplnené 3. 11. 2026 dodatočne. MAT a ANJ sú ODHAD podľa učebníc
+   (MAT s Lienkou do s. 34, Beehive Starter úvod a Unit 1).
+   SJL: poradie podľa fotiek celého Šlabikára a záznamov v EduPage
+   (4. 11. 2026); karty SJL boli vtedy presunuté do správnych týždňov
+   a každá má pracovný list v 3 úrovniach (tlac/sjl-*.html).
    Jedna karta na predmet a týždeň, dátum = streda daného týždňa.
    ========================================================= */
 
 /* ---------- 19. – 23. 10. 2026 ---------- */
+{ id:"sjl-e", datum:"2026-10-21", predmet:"SJL", kod:"SJL-RV-1",
+  nazov:"Písmeno E: Ema a mama",
+  uvod:"S písmenami M, A a E sa už dajú čítať prvé slová a vety: Ema, mama, Ema má. Dieťa prečíta slabiku alebo slovo nahlas a ťuknutím si skontroluje, či ho prečítalo dobre.",
+  meta:["dieťa samo","3 minúty","tablet so zvukom"],
+  stdn:"ŠVP SJL, Elementárne čítanie: „čítanie slabík, slov, viet a krátkych textov s postupne sa zvyšujúcou náročnosťou“",
+  bloky:[
+    {typ:"pocuvanie", citanie:true, jazyk:"sk-SK", text:"Najprv prečítaj nahlas. Potom ťukni a skontroluj sa.",
+     slova:[["","me"],["","mé"],["","Ema"],["","mama"],["","Ema má"],["","mama a Ema"]]},
+    {typ:"hadanka", text:"Jazdí po koľajniciach cez mesto a zvoní cink, cink. Čo je to?", odpoved:"Električka 🚋 (začína sa na E)"},
+    {typ:"rozhovor", zacni:"„Eee… keď rozmýšľam, hovorím eee. Počuješ, ako znie hláska E?“",
+     otazky:["Poznáš meno, ktoré sa začína na E?","Počuješ E v slove mesto? Kde?","Je E na konci slova Ema, alebo na začiatku?"],
+     preteba:"Krátke e a dlhé é sú v šlabikári zvlášť. Dieťa číta slabiku naraz („me“), nie po písmenách („em-e“)."},
+    {typ:"tlac", urovne:3, text:"Obťahovanie E, kde počuješ e, veľké a malé písmená, húsenica slabík a prvé vety o Eme a mame. Výzva: tajný kód a čítanie odzadu.", subor:"sjl-e.pdf"}
+  ]},
+
 { id:"mat-nula", datum:"2026-10-21", predmet:"MAT", kod:"MAT-CO-1",
   nazov:"Nula: keď nie je nič",
   uvod:"Na tanieri boli tri piškóty, zjedli sme ich a teraz je tam nula. Nula je číslo pre „nič“. Hľadajte spolu, čoho je doma práve nula.",
@@ -345,18 +349,19 @@ window.KARTY = [
   ]},
 
 /* ---------- 12. – 16. 10. 2026 ---------- */
-{ id:"sjl-e", datum:"2026-10-14", predmet:"SJL", kod:"SJL-RV-1",
-  nazov:"Písmeno E: Ema a mama",
-  uvod:"S písmenami M, A a E sa už dajú čítať prvé slová a vety: Ema, mama, Ema má. Dieťa prečíta slabiku alebo slovo nahlas a ťuknutím si skontroluje, či ho prečítalo dobre.",
-  meta:["dieťa samo","3 minúty","tablet so zvukom"],
-  stdn:"ŠVP SJL, Elementárne čítanie: „čítanie slabík, slov, viet a krátkych textov s postupne sa zvyšujúcou náročnosťou“",
+{ id:"sjl-m-hadanky", datum:"2026-10-14", predmet:"SJL", kod:"SJL-PP-2",
+  nazov:"Hádanky na písmeno M",
+  uvod:"„Svieti v noci na oblohe, raz je okrúhly a raz ako rožok. Čo je to?“",
+  meta:["spolu s rodičom","2 minúty","bez pomôcok"],
+  stdn:"ŠVP SJL, Písaná produkcia: „sluchové identifikovanie a rozlišovanie zvukov, slov, slabík, hlások“",
   bloky:[
-    {typ:"pocuvanie", citanie:true, jazyk:"sk-SK", text:"Najprv prečítaj nahlas. Potom ťukni a skontroluj sa.",
-     slova:[["","me"],["","mé"],["","Ema"],["","mama"],["","Ema má"],["","mama a Ema"]]},
-    {typ:"hadanka", text:"Jazdí po koľajniciach cez mesto a zvoní cink, cink. Čo je to?", odpoved:"Električka 🚋 (začína sa na E)"},
-    {typ:"rozhovor", zacni:"„Eee… keď rozmýšľam, hovorím eee. Počuješ, ako znie hláska E?“",
-     otazky:["Poznáš meno, ktoré sa začína na E?","Počuješ E v slove mesto? Kde?","Je E na konci slova Ema, alebo na začiatku?"],
-     preteba:"Krátke e a dlhé é sú v šlabikári zvlášť. Dieťa číta slabiku naraz („me“), nie po písmenách („em-e“)."}
+    {typ:"hadanka", text:"Svieti v noci na oblohe, raz je okrúhly a raz ako rožok. Čo je to?", odpoved:"Mesiac 🌙"},
+    {typ:"hadanka", text:"Je malá a sivá, má dlhý chvost a bojí sa mačky. Čo je to?", odpoved:"Myš 🐭"},
+    {typ:"hadanka", text:"Je biele, pije sa a dávajú ho kravy. Čo je to?", odpoved:"Mlieko 🥛"},
+    {typ:"rozhovor", zacni:"„Mmm, to je dobré! Keď niečo chutí, hovoríme mmm. Tak znie hláska M.“",
+     otazky:["Kto v rodine má meno na M?","Počuješ M v slove dom? Na začiatku, alebo na konci?","Vymysli hádanku na M ty mne."],
+     preteba:"M vyslovujte dlho „mmm“, nie „em“. Pri hádankách netreba ponáhľať, napovedať môžete prvou hláskou."},
+    {typ:"tlac", urovne:3, text:"Hádanky na M, jedlo na mmm, hľadanie slova mama a obťahovanie M. Slabika ma v oblúčikoch a prvé vety. Výzva: detektívne hádanky a slovná pyramída.", subor:"sjl-m-hadanky.pdf"}
   ]},
 
 { id:"mat-rozklad-5", datum:"2026-10-14", predmet:"MAT", kod:"MAT-CO-4",
@@ -396,7 +401,8 @@ window.KARTY = [
     {typ:"spolu", text:"Slabikový vláčik: napíšte na dva papieriky M a A. Dieťa ich posúva k sebe a pritom ťahá hlásky „mmm… aaa“, až splynú do „ma“. Potom skúste „má“ s dlhým á."},
     {typ:"rozhovor", zacni:"„Aaa, ako u lekára! Na A sa začína aj ananás. Vieš ešte niečo na A?“",
      otazky:["Kde počuješ A v slove mama? Koľkokrát?","Znie rovnako ma a má?","Vymysli slovo, ktoré sa končí na A."],
-     preteba:"Slabiku čítajte naraz a ťahavo („mmma“), nie „em-a“. Dlhé á sa v škole volá á s dĺžňom."}
+     preteba:"Slabiku čítajte naraz a ťahavo („mmma“), nie „em-a“. Dlhé á sa v škole volá á s dĺžňom."},
+    {typ:"tlac", urovne:3, text:"Mmm a aaa je ma: obťahovanie slabík, čo sa začína na ma, prečítaj a nakresli MAMA a MÁM. Výzva: škriatok poplietol písmená, koľko písmen a koľko slabík.", subor:"sjl-a-ma.pdf"}
   ]},
 
 { id:"mat-uberame", datum:"2026-10-07", predmet:"MAT", kod:"MAT-CO-3",
@@ -423,18 +429,17 @@ window.KARTY = [
   ]},
 
 /* ---------- 28. 9. – 2. 10. 2026 ---------- */
-{ id:"sjl-m-hadanky", datum:"2026-09-30", predmet:"SJL", kod:"SJL-PP-2",
-  nazov:"Hádanky na písmeno M",
-  uvod:"„Svieti v noci na oblohe, raz je okrúhly a raz ako rožok. Čo je to?“",
-  meta:["spolu s rodičom","2 minúty","bez pomôcok"],
-  stdn:"ŠVP SJL, Písaná produkcia: „sluchové identifikovanie a rozlišovanie zvukov, slov, slabík, hlások“",
+{ id:"sjl-tlieskame", datum:"2026-09-30", predmet:"SJL", kod:"SJL-PP-2",
+  nazov:"Vytlieskaj slovo: ma-ma, lo-pta, ba-na-na",
+  uvod:"„Ba – na – na: tlesk, tlesk, tlesk. Koľko tlesknutí má slovo banán?“ Dieťa delí slová na slabiky tlieskaním a zisťuje, ktoré slovo je dlhšie.",
+  meta:["spolu s rodičom","3 minúty","bez pomôcok"],
+  stdn:"ŠVP SJL, Elementárne čítanie: „sluchové identifikovanie a rozlišovanie zvukov, slov, slabík, hlások“",
   bloky:[
-    {typ:"hadanka", text:"Svieti v noci na oblohe, raz je okrúhly a raz ako rožok. Čo je to?", odpoved:"Mesiac 🌙"},
-    {typ:"hadanka", text:"Je malá a sivá, má dlhý chvost a bojí sa mačky. Čo je to?", odpoved:"Myš 🐭"},
-    {typ:"hadanka", text:"Je biele, pije sa a dávajú ho kravy. Čo je to?", odpoved:"Mlieko 🥛"},
-    {typ:"rozhovor", zacni:"„Mmm, to je dobré! Keď niečo chutí, hovoríme mmm. Tak znie hláska M.“",
-     otazky:["Kto v rodine má meno na M?","Počuješ M v slove dom? Na začiatku, alebo na konci?","Vymysli hádanku na M ty mne."],
-     preteba:"M vyslovujte dlho „mmm“, nie „em“. Pri hádankách netreba ponáhľať, napovedať môžete prvou hláskou."}
+    {typ:"hadanka", text:"Koľkokrát tlesneš pri slove mama?", odpoved:"Dvakrát: ma – ma"},
+    {typ:"hadanka", text:"Koľkokrát tlesneš pri slove čokoláda?", odpoved:"Štyrikrát: čo – ko – lá – da 🍫"},
+    {typ:"hadanka", text:"Ktoré slovo je dlhšie: pes, alebo papagáj?", odpoved:"Papagáj: pa – pa – gáj má tri slabiky, pes len jednu"},
+    {typ:"spolu", text:"Cestou zo školy vytlieskavajte alebo vyskakujte mená ľudí v rodine a veci, ktoré vidíte. Kto nájde najdlhšie slovo?"},
+    {typ:"tlac", urovne:3, text:"Oblúčiky pod obrázky, hra na robota, triedenie podľa počtu slabík a pokusné čítanie MA-MA, SO-VA. Výzva: slabikové schody a prečo má malá rybička dlhšie slovo.", subor:"sjl-tlieskame.pdf"}
   ]},
 
 { id:"mat-pridavame", datum:"2026-09-30", predmet:"MAT", kod:"MAT-CO-3",
@@ -473,7 +478,8 @@ window.KARTY = [
     {typ:"hadanka", text:"Čo sa rýmuje so slovom domček? Cinká na bicykli.", odpoved:"Zvonček 🔔"},
     {typ:"rozhovor", zacni:"„Mačka, kačka, ... vymyslíš ešte jedno slovo, ktoré tak znie?“",
      otazky:["Rýmuje sa auto a lopta?","Vymysli rým na slovo myš.","Povieš mi básničku, ktorú poznáš zo školy?"],
-     preteba:"Ak dieťa vymyslí slovo, ktoré neexistuje (napríklad „tačka“), je to v poriadku. Dôležité je, že počuje rovnaký koniec."}
+     preteba:"Ak dieťa vymyslí slovo, ktoré neexistuje (napríklad „tačka“), je to v poriadku. Dôležité je, že počuje rovnaký koniec."},
+    {typ:"tlac", urovne:3, text:"Spoj dvojice, ktoré sa rýmujú, čo sa nerýmuje, básničky bez posledného slova a hra na robota. Výzva: všetky rýmy na mak a čarovanie s prvou hláskou.", subor:"sjl-rymy.pdf"}
   ]},
 
 { id:"mat-4-5", datum:"2026-09-23", predmet:"MAT", kod:"MAT-CO-1",
@@ -511,7 +517,8 @@ window.KARTY = [
      hra:{druh:"vyber", spravne:"S", polozky:[["☀️","slnko"],["🐘","slon"],["🍎","jablko"],["🦉","sova"],["🐶","pes"],["🧀","syr"],["🐟","ryba"],["🛷","sánky"]]}},
     {typ:"rozhovor", zacni:"„Sss, sss… kto takto syčí? Had! A na S sa začína aj slnko.“",
      otazky:["Čo okolo nás sa začína na S?","Počuješ S na začiatku alebo na konci slova pes?","Aká je prvá hláska v tvojom mene?"],
-     preteba:"V prvých týždňoch sa deti učia počuť prvú hlásku slova. Písmeno ešte netreba poznať, stačí počuť zvuk."}
+     preteba:"V prvých týždňoch sa deti učia počuť prvú hlásku slova. Písmeno ešte netreba poznať, stačí počuť zvuk."},
+    {typ:"tlac", urovne:3, text:"Čo sa začína na sss, hadík a ulita na obťahovanie, hľadanie písmena S, sss alebo mmm. Výzva: sss na začiatku či na konci a hadia minúta.", subor:"sjl-s-zaciatok.pdf"}
   ]},
 
 { id:"mat-1-2-3", datum:"2026-09-16", predmet:"MAT", kod:"MAT-CO-1",
@@ -538,16 +545,19 @@ window.KARTY = [
   ]},
 
 /* ---------- 7. – 11. 9. 2026 ---------- */
-{ id:"sjl-tlieskame", datum:"2026-09-09", predmet:"SJL", kod:"SJL-PP-2",
-  nazov:"Vytlieskaj slovo: ma-ma, a-u-to, ba-na-na",
-  uvod:"„Ba – na – na: tlesk, tlesk, tlesk. Koľko tlesknutí má slovo banán?“ Dieťa delí slová na slabiky tlieskaním a zisťuje, ktoré slovo je dlhšie.",
-  meta:["spolu s rodičom","3 minúty","bez pomôcok"],
-  stdn:"ŠVP SJL, Elementárne čítanie: „sluchové identifikovanie a rozlišovanie zvukov, slov, slabík, hlások“",
+{ id:"sjl-i", datum:"2026-09-09", predmet:"SJL", kod:"SJL-PP-2",
+  nazov:"Hádanky na hlásku I",
+  uvod:"„Je tenká a ostrá, má očko, ale nevidí. Čo je to?“",
+  meta:["spolu s rodičom","2 minúty","bez pomôcok"],
+  stdn:"ŠVP SJL, Písaná produkcia: „sluchové identifikovanie a rozlišovanie zvukov, slov, slabík, hlások“",
   bloky:[
-    {typ:"hadanka", text:"Koľkokrát tlesneš pri slove mama?", odpoved:"Dvakrát: ma – ma"},
-    {typ:"hadanka", text:"Koľkokrát tlesneš pri slove čokoláda?", odpoved:"Štyrikrát: čo – ko – lá – da 🍫"},
-    {typ:"hadanka", text:"Ktoré slovo je dlhšie: pes, alebo papagáj?", odpoved:"Papagáj: pa – pa – gáj má tri slabiky, pes len jednu"},
-    {typ:"spolu", text:"Cestou zo školy vytlieskavajte alebo vyskakujte mená ľudí v rodine a veci, ktoré vidíte. Kto nájde najdlhšie slovo?"}
+    {typ:"hadanka", text:"Je tenká a ostrá, má očko, ale nevidí. Čo je to?", odpoved:"Ihla"},
+    {typ:"hadanka", text:"Domček zo snehu a ľadu, bývajú v ňom ľudia na severe. Čo je to?", odpoved:"Iglu"},
+    {typ:"hadanka", text:"Je malá a horúca, vyskočí z ohňa a hneď zhasne. Čo je to?", odpoved:"Iskra"},
+    {typ:"rozhovor", zacni:"„Ja viem jedno slovo na I: ihrisko. Poznáš ešte iné?“",
+     otazky:["Nájdeš slovo, kde je I na začiatku?","Je I aj v slove lipa? Kde?","Vymysli hádanku ty mne."],
+     preteba:"V septembri ide len o hlásku, ktorú počujeme. Písmeno I deti ešte nemusia poznať. Nič neopravuj, len zopakuj slovo správne."},
+    {typ:"tlac", urovne:3, text:"Hádanky, čo patrí k sebe, cestičky na uvoľnenie ruky, prvá hláska a koľko slov má veta. Výzva: i na konci slova a slovný vláčik.", subor:"sjl-i.pdf"}
   ]},
 
 { id:"mat-najvacsi", datum:"2026-09-09", predmet:"MAT", kod:"MAT-CO-2",
@@ -583,7 +593,8 @@ window.KARTY = [
     {typ:"spolu", text:"Dieťa zavrie oči. Vy urobíte zvuk: zacinkáte kľúčmi, pokrčíte papier, ťuknete lyžičkou o pohár, zatlieskate. Dieťa háda, čo to bolo. Potom robí zvuky dieťa a hádate vy."},
     {typ:"rozhovor", zacni:"„Pst, buďme na chvíľu úplne ticho. Čo všetko počuješ?“",
      otazky:["Ktorý zvuk bol najtichší a ktorý najhlasnejší?","Aký zvuk robí had? A včela?","Počuješ rozdiel medzi „mak“ a „pak“?"],
-     preteba:"Táto hra pripravuje na čítanie: kto vie dobre počúvať zvuky, ľahšie potom počuje hlásky v slovách."}
+     preteba:"Táto hra pripravuje na čítanie: kto vie dobre počúvať zvuky, ľahšie potom počuje hlásky v slovách."},
+    {typ:"tlac", urovne:3, text:"Zvieratká a ich zvuky, čo je hlasnejšie, rovnaký obrázok, tlieskanie a rozdiely. Výzva: zvuková pamäť a od najtichšieho po najhlasnejšie.", subor:"sjl-zvuky.pdf"}
   ]},
 
 { id:"mat-viac-menej", datum:"2026-09-02", predmet:"MAT", kod:"MAT-CO-2",

@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="sk"><head><meta charset="utf-8"><title>Vytlieskaj slovo – pracovný list (3 úrovne)</title>
+<link rel="stylesheet" href="list.css">
+<style>
+  .c2{width:7mm;height:7mm;border:1.3px solid #111;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex:none}
+  /* oblúčiky pod obrázkom */
+  .oblucky{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm 3mm;justify-items:center}
+  .oblucky>div{display:flex;flex-direction:column;align-items:center;gap:1.5mm}
+  .oblucky .pic{width:19mm;height:19mm}
+  .oblucky .pole{width:34mm;height:9mm;border-bottom:1.2px dotted #111;display:flex;justify-content:center;align-items:flex-end;gap:1mm}
+  .oblucky.m .pic{width:16mm;height:16mm}
+  .oblucky.m .pole{width:30mm;height:8mm}
+  .obl{width:11mm;height:6mm;fill:none;stroke:#111;stroke-width:2.4;stroke-linecap:round;flex:none}
+  .vzor-p{border:1.4px solid #111;border-radius:3mm;padding:1mm 2mm}
+  .vzor-p .slabiky{font-size:14px;font-weight:700;letter-spacing:.5px}
+  /* robot */
+  .robot{display:flex;flex-direction:column;gap:2mm}
+  .robot>div{display:flex;align-items:center;gap:3mm;border:1px solid #bbb;border-radius:3mm;padding:1.3mm 3mm}
+  .robot .pic{width:16mm;height:16mm}
+  .robot .rad{flex:1;justify-content:space-around}
+  /* obťahovanie oblúčikov */
+  .oblt svg{width:100%;height:16mm;fill:none;stroke:#8a8a8a;stroke-width:2.2;stroke-dasharray:7 5;stroke-linecap:round;overflow:visible}
+  .oblt svg path{vector-effect:non-scaling-stroke}
+  .oblt .slab-text{display:flex;justify-content:space-around;font-size:15px;color:#444;padding:0 6mm}
+  /* triedenie do domčekov */
+  .domceky{display:grid;grid-template-columns:repeat(4,1fr);row-gap:11mm;justify-items:center}
+  .domceky .o{display:flex;flex-direction:column;align-items:center;gap:1.5mm}
+  .domceky .o .pic{width:16mm;height:16mm}
+  .domceky .d{grid-column:span 4;display:flex;justify-content:space-around;width:100%}
+  .domceky .d>div{display:flex;flex-direction:column;align-items:center;gap:1mm}
+  .domceky .d .box{border:1.6px solid #111;border-radius:3mm;padding:2mm 4mm;display:flex;gap:1mm;align-items:center;min-width:34mm;justify-content:center;height:13mm}
+  .domceky .d .box svg.ruka{width:10mm;height:10mm;fill:none;stroke:#111;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+  .domceky .o.dole{flex-direction:column-reverse}
+  /* pokusné čítanie: obťahovanie slabík */
+  .pokus{display:flex;flex-direction:column;gap:2mm}
+  .pokus>div{display:flex;align-items:center;gap:2mm}
+  .pokus .obtiahni{width:15mm !important;height:21mm}
+  .pokus .pic{width:16mm;height:16mm}
+  .pokus .plus{font-size:24px;font-weight:700;margin:0 1mm}
+  .pokus .linka{flex:1;gap:0}
+  /* moje meno */
+  .meno-box{display:grid;grid-template-columns:1fr 1fr 1fr;gap:4mm}
+  .meno-box>div{border:1.2px solid #111;border-radius:4mm;height:40mm;padding:2mm 3mm;font-size:13.5px;color:#333;display:flex;flex-direction:column;justify-content:space-between}
+  .meno-box .pole{border-bottom:1.2px dotted #111;height:8mm}
+  /* schody */
+  .schody{display:grid;grid-template-columns:repeat(4,1fr);justify-items:center;align-items:end}
+  .schody>div{display:flex;flex-direction:column;align-items:center;gap:2mm}
+  .schody .pic{width:19mm;height:19mm}
+  .schody .okno{width:11mm;height:11mm}
+  /* malý a veľký */
+  .zdrob{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm}
+  .zdrob>div{border:1px solid #bbb;border-radius:3mm;padding:2mm;display:grid;grid-template-columns:1fr 1fr;gap:2mm;justify-items:center;align-items:end}
+  .zdrob .s{display:flex;flex-direction:column;align-items:center;gap:1mm}
+  .zdrob .pic{width:24mm;height:24mm}
+  .zdrob .pic.mal{width:12mm;height:12mm;stroke-width:4.5}
+  .zdrob .pole{width:22mm;height:8mm;border-bottom:1.2px dotted #111}
+  .zdrob .meno{font-size:13px;color:#444}
+  /* najdlhšie slovo */
+  .dlhe{display:grid;grid-template-columns:1fr 1fr;gap:5mm}
+  .dlhe>div{border:1.2px solid #111;border-radius:4mm;height:48mm;padding:2mm 3mm;font-size:13.5px;color:#333;display:flex;flex-direction:column;justify-content:space-between}
+  .dlhe .pole{border-bottom:1.2px dotted #111;height:8mm}
+</style></head>
+<body>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 1 – ĽAHŠIE                                                     -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="1">
+  <header class="hlava" data-predmet="Slovenský jazyk">Tlieskame slabiky</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Povedz slovo a pri každej slabike tleskni. Pod obrázok nakresli toľko oblúčikov, koľkokrát si tleskol.<span class="pozn">Prvý obrázok je vzor: ma – ma, dva oblúčiky.</span></span></div>
+    <div class="plocha oblucky">
+      <div class="vzor-p"><i o="mama"></i><span class="pole"><svg class="obl" viewBox="0 0 22 12"><path d="M2 2 Q11 14 20 2"/></svg><svg class="obl" viewBox="0 0 22 12"><path d="M2 2 Q11 14 20 2"/></svg></span></div>
+      <div><i o="pes"></i><span class="pole"></span></div>
+      <div><i o="lopta"></i><span class="pole"></span></div>
+      <div><i o="dom"></i><span class="pole"></span></div>
+      <div><i o="ryba"></i><span class="pole"></span></div>
+      <div><i o="ananas"></i><span class="pole"></span></div>
+      <div><i o="syr"></i><span class="pole"></span></div>
+      <div><i o="koruna"></i><span class="pole"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Hra na robota. Robot hovorí po slabikách. Čo povedal? Zakrúžkuj to.<span class="pozn">Rodič hovorí ako robot: lo – pta.</span></span></div>
+    <div class="plocha robot">
+      <div><span class="c2">a</span><div class="rad"><i o="ryba"></i><i o="lopta"></i><i o="kniha"></i></div></div>
+      <div><span class="c2">b</span><div class="rad"><i o="raketa"></i><i o="macka"></i><i o="jahoda"></i></div></div>
+      <div><span class="c2">c</span><div class="rad"><i o="mak"></i><i o="malina"></i><i o="mama"></i></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Obtiahni oblúčiky. Pri každom oblúčiku povedz jednu slabiku.</span></div>
+    <div class="plocha oblt">
+      <div class="slab-text"><span>ba</span><span>na</span><span>na</span><span>·</span><span>ja</span><span>ho</span><span>da</span><span>·</span><span>ra</span><span>ke</span><span>ta</span></div>
+      <svg viewBox="0 0 220 20" preserveAspectRatio="none"><path d="M4 4 Q14 24 24 4 Q34 24 44 4 Q54 24 64 4 Q74 24 84 4 Q94 24 104 4 Q114 24 124 4 Q134 24 144 4 Q154 24 164 4 Q174 24 184 4 Q194 24 204 4 Q211 18 216 4"/></svg>
+      <svg viewBox="0 0 220 20" preserveAspectRatio="none"><path d="M4 16 Q14 -4 24 16 Q34 -4 44 16 Q54 -4 64 16 Q74 -4 84 16 Q94 -4 104 16 Q114 -4 124 16 Q134 -4 144 16 Q154 -4 164 16 Q174 -4 184 16 Q194 -4 204 16 Q211 2 216 16"/></svg>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Deti sa učia rozdeliť slovo na slabiky. Pomáha tlieskanie, ťukanie alebo skákanie. V úlohe 2 povedzte ako robot: a) „lo – pta“, b) „ra – ke – ta“, c) „ma – li – na“. V úlohe 3 dieťa obťahuje a súčasne hovorí slabiky, napríklad „ba – na – na“.
+      <b>Riešenie:</b> 1 – pes 1, lopta 2, dom 1, ryba 2, ananás 3, syr 1, koruna 3 · 2 – lopta, raketa, malina · 3 – stačí obtiahnuť. Išlo to ľahko? Skúste úroveň ●●○.
+      <span class="std">SJL-PP-2, SJL-PP-1 · ŠVP SJL, Elementárne čítanie: „sluchové identifikovanie a rozlišovanie zvukov, slov, slabík, hlások“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 2 – BEŽNÉ                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="2">
+  <header class="hlava" data-predmet="Slovenský jazyk">Koľko slabík?</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Koľko slabík má slovo? Spoj obrázok s rámčekom, kde je toľko rúk.</span></div>
+    <div class="plocha domceky">
+      <div class="o"><i o="pes"></i><span class="bod"></span></div>
+      <div class="o"><i o="jahoda"></i><span class="bod"></span></div>
+      <div class="o"><i o="ryba"></i><span class="bod"></span></div>
+      <div class="o"><i o="dom"></i><span class="bod"></span></div>
+      <div class="d">
+        <div><span class="bod"></span><span class="box"><svg class="ruka" viewBox="0 0 40 40"><path d="M14 36 V14 M14 20 V6 M20 18 V4 M26 18 V6 M32 22 V10 M14 36 Q30 38 32 26 V22 M14 24 Q8 18 6 22 Q8 30 14 36"/></svg></span><span class="bod"></span></div>
+        <div><span class="bod"></span><span class="box"><svg class="ruka" viewBox="0 0 40 40"><path d="M14 36 V14 M14 20 V6 M20 18 V4 M26 18 V6 M32 22 V10 M14 36 Q30 38 32 26 V22 M14 24 Q8 18 6 22 Q8 30 14 36"/></svg><svg class="ruka" viewBox="0 0 40 40"><path d="M14 36 V14 M14 20 V6 M20 18 V4 M26 18 V6 M32 22 V10 M14 36 Q30 38 32 26 V22 M14 24 Q8 18 6 22 Q8 30 14 36"/></svg></span><span class="bod"></span></div>
+        <div><span class="bod"></span><span class="box"><svg class="ruka" viewBox="0 0 40 40"><path d="M14 36 V14 M14 20 V6 M20 18 V4 M26 18 V6 M32 22 V10 M14 36 Q30 38 32 26 V22 M14 24 Q8 18 6 22 Q8 30 14 36"/></svg><svg class="ruka" viewBox="0 0 40 40"><path d="M14 36 V14 M14 20 V6 M20 18 V4 M26 18 V6 M32 22 V10 M14 36 Q30 38 32 26 V22 M14 24 Q8 18 6 22 Q8 30 14 36"/></svg><svg class="ruka" viewBox="0 0 40 40"><path d="M14 36 V14 M14 20 V6 M20 18 V4 M26 18 V6 M32 22 V10 M14 36 Q30 38 32 26 V22 M14 24 Q8 18 6 22 Q8 30 14 36"/></svg></span><span class="bod"></span></div>
+      </div>
+      <div class="o dole"><i o="koruna"></i><span class="bod"></span></div>
+      <div class="o dole"><i o="syr"></i><span class="bod"></span></div>
+      <div class="o dole"><i o="macka"></i><span class="bod"></span></div>
+      <div class="o dole"><i o="malina"></i><span class="bod"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Pokusné čítanie. Rodič prečíta slabiku, ty ju obtiahni a povedz. Potom dve slabiky spoj do slova.</span></div>
+    <div class="plocha pokus">
+      <div><div class="linka"><i obtiahni="M" w="64"></i><i obtiahni="A" w="56"></i><span style="width:8mm"></span><i obtiahni="M" w="64"></i><i obtiahni="A" w="56"></i></div><span class="plus">=</span><i o="mama"></i></div>
+      <div><div class="linka"><i obtiahni="S" w="50"></i><i obtiahni="O" w="62"></i><span style="width:8mm"></span><i obtiahni="V" w="58"></i><i obtiahni="A" w="56"></i></div><span class="plus">=</span><i o="sova"></i></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Vytlieskaj mená. Nakresli toľko oblúčikov, koľko slabík počuješ.<span class="pozn">Rodič napíše do rámčeka meno, ty kreslíš oblúčiky na čiaru.</span></span></div>
+    <div class="meno-box">
+      <div>moje meno<span class="pole"></span></div>
+      <div>meno mamy alebo otca<span class="pole"></span></div>
+      <div>meno kamaráta<span class="pole"></span></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> V úlohe 1 nech dieťa tlieska nahlas. V úlohe 2 je pokusné čítanie, ako v šlabikári koncom septembra: písmená ešte nemusí poznať, slabiku mu prečítajte a ono ju zopakuje a obtiahne. Dôležité je spojiť dve slabiky do slova: „MA – MA, mama“.
+      <b>Riešenie:</b> 1 – jedna ruka: pes, dom, syr; dve: ryba, mačka; tri: jahoda, koruna, malina · 2 – MAMA, SOVA · 3 – podľa mien.
+      <span class="std">SJL-PP-2, SJL-PP-4 · ŠVP SJL, Elementárne čítanie: „sluchové identifikovanie a rozlišovanie zvukov, slov, slabík, hlások“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 3 – VÝZVA                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="3">
+  <header class="hlava" data-predmet="Slovenský jazyk">Slabikový detektív</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Slabikové schody. Zoraď slová od najkratšieho po najdlhšie. Napíš 1 až 4.<span class="pozn">Nepýtame sa, ktoré zviera je väčšie. Tlieskaj slabiky.</span></span></div>
+    <div class="plocha schody">
+      <div><i o="vevericka"></i><span class="okno"></span></div>
+      <div><i o="pes"></i><span class="okno"></span></div>
+      <div><i o="raketa"></i><span class="okno"></span></div>
+      <div><i o="ryba"></i><span class="okno"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Malý objav. Povedz veľkú aj malú vec. Pod každú nakresli toľko oblúčikov, koľko má slabík. Čo zistíš?</span></div>
+    <div class="zdrob">
+      <div><span class="s"><i o="ryba"></i><span class="meno">ryba</span><span class="pole"></span></span><span class="s"><i o="ryba" class="mal"></i><span class="meno">rybička</span><span class="pole"></span></span></div>
+      <div><span class="s"><i o="dom"></i><span class="meno">dom</span><span class="pole"></span></span><span class="s"><i o="dom" class="mal"></i><span class="meno">domček</span><span class="pole"></span></span></div>
+      <div><span class="s"><i o="macka"></i><span class="meno">mačka</span><span class="pole"></span></span><span class="s"><i o="macka" class="mal"></i><span class="meno">mačička</span><span class="pole"></span></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Hra na robota naopak. Teraz si robot ty. Povedz rodičovi slovo po slabikách. Uhádne ho? Za každé uhádnuté vyfarbi hviezdičku.</span></div>
+    <div class="plocha" style="display:flex;justify-content:space-around;padding:3mm 5mm">
+      <i o="hviezda" class="s"></i><i o="hviezda" class="s"></i><i o="hviezda" class="s"></i><i o="hviezda" class="s"></i><i o="hviezda" class="s"></i>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Najdlhšie slovo. Vymysli čo najdlhšie slovo a nakresli ho. Na čiaru nakresli toľko oblúčikov, koľko má slabík.</span></div>
+    <div class="dlhe">
+      <div>moje najdlhšie slovo<span class="pole"></span></div>
+      <div>najdlhšie slovo rodiča<span class="pole"></span></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> V úlohe 2 sú slová pod obrázkami pre vás, dieťa ich nečíta. Prečítajte ich nahlas. Objav: malá vec má dlhšie slovo (ryba 2, rybička 3). V úlohe 3 vyberajte slová z dvoch až štyroch slabík. V úlohe 4 sa môžete pretekať, napríklad „pa – ra – di – ca – ja“ alebo „ko – lo – bež – ka“.
+      <b>Riešenie:</b> 1 – pes 1, ryba 2, raketa 3, veverička 4 · 2 – ryba 2 a rybička 3, dom 1 a domček 2, mačka 2 a mačička 3 · 3 a 4 – podľa dieťaťa.
+      <span class="std">SJL-PP-2 · ŠVP SJL, Elementárne čítanie: „sluchové identifikovanie a rozlišovanie zvukov, slov, slabík, hlások“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<script src="obrazky.js"></script><script src="nastroje.js"></script>
+</body></html>

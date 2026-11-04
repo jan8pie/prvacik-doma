@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="sk"><head><meta charset="utf-8"><title>Prvá hláska S – pracovný list (3 úrovne)</title>
+<link rel="stylesheet" href="list.css">
+<style>
+  /* počuješ s? */
+  .hlaska{display:grid;grid-template-columns:repeat(8,1fr);justify-items:center}
+  .hlaska>div{display:flex;flex-direction:column;align-items:center;gap:2mm}
+  .hlaska .pic{width:19mm;height:19mm}
+  .hlaska .kruzok{width:8mm;height:8mm}
+  /* obťahovanie: had a ulita */
+  .tahy{display:grid;grid-template-columns:1.6fr 1fr;align-items:center;gap:8mm}
+  .tahy>div{display:flex;align-items:center;gap:3mm}
+  .tahy .pic{width:16mm;height:16mm}
+  .tahy .hadik svg{flex:1;height:20mm;overflow:visible}
+  .tahy .ulita svg{width:36mm;height:36mm;overflow:visible}
+  .tahy .ciarky{vector-effect:non-scaling-stroke}
+  .tahy .ciarky{fill:none;stroke:#8a8a8a;stroke-width:2.2;stroke-dasharray:6 5;stroke-linecap:round}
+  .tahy .plne{fill:none;stroke:#111;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+  .tahy .oko{fill:#111;stroke:none}
+  /* nájdi S */
+  .pismena{display:flex;flex-direction:column;gap:2mm}
+  .pismena>div{display:flex;justify-content:space-around;align-items:center;font-size:40px;font-weight:700;line-height:1.1}
+  .pismena.m>div{font-size:33px}
+  .zrkadlo{display:inline-block;transform:scaleX(-1)}
+  /* kreslenie */
+  .kresli2{display:grid;grid-template-columns:1fr 1fr;gap:5mm}
+  .kresli2>div{border:1.2px solid #111;border-radius:4mm;height:var(--v,40mm);padding:2mm 3mm;font-size:13.5px;color:#333}
+  .kresli1{border:1.2px solid #111;border-radius:4mm;height:var(--v,40mm)}
+  /* triedenie S / M */
+  .triedenie{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto auto auto;row-gap:6mm;justify-items:center;align-items:center}
+  .triedenie .o{display:flex;flex-direction:column;align-items:center;gap:2mm}
+  .triedenie .o.dole{flex-direction:column-reverse}
+  .triedenie .pic{width:16mm;height:16mm}
+  .triedenie .kotva{grid-column:span 3;display:flex;justify-content:space-around;width:100%}
+  .triedenie .kotva>div{display:flex;align-items:center;gap:3mm;border:1.6px solid #111;border-radius:4mm;padding:2mm 5mm;font-size:30px;font-weight:700}
+  .triedenie .kotva .pic{width:16mm;height:16mm}
+  /* mená */
+  .mena{display:grid;grid-template-columns:repeat(6,1fr);justify-items:center}
+  .mena>div{display:flex;flex-direction:column;align-items:center;gap:1.5mm}
+  .mena .pic{width:15mm;height:15mm}
+  .mena .c2,.c2{width:7mm;height:7mm;border:1.3px solid #111;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex:none}
+  .mena .kruzok{width:8mm;height:8mm}
+  /* začiatok alebo koniec */
+  .zk{display:grid;grid-template-columns:repeat(6,1fr);justify-items:center}
+  .zk>div{display:flex;flex-direction:column;align-items:center;gap:2mm}
+  .zk .pic{width:17mm;height:17mm}
+  .zk .okna{display:flex;gap:1mm}
+  .zk .okno{width:8mm;height:8mm;border-radius:1.5mm}
+  .zk .okna .vyp{width:8mm;height:3mm}
+  .legenda{display:flex;justify-content:center;gap:10mm;font-size:13.5px;color:#333;margin-top:1mm}
+  .legenda span{display:flex;align-items:center;gap:1.5mm}
+  .legenda .okno{width:6mm;height:6mm;border-radius:1.2mm}
+  .legenda .x{background:#111}
+  /* bez prvej hlásky */
+  .bez{display:grid;grid-template-columns:repeat(6,1fr);justify-items:center}
+  .bez>div{display:flex;flex-direction:column;align-items:center;gap:2mm}
+  .bez .pic{width:17mm;height:17mm}
+  .bez .okno{width:10mm;height:10mm}
+  /* počítaj s vo vete */
+  .vety{display:flex;flex-direction:column;gap:2mm}
+  .vety>div{display:flex;align-items:center;gap:4mm;border:1px solid #bbb;border-radius:3mm;padding:1.2mm 3mm}
+  .vety .pic{width:13mm;height:13mm}
+  .vety .okno{margin-left:auto;width:12mm;height:12mm}
+  /* čiarky za slová */
+  .ciarky-box{display:grid;grid-template-columns:auto 1fr;gap:5mm;align-items:center}
+  .ciarky-box .pic{width:22mm;height:22mm}
+  .ciarky-box .pole{border:1.2px solid #111;border-radius:4mm;height:26mm}
+</style></head>
+<body>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 1 – ĽAHŠIE                                                     -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="1">
+  <header class="hlava" data-predmet="Slovenský jazyk">Sss ako had</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Povedz názov obrázka. Počuješ na začiatku sss? Vyfarbi krúžok.</span></div>
+    <div class="plocha hlaska">
+      <div><i o="slnko"></i><span class="kruzok"></span></div>
+      <div><i o="pes"></i><span class="kruzok"></span></div>
+      <div><i o="sova"></i><span class="kruzok"></span></div>
+      <div><i o="auto"></i><span class="kruzok"></span></div>
+      <div><i o="syr"></i><span class="kruzok"></span></div>
+      <div><i o="ryba"></i><span class="kruzok"></span></div>
+      <div><i o="srdce"></i><span class="kruzok"></span></div>
+      <div><i o="dom"></i><span class="kruzok"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Obtiahni cestičku hadíka a ulitu slimáka. Pri obťahovaní hovor sss.<span class="pozn">Začni pri hadíkovi a v strede ulity, ceruzku nedvíhaj.</span></span></div>
+    <div class="plocha tahy">
+      <div class="hadik"><i o="had"></i>
+        <svg viewBox="0 0 120 40" preserveAspectRatio="none"><path class="ciarky" d="M0 20 C10 2 20 2 30 20 S50 38 60 20 S80 2 90 20 S110 38 120 20"/></svg></div>
+      <div class="ulita"><i o="slimak"></i>
+        <svg viewBox="0 0 60 60"><path class="ciarky" d="M30 30 a3 3 0 1 1 6 0 a6 6 0 1 1 -12 0 a10 10 0 1 1 20 0 a14 14 0 1 1 -28 0 a18 18 0 1 1 36 0 a22 22 0 1 1 -44 0"/></svg></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Nájdi písmeno S. Zakrúžkuj každé S v rade.</span></div>
+    <div class="plocha pismena">
+      <div><span>S</span><span>M</span><span>S</span><span>A</span><span>S</span><span>O</span><span>S</span></div>
+      <div><span>Z</span><span>S</span><span>E</span><span>S</span><span>L</span><span>S</span><span>2</span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Nakresli slnko. Aj slnko sa začína na sss.</span></div>
+    <div class="kresli1" style="--v:44mm"></div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> V septembri sa deti učia počuť prvú hlásku slova. Písmeno S ešte nemusia vedieť čítať, v úlohe 3 ho len hľadajú ako tvar. Hlásku hovorte dlho a krátko „sss“, nie „es“. Ak dieťa nepočuje, povedzte slovo s natiahnutým začiatkom: „sss-lnko“.
+      <b>Riešenie:</b> 1 – slnko, sova, syr, srdce · 2 – stačí obtiahnuť · 3 – v prvom rade 4×, v druhom 3× · 4 – vlastná kresba. Išlo to ľahko? Skúste úroveň ●●○.
+      <span class="std">SJL-PP-2, SJL-PP-1 · ŠVP SJL, Písaná produkcia: „sluchové identifikovanie a rozlišovanie zvukov, slov, slabík, hlások“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 2 – BEŽNÉ                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="2">
+  <header class="hlava" data-predmet="Slovenský jazyk">Sss alebo mmm?</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Sss ako had, alebo mmm ako myška? Spoj obrázok so správnym rámčekom.</span></div>
+    <div class="plocha triedenie">
+      <div class="o"><i o="slnko"></i><span class="bod"></span></div>
+      <div class="o"><i o="mrkva"></i><span class="bod"></span></div>
+      <div class="o"><i o="syr"></i><span class="bod"></span></div>
+      <div class="kotva"><div><i o="had"></i>S<span class="bod"></span></div><div><span class="bod"></span>M<i o="myska"></i></div></div>
+      <div class="o dole"><i o="melon"></i><span class="bod"></span></div>
+      <div class="o dole"><i o="srdce"></i><span class="bod"></span></div>
+      <div class="o dole"><i o="mesiac"></i><span class="bod"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Zakrúžkuj každé S. Pozor na S, ktoré sa pozerá na druhú stranu.</span></div>
+    <div class="plocha pismena m">
+      <div><span>S</span><span class="zrkadlo">S</span><span>Z</span><span>S</span><span>5</span><span>S</span><span class="zrkadlo">S</span><span>8</span><span>S</span></div>
+      <div><span>2</span><span>S</span><span>S</span><span class="zrkadlo">S</span><span>Z</span><span>S</span><span>5</span><span class="zrkadlo">S</span><span>S</span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Rodič povie, ako sa deti volajú. Ak sa meno začína na sss, vyfarbi krúžok.</span></div>
+    <div class="plocha mena">
+      <div><span class="c2">a</span><i o="dievca"></i><span class="kruzok"></span></div>
+      <div><span class="c2">b</span><i o="chlapec"></i><span class="kruzok"></span></div>
+      <div><span class="c2">c</span><i o="chlapec"></i><span class="kruzok"></span></div>
+      <div><span class="c2">d</span><i o="dievca"></i><span class="kruzok"></span></div>
+      <div><span class="c2">e</span><i o="dievca"></i><span class="kruzok"></span></div>
+      <div><span class="c2">f</span><i o="chlapec"></i><span class="kruzok"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Nakresli dve veci, ktoré sa začínajú na sss. Nesmú byť z tohto listu.</span></div>
+    <div class="kresli2" style="--v:34mm"><div></div><div></div></div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> V úlohe 3 prečítajte mená: a) Sára, b) Tomáš, c) Samo, d) Lea, e) Soňa, f) Peter. Mená sú vymyslené, môžete použiť aj mená z rodiny. V úlohe 4 pomôže hľadať doma: stôl, stolička, sveter, soľ, sliepka, slon.
+      <b>Riešenie:</b> 1 – S: slnko, syr, srdce; M: mrkva, melón, mesiac · 2 – v každom rade 5 správnych S · 3 – a) Sára, c) Samo, e) Soňa · 4 – napríklad stôl, slon, sveter.
+      <span class="std">SJL-PP-2, SJL-PP-3 · ŠVP SJL, Písaná produkcia: „sluchové identifikovanie a rozlišovanie zvukov, slov, slabík, hlások“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 3 – VÝZVA                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="3">
+  <header class="hlava" data-predmet="Slovenský jazyk">Hadí detektív</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Kde počuješ sss: na začiatku, alebo na konci slova? Vyfarbi správne okienko.</span></div>
+    <div class="plocha">
+      <div class="zk">
+        <div><i o="pes"></i><span class="okna"><span class="okno"></span><span class="okno"></span></span></div>
+        <div><i o="sova"></i><span class="okna"><span class="okno"></span><span class="okno"></span></span></div>
+        <div><i o="ananas"></i><span class="okna"><span class="okno"></span><span class="okno"></span></span></div>
+        <div><i o="syr"></i><span class="okna"><span class="okno"></span><span class="okno"></span></span></div>
+        <div><i o="autobus"></i><span class="okna"><span class="okno"></span><span class="okno"></span></span></div>
+        <div><i o="slimak"></i><span class="okna"><span class="okno"></span><span class="okno"></span></span></div>
+      </div>
+      <div class="legenda"><span><span class="okno x"></span><span class="okno"></span> na začiatku</span><span><span class="okno"></span><span class="okno x"></span> na konci</span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Rodič povie slovo bez prvej hlásky. Uhádneš, čo to je? Napíš číslo pod obrázok.<span class="pozn">Dva obrázky zostanú prázdne.</span></span></div>
+    <div class="plocha bez">
+      <div><i o="sliepka"></i><span class="okno"></span></div>
+      <div><i o="srdce"></i><span class="okno"></span></div>
+      <div><i o="slnko"></i><span class="okno"></span></div>
+      <div><i o="sova"></i><span class="okno"></span></div>
+      <div><i o="strom"></i><span class="okno"></span></div>
+      <div><i o="syr"></i><span class="okno"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Rodič prečíta vetu. Koľkokrát v nej počuješ sss? Napíš číslo alebo nakresli bodky.</span></div>
+    <div class="plocha vety">
+      <div><span class="c2">a</span><i o="sova"></i><span class="okno"></span></div>
+      <div><span class="c2">b</span><i o="pes"></i><span class="okno"></span></div>
+      <div><span class="c2">c</span><i o="dievca"></i><span class="okno"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Hadia minúta. Koľko slov na sss vymyslíš za jednu minútu? Za každé slovo urob čiarku.<span class="pozn">Rodič stopuje čas. Potom sa vymeňte a skúste, kto vymyslí viac.</span></span></div>
+    <div class="ciarky-box"><i o="had"></i><div class="pole"></div></div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> V úlohe 2 povedzte: 1 „…ova“, 2 „…yr“, 3 „…rdce“, 4 „…liepka“. V úlohe 3 čítajte pomaly: a) „Sova sedí.“ b) „Pes spí.“ c) „Sára si sadla.“ Pri úlohe 1 povedzte slovo nahlas, ak ho dieťa nevie pomenovať.
+      <b>Riešenie:</b> 1 – na konci: pes, ananás, autobus; na začiatku: sova, syr, slimák · 2 – sova 1, syr 2, srdce 3, sliepka 4 (slnko a strom zostanú) · 3 – a) 2, b) 2 (pes a spí), c) 3 · 4 – každé slovo sa počíta.
+      <span class="std">SJL-PP-2 · ŠVP SJL, Písaná produkcia: „sluchové identifikovanie a rozlišovanie zvukov, slov, slabík, hlások“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<script src="obrazky.js"></script><script src="nastroje.js"></script>
+</body></html>

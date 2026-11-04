@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="sk"><head><meta charset="utf-8"><title>Písmeno E – pracovný list (3 úrovne)</title>
+<link rel="stylesheet" href="list.css">
+<style>
+  .slovo{font-size:28px;font-weight:700;letter-spacing:.5px}
+  /* obťahovanie */
+  .obt{display:flex;flex-direction:column;gap:2mm}
+  .obt .linka{gap:1mm}
+  .obt .obtiahni{width:17mm !important;height:23mm}
+  .obt .prazdne{width:17mm;height:23mm;border-left:1px dotted #bbb;flex:none}
+  /* počuješ e? */
+  .hlaska{display:grid;grid-template-columns:repeat(8,1fr);justify-items:center}
+  .hlaska>div{display:flex;flex-direction:column;align-items:center;gap:2mm}
+  .hlaska .pic{width:18mm;height:18mm}
+  .hlaska .kruzok{width:8mm;height:8mm}
+  /* veľké – malé */
+  .pary{display:grid;grid-template-columns:repeat(5,1fr);justify-items:center;row-gap:9mm}
+  .pary>div{display:flex;flex-direction:column;align-items:center;gap:2mm}
+  .pary .znak{font-size:34px}
+  /* prečítaj a nakresli */
+  .kresli2{display:grid;grid-template-columns:1fr 1fr;gap:5mm}
+  .kresli2 div{border:1.2px solid #111;border-radius:4mm;height:var(--v,40mm);padding:2mm 4mm;font-size:28px;font-weight:700}
+  .kresli2 .pozn{font-size:13px;font-weight:400;color:#444;display:block}
+  /* húsenica */
+  .husenica{display:flex;align-items:center;justify-content:center;gap:0}
+  .husenica span{width:17mm;height:17mm;border:1.5px solid #111;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:23px;font-weight:700;margin-left:-1.2mm;background:#fff}
+  .husenica svg{width:22mm;height:24mm;fill:none;stroke:#111;stroke-width:3;stroke-linecap:round;flex:none;margin-left:-2mm;overflow:visible}
+  /* slovo k obrázku */
+  .k-obr{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm}
+  .k-obr>div{display:flex;flex-direction:column;align-items:center;gap:2mm;border:1px solid #bbb;border-radius:3mm;padding:2mm 1mm}
+  .k-obr .pic{width:20mm;height:20mm}
+  .k-obr .obr{display:flex;align-items:flex-end;height:22mm}
+  .k-obr .vyber{font-size:21px;gap:1mm 4mm;flex-wrap:wrap;justify-content:center}
+  /* doplň a / e */
+  .dopln{display:grid;grid-template-columns:1fr 1fr;gap:3mm 8mm}
+  .dopln>div{display:flex;align-items:center;gap:4mm}
+  .dopln .pic{width:17mm;height:17mm}
+  .dopln .slovo{display:flex;align-items:center;gap:1mm;font-size:30px}
+  .dopln .okno{width:10mm;height:12mm;border-style:dashed}
+  .banka{display:flex;gap:3mm;justify-content:center;align-items:center;font-size:14px;color:#444}
+  /* tajný kód */
+  .kod{display:flex;gap:6mm;justify-content:center;margin-bottom:2mm}
+  .kod>span{display:flex;align-items:center;gap:1.5mm;font-size:24px;font-weight:700;border:1.2px solid #111;border-radius:2.5mm;padding:.5mm 3mm}
+  .sym{width:8mm;height:8mm;fill:#111;stroke:none;flex:none}
+  .sym.o{fill:none;stroke:#111;stroke-width:3}
+  .kody{display:grid;grid-template-columns:1fr 1fr;gap:3mm 8mm}
+  .kody>div{display:flex;align-items:center;gap:2mm}
+  .kody .pis{min-width:0;flex:1}
+  .kody .okienka{display:flex;gap:1mm}
+  .kody .okienka i{display:block;width:9mm;height:9mm;border:1.2px dashed #888;border-radius:1.5mm}
+  /* odzadu */
+  .odzadu{display:flex;justify-content:space-around;align-items:center}
+  .odzadu>div{display:flex;align-items:center;gap:2mm;font-size:26px;font-weight:700}
+  .odzadu .sip{font-size:20px;font-weight:400}
+  .odzadu .okno{width:20mm;height:12mm;border-style:dashed}
+  .rovnako{display:flex;justify-content:center;gap:12mm;margin-top:3mm;font-size:28px;font-weight:700}
+  /* koľko slov */
+  .vety{display:flex;flex-direction:column;gap:2.5mm}
+  .vety>div{display:flex;align-items:center;justify-content:space-between;gap:6mm}
+  .vety .ciary{flex:none;width:58mm;height:11mm;border:1px dashed #999;border-radius:2mm}
+  /* oprav meno */
+  .oprav{display:flex;justify-content:space-around;align-items:flex-end}
+  .oprav>div{display:flex;flex-direction:column;align-items:center;gap:2mm}
+  .oprav .pis{min-width:30mm}
+</style></head>
+<body>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 1 – ĽAHŠIE                                                     -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="1">
+  <header class="hlava" data-predmet="Slovenský jazyk">Písmeno E</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Obtiahni veľké E a malé e. Na koniec napíš jedno samo.</span></div>
+    <div class="plocha obt">
+      <div class="linka"><i obtiahni="E"></i><i obtiahni="E"></i><i obtiahni="E"></i><i obtiahni="E"></i><span class="prazdne"></span><span class="prazdne"></span></div>
+      <div class="linka"><i obtiahni="e"></i><i obtiahni="e"></i><i obtiahni="e"></i><i obtiahni="e"></i><span class="prazdne"></span><span class="prazdne"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Povedz slovo pomaly. Počuješ v ňom e? Vyfarbi krúžok.</span></div>
+    <div class="plocha hlaska">
+      <div><i o="melon"></i><span class="kruzok"></span></div>
+      <div><i o="auto"></i><span class="kruzok"></span></div>
+      <div><i o="pes"></i><span class="kruzok"></span></div>
+      <div><i o="lopta"></i><span class="kruzok"></span></div>
+      <div><i o="ryba"></i><span class="kruzok"></span></div>
+      <div><i o="lev"></i><span class="kruzok"></span></div>
+      <div><i o="had"></i><span class="kruzok"></span></div>
+      <div><i o="mesiac"></i><span class="kruzok"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Spoj veľké písmeno s malým.</span></div>
+    <div class="plocha pary">
+      <div><span class="znak">E</span><span class="bod"></span></div>
+      <div><span class="znak">M</span><span class="bod"></span></div>
+      <div><span class="znak">A</span><span class="bod"></span></div>
+      <div><span class="znak">É</span><span class="bod"></span></div>
+      <div><span class="znak">Á</span><span class="bod"></span></div>
+      <div><span class="bod"></span><span class="znak">a</span></div>
+      <div><span class="bod"></span><span class="znak">é</span></div>
+      <div><span class="bod"></span><span class="znak">e</span></div>
+      <div><span class="bod"></span><span class="znak">á</span></div>
+      <div><span class="bod"></span><span class="znak">m</span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Prečítaj a nakresli.</span></div>
+    <div class="kresli2" style="--v:40mm"><div>mama</div><div>Ema</div></div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> E je tretie písmeno v šlabikári (po A a M). V úlohe 1 sa začína hore vľavo. V úlohe 2 vyslovujte slová spolu a pomaly, aby dieťa e počulo („mmmelón“). Slová na čítanie sú len z písmen A, M, E.
+      <b>Riešenie:</b> 2 – melón, pes, lev, mesiac (auto, lopta, ryba, had nie) · 3 – E e, M m, A a, É é, Á á · 4 – mama, dievčatko. Išlo to ľahko? Skúste úroveň ●●○.
+      <span class="std">SJL-PP-2, SJL-PP-3, SJL-RV-1 · ŠVP SJL, Elementárne čítanie: „čítanie slabík, slov, viet a krátkych textov s postupne sa zvyšujúcou náročnosťou“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 2 – BEŽNÉ                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="2">
+  <header class="hlava" data-predmet="Slovenský jazyk">Čítame s písmenom E</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Prečítaj každú slabiku na húsenici. Vyfarbi články, v ktorých je e alebo é.</span></div>
+    <div class="plocha husenica">
+      <span>ma</span><span>me</span><span>mé</span><span>má</span><span>em</span><span>am</span><span>me</span><span>ma</span><span>mé</span>
+      <svg viewBox="0 0 60 66"><path d="M22 18 C18 8 14 4 8 2 M38 18 C42 8 46 4 52 2"/><circle cx="8" cy="2" r="3" fill="#111"/><circle cx="52" cy="2" r="3" fill="#111"/>
+        <circle cx="30" cy="40" r="24" fill="#fff"/><circle cx="22" cy="36" r="3" fill="#111" stroke="none"/><circle cx="38" cy="36" r="3" fill="#111" stroke="none"/><path d="M21 48 C26 54 34 54 39 48"/></svg>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Ktoré slovo patrí k obrázku? Zakrúžkuj ho.</span></div>
+    <div class="plocha k-obr">
+      <div><div class="obr"><i o="dievca"></i></div><div class="vyber"><span>mama</span><span>Ema</span><span>máme</span></div></div>
+      <div><div class="obr"><i o="mama"></i></div><div class="vyber"><span>Ema</span><span>mám</span><span>mama</span></div></div>
+      <div><div class="obr"><i o="mama"></i><i o="dievca" style="width:15mm;height:15mm"></i></div><div class="vyber"><span>Ema má</span><span>Ema a mama</span></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Chýba a alebo e? Dopíš písmeno do rámčeka.</span></div>
+    <div class="plocha dopln">
+      <div><i o="dievca"></i><span class="slovo"><span class="okno"></span>ma</span></div>
+      <div><i o="mama"></i><span class="slovo">m<span class="okno"></span>ma</span></div>
+      <div><i o="dievca"></i><span class="slovo"><span class="okno"></span>MA</span></div>
+      <div><i o="mama"></i><span class="slovo">MAM<span class="okno"></span></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Prečítaj a nakresli.</span></div>
+    <div class="kresli2" style="--v:52mm">
+      <div>Ema a mama</div>
+      <div>Ema má…<span class="pozn">Čo má Ema? Dokresli. Potom to povedz celou vetou.</span></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Zadania prečítajte, slabiky a slová nech číta dieťa. Slabiku čítame naraz a ťahavo („mmme“), nie po písmenách. Krátke e a dlhé é sú dve rôzne písmená, preto si ich dieťa všíma zvlášť. V úlohe 4 môže Ema mať čokoľvek, hlavné je povedať celú vetu („Ema má loptu.“).
+      <b>Riešenie:</b> 1 – vyfarbiť me, mé, em, me, mé (5 článkov) · 2 – Ema, mama, Ema a mama · 3 – Ema, mama, EMA, MAMA.
+      <span class="std">SJL-RV-1, SJL-RV-2 · ŠVP SJL, Elementárne čítanie: „čítanie slabík, slov, viet a krátkych textov s postupne sa zvyšujúcou náročnosťou“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 3 – VÝZVA                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="3">
+  <header class="hlava" data-predmet="Slovenský jazyk">Kúzla s písmenom E</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Tajný kód. Každá značka je jedno písmeno. Rozlúšti slová a napíš ich.</span></div>
+    <div class="plocha">
+      <div class="kod">
+        <span><svg class="sym" viewBox="0 0 40 40"><path d="M20 3 L25 15 L38 16 L28 25 L31 38 L20 31 L9 38 L12 25 L2 16 L15 15 Z"/></svg>= M</span>
+        <span><svg class="sym" viewBox="0 0 40 40"><circle cx="20" cy="20" r="15"/></svg>= A</span>
+        <span><svg class="sym" viewBox="0 0 40 40"><path d="M20 4 L37 35 H3 Z"/></svg>= E</span>
+        <span><svg class="sym o" viewBox="0 0 40 40"><path d="M20 4 L36 20 L20 36 L4 20 Z"/></svg>= Á</span>
+      </div>
+      <div class="kody" id="kody"></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Prečítaj slabiku odzadu a napíš, čo vzniklo.<span class="pozn">Potom zakrúžkuj slovo, ktoré sa číta rovnako odpredu aj odzadu.</span></span></div>
+    <div class="plocha">
+      <div class="odzadu">
+        <div>am <span class="sip">→</span><span class="okno"></span></div>
+        <div>em <span class="sip">→</span><span class="okno"></span></div>
+        <div>ma <span class="sip">→</span><span class="okno"></span></div>
+      </div>
+      <div class="rovnako"><span>EMA</span><span>MÁM</span><span>MAMA</span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Koľko slov má veta? Za každé slovo nakresli do rámčeka jednu čiarku.</span></div>
+    <div class="plocha vety">
+      <div><span class="slovo">Ema a mama.</span><span class="ciary"></span></div>
+      <div><span class="slovo">Máme.</span><span class="ciary"></span></div>
+      <div><span class="slovo">Ema, máme?</span><span class="ciary"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Jedno slovo je meno. Meno píšeme s veľkým písmenom. Nájdi ho a napíš správne.</span></div>
+    <div class="plocha oprav">
+      <div><span class="slovo">mama</span></div>
+      <div><span class="slovo">ema</span></div>
+      <div><span class="slovo">máme</span></div>
+      <div><span class="pis"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">5</span><span>Chyták! Mama povedala: „Slovo MAMA má tri písmená.“ Má pravdu? Spočítaj a zakrúžkuj.</span></div>
+    <div class="plocha" style="display:flex;justify-content:center;gap:24mm;font-size:28px;font-weight:700"><span>áno</span><span>nie</span></div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Výzva je pre deti, ktoré už slová z A, M, E čítajú isto. V úlohe 1 nech dieťa prekladá značku po značke, prstom pod kódom. V úlohe 2 je malý objav: niektoré slová sa dajú čítať aj odzadu. V úlohe 3 nie je bodka ani čiarka slovo.
+      <b>Riešenie:</b> 1 – EMA, MÁM, MÁME, kód pre MAMA: hviezda, krúžok, hviezda, krúžok · 2 – ma, me, am; rovnako sa číta MÁM · 3 – 3, 1, 2 · 4 – ema → Ema · 5 – nie, MAMA má štyri písmená.
+      <span class="std">SJL-RV-1, SJL-PP-5 · ŠVP SJL, Elementárne čítanie: „čítanie slabík, slov, viet a krátkych textov s postupne sa zvyšujúcou náročnosťou“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<script>
+/* tajný kód: 3 slová na rozlúštenie, 1 slovo na zakódovanie */
+(function(){
+  const S = {
+    M:`<svg class="sym" viewBox="0 0 40 40"><path d="M20 3 L25 15 L38 16 L28 25 L31 38 L20 31 L9 38 L12 25 L2 16 L15 15 Z"/></svg>`,
+    A:`<svg class="sym" viewBox="0 0 40 40"><circle cx="20" cy="20" r="15"/></svg>`,
+    E:`<svg class="sym" viewBox="0 0 40 40"><path d="M20 4 L37 35 H3 Z"/></svg>`,
+    "Á":`<svg class="sym o" viewBox="0 0 40 40"><path d="M20 4 L36 20 L20 36 L4 20 Z"/></svg>`};
+  const roz = ["EMA","MÁM","MÁME"].map(w => `<div>${[...w].map(c=>S[c]).join("")} <span>=</span><span class="pis"></span></div>`).join("");
+  const zak = `<div><span class="slovo" style="font-size:24px">MAMA</span> <span>=</span><span class="okienka"><i></i><i></i><i></i><i></i></span></div>`;
+  document.getElementById("kody").innerHTML = roz + zak;
+})();
+</script>
+<script src="obrazky.js"></script><script src="nastroje.js"></script>
+</body></html>
