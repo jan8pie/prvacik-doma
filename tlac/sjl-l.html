@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="sk"><head><meta charset="utf-8"><title>Písmeno L – pracovný list (3 úrovne)</title>
+<link rel="stylesheet" href="list.css">
+<style>
+  .c2{width:7mm;height:7mm;border:1.3px solid #111;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex:none}
+  .slovo{font-size:30px;font-weight:700;letter-spacing:.5px}
+  /* obťahovanie */
+  .obt{display:flex;flex-direction:column;gap:2mm}
+  .obt .obtiahni{height:22mm}
+  .obt .prazdne{width:20mm;height:22mm;border-left:1px dotted #bbb;flex:none}
+  /* počuješ l? */
+  .hlaska{display:grid;grid-template-columns:repeat(8,1fr);justify-items:center}
+  .hlaska>div{display:flex;flex-direction:column;align-items:center;gap:2mm}
+  .hlaska .pic{width:18mm;height:18mm}
+  .hlaska .kruzok{width:8mm;height:8mm}
+  /* prečítaj a zakrúžkuj */
+  .citaj{display:flex;flex-direction:column;gap:2mm}
+  .citaj>div{display:flex;align-items:center;gap:4mm;border:1px solid #bbb;border-radius:3mm;padding:1.5mm 4mm}
+  .citaj .slovo{width:40mm}
+  .citaj .rad{flex:1;justify-content:space-around}
+  .citaj .pic{width:18mm;height:18mm}
+  .mala{width:11mm !important;height:11mm !important;stroke-width:4.5 !important}
+  /* spoj slovo s obrázkom */
+  .spoj{display:grid;grid-template-columns:1fr 1fr;row-gap:3mm;column-gap:30mm;padding:3mm 10mm}
+  .spoj .l{display:flex;align-items:center;justify-content:flex-end;gap:3mm}
+  .spoj .r{display:flex;align-items:center;gap:3mm}
+  .spoj .pic{width:17mm;height:17mm}
+  /* doplň L / M */
+  .dopln{display:grid;grid-template-columns:1fr 1fr;gap:3mm 8mm}
+  .dopln>div{display:flex;align-items:center;gap:4mm}
+  .dopln .pic{width:17mm;height:17mm}
+  .dopln .slovo{display:flex;align-items:center;gap:1mm;font-size:32px}
+  .dopln .okno{width:10mm;height:12mm;border-style:dashed}
+  /* kreslenie */
+  .kresli2{display:grid;grid-template-columns:1fr 1fr;gap:5mm}
+  .kresli2>div{border:1.2px solid #111;border-radius:4mm;height:var(--v,40mm);padding:2mm 4mm;font-size:28px;font-weight:700}
+  /* otočené slabiky */
+  .otoc{display:grid;grid-template-columns:1fr 1fr;row-gap:2.5mm;column-gap:40mm;padding:2mm 24mm}
+  .otoc>div{display:flex;align-items:center;gap:3mm;font-size:30px;font-weight:700}
+  .otoc .l{justify-content:flex-end}
+  .otazka{font-size:14px;color:#333;margin-top:2mm;display:flex;align-items:center;gap:3mm}
+  .otazka .ciara{flex:1;min-width:0;height:7mm}
+  /* viac riešení */
+  .viac{display:flex;flex-direction:column;gap:2.5mm}
+  .viac>div{display:flex;align-items:center;gap:4mm}
+  .viac .vzor{font-size:30px;font-weight:700;letter-spacing:2px;width:34mm}
+  .viac .okno.siroke{width:38mm;height:12mm}
+  .viac .drobne{flex:1}
+  /* rýchločítanie */
+  .rychlo{display:grid;grid-template-columns:repeat(6,1fr);gap:2.5mm 2mm;justify-items:center;font-size:25px;font-weight:700}
+  .pokusy{display:flex;gap:8mm;justify-content:center;margin-top:3mm;font-size:14px;color:#333}
+  .pokusy>span{display:flex;align-items:center;gap:2mm}
+</style></head>
+<body>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 1 – ĽAHŠIE                                                     -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="1">
+  <header class="hlava" data-predmet="Slovenský jazyk">Písmeno L</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Obtiahni veľké L a malé l. Na konci riadka skús napísať sám.</span></div>
+    <div class="plocha obt">
+      <div class="linka"><i obtiahni="L" w="56"></i><i obtiahni="L" w="56"></i><i obtiahni="L" w="56"></i><i obtiahni="L" w="56"></i><span class="prazdne"></span><span class="prazdne"></span><span class="prazdne"></span></div>
+      <div class="linka"><i obtiahni="l" w="36"></i><i obtiahni="l" w="36"></i><i obtiahni="l" w="36"></i><i obtiahni="l" w="36"></i><i obtiahni="l" w="36"></i><span class="prazdne"></span><span class="prazdne"></span><span class="prazdne"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Počuješ na začiatku lll? Vyfarbi krúžok.</span></div>
+    <div class="plocha hlaska">
+      <div><i o="lev"></i><span class="kruzok"></span></div>
+      <div><i o="macka"></i><span class="kruzok"></span></div>
+      <div><i o="lopta"></i><span class="kruzok"></span></div>
+      <div><i o="list"></i><span class="kruzok"></span></div>
+      <div><i o="auto"></i><span class="kruzok"></span></div>
+      <div><i o="lampa"></i><span class="kruzok"></span></div>
+      <div><i o="ryba"></i><span class="kruzok"></span></div>
+      <div><i o="lama"></i><span class="kruzok"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Prečítaj slovo. Zakrúžkuj obrázok, ktorý k nemu patrí.</span></div>
+    <div class="plocha citaj">
+      <div><span class="slovo">lama</span><div class="rad"><i o="mama"></i><i o="lampa"></i><i o="lama"></i></div></div>
+      <div><span class="slovo">mama</span><div class="rad"><i o="lama"></i><i o="mama"></i><i o="macka"></i></div></div>
+      <div><span class="slovo">Ema</span><div class="rad"><i o="chlapec"></i><i o="dievca"></i><i o="lev"></i></div></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Koncom októbra je v šlabikári písmeno L. Hlásku vyslovujte krátko: „lll“, nie „el“. V úlohe 2 dieťa len počúva. V úlohe 3 číta samo, slová sú len z písmen, ktoré už pozná (M, A, E, L).
+      <b>Riešenie:</b> 1 – stačí obtiahnuť a skúsiť · 2 – lev, lopta, list, lampa, lama · 3 – lama, mama, dievča. Išlo to ľahko? Skúste úroveň ●●○.
+      <span class="std">SJL-PP-2, SJL-PP-3, SJL-RV-2 · ŠVP SJL, Elementárne čítanie: „čítanie slabík, slov, viet a krátkych textov s postupne sa zvyšujúcou náročnosťou“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 2 – BEŽNÉ                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="2">
+  <header class="hlava" data-predmet="Slovenský jazyk">Čítam s písmenom L</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Prečítaj. Spoj s obrázkom, ktorý k tomu patrí.<span class="pozn">Pozor, dve lamy sú rôzne veľké.</span></span></div>
+    <div class="plocha spoj">
+      <div class="l"><span class="slovo">mama</span><span class="bod"></span></div><div class="r"><span class="bod"></span><i o="lama"></i></div>
+      <div class="l"><span class="slovo">malá lama</span><span class="bod"></span></div><div class="r"><span class="bod"></span><i o="dievca"></i><i o="lama"></i></div>
+      <div class="l"><span class="slovo">lama</span><span class="bod"></span></div><div class="r"><span class="bod"></span><i o="mama"></i></div>
+      <div class="l"><span class="slovo">Ema a lama</span><span class="bod"></span></div><div class="r"><span class="bod"></span><i o="lama" class="mala"></i></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>L alebo M? Pozri na obrázok a dopíš písmeno, ktoré chýba.</span></div>
+    <div class="plocha dopln">
+      <div><i o="lama"></i><span class="slovo"><span class="okno"></span>ama</span></div>
+      <div><i o="mama"></i><span class="slovo"><span class="okno"></span>ama</span></div>
+      <div><i o="lama"></i><span class="slovo">la<span class="okno"></span>a</span></div>
+      <div><i o="lama" class="mala"></i><span class="slovo">ma<span class="okno"></span>á</span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Prečítaj a nakresli.</span></div>
+    <div class="kresli2" style="--v:56mm">
+      <div>malá lama</div>
+      <div>Ema a mama</div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Dieťa číta samo, slová sú len z písmen M, A, E, L. Ak zaváha, nech si slovo prečíta po slabikách: „ma – lá“. V úlohe 2 pri malej lame pomôžte otázkou: „Aká je tá lama?“
+      <b>Riešenie:</b> 1 – mama: mama, malá lama: malá lama, lama: veľká lama, Ema a lama: dievča s lamou · 2 – lama, mama, lama, malá · 3 – vlastné kresby.
+      <span class="std">SJL-RV-1, SJL-RV-2, SJL-PP-4 · ŠVP SJL, Elementárne čítanie: „čítanie slabík, slov, viet a krátkych textov s postupne sa zvyšujúcou náročnosťou“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 3 – VÝZVA                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="3">
+  <header class="hlava" data-predmet="Slovenský jazyk">Kúzla s písmenom L</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Slabiky sa otočili. Prečítaj a spoj dvojičky. Čo sa zmenilo?</span></div>
+    <div class="plocha">
+      <div class="otoc">
+        <div class="l">la<span class="bod"></span></div><div><span class="bod"></span>em</div>
+        <div class="l">me<span class="bod"></span></div><div><span class="bod"></span>al</div>
+        <div class="l">le<span class="bod"></span></div><div><span class="bod"></span>am</div>
+        <div class="l">ma<span class="bod"></span></div><div><span class="bod"></span>el</div>
+      </div>
+      <div class="otazka">Povedz rodičovi, čo sa stalo so slabikou. Rodič zapíše:<span class="ciara"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Niekedy sa dá doplniť viac písmen. Nájdi všetky slová a napíš ich.<span class="pozn">Použi písmená M, A, E, L.</span></span></div>
+    <div class="plocha viac">
+      <div><span class="vzor">_ AMA</span><span class="okno siroke"></span><span class="okno siroke"></span></div>
+      <div><span class="vzor">E _ A</span><span class="okno siroke"></span><span class="okno siroke"></span></div>
+      <div><span class="vzor">MA _ Á</span><span class="okno siroke"></span><span class="drobne">Je tu len jedno slovo?</span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Rýchločítanie. Koľko slov prečítaš za jednu minútu? Rodič stopuje a ty čítaš po riadkoch.<span class="pozn">Skús to dnes a o pár dní znova. Zlepšíš sa?</span></span></div>
+    <div class="plocha">
+      <div class="rychlo">
+        <span>mama</span><span>lama</span><span>Ema</span><span>malá</span><span>Ela</span><span>malé</span>
+        <span>mám</span><span>máme</span><span>ale</span><span>mal</span><span>mala</span><span>Ema</span>
+        <span>lama</span><span>malá</span><span>mama</span><span>ale</span><span>máme</span><span>Ela</span>
+      </div>
+      <div class="pokusy"><span>dnes: <span class="okno"></span> slov</span><span>o pár dní: <span class="okno"></span> slov</span></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> V úlohe 1 je malý objav: písmená sa vymenili a zo slabiky „la“ je „al“. Šlabikár tomu hovorí otvorená a zatvorená slabika, dieťa to však nemusí pomenovať. V úlohe 3 nejde o rýchlosť za každú cenu: chyba sa opraví a číta sa ďalej. Počíta sa každé prečítané slovo.
+      <b>Riešenie:</b> 1 – la – al, me – em, le – el, ma – am · 2 – LAMA a MAMA; EMA a ELA; MALÁ (iné slovo sa nedá) · 3 – počet slov podľa dieťaťa (spolu 18).
+      <span class="std">SJL-RV-1, SJL-PP-4 · ŠVP SJL, Elementárne čítanie: „čítanie slabík, slov, viet a krátkych textov s postupne sa zvyšujúcou náročnosťou“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<script src="obrazky.js"></script><script src="nastroje.js"></script>
+</body></html>

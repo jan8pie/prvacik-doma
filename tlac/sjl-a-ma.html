@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="sk"><head><meta charset="utf-8"><title>Písmeno A a prvé slabiky – pracovný list (3 úrovne)</title>
+<link rel="stylesheet" href="list.css">
+<style>
+  .c2{width:7mm;height:7mm;border:1.3px solid #111;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex:none}
+  /* spoj hlásky do slabiky */
+  .syntez{display:flex;flex-direction:column;gap:2.5mm}
+  .syntez>div{display:flex;align-items:center;gap:3mm}
+  .syntez .h{width:15mm;height:15mm;border:1.6px solid #111;border-radius:3mm;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:700;flex:none}
+  .syntez .zn{font-size:26px;font-weight:700}
+  .syntez .tah{flex:none;width:18mm;height:10mm;overflow:visible;fill:none;stroke:#8a8a8a;stroke-width:2;stroke-dasharray:6 4;stroke-linecap:round}
+  .syntez .linka{flex:1;gap:7mm;padding-left:2mm}
+  .syntez .obtiahni{height:26mm}
+  /* začína sa na ma? */
+  .hlaska{display:grid;grid-template-columns:repeat(6,1fr);justify-items:center}
+  .hlaska>div{display:flex;flex-direction:column;align-items:center;gap:2mm}
+  .hlaska .pic{width:20mm;height:20mm}
+  .hlaska .kruzok{width:8mm;height:8mm}
+  /* prečítaj a nakresli */
+  .kresli2{display:grid;grid-template-columns:1fr 1fr;gap:5mm}
+  .kresli2>div{border:1.2px solid #111;border-radius:4mm;height:var(--v,40mm);padding:2mm 4mm;font-size:30px;font-weight:700;letter-spacing:1px}
+  .kresli2 .pozn{display:block;font-size:13px;font-weight:400;color:#444;letter-spacing:0}
+  /* počuj slabiku */
+  .pocuj{display:grid;grid-template-columns:1fr 1fr;gap:2.5mm 5mm}
+  .pocuj>div{display:flex;align-items:center;gap:3mm;border:1px solid #bbb;border-radius:3mm;padding:1.6mm 3mm}
+  .pocuj .moz{flex:1;display:flex;justify-content:space-around;font-size:27px;font-weight:700}
+  /* doplň písmeno */
+  .dopln{display:grid;grid-template-columns:1fr 1fr;gap:3mm 8mm}
+  .dopln>div{display:flex;align-items:center;gap:4mm}
+  .dopln .pic{width:16mm;height:16mm}
+  .dopln .slovo{display:flex;align-items:center;gap:1mm;font-size:32px;font-weight:700}
+  .dopln .okno{width:10mm;height:12mm;border-style:dashed}
+  .banka{display:flex;gap:4mm;justify-content:center;align-items:center;font-size:14px;color:#444;margin-top:1.5mm}
+  .banka b{font-size:24px;color:#111;border:1.3px solid #111;border-radius:2mm;padding:0 2.5mm}
+  /* nájdi á */
+  .najdi{display:flex;justify-content:space-around;font-size:36px;font-weight:700}
+  /* škriatok */
+  .skriatok{display:flex;flex-direction:column;gap:2mm}
+  .skriatok>div{display:flex;justify-content:space-around;align-items:center;font-size:42px;font-weight:700;line-height:1.15}
+  .skriatok span{display:inline-block}
+  .rot{transform:rotate(180deg)}
+  .zrk{transform:scaleX(-1)}
+  /* písmená a slabiky */
+  .tab{width:100%;border-collapse:collapse;font-size:15px}
+  .tab th{font-weight:700;text-align:center;padding:1mm 2mm;border-bottom:1.2px solid #111}
+  .tab td{text-align:center;padding:1.2mm 2mm;border-bottom:1px solid #ccc}
+  .tab td.sl{font-size:28px;font-weight:700;letter-spacing:1px;text-align:left;padding-left:6mm}
+  .tab .okno{width:11mm;height:11mm}
+  /* nakresli tri */
+  .kresli3{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm}
+  .kresli3>div{border:1.2px solid #111;border-radius:4mm;height:30mm}
+  /* veta od rodiča */
+  .veta-rodic{border:1.2px solid #111;border-radius:4mm;padding:2mm 4mm}
+  .veta-rodic .riadky i{height:12mm}
+</style></head>
+<body>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 1 – ĽAHŠIE                                                     -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="1">
+  <header class="hlava" data-predmet="Slovenský jazyk">Mmm a aaa je ma</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Spoj dve hlásky do slabiky. Ťahaj ich nahlas: mmm-aaa, ma. Potom slabiku obtiahni.</span></div>
+    <div class="plocha syntez">
+      <div><span class="h">M</span><span class="zn">+</span><span class="h">A</span>
+        <svg class="tah" viewBox="0 0 60 20"><path d="M2 10 H52 M44 3 L54 10 L44 17"/></svg>
+        <div class="linka"><i obtiahni="MA" w="150"></i><i obtiahni="MA" w="150"></i></div></div>
+      <div><span class="h">m</span><span class="zn">+</span><span class="h">a</span>
+        <svg class="tah" viewBox="0 0 60 20"><path d="M2 10 H52 M44 3 L54 10 L44 17"/></svg>
+        <div class="linka"><i obtiahni="ma" w="140"></i><i obtiahni="ma" w="140"></i></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Začína sa slovo slabikou ma? Vyfarbi krúžok.<span class="pozn">Povedz slovo po slabikách: ma-čka.</span></span></div>
+    <div class="plocha hlaska">
+      <div><i o="macka"></i><span class="kruzok"></span></div>
+      <div><i o="motyl"></i><span class="kruzok"></span></div>
+      <div><i o="malina"></i><span class="kruzok"></span></div>
+      <div><i o="ryba"></i><span class="kruzok"></span></div>
+      <div><i o="mamut"></i><span class="kruzok"></span></div>
+      <div><i o="mrkva"></i><span class="kruzok"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Prečítaj a nakresli.</span></div>
+    <div class="kresli2" style="--v:62mm">
+      <div>MAMA</div>
+      <div>MÁM<span class="pozn">Nakresli niečo, čo máš.</span></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Slabiku čítajte spolu a ťahavo: „mmmaaa“, nie „em-a“. Tak sa hlásky spoja. V šlabikári sa začiatkom októbra preberá písmeno A, slabiky s M sa čítajú pokusne. Úloha 2 je len na počúvanie, slová dieťa nečíta.
+      <b>Riešenie:</b> 1 – stačí obtiahnuť · 2 – mačka, malina, mamut (motýľ sa začína mo, mrkva mr) · 3 – mama; vlastná kresba. Išlo to ľahko? Skúste úroveň ●●○.
+      <span class="std">SJL-RV-1, SJL-PP-2, SJL-PP-4 · ŠVP SJL, Elementárne čítanie: „čítanie slabík, slov, viet a krátkych textov s postupne sa zvyšujúcou náročnosťou“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 2 – BEŽNÉ                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="2">
+  <header class="hlava" data-predmet="Slovenský jazyk">Čítam ma, má, mama</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Rodič povie slabiku alebo slovo. Nájdi ho a zakrúžkuj.</span></div>
+    <div class="plocha pocuj">
+      <div><span class="c2">a</span><span class="moz"><span>má</span><span>ma</span><span>am</span></span></div>
+      <div><span class="c2">b</span><span class="moz"><span>ma</span><span>am</span><span>má</span></span></div>
+      <div><span class="c2">c</span><span class="moz"><span>am</span><span>ma</span><span>má</span></span></div>
+      <div><span class="c2">d</span><span class="moz"><span>mama</span><span>mám</span><span>má</span></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Doplň písmeno, ktoré chýba. Potom slovo prečítaj.</span></div>
+    <div class="plocha">
+      <div class="dopln">
+        <div><i o="mama"></i><span class="slovo">M<span class="okno"></span>MA</span></div>
+        <div><i o="mama"></i><span class="slovo"><span class="okno"></span>AMA</span></div>
+        <div><i o="mama"></i><span class="slovo">MAM<span class="okno"></span></span></div>
+        <div><i o="ruka"></i><span class="slovo">MÁ<span class="okno"></span></span></div>
+      </div>
+      <div class="banka">Pomôcka: <b>A</b> <b>M</b></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Vyfarbi alebo zakrúžkuj každé dlhé á. Pozná sa podľa dĺžňa.</span></div>
+    <div class="plocha najdi"><span>a</span><span>á</span><span>a</span><span>a</span><span>á</span><span>A</span><span>Á</span><span>a</span><span>á</span><span>A</span></div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Prečítaj a dokresli, čo mama má.</span></div>
+    <div class="kresli2" style="--v:46mm;grid-template-columns:1fr">
+      <div>Mama má</div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> V úlohe 1 povedzte: a) „ma“, b) „má“, c) „am“, d) „mám“. Krátke a dlhé á vyslovujte zreteľne. V úlohe 2 je pri MÁM obrázok ruky, ako keď niečo držím: „mám“. V úlohe 4 sa môžete pýtať: „Čo má mama? Kľúče? Kabelku?“
+      <b>Riešenie:</b> 1 – a) ma, b) má, c) am, d) mám · 2 – MAMA, MAMA, MAMA, MÁM · 3 – á je 3-krát malé a 1-krát veľké (Á) · 4 – vlastná kresba.
+      <span class="std">SJL-RV-1, SJL-PP-4 · ŠVP SJL, Elementárne čítanie: „čítanie slabík, slov, viet a krátkych textov s postupne sa zvyšujúcou náročnosťou“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 3 – VÝZVA                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="3">
+  <header class="hlava" data-predmet="Slovenský jazyk">Škriatok Popletko</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Škriatok Popletko písal písmená a niektoré poplietol. Prečiarkni tie, ktoré sú napísané zle.<span class="pozn">Pozor, niektoré sú otočené, a aj tak sú dobré. Prečo?</span></span></div>
+    <div class="plocha skriatok">
+      <div><span>A</span><span class="rot">A</span><span class="zrk">A</span><span>A</span><span class="rot">A</span><span class="zrk">Á</span><span>Á</span></div>
+      <div><span>M</span><span class="rot">M</span><span class="zrk">M</span><span>M</span><span>N</span><span class="rot">M</span><span>M</span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Koľko má slovo písmen a koľko slabík? Napíš čísla.<span class="pozn">Písmená spočítaš očami, slabiky tlieskaním.</span></span></div>
+    <div class="plocha">
+      <table class="tab">
+        <tr><th></th><th>písmen</th><th>slabík</th></tr>
+        <tr><td class="sl">MAMA</td><td><span class="okno"></span></td><td><span class="okno"></span></td></tr>
+        <tr><td class="sl">MÁM</td><td><span class="okno"></span></td><td><span class="okno"></span></td></tr>
+        <tr><td class="sl">A</td><td><span class="okno"></span></td><td><span class="okno"></span></td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Nakresli tri veci, ktoré sa začínajú slabikou ma. Nesmú byť z tohto listu.</span></div>
+    <div class="kresli3"><div></div><div></div><div></div></div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Povedz vetu o mame. Rodič ju napíše veľkými písmenami. Nájdi v nej slovo MAMA a zakrúžkuj ho.</span></div>
+    <div class="veta-rodic"><div class="riadky"><i></i><i></i></div></div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> V úlohe 1 je A aj M súmerné: v zrkadle vyzerajú rovnako, preto sú dobré. Zle je písmeno hore nohami a Á s dĺžňom na druhú stranu. N nie je M. V úlohe 4 píšte veľkými tlačenými písmenami, napríklad MAMA PEČIE KOLÁČ. Ostatné slová dieťa čítať nemusí, hľadá len MAMA.
+      <b>Riešenie:</b> 1 – zle: dve A hore nohami, Á so zrkadlovým dĺžňom; M hore nohami (2×) a N · 2 – MAMA 4 a 2, MÁM 3 a 1, A 1 a 1 · 3 – napríklad maslo, matrac, mašľa, mak · 4 – podľa vety.
+      <span class="std">SJL-RV-1, SJL-PP-2, SJL-PP-3 · ŠVP SJL, Elementárne čítanie: „čítanie slabík, slov, viet a krátkych textov s postupne sa zvyšujúcou náročnosťou“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<script src="obrazky.js"></script><script src="nastroje.js"></script>
+</body></html>

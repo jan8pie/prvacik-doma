@@ -315,6 +315,26 @@ const O = {
           <circle class="f" cx="45.5" cy="25" r="1.7"/><circle class="f" cx="54.5" cy="25" r="1.7"/><path d="M45 31 C48 34 52 34 55 31" style="stroke-width:1.8"/>`,
   oko:   `<path class="w" d="M6 52 C28 22 72 22 94 52 C72 82 28 82 6 52 Z"/><circle cx="50" cy="52" r="17"/><circle class="f" cx="50" cy="52" r="8"/><circle class="w" cx="55" cy="47" r="3" style="stroke:none"/>
           <path d="M22 38 L15 28 M36 31 L32 19 M50 29 V16 M64 31 L68 19 M78 38 L85 28" style="stroke-width:2.6"/>`,
+  /* ================= VECI, KTORÉ ROBIA ZVUK (4. 11. 2026) ================= */
+  zvoncek:`<path class="w" d="M50 10 C38 10 28 20 28 36 V58 C28 66 22 72 16 76 H84 C78 72 72 66 72 58 V36 C72 20 62 10 50 10 Z"/>
+          <path class="w" d="M42 10 C42 2 58 2 58 10"/><circle class="w" cx="50" cy="84" r="7"/>
+          <path d="M36 34 C36 26 40 21 46 19" style="stroke-width:2"/><path d="M8 40 C4 48 4 58 8 66 M92 40 C96 48 96 58 92 66" style="stroke-width:2.2"/>`,
+  bubon: `<path d="M22 6 L44 34 M78 6 L56 34" style="stroke-width:3.4"/><circle class="w" cx="21" cy="5" r="4"/><circle class="w" cx="79" cy="5" r="4"/>
+          <path class="w" d="M12 42 V80 C12 90 88 90 88 80 V42 Z"/><ellipse class="w" cx="50" cy="42" rx="38" ry="11"/>
+          <path d="M14 50 L30 84 L46 52 L62 88 L76 52 L86 74" style="stroke-width:2"/>`,
+  hodiny:`<circle class="w" cx="22" cy="20" r="11"/><circle class="w" cx="78" cy="20" r="11"/><path d="M38 14 C44 10 56 10 62 14" style="stroke-width:2.2"/>
+          <path d="M28 84 L20 96 M72 84 L80 96" style="stroke-width:3.4"/>
+          <circle class="w" cx="50" cy="56" r="34"/><circle cx="50" cy="56" r="27" style="stroke-width:1.6"/>
+          <path d="M50 56 V36 M50 56 L64 64"/><circle class="f" cx="50" cy="56" r="3"/>
+          <path d="M50 31 V34 M50 78 V81 M25 56 H28 M72 56 H75" style="stroke-width:2.4"/>`,
+  kluce: `<circle cx="50" cy="14" r="11" style="stroke-width:2.6"/>
+          <path class="w" d="M30 52 V92 H38 V86 H44 V80 H38 V52 Z"/><circle class="w" cx="34" cy="38" r="15"/><circle class="w" cx="34" cy="34" r="4"/>
+          <path class="w" d="M66 50 V90 H58 V84 H52 V78 H58 V74 H54 V68 H58 V50 Z"/><circle class="w" cx="62" cy="38" r="14"/><circle class="w" cx="62" cy="34" r="4"/>`,
+  okuliare:`<circle class="w" cx="28" cy="54" r="17"/><circle class="w" cx="72" cy="54" r="17"/>
+          <path d="M45 52 C48 47 52 47 55 52"/><path d="M11 50 L4 36 M89 50 L96 36"/>
+          <path d="M20 46 C22 42 26 40 30 40 M64 46 C66 42 70 40 74 40" style="stroke-width:1.8"/>`,
+  ucho:  `<path class="w" d="M38 88 C30 88 28 80 32 74 C36 68 38 64 34 58 C24 46 26 18 52 12 C74 8 86 26 82 44 C80 56 70 62 66 70 C62 80 56 88 46 88 Z"/>
+          <path d="M44 56 C38 44 44 30 56 30 C66 30 70 40 66 48 C62 54 56 52 56 60" style="stroke-width:2.6"/>`,
   /* ---- väčšia plocha na pravej strane: krokodíl na porovnávanie (ústa sa otvárajú k väčšiemu) ---- */
   krokodil: ["0 0 160 100", `<path class="w" d="M108 76 L102 92 H92 L98 78 M146 68 L140 88 H130 L136 70"/>
           <path class="w" d="M70 46 C76 36 88 34 98 38 C112 40 128 40 140 46 C152 52 158 60 160 70 C152 66 144 66 136 70 C122 78 104 82 88 82 L74 80 Z"/>

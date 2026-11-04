@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="sk"><head><meta charset="utf-8"><title>Hádanky na M – pracovný list (3 úrovne)</title>
+<link rel="stylesheet" href="list.css">
+<style>
+  .c2{width:7mm;height:7mm;border:1.3px solid #111;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex:none}
+  /* hádanka + 3 obrázky */
+  .hadanky{display:flex;flex-direction:column;gap:2mm}
+  .hadanky>div{display:grid;grid-template-columns:66mm 1fr;align-items:center;gap:3mm;border:1px solid #bbb;border-radius:3mm;padding:1.3mm 3mm}
+  .hadanky .text{font-size:14px;color:#333;line-height:1.3}
+  .hadanky .text b{color:#111}
+  .hadanky .rad{justify-content:space-around}
+  .hadanky .pic{width:16mm;height:16mm}
+  /* počuješ m? */
+  .hlaska{display:grid;grid-template-columns:repeat(6,1fr);justify-items:center}
+  .hlaska>div{display:flex;flex-direction:column;align-items:center;gap:2mm}
+  .hlaska .pic{width:17mm;height:17mm}
+  .hlaska .kruzok{width:8mm;height:8mm}
+  /* obťahovanie */
+  .obt{display:flex;flex-direction:column;gap:2mm}
+  .obt .obtiahni{height:19mm}
+  .obt .prazdne{width:22mm;height:19mm;border-left:1px dotted #bbb;flex:none}
+  /* nájdi slovo */
+  .najdi{display:flex;flex-direction:column;gap:2mm}
+  .najdi>div{display:flex;justify-content:space-around;align-items:center;font-size:27px;font-weight:700;letter-spacing:.5px}
+  .najdi .vzor{border:1.6px solid #111;border-radius:3mm;padding:0 3mm}
+  /* oblúčiky so slabikami */
+  .obl-slab{display:grid;grid-template-columns:1fr 1fr;gap:3mm 6mm}
+  .obl-slab>div{display:flex;align-items:center;gap:3mm;border:1px solid #bbb;border-radius:3mm;padding:1.5mm 3mm}
+  .obl-slab .pic{width:20mm;height:20mm}
+  .obl-slab .sl{display:flex;gap:1.5mm}
+  .obl-slab .sl span{width:16mm;height:15mm;border-bottom:1.6px solid #111;border-radius:0 0 50% 50%/0 0 4mm 4mm;border-left:1px dotted #999;border-right:1px dotted #999}
+  /* vety */
+  .vety{display:flex;flex-direction:column;gap:2mm}
+  .vety>div{display:flex;align-items:center;gap:4mm;border:1px solid #bbb;border-radius:3mm;padding:1.5mm 3mm}
+  .vety .veta{font-size:32px;font-weight:700;letter-spacing:.5px;min-width:60mm}
+  .vety .kruzky{display:flex;gap:3mm;margin-left:auto}
+  .vety .kruzok{width:8mm;height:8mm}
+  /* kreslenie */
+  .kresli2{display:grid;grid-template-columns:1fr 1fr;gap:5mm}
+  .kresli2>div{border:1.2px solid #111;border-radius:4mm;height:var(--v,40mm);padding:2mm 3mm;font-size:13.5px;color:#333;line-height:1.3}
+  /* detektív */
+  .detektiv .mriezka{grid-template-columns:repeat(4,1fr);justify-items:center;gap:3mm 2mm}
+  .detektiv .mriezka>div{display:flex;align-items:flex-end;gap:1.5mm}
+  .detektiv .pic{width:18mm;height:18mm}
+  .detektiv .okno{width:9mm;height:9mm}
+  /* veľké písmeno a bodka */
+  .bodka{display:flex;flex-direction:column;gap:2.5mm}
+  .bodka>div{display:flex;align-items:center;gap:1mm;font-size:34px;font-weight:700;letter-spacing:.5px}
+  .bodka .okno{width:11mm;height:13mm;border-style:dashed}
+  .bodka .okno.m{width:7mm;height:13mm}
+  /* pyramída */
+  .pyramida{display:flex;flex-direction:column;align-items:center;gap:2mm}
+  .pyramida>div{display:flex;align-items:center;gap:4mm;width:100%}
+  .pyramida .okna{display:flex;gap:1.5mm;justify-content:center;width:62mm;flex:none}
+  .pyramida .okna span{width:12mm;height:13mm;border:1.4px solid #111;border-radius:2mm;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:700}
+  .pyramida .napoveda{font-size:14px;color:#333;flex:1}
+</style></head>
+<body>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 1 – ĽAHŠIE                                                     -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="1">
+  <header class="hlava" data-predmet="Slovenský jazyk">Hádanky na M</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Rodič prečíta hádanku. Zakrúžkuj správny obrázok.</span></div>
+    <div class="plocha hadanky">
+      <div><span class="text"><b>a)</b> Svieti v noci na oblohe. Raz je okrúhly a raz ako rožok.</span><div class="rad"><i o="slnko"></i><i o="hviezda"></i><i o="mesiac"></i></div></div>
+      <div><span class="text"><b>b)</b> Je malá a sivá, má dlhý chvost a bojí sa mačky.</span><div class="rad"><i o="myska"></i><i o="zajac"></i><i o="macka"></i></div></div>
+      <div><span class="text"><b>c)</b> Je biele, pije sa a dávajú nám ho kravy.</span><div class="rad"><i o="vajce"></i><i o="mlieko"></i><i o="limonada"></i></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Mmm, to je dobré! Ktoré jedlo sa začína na mmm? Vyfarbi krúžok.</span></div>
+    <div class="plocha hlaska">
+      <div><i o="malina"></i><span class="kruzok"></span></div>
+      <div><i o="jahoda"></i><span class="kruzok"></span></div>
+      <div><i o="melon"></i><span class="kruzok"></span></div>
+      <div><i o="syr"></i><span class="kruzok"></span></div>
+      <div><i o="mrkva"></i><span class="kruzok"></span></div>
+      <div><i o="jablko"></i><span class="kruzok"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Nájdi slovo z rámčeka. Zakrúžkuj ho v rade vždy, keď ho uvidíš.</span></div>
+    <div class="plocha najdi">
+      <div><span class="vzor">MAMA</span><span>MAMA</span><span>AMAM</span><span>MAMA</span><span>MAM</span><span>MAMA</span></div>
+      <div><span class="vzor">mama</span><span>mám</span><span>mama</span><span>ama</span><span>mama</span><span>má</span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Obtiahni veľké M a malé m. Na konci riadka skús napísať sám.</span></div>
+    <div class="plocha obt">
+      <div class="linka"><i obtiahni="M" w="80"></i><i obtiahni="M" w="80"></i><i obtiahni="M" w="80"></i><span class="prazdne"></span><span class="prazdne"></span></div>
+      <div class="linka"><i obtiahni="m" w="80"></i><i obtiahni="m" w="80"></i><i obtiahni="m" w="80"></i><span class="prazdne"></span><span class="prazdne"></span></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> V polovici októbra prichádza v šlabikári písmeno M. Hlásku vyslovujte dlho: „mmm“, nie „em“. Pri hádankách netreba ponáhľať, napovedať môžete prvou hláskou. V úlohe 3 dieťa hľadá rovnaké slovo, pozerá na každé písmenko.
+      <b>Riešenie:</b> 1 – mesiac, myš, mlieko · 2 – malina, melón, mrkva · 3 – MAMA 3-krát, mama 2-krát · 4 – stačí obtiahnuť a skúsiť. Išlo to ľahko? Skúste úroveň ●●○.
+      <span class="std">SJL-PP-2, SJL-RU-1, SJL-RV-1 · ŠVP SJL, Písaná produkcia: „sluchové identifikovanie a rozlišovanie zvukov, slov, slabík, hlások“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 2 – BEŽNÉ                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="2">
+  <header class="hlava" data-predmet="Slovenský jazyk">Slabika ma a prvé vety</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Kde je v slove slabika ma? Napíš ma do správneho oblúčika.<span class="pozn">Povedz slovo po slabikách. Každý oblúčik je jedna slabika.</span></span></div>
+    <div class="plocha obl-slab">
+      <div><i o="macka"></i><span class="sl"><span></span><span></span></span></div>
+      <div><i o="lama"></i><span class="sl"><span></span><span></span></span></div>
+      <div><i o="malina"></i><span class="sl"><span></span><span></span><span></span></span></div>
+      <div><i o="mama"></i><span class="sl"><span></span><span></span></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Prečítaj vetu. Zakrúžkuj veľké písmeno na začiatku a bodku na konci. Koľko má veta slov? Vyfarbi krúžky.</span></div>
+    <div class="plocha vety">
+      <div><span class="c2">a</span><span class="veta">Mám.</span><span class="kruzky"><span class="kruzok"></span><span class="kruzok"></span><span class="kruzok"></span></span></div>
+      <div><span class="c2">b</span><span class="veta">Mama má.</span><span class="kruzky"><span class="kruzok"></span><span class="kruzok"></span><span class="kruzok"></span></span></div>
+      <div><span class="c2">c</span><span class="veta">Mám, mama.</span><span class="kruzky"><span class="kruzok"></span><span class="kruzok"></span><span class="kruzok"></span></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Hádanky na M. Rodič ich prečíta a ty nakresli odpoveď.</span></div>
+    <div class="kresli2" style="--v:62mm">
+      <div>Má farebné krídla, letí z kvetu na kvet. Začína sa na M.</div>
+      <div>Je veľký a hnedý, má rád med a v zime spí. Začína sa na M.</div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> V úlohe 1 nech dieťa najprv povie slovo po slabikách (la – ma) a až potom píše. Slabiku ma píše tlačeným písmom. Úloha 2 je o tom, čo je veta: začína sa veľkým písmenom a končí bodkou. Čiarka nie je slovo, slová počítajte nahlas na prstoch.
+      <b>Riešenie:</b> 1 – mačka: prvý oblúčik, lama: druhý, malina: prvý, mama: oba · 2 – a) 1, b) 2, c) 2 slová · 3 – motýľ, medveď.
+      <span class="std">SJL-RV-1, SJL-PP-4, SJL-PP-5 · ŠVP SJL, Elementárne čítanie: „čítanie slabík, slov, viet a krátkych textov s postupne sa zvyšujúcou náročnosťou“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 3 – VÝZVA                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="3">
+  <header class="hlava" data-predmet="Slovenský jazyk">Hádankový detektív</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Všetko sa tu začína na M. Rodič prečíta stopy. Kto alebo čo to je? Napíš číslo hádanky do okienka.<span class="pozn">Počúvaj všetky stopy, jedna nestačí.</span></span></div>
+    <div class="plocha detektiv">
+      <div class="mriezka">
+        <div><i o="myska"></i><span class="okno"></span></div>
+        <div><i o="macka"></i><span class="okno"></span></div>
+        <div><i o="medved"></i><span class="okno"></span></div>
+        <div><i o="motyl"></i><span class="okno"></span></div>
+        <div><i o="mravec"></i><span class="okno"></span></div>
+        <div><i o="mesiac"></i><span class="okno"></span></div>
+        <div><i o="mrkva"></i><span class="okno"></span></div>
+        <div><i o="melon"></i><span class="okno"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Škriatok zabudol na veľké písmeno a bodku. Dopíš ich.</span></div>
+    <div class="plocha bodka">
+      <div><span class="okno"></span>ama má<span class="okno m"></span></div>
+      <div><span class="okno"></span>ám<span class="okno m"></span></div>
+      <div><span class="okno"></span>ám, mama<span class="okno m"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Slovná pyramída. Každé slovo má o jedno písmeno viac. Napíš ho podľa nápovedy.</span></div>
+    <div class="plocha pyramida">
+      <div><span class="okna"><span></span></span><span class="napoveda">Hláska, ktorú hovoríme u lekára: aaa.</span></div>
+      <div><span class="okna"><span></span><span></span></span><span class="napoveda">Prvá slabika slova mačka.</span></div>
+      <div><span class="okna"><span></span><span></span><span></span></span><span class="napoveda">Ja … rád zmrzlinu. (s dĺžňom)</span></div>
+      <div><span class="okna"><span></span><span></span><span></span><span></span></span><span class="napoveda">Kto ťa ráno budí?</span></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Stopy k úlohe 1: 1 „Je to zviera. Je malé a sivé. Bojí sa mačky.“ 2 „Je to zviera. Je to hmyz. Nosí ihličie do mraveniska.“ 3 „Nie je to zviera. Rastie v zemi a je oranžová.“ 4 „Nie je to zviera. Svieti v noci.“ V úlohe 3 nápovedu prečítajte. Pyramídu môže dieťa písať veľkými aj malými písmenami.
+      <b>Riešenie:</b> 1 – myš 1, mravec 2, mrkva 3, mesiac 4 · 2 – Mama má. Mám. Mám, mama. · 3 – A, MA, MÁM, MAMA.
+      <span class="std">SJL-RV-1, SJL-PP-4, SJL-PP-5 · ŠVP SJL, Elementárne čítanie: „čítanie slabík, slov, viet a krátkych textov s postupne sa zvyšujúcou náročnosťou“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<script src="obrazky.js"></script><script src="nastroje.js"></script>
+</body></html>
