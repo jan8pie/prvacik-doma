@@ -7,6 +7,8 @@
    Týždne („Tento týždeň“, „Minulý týždeň“) a štítok NOVÉ sa počítajú samy.
    Karta s budúcim dátumom sa ukáže až v ten deň (zásoba). Náhľad: adresa s ?nahlad
    Každá sada má vždy kartu pre Slovenčinu, Matematiku aj Angličtinu.
+   Typ úlohy sa vyberá zo šablón v priečinku 05_sablony_uloh/ (mimo web, nezverejňuje sa).
+   Postup a kontrola: 05_sablony_uloh/00_ako_pouzivat.md
    Angličtina zatiaľ bez pracovných listov na tlač, len aktivity so zvukom.
    Na tlač: {typ:"tlac", urovne:3, text:"…", subor:"id-karty.pdf"} = list v 3 úrovniach
    (●○○ Ľahšie, ●●○ Bežné, ●●● Výzva). Súbory tlac/pdf/id-karty-1.pdf … -3.pdf a .png vyrobí tlac/vyrob-pdf.js.
@@ -26,6 +28,19 @@ window.KARTY = [
    ZÁSOBA – karty s budúcim dátumom sa zobrazia až v ten deň.
    Vopred ich uvidíš na adrese s ?nahlad na konci.
    ========================================================= */
+
+/* ---------- 9. 11. 2026 (pondelok) ---------- */
+{ id:"sjl-kniha-tyzdna-1", datum:"2026-11-09", predmet:"SJL", kod:"SJL-RU-1",
+  nazov:"Kniha týždňa: o čom asi bude?",
+  uvod:"Dieťa si samo vyberie akúkoľvek knihu z domu alebo z knižnice. Najprv podľa obalu spolu hádate, o čom bude. Potom čítate vy a občas sa zastavíte pri obrázku alebo pri otázke, čo bude ďalej. Rozprávať má hlavne dieťa.",
+  meta:["spolu s rodičom","10 – 15 minút","akákoľvek kniha"],
+  stdn:"ŠVP SJL, Čítanie s porozumením: „predvídanie z počutého a prečítaného umeleckého textu a z ilustrácie“",
+  bloky:[
+    {typ:"spolu", text:"Pred čítaním si spolu prezrite obal. Najprv hádate vy, o čom kniha bude, potom dieťa. Pri čítaní sa zastavte len na niektorých dvojstranách, najviac raz na dvojstranu, a položte jednu otázku z rozhovoru nižšie. Odpoveď dieťaťa zopakujte a pridajte k nej jedno slovo („Aha, pes. Veľký chlpatý pes.“). Ak dieťa knihu pozná, občas nedočítajte vetu do konca a nechajte ho ju dopovedať. Po čítaní stačí jedna otázka: Čo sa ti páčilo najviac? Alebo: Bolo tam slovo, ktorému si nerozumel?"},
+    {typ:"rozhovor", zacni:"„Dnes vyberáš knihu ty. Ja podľa obalu hádam, že bude o… A čo myslíš ty?“",
+     otazky:["Kto je na tomto obrázku? Čo práve robí?","Čo sa stane, keď otočíme stranu? Prečo si to myslíš?","Keby si bol v tejto knihe ty, čo by si urobil? Čo podobné si už zažil?"],
+     preteba:"Nie je to skúšanie: keď dieťa nevie, povedzte odpoveď sami a čítajte ďalej. Tú istú knihu pokojne čítajte znova, vtedy nechajte rozprávať viac dieťa."}
+  ]},
 
 /* ---------- 6. 11. 2026 (piatok) ---------- */
 { id:"sjl-citame-slova", datum:"2026-11-06", predmet:"SJL", kod:"SJL-RV-1",
