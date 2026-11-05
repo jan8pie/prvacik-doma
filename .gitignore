@@ -1,0 +1,15 @@
+# Do tohto repa patrí len kód stránky (index.html, karty.js, tlac/).
+# Poznámky, plány učiva, rozvrhy, denníky a podobné pracovné materiály
+# sem nepatria – verejné repo vidí každý. Preto sa ignorujú všetky .md
+# súbory okrem README.md a pracovné priečinky.
+*.md
+!README.md
+
+prehlad/
+edupage/
+zdrojove_dokumenty/
+ucebnice_foto/
+05_sablony_uloh/
+06_podklady/
+nastenka/
+uploads/

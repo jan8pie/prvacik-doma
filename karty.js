@@ -7,14 +7,12 @@
    Týždne („Tento týždeň“, „Minulý týždeň“) a štítok NOVÉ sa počítajú samy.
    Karta s budúcim dátumom sa ukáže až v ten deň (zásoba). Náhľad: adresa s ?nahlad
    Každá sada má vždy kartu pre Slovenčinu, Matematiku aj Angličtinu.
-   Typ úlohy sa vyberá zo šablón v priečinku 05_sablony_uloh/ (mimo web, nezverejňuje sa).
-   Postup a kontrola: 05_sablony_uloh/00_ako_pouzivat.md
    Angličtina zatiaľ bez pracovných listov na tlač, len aktivity so zvukom.
    Na tlač: {typ:"tlac", urovne:3, text:"…", subor:"id-karty.pdf"} = list v 3 úrovniach
    (●○○ Ľahšie, ●●○ Bežné, ●●● Výzva). Súbory tlac/pdf/id-karty-1.pdf … -3.pdf a .png vyrobí tlac/vyrob-pdf.js.
 
    predmet: SJL, MAT, ANJ, CAP
-   kod:     kód témy z mapy učiva (prehlad/01_mapa_uciva_1_rocnik.md)
+   kod:     značka témy (predmet-komponent-číslo)
    stdn:    štandard ŠVP (citát)
    bloky:   rozhovor, aktivita, pocuvanie, hadanka, spolu, tlac
    hry (aktivita): vyber, rozklad, slabiky, poradie, sucet, porovnaj
@@ -298,11 +296,9 @@ window.KARTY = [
 
 /* =========================================================
    OD ZAČIATKU ŠKOLSKÉHO ROKA (september – október 2026)
-   Doplnené 3. 11. 2026 dodatočne. MAT a ANJ sú ODHAD podľa učebníc
-   (MAT s Lienkou do s. 34, Beehive Starter úvod a Unit 1).
-   SJL: poradie podľa fotiek celého Šlabikára a záznamov v EduPage
-   (4. 11. 2026); karty SJL boli vtedy presunuté do správnych týždňov
-   a každá má pracovný list v 3 úrovniach (tlac/sjl-*.html).
+   Doplnené 3. 11. 2026 dodatočne. Poradie je odhad podľa postupu v učebniciach;
+   karty SJL sú v týždňoch podľa poradia písmen a každá má pracovný list
+   v 3 úrovniach (tlac/sjl-*.html).
    Jedna karta na predmet a týždeň, dátum = streda daného týždňa.
    ========================================================= */
 
