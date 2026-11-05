@@ -27,6 +27,166 @@ window.KARTY = [
    Vopred ich uvidíš na adrese s ?nahlad na konci.
    ========================================================= */
 
+/* ---------- 13. 11. 2026 (piatok) ---------- */
+{ id:"sjl-co-uz-viem", datum:"2026-11-13", predmet:"SJL", kod:"SJL-RV-1",
+  nazov:"Čo už viem? Slová, slabiky a hádanky",
+  uvod:"Týždenné opakovanie: dieťa si prečíta pár starších slov a slabík, potom hádá, čo je to, podľa písmena, na ktoré sa slovo začína. Na konci samo povie, čo mu išlo najlepšie.",
+  meta:["dieťa samo aj s rodičom","5 minút","tablet so zvukom"],
+  stdn:"ŠVP SJL, Elementárne čítanie: „čítanie slabík, slov, viet a krátkych textov s postupne sa zvyšujúcou náročnosťou“",
+  bloky:[
+    {typ:"pocuvanie", citanie:true, jazyk:"sk-SK", text:"Najprv prečítaj slabiku alebo slovo nahlas. Potom naň ťukni a skontroluj sa.",
+     slova:[["","mi"],["","lá"],["","mama"],["","Ela"],["","lama"],["","malé"],["","Emil"],["","ale"]]},
+    {typ:"hadanka", text:"Je to zviera s dlhým chvostom. Rada sa schováva v diere a rada jedáva syr. Začína sa na M. Čo je to?", odpoved:"Myš 🐭"},
+    {typ:"hadanka", text:"Je to chlpaté zviera s dlhým krkom. Žije vysoko v horách. Začína sa na L. Čo je to?", odpoved:"Lama 🦙"},
+    {typ:"hadanka", text:"Má štyri kolesá a vozí ľudí. Začína sa na A. Čo je to?", odpoved:"Auto 🚗"},
+    {typ:"tlac", urovne:3, text:"Zhrnutie všetkých písmen: zmiešané úlohy, tajné slová a obrázok bez písmena A. Dole sa dieťa samo ohodnotí. Výzva: ťažšie tajné slová a nájdenie chyby.", subor:"sjl-co-uz-viem.pdf"},
+    {typ:"rozhovor", zacni:"„Tento týždeň sme sa naučili veľa nových vecí. Povedz mi, čo ti išlo najlepšie.“",
+     otazky:["Čo z toho ti išlo najľahšie?","Čo si musel ešte skúsiť viackrát? Čo ti pomohlo?","Čo by si chcel ešte trénovať? Vymysli si na to vlastnú úlohu."],
+     preteba:"Nejde o známku. Dieťa samo povie, čo mu ide. Ak povie „neviem“, pripomeňte jednu vec, ktorá sa mu tento týždeň podarila."}
+  ]},
+
+{ id:"mat-rozklad-6", datum:"2026-11-13", predmet:"MAT", kod:"MAT-CO-4",
+  nazov:"Šesť orieškov pod hrnčekom: rozklad čísla 6",
+  uvod:"Šestka sa dá rozložiť na dve časti rôznymi spôsobmi: 1 a 5, 2 a 4, 3 a 3. Veverička schová časť orieškov do vrecúška a dieťa háda, koľko ich tam je. Potom si to skúsite s hrnčekom.",
+  meta:["dieťa samo aj s rodičom","8 minút","tablet, hrnček, 6 gombíkov"],
+  stdn:"ŠVP MAT, Čísla a operácie s číslami: „modelovanie a využívanie rôznych rozkladov čísel“",
+  bloky:[
+    {typ:"aktivita", text:"Veverička si schovala oriešky do vrecúška.",
+     hra:{druh:"rozklad", urovne:[["●","Ľahšie",5],["●●","Bežné",6],["●●●","Výzva",10]], predvolena:1, kol:3}},
+    {typ:"spolu", text:"Hra „Pod hrnčekom“: vezmite 6 gombíkov. Dieťa zavrie oči a vy časť gombíkov skryjete pod hrnček. Dieťa otvorí oči, spočíta tie, ktoré vidí, a povie, koľko je ich pod hrnčekom. Potom hrnček zodvihnite a skontrolujte spolu. Vymeňte sa."},
+    {typ:"tlac", urovne:3, text:"Číslo 6 na dve časti: domino, jablká na tanieroch, domčeky a spájanie dvojíc. Výzva: tri časti, všetky rozklady a chyták.", subor:"mat-rozklad-6.pdf"},
+    {typ:"rozhovor", zacni:"„Mám 6 jahôd a chcem ich rozdeliť na dva taniere. Ako to môžem urobiť?“",
+     otazky:["Na prvý tanier dáme 2 jahody. Koľko dáme na druhý?","Nájdeš aj iný spôsob, ako rozdeliť 6 jahôd na dva taniere? A ešte iný?","Je 4 a 2 to isté ako 2 a 4? Ako by si to vysvetlil plyšákovi?"],
+     preteba:"V škole sa tomu hovorí rozklad čísla. Obe časti spolu dajú vždy celé číslo a poradie častí nevadí."}
+  ]},
+
+{ id:"anj-chant-colours", datum:"2026-11-13", predmet:"ANJ", kod:"ANJ-RE-3",
+  nazov:"Red, red, red: riekanka o farbách",
+  uvod:"Krátka riekanka o farbách, ktorú sa dá tlieskať ako rytmus. Dieťa opakuje po tablete riadok po riadku a potom vymení jednu farbu za inú.",
+  meta:["dieťa samo aj s rodičom","3 minúty","tablet so zvukom"],
+  stdn:"ŠVP ANJ, Ústny prejav: „Reprodukovať krátku riekanku/pieseň.“",
+  bloky:[
+    {typ:"pocuvanie", text:"Vypočuj si riekanku riadok po riadku a opakuj po tablete.",
+     slova:[["🔴","Red, red, red."],["🎒","My bag is red."],["🟢","Green, green, green."],["✏️","My pencil is green."]]},
+    {typ:"spolu", text:"Zatlieskajte rytmus riekanky: pri „Red, red, red“ trikrát tlesknite. Rodič tlieska rytmus a dieťa ho zopakuje (ozvena rytmu). Potom vymeňte jednu farbu: „Blue, blue, blue. My bag is blue.“ Dieťa povie, ktorú vec z izby chce do riekanky pridať."}
+  ]},
+
+/* ---------- 12. 11. 2026 (štvrtok) ---------- */
+{ id:"sjl-vety-mama", datum:"2026-11-12", predmet:"SJL", kod:"SJL-RV-1",
+  nazov:"Čítame spojenia a vety: malá lama, Mama má Emila",
+  uvod:"Z písmen M, A, E, L, I sa dajú čítať už aj spojenia a prvé krátke vety. Dieťa ich najprv prečíta samo nahlas, potom ťukne a tablet mu ich prečíta, aby sa skontrolovalo.",
+  meta:["dieťa samo aj s rodičom","5 minút","tablet so zvukom"],
+  stdn:"ŠVP SJL, Elementárne čítanie: „čítanie slabík, slov, viet a krátkych textov s postupne sa zvyšujúcou náročnosťou“",
+  bloky:[
+    {typ:"pocuvanie", citanie:true, jazyk:"sk-SK", text:"Najprv prečítaj nahlas. Potom ťukni na kartičku a skontroluj sa.",
+     slova:[["","malá lama"],["","milá mama"],["","Ema a mama"],["","Emil a Ela"],["","Mama má Emila."],["","Mama mala Emila."]]},
+    {typ:"tlac", urovne:3, text:"Spojenia a vety z písmen M, A, E, L, I: čítaj, nájdi slovo, ktoré nepatrí, zmeň písmeno, pravda alebo nepravda podľa obrázka. Výzva: obrátené slová a skladanie viet.", subor:"sjl-vety-mama.pdf"},
+    {typ:"spolu", text:"Lov slov: nájdite doma 5 vecí, ktoré sa začínajú na M alebo na L (napríklad mačka, lyžica, mydlo), a zapíšte ich čiarkami. Potom napíšte spolu veľkými tlačenými písmenami na papierik jedno spojenie, napríklad „malá lama“. Dieťa ho prečíta a nakreslí k nemu obrázok."}
+  ]},
+
+{ id:"mat-ciarky", datum:"2026-11-12", predmet:"MAT", kod:"MAT-ZV-2",
+  nazov:"Čiarky a tabuľka: čoho je najviac?",
+  uvod:"Čiarky sú najstarší spôsob počítania: za každú vec jedna čiarka a piata sa napíše naprieč cez štyri. Dieťa zapisuje čiarkami, čo vidí z okna alebo doma, a potom zisťuje, čoho je najviac.",
+  meta:["spolu s rodičom","10 minút","papier, ceruzka, okno"],
+  stdn:"ŠVP MAT, Závislosti, vzťahy a práca s údajmi: „zber, triedenie, usporiadanie a zaznamenávanie údajov graficky – tabuľka, graf, diagram, piktogram, početnosti vyjadrené sčítacími čiarkami a numericky“",
+  bloky:[
+    {typ:"spolu", text:"Tri minúty sa dívajte z okna alebo z auta a čiarkami zapisujte autá podľa farby (biele, červené, iné). Dieťa zapisuje, vy ukazujete. Piatu čiarku napíšte naprieč cez štyri. Na konci sa spýtajte: Akých áut bolo najviac?"},
+    {typ:"spolu", text:"Lov doma: nájdite vo všetkých izbách okná, dvere a stoličky. Každú nájdenú vec zapíšte čiarkou do tabuľky na papieri. Na konci: čoho je najviac a čoho najmenej?"},
+    {typ:"tlac", urovne:3, text:"Spočítaj obrázky, zapíš ich čiarkami a vyfarbi stĺpce. Výzva: obrázky, ktoré znamenajú dva kusy, hod kockou a chyták s chybou v zápise.", subor:"mat-ciarky.pdf"}
+  ]},
+
+{ id:"anj-hello-this", datum:"2026-11-12", predmet:"ANJ", kod:"ANJ-IN-2",
+  nazov:"What's this? It's a pencil",
+  uvod:"Rodič s plyšákom ukazuje na vec a pýta sa po anglicky: „What's this?“ Dieťa odpovedá aspoň jedným slovom. Vzorové vety si najprv vypočujete na tablete.",
+  meta:["spolu s rodičom","5 minút","plyšák, školské veci"],
+  stdn:"ŠVP ANJ, Ústny prejav: „Na niečo ukázať a opýtať sa, čo to je.“",
+  bloky:[
+    {typ:"pocuvanie", text:"Ťukni a vypočuj si otázku a odpoveď.",
+     slova:[["👋","Hello"],["❓","What's this?"],["✏️","It's a pencil"],["📏","It's a ruler"]]},
+    {typ:"rozhovor", zacni:"„Hello! (plyšák pozdraví) Pozri, čo mám v tašičke. What's this?“",
+     otazky:["Hello! Pozdrav plyšáka po anglicky.","What's this? Ukáž na ceruzku. Povieš po anglicky, čo to je?","What colour is it? Povedz farbu a ukáž na vec."],
+     preteba:"Stačí jedno slovo, nemusí to byť celá veta. Chyby neopravuj, len zopakuj správne."}
+  ]},
+
+/* ---------- 11. 11. 2026 (streda) ---------- */
+{ id:"sjl-slabiky-dlhe", datum:"2026-11-11", predmet:"SJL", kod:"SJL-PP-2",
+  nazov:"Krátke a dlhé slabiky: ma – má, li – lí",
+  uvod:"Hlas povie slabiku, napríklad „ma“ alebo „má“, a dieťa ťukne na tú správnu. Dlhá slabika trvá dlhšie a má dĺžeň. Slabiky môžete čítať aj vy sami (prepínač „Kto číta: Rodič“).",
+  meta:["dieťa samo","2 minúty","tablet so zvukom"],
+  stdn:"ŠVP SJL, Písaná produkcia: „sluchové identifikovanie a rozlišovanie zvukov, slov, slabík, hlások“",
+  bloky:[
+    {typ:"aktivita", text:"Počúvaj a ťukni na slabiku, ktorú počuješ.",
+     hra:{druh:"slabiky", urovne:[["●","Ľahšie"],["●●","Bežné"],["●●●","Výzva"]], predvolena:1, kol:5, rodic:true}},
+    {typ:"tlac", urovne:3, text:"Krátke a dlhé slabiky: spájanie slabík, slová z dvoch slabík a prvá krížovka z lama, mama a Ema. Výzva: rýchle čítanie a vzory.", subor:"sjl-slabiky-dlhe.pdf"},
+    {typ:"rozhovor", zacni:"„Povedz po slabikách slovo ma-ma. Počuješ, ktorá slabika je dlhšia?“",
+     otazky:["Počuješ rozdiel medzi ma a má? Zahraj ho tleskaním: krátky a dlhý tlesk.","V slove lama sú dve slabiky. Ktorá je kratšia a ktorá dlhšia?","Vymysli slovo s dlhou slabikou. Ja uhádnem, kde je dlhá."],
+     preteba:"Dĺžeň je čiarka nad samohláskou (á). Dlhú slabiku vyslovte natiahnuto („máá“). V šlabikári sú krátke a dlhé slabiky zvlášť."}
+  ]},
+
+{ id:"mat-skaceme-6", datum:"2026-11-11", predmet:"MAT", kod:"MAT-CO-3",
+  nazov:"Zajko skáče po číselnej osi do 6",
+  uvod:"Sčítanie je skok doprava, odčítanie skok doľava. Dieťa najprv sčíta jahody na tablete a potom skáče po číslach 0 až 6 na zemi ako zajko po číselnej osi.",
+  meta:["dieťa samo aj s rodičom","10 minút","tablet, papiere s číslami"],
+  stdn:"ŠVP MAT, Čísla a operácie s číslami: „znalosť a používanie statických a dynamických modelov sčítania a odčítania“",
+  bloky:[
+    {typ:"aktivita", text:"Koľko jahôd je spolu?",
+     hra:{druh:"sucet", urovne:[["●","Ľahšie"],["●●","Bežné"],["●●●","Výzva"]], predvolena:1, kol:4}},
+    {typ:"spolu", text:"Skákacia os: na zem položte papiere s číslami 0 až 6 v rade. Dieťa stojí na dvojke a skočí o tri dopredu. Na ktorom čísle pristane? Potom skočí o dva dozadu. Spolu povedzte, ako sa to zapíše: dva plus tri je päť. Potom vymeňte úlohy: dieťa zadáva, kam skáčete vy."},
+    {typ:"tlac", urovne:3, text:"Zajko skáče po číselnej osi: oblúky, nakresli skok a koľko skokov chýba. Výzva: dva skoky za sebou, všetky cesty z 0 na 6 a chyták o skoku dozadu.", subor:"mat-skaceme-6.pdf"}
+  ]},
+
+{ id:"anj-teacher-says", datum:"2026-11-11", predmet:"ANJ", kod:"ANJ-RE-1",
+  nazov:"Teacher says: jump, turn around, touch your nose",
+  uvod:"Nové anglické pokyny s pohybom. Dieťa ich najprv počuje na tablete a potom ich robí. Hra „Teacher says“ platí len vtedy, keď pred pokynom zaznie „Teacher says“.",
+  meta:["spolu s rodičom","5 minút","tablet so zvukom"],
+  stdn:"ŠVP ANJ, cieľ pre 1. cyklus: „Rozumieť krátkym inštrukciám.“",
+  bloky:[
+    {typ:"pocuvanie", text:"Ťukni na obrázok, vypočuj si pokyn a urob ho!",
+     slova:[["🦘","jump"],["🔄","turn around"],["👃","touch your nose"],["🚪","point to the door"],["🙋","hands up"],["👋","wave"]]},
+    {typ:"spolu", text:"Hra „Teacher says“: rodič dáva pokyny po anglicky a dieťa ich robí len vtedy, keď pred pokynom povie „Teacher says“. Kto sa pomýli, nevypadáva, ale stáva sa učiteľom. Keď to ide ľahko, dávajte dva pokyny naraz („Teacher says: stand up and clap“) alebo nech je učiteľom dieťa."}
+  ]},
+
+/* ---------- 10. 11. 2026 (utorok) ---------- */
+{ id:"sjl-j-zaciatok", datum:"2026-11-10", predmet:"SJL", kod:"SJL-PP-2",
+  nazov:"Čo sa začína na J? Jablko, jahoda, ježko",
+  uvod:"Dieťa ťuká na obrázky, ktorých názov sa začína hláskou J. Každý obrázok sa po ťuknutí ozve, takže dieťa počuje, či má pravdu. Písmeno J zatiaľ len počúvame a rozoznávame, nečítame.",
+  meta:["dieťa samo","2 minúty","tablet so zvukom"],
+  stdn:"ŠVP SJL, Písaná produkcia: „sluchové identifikovanie a rozlišovanie zvukov, slov, slabík, hlások“",
+  bloky:[
+    {typ:"aktivita", text:"Ťukni na obrázky, ktoré sa začínajú na J. Keď ťukneš, obrázok sa ozve.",
+     hra:{druh:"vyber", spravne:"J", polozky:[["🍎","jablko"],["🍓","jahoda"],["🦔","ježko"],["🦌","jeleň"],["🦙","lama"],["🐭","myš"],["🚗","auto"],["🍉","melón"]]}},
+    {typ:"tlac", urovne:3, text:"Písmeno J: obtiahni, nájdi J medzi podobnými písmenami, zakrúžkuj obrázky na J a odhaľ skrytý obrázok. Výzva: slovný vláčik, hádanka s nápovedami a vzory.", subor:"sjl-j-zaciatok.pdf"},
+    {typ:"rozhovor", zacni:"„Jjj… ako jablko. Uhádneš, čo ešte začína na jjj?“",
+     otazky:["Čo v kuchyni sa začína na J?","Čím sa začína jablko a čím jahoda? Čo majú rovnaké na začiatku?","Vymysli zvieratko, ktoré sa začína na J. Koľko slabík má jeho meno?"],
+     preteba:"J vyslovuj krátko, ako „j“ (jjj), nie „dže“. Tablet povie písmeno ako názov (jé), hlásku vyslovte vy. Čítať s J budete až podľa šlabikára."}
+  ]},
+
+{ id:"mat-vzory", datum:"2026-11-10", predmet:"MAT", kod:"MAT-ZV-1",
+  nazov:"Vzory: čo príde ďalej?",
+  uvod:"Vzor je rad, ktorý sa stále opakuje: červený, modrý, červený, modrý… Dieťa z gombíkov skladá vzor, hľadá, čo príde ďalej, a nájde chybu, ktorú rodič schválne urobí.",
+  meta:["spolu s rodičom","5 minút","gombíky alebo kocky"],
+  stdn:"ŠVP MAT, Závislosti, vzťahy a práca s údajmi: „identifikovanie prvkov a pravidla opakujúceho sa vzoru tvoreného znakmi, symbolmi, obrázkami, číslami, napr. typu “ab”, “abb”, “aabb”, “abc”, “abbb”“",
+  bloky:[
+    {typ:"spolu", text:"Vezmite gombíky alebo kocky dvoch farieb. Poukladajte vzor: červený, modrý, červený, modrý. Dieťa ho predĺži o tri. Potom skúste ťažší vzor: dva červené, jeden modrý, dva červené, jeden modrý. Nech dieťa vzor povie nahlas ako riekanku."},
+    {typ:"spolu", text:"Ozvena rytmu: rodič zatlieska krátky rytmus (tlesk, tlesk, dupot) a dieťa ho zopakuje. Potom ho predĺži a vymyslí vlastný rytmus pre vás."},
+    {typ:"tlac", urovne:3, text:"Vzory z obrázkov a čísel: pokračuj v rade a doplň, čo chýba. Výzva: nájdi chybu vo vzore, vzor, ktorý rastie, a čísla v rade.", subor:"mat-vzory.pdf"},
+    {typ:"rozhovor", zacni:"„Poukladal som gombíky: červený, modrý, červený, modrý, červený. Čo príde ďalej?“",
+     otazky:["Aký gombík príde ďalej? Ako to vieš?","Aké pravidlo má tento vzor? Povedz ho nahlas ako riekanku.","Ja urobím vzor a schválne v ňom spravím chybu. Nájdeš ju a povieš, čo tam má byť?"],
+     preteba:"V škole sa tomu hovorí vzor a jeho pravidlo. Rytmom (tlesk, dupot) sa to deti učia ľahšie ako z obrázkov."}
+  ]},
+
+{ id:"anj-riddles-colours", datum:"2026-11-10", predmet:"ANJ", kod:"ANJ-RE-2",
+  nazov:"What am I? Hádanky a I spy",
+  uvod:"Tri krátke anglické hádanky o jahode, čísle a žabke. Potom si zahrajte „I spy“: rodič povie „I spy something blue“ a dieťa hľadá v izbe niečo modré.",
+  meta:["spolu s rodičom","5 minút","tablet so zvukom"],
+  stdn:"ŠVP ANJ, Počúvanie s porozumením: „Rozoznať bežné, známe slová za predpokladu, že sú vyslovené zreteľne a pomaly v známom kontexte.“",
+  bloky:[
+    {typ:"hadanka", text:"I am small and red. I am a fruit. What am I?", napoveda:"Som malá a červená. Som ovocie.", odpoved:"A strawberry – jahoda 🍓"},
+    {typ:"hadanka", text:"I am a number. I am after five. What am I?", napoveda:"Som číslo. Idem po päťke.", odpoved:"Six – šesť 6️⃣"},
+    {typ:"hadanka", text:"I am green. I can jump. What am I?", napoveda:"Som zelená. Viem skákať.", odpoved:"A frog – žaba 🐸"},
+    {typ:"spolu", text:"Hra „I spy“: rodič povie „I spy something blue“ a dieťa hľadá v izbe niečo modré a ukáže. Potom sa vymeňte: dieťa povie „I spy something red“ a vy hľadáte. Keď to ide ľahko, povedzte „I spy a book“."}
+  ]},
+
 /* ---------- 9. 11. 2026 (pondelok) ---------- */
 { id:"sjl-kniha-tyzdna-1", datum:"2026-11-09", predmet:"SJL", kod:"SJL-RU-1",
   nazov:"Kniha týždňa: o čom asi bude?",
@@ -38,6 +198,30 @@ window.KARTY = [
     {typ:"rozhovor", zacni:"„Dnes vyberáš knihu ty. Ja podľa obalu hádam, že bude o… A čo myslíš ty?“",
      otazky:["Kto je na tomto obrázku? Čo práve robí?","Čo sa stane, keď otočíme stranu? Prečo si to myslíš?","Keby si bol v tejto knihe ty, čo by si urobil? Čo podobné si už zažil?"],
      preteba:"Nie je to skúšanie: keď dieťa nevie, povedzte odpoveď sami a čítajte ďalej. Tú istú knihu pokojne čítajte znova, vtedy nechajte rozprávať viac dieťa."}
+  ]},
+
+{ id:"mat-pribehy-6", datum:"2026-11-09", predmet:"MAT", kod:"MAT-CO-5",
+  nazov:"Príbehy s číslami do 6",
+  uvod:"„Na strome sedeli 4 vtáčiky. Priletel ešte jeden. Koľko vtáčikov je na strome?“ Tri krátke príbehy na počítanie spamäti alebo na prstoch.",
+  meta:["spolu s rodičom","5 minút","bez pomôcok"],
+  stdn:"ŠVP MAT, Čísla a operácie s číslami: „analyzovanie a navrhovanie metód riešenia jednoduchých slovných úloh na sčítanie a odčítanie – zväčšenie/zmenšenie čísla o niekoľko jednotiek“",
+  bloky:[
+    {typ:"hadanka", text:"Na strome sedeli 4 vtáčiky. Priletel ešte jeden. Koľko vtáčikov je na strome?", odpoved:"5 vtáčikov 🐦 (4 a 1 je 5)"},
+    {typ:"hadanka", text:"Na tanieri bolo 5 jahôd. Ježko Bodliak zjedol dve. Koľko jahôd zostalo?", odpoved:"3 jahody 🍓 (5 mínus 2 sú 3)"},
+    {typ:"hadanka", text:"Veverička mala v jednej labke 3 oriešky a v druhej labke tiež tri. Koľko orieškov mala spolu?", odpoved:"6 orieškov 🌰 (3 a 3 je 6)"},
+    {typ:"tlac", urovne:3, text:"Príbehy s obrázkami a príkladmi: dopíš výsledok, spoj príbeh s príkladom, nakresli vlastný príbeh. Výzva: nájdi všetky spôsoby, ako rozdeliť 6 jabĺk, a chytáky.", subor:"mat-pribehy-6.pdf"},
+    {typ:"spolu", text:"Teraz vymyslí príbeh dieťa a vy počítate. Raz sa schválne pomýľte o jeden. Dieťa vás opraví a ukáže na prstoch, ako to má byť."}
+  ]},
+
+{ id:"anj-co-zmizlo", datum:"2026-11-09", predmet:"ANJ", kod:"ANJ-PR-1",
+  nazov:"What's missing? Čo zmizlo z tašky?",
+  uvod:"Na stole sú štyri školské veci. Dieťa zavrie oči, vy jednu schováte a dieťa háda po anglicky, čo zmizlo: pencil, book, ruler alebo crayon?",
+  meta:["spolu s rodičom","5 minút","školské veci"],
+  stdn:"ŠVP ANJ, Ústny prejav: „Zrozumiteľne vysloviť jednotlivé hlásky a obmedzený počet naučených slov a slovných spojení.“",
+  bloky:[
+    {typ:"pocuvanie", text:"Najprv si slovíčka vypočujte. Ťukni na vec a zopakuj po tablete.",
+     slova:[["✏️","pencil"],["📕","book"],["📏","ruler"],["🖍️","crayon"],["🎒","bag"]]},
+    {typ:"spolu", text:"Položte na stôl ceruzku, knihu, pravítko a voskovku. Dieťa ich pomenuje po anglicky. Potom zavrie oči, vy jednu vec schováte do tašky a dieťa háda: „Pencil?“ Keď uhádne, vymeňte sa. Keď to ide ľahko, pridajte piatu vec alebo schovajte dve."}
   ]},
 
 /* ---------- 6. 11. 2026 (piatok) ---------- */

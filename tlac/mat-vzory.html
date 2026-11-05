@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="sk"><head><meta charset="utf-8"><title>Vzory: čo príde ďalej – pracovný list (3 úrovne)</title>
+<link rel="stylesheet" href="list.css">
+<style>
+  .stlpec1{display:flex;flex-direction:column;gap:3.2mm}
+  /* rad vzoru – skladá ho skript z data-v */
+  .vzor{display:flex;align-items:center;gap:2mm}
+  .vzor .pic{width:13mm;height:13mm;stroke-width:3.4}
+  .vzor .okno{width:12mm;height:12mm;border-style:dashed}
+  .vzor .cislo{width:11mm;text-align:center;font-size:27px;font-weight:700}
+  .vzor .k{width:11mm;height:11mm;border:1.5px solid #111;border-radius:50%;flex:none;background:#fff}
+  .vzor .k.b{background:#111}
+  .vzor .k.o{border-style:dashed}
+  .vzor .tl{width:9mm;height:9mm;border-radius:50%;background:#111;flex:none;margin:0 1mm}
+  .vzor .du{width:0;height:0;border-left:5.5mm solid transparent;border-right:5.5mm solid transparent;border-bottom:10mm solid #111;flex:none;margin:0 .5mm}
+  .vzor.velky .pic{width:16mm;height:16mm}
+  .vzor.velky .okno{width:14mm;height:14mm}
+  .volby{display:flex;gap:7mm;margin-left:6mm;padding-left:6mm;border-left:1.2px dotted #999}
+  .volby .v{display:flex;flex-direction:column;align-items:center;gap:1mm}
+  .volby .kruzok{width:6mm;height:6mm}
+  .volby .pic{width:13mm;height:13mm;stroke-width:3.4}
+  .rastie{display:flex;gap:10mm;align-items:flex-end}
+  .rastie>div{display:flex;flex-direction:column;gap:1mm;align-items:center}
+  .rastie .bodky{display:flex;gap:1.5mm}
+  .rastie .bodky i{display:block;width:6mm;height:6mm;border-radius:50%;background:#111}
+  .rastie .bodky i.p{background:none;border:1.3px dashed #666}
+  .rastie .okno{width:auto;height:11mm;padding:0 2mm;display:flex;align-items:center;gap:1.5mm;border-style:dashed}
+  .vlastny .vzor{margin-bottom:3mm}
+  .chyba .vzor{margin-bottom:0}
+  .chyba>div{display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:2mm;padding-bottom:1.2mm;border-bottom:1px dotted #bbb}
+  .chyba .vzor{gap:1mm}.chyba .vzor .pic{width:10.5mm;height:10.5mm}.chyba .vzor .cislo{width:10mm}
+  .chyba>div:last-child{border:none;padding-bottom:0}
+  .chyba .opr{display:flex;align-items:center;gap:1.5mm;font-size:13px;white-space:nowrap;flex-direction:column}
+  .chyba .opr .okno{width:11mm;height:11mm}
+  .pozn2{font-size:13px;color:#444}
+  .ciselne{display:grid;grid-template-columns:1fr;gap:2mm}
+</style></head>
+<body>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 1 – ĽAHŠIE                                                     -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="1">
+  <header class="hlava" data-predmet="Matematika">Čo príde ďalej?</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Pokračuj vo vzore. Nakresli do prázdnych okienok to, čo príde ďalej.</span></div>
+    <div class="plocha stlpec1">
+      <div class="vzor velky" data-v="hviezda srdce hviezda srdce hviezda _ _"></div>
+      <div class="vzor velky" data-v="slnko mesiac slnko mesiac slnko _ _"></div>
+      <div class="vzor velky" data-v="jablko lopta jablko lopta jablko _ _"></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Korálky. Vyfarbi prázdne krúžky tak, aby vzor pokračoval.<span class="pozn">Čierny, biely, čierny, biely…</span></span></div>
+    <div class="plocha stlpec1">
+      <div class="vzor" data-v="b w b w b o o o o"></div>
+      <div class="vzor" data-v="w b w b w o o o o"></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Čo príde ďalej? Zakrúžkuj správny obrázok.</span></div>
+    <div class="plocha stlpec1">
+      <div style="display:flex;align-items:center"><div class="vzor" data-v="kvet slnko kvet slnko kvet ?"></div><div class="volby"><span class="v"><svg class="pic"><use href="#kvet"/></svg></span><span class="v"><svg class="pic"><use href="#slnko"/></svg></span></div></div>
+      <div style="display:flex;align-items:center"><div class="vzor" data-v="tl du tl du tl ?"></div><div class="volby"><span class="v"><span class="vzor"><span class="tl"></span></span></span><span class="v"><span class="vzor"><span class="du"></span></span></span></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Vyrob si vlastný náramok. Vymysli vzor z dvoch farieb alebo obrázkov a vyfarbi ho.</span></div>
+    <div class="plocha stlpec1"><div class="vzor velky" data-v="o o o o o o o o o" style="justify-content:space-around"></div><div class="vzor velky" data-v="o o o o o o o o o" style="justify-content:space-around"></div></div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Vzor je rad, ktorý sa stále opakuje. Povedzte ho spolu nahlas rytmom („hviezda, srdce, hviezda, srdce…“) – rytmus pomáha uhádnuť, čo príde. V úlohe 3 si druhý vzor zahrajte: ● je tlesk, ▲ je dupnutie. V úlohe 4 môže byť vzor akýkoľvek, stačí, aby sa opakoval.
+      <b>Riešenie:</b> 1 – hviezda, srdce · slnko, mesiac · jablko, lopta · 2 – čierny, biely, čierny, biely (prvý rad) · biely, čierny, biely, čierny (druhý rad) · 3 – slnko, dupnutie.
+      <span class="std">MAT-ZV-1 · ŠVP MAT, Závislosti, vzťahy a práca s údajmi: „identifikovanie prvkov a pravidla opakujúceho sa vzoru tvoreného znakmi, symbolmi, obrázkami, číslami, napr. typu ab, abb, aabb, abc“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 2 – BEŽNÉ                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="2">
+  <header class="hlava" data-predmet="Matematika">Vzory a pravidlá</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Pokračuj vo vzore. Nakresli do okienok dva ďalšie obrázky.</span></div>
+    <div class="plocha stlpec1">
+      <div class="vzor" data-v="hviezda hviezda srdce hviezda hviezda srdce hviezda _ _"></div>
+      <div class="vzor" data-v="slnko oblak oblak slnko oblak oblak slnko _ _"></div>
+      <div class="vzor" data-v="jablko lopta hviezda jablko lopta hviezda jablko _ _"></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Zakrúžkuj časť, ktorá sa stále opakuje. Povedz pravidlo.</span></div>
+    <div class="plocha stlpec1">
+      <div class="vzor" data-v="kvet kvet srdce kvet kvet srdce kvet kvet srdce"></div>
+      <div class="vzor" data-v="slnko oblak slnko oblak slnko oblak slnko oblak"></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Vzor z čísel. Doplň, čo chýba.</span></div>
+    <div class="plocha stlpec1">
+      <div class="vzor" data-v="1 2 1 2 1 2 _ _"></div>
+      <div class="vzor" data-v="2 2 3 2 2 3 2 _ _"></div>
+      <div class="vzor" data-v="1 2 3 1 2 3 1 _ _"></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Rytmus. Povedz ho nahlas, ● je tlesk a ▲ je dupnutie. Dokresli, čo príde.</span></div>
+    <div class="plocha stlpec1">
+      <div class="vzor" data-v="tl tl du tl tl du tl tl _"></div>
+      <div class="vzor" data-v="du tl tl du tl tl du _ _"></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Vzory povedzte spolu nahlas ako riekanku, napr. „hviezda hviezda srdce, hviezda hviezda srdce“. V úlohe 2 stačí obtiahnuť jednu skupinu, ktorá sa opakuje (hviezda hviezda srdce). Rytmy v úlohe 4 si potom zahrajte telom.
+      <b>Riešenie:</b> 1 – hviezda, srdce · oblak, oblak · lopta, hviezda · 2 – kvet kvet srdce · slnko oblak · 3 – 1, 2 · 2, 3 · 2, 3 · 4 – dup · tlesk, tlesk.
+      <span class="std">MAT-ZV-1 · ŠVP MAT, Závislosti, vzťahy a práca s údajmi: „identifikovanie prvkov a pravidla opakujúceho sa vzoru tvoreného znakmi, symbolmi, obrázkami, číslami, napr. typu ab, abb, aabb, abc“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 3 – VÝZVA                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="3">
+  <header class="hlava" data-predmet="Matematika">Detektív vzorov</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>V každom vzore je jedna chyba. Zakrúžkuj ju a napíš alebo nakresli, čo tam má byť.</span></div>
+    <div class="plocha chyba">
+      <div><div class="vzor" data-v="srdce hviezda srdce hviezda hviezda hviezda srdce hviezda"></div><div class="opr">Má tam byť: <span class="okno"></span></div></div>
+      <div><div class="vzor" data-v="jablko lopta hviezda jablko hviezda hviezda jablko lopta hviezda"></div><div class="opr">Má tam byť: <span class="okno"></span></div></div>
+      <div><div class="vzor" data-v="1 2 3 1 2 3 1 3 3"></div><div class="opr">Má tam byť: <span class="okno"></span></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Vzor rastie. Nakresli, aký bude štvrtý a piaty obrazec.</span></div>
+    <div class="plocha rastie">
+      <div><span class="bodky"><i></i></span>1</div>
+      <div><span class="bodky"><i></i><i></i></span>2</div>
+      <div><span class="bodky"><i></i><i></i><i></i></span>3</div>
+      <div><span class="okno" style="min-width:34mm"></span>?</div>
+      <div><span class="okno" style="min-width:40mm"></span>?</div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Čísla v rade. Zisti pravidlo a pokračuj.</span></div>
+    <div class="plocha stlpec1" style="gap:1.6mm">
+      <div class="vzor" data-v="2 4 6 _ _"></div>
+      <div class="vzor" data-v="1 3 5 _ _"></div>
+      <div class="vzor" data-v="6 5 4 _ _"></div>
+      <div class="vzor" data-v="1 1 2 1 1 2 _ _"></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Vymysli vzor pre rodiča. Schválne urob jednu chybu a nechaj ho, nech ju nájde.</span></div>
+    <div class="plocha vlastny"><div class="vzor" data-v="_ _ _ _ _ _ _ _ _" style="justify-content:space-around;margin-bottom:0"></div></div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Výzva je pre deti, ktoré vzory poznajú a chcú hľadať pravidlo. V úlohe 1 je chyba vždy len jedna a dá sa dokázať: povedzte vzor nahlas a zastavte sa, kde sa rytmus zlomí. V úlohe 2 nejde o počty: dieťa zistí, že pribúda vždy o jednu bodku. Pri čítaní čísel v úlohe 3 stačí rad „po dvoch“, „odzadu“.
+      <b>Riešenie:</b> 1 – 5. miesto má byť srdce · 5. miesto má byť lopta · 8. miesto má byť 2 · 2 – 4 bodky a 5 bodiek · 3 – 8, 10 · 7, 9 · 3, 2 · 1, 1.
+      <span class="std">MAT-ZV-1 · ŠVP MAT, Závislosti, vzťahy a práca s údajmi: „vyhľadanie chyby vo vzore/postupnosti a navrhnutie jej opravy“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<script src="obrazky.js"></script><script src="nastroje.js"></script>
+<script>
+/* rady vzorov z data-v: názov obrázka, číslo, _ = okno na kreslenie, b/w = čierny/biely krúžok, o = krúžok na vyfarbenie, tl/du = tlesk/dup, ? = otáznik */
+document.querySelectorAll("[data-v]").forEach(el => {
+  el.innerHTML = el.dataset.v.split(" ").map(t => {
+    if (window.OBRAZKY.includes(t)) return `<svg class="pic"><use href="#${t}"/></svg>`;
+    if (t === "_") return `<span class="okno"></span>`;
+    if (/^\d+$/.test(t)) return `<span class="cislo">${t}</span>`;
+    if (t === "b") return `<span class="k b"></span>`;
+    if (t === "w") return `<span class="k"></span>`;
+    if (t === "o") return `<span class="k o"></span>`;
+    if (t === "tl") return `<span class="tl"></span>`;
+    if (t === "du") return `<span class="du"></span>`;
+    if (t === "?") return `<span class="cislo" style="font-size:32px">?</span>`;
+    return t;
+  }).join("");
+});
+</script>
+</body></html>

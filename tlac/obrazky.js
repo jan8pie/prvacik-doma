@@ -335,6 +335,18 @@ const O = {
           <path d="M20 46 C22 42 26 40 30 40 M64 46 C66 42 70 40 74 40" style="stroke-width:1.8"/>`,
   ucho:  `<path class="w" d="M38 88 C30 88 28 80 32 74 C36 68 38 64 34 58 C24 46 26 18 52 12 C74 8 86 26 82 44 C80 56 70 62 66 70 C62 80 56 88 46 88 Z"/>
           <path d="M44 56 C38 44 44 30 56 30 C66 30 70 40 66 48 C62 54 56 52 56 60" style="stroke-width:2.6"/>`,
+  /* ================= NA PÍSMENO J (5. 11. 2026) ================= */
+  jelen: `<path d="M37 36 C30 28 27 16 31 5 M31 20 C25 19 20 15 17 8 M34 28 C27 29 22 27 18 22"/>
+          <path d="M63 36 C70 28 73 16 69 5 M69 20 C75 19 80 15 83 8 M66 28 C73 29 78 27 82 22"/>
+          <ellipse class="w" cx="29" cy="45" rx="10" ry="5.5" transform="rotate(-22 29 45)"/><ellipse class="w" cx="71" cy="45" rx="10" ry="5.5" transform="rotate(22 71 45)"/>
+          <path class="w" d="M36 38 C44 35 56 35 64 38 C69 58 61 84 50 93 C39 84 31 58 36 38 Z"/>
+          <circle class="f" cx="42.5" cy="54" r="2.5"/><circle class="f" cx="57.5" cy="54" r="2.5"/>
+          <ellipse class="f" cx="50" cy="86" rx="5" ry="3.6"/><path d="M50 90 V93" style="stroke-width:1.6"/>`,
+  jojo:  `<ellipse class="w" cx="50" cy="12" rx="8" ry="6"/>
+          <path d="M50 18 C43 28 57 36 50 44"/>
+          <circle class="w" cx="50" cy="70" r="27"/><circle cx="50" cy="70" r="17" style="stroke-width:2"/>
+          <circle class="f" cx="50" cy="70" r="4.5"/>
+          <path d="M26 56 C30 50 36 46 42 45" style="stroke-width:2"/>`,
   /* ---- väčšia plocha na pravej strane: krokodíl na porovnávanie (ústa sa otvárajú k väčšiemu) ---- */
   krokodil: ["0 0 160 100", `<path class="w" d="M108 76 L102 92 H92 L98 78 M146 68 L140 88 H130 L136 70"/>
           <path class="w" d="M70 46 C76 36 88 34 98 38 C112 40 128 40 140 46 C152 52 158 60 160 70 C152 66 144 66 136 70 C122 78 104 82 88 82 L74 80 Z"/>
