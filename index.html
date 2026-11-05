@@ -41,6 +41,11 @@ button{font:inherit;color:inherit}
 .top h1{font-size:30px;letter-spacing:-.01em}
 .top p{margin:0;color:var(--muted)}
 .proto{font-size:14px;background:var(--soft);border:1px dashed var(--line);border-radius:10px;padding:10px 12px;color:var(--muted)}
+.hry{display:flex;flex-wrap:wrap;gap:8px;padding-block:4px}
+.hrabtn{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--mat);text-decoration:none;font-family:var(--f-head);font-weight:600;font-size:15px;min-height:44px}
+.hrabtn svg{width:20px;height:20px}
+.hrabtn span{font-family:var(--f-body);font-weight:400;font-size:13px;color:var(--muted)}
+.hrabtn:hover{border-color:var(--mat)}
 .legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:14px;color:var(--muted)}
 .legend span{display:inline-flex;align-items:center;gap:5px}
 
@@ -212,6 +217,7 @@ a.btn.primary{color:var(--accent-ink)}
   <header class="top">
     <h1>Prváčik doma</h1>
     <p>Krátke témy a úlohy k tomu, čo sa práve preberá v 1. ročníku. Nové pribúdajú navrchu.</p>
+    <div class="hry"><a class="hrabtn" href="kocky.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/></svg>Hra s kockami<span>čísla do 100</span></a></div>
     <div class="legend" id="legend"></div>
   </header>
   <main class="wrap" id="feed" style="gap:14px"></main>
