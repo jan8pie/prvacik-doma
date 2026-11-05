@@ -513,7 +513,8 @@ window.KARTY = [
     {typ:"spolu", text:"Dajte na stôl tri taniere. Dieťa dá na prvý dve fazuľky, na druhý jednu a tretí nechá prázdny. Povedzte, koľko je na ktorom tanieri. Potom sa vymeňte."},
     {typ:"rozhovor", zacni:"„Koľko dinosaurov dnes chodí do tvojej triedy?“",
      otazky:["Čoho je u nás doma nula?","Je nula viac, alebo menej ako jedna?","Ako by si nakreslil nulu jabĺk?"],
-     preteba:"Pri nule pomáha prázdny tanier alebo prázdna krabička. Na číselnom rade stojí nula pred jednotkou."}
+     preteba:"Pri nule pomáha prázdny tanier alebo prázdna krabička. Na číselnom rade stojí nula pred jednotkou."},
+    {typ:"tlac", urovne:3, text:"Písanie nuly, prázdny tanier a číselný rad od nuly. Počítanie s nulou, porovnávanie a odpočítavanie rakety. Výzva: pravda alebo nie, hádanky na myslené číslo a všetky príklady s výsledkom 0.", subor:"mat-nula.pdf"}
   ]},
 
 { id:"anj-autumn", datum:"2026-10-21", predmet:"ANJ", kod:"ANJ-RE-2",
