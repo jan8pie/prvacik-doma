@@ -123,7 +123,7 @@ window.KARTY = [
      preteba:"Dĺžeň je čiarka nad samohláskou (á). Dlhú slabiku vyslovte natiahnuto („máá“). V šlabikári sú krátke a dlhé slabiky zvlášť."}
   ]},
 
-{ id:"mat-skaceme-6", datum:"2026-11-11", predmet:"MAT", kod:"MAT-CO-3",
+{ id:"mat-skaceme-6", datum:"2026-12-02", predmet:"MAT", kod:"MAT-CO-3",
   nazov:"Zajko skáče po číselnej osi do 6",
   uvod:"Sčítanie je skok doprava, odčítanie skok doľava. Dieťa najprv sčíta jahody na tablete a potom skáče po číslach 0 až 6 na zemi ako zajko po číselnej osi.",
   meta:["dieťa samo aj s rodičom","10 minút","tablet, papiere s číslami"],
@@ -502,7 +502,7 @@ window.KARTY = [
     {typ:"tlac", urovne:3, text:"Obťahovanie E, kde počuješ e, veľké a malé písmená, húsenica slabík a prvé vety o Eme a mame. Výzva: tajný kód a čítanie odzadu.", subor:"sjl-e.pdf"}
   ]},
 
-{ id:"mat-nula", datum:"2026-10-21", predmet:"MAT", kod:"MAT-CO-1",
+{ id:"mat-nula", datum:"2026-11-11", predmet:"MAT", kod:"MAT-CO-1",
   nazov:"Nula: keď nie je nič",
   uvod:"Na tanieri boli tri piškóty, zjedli sme ich a teraz je tam nula. Nula je číslo pre „nič“. Hľadajte spolu, čoho je doma práve nula.",
   meta:["spolu s rodičom","5 minút","tanier, drobnosti"],
@@ -513,7 +513,8 @@ window.KARTY = [
     {typ:"spolu", text:"Dajte na stôl tri taniere. Dieťa dá na prvý dve fazuľky, na druhý jednu a tretí nechá prázdny. Povedzte, koľko je na ktorom tanieri. Potom sa vymeňte."},
     {typ:"rozhovor", zacni:"„Koľko dinosaurov dnes chodí do tvojej triedy?“",
      otazky:["Čoho je u nás doma nula?","Je nula viac, alebo menej ako jedna?","Ako by si nakreslil nulu jabĺk?"],
-     preteba:"Pri nule pomáha prázdny tanier alebo prázdna krabička. Na číselnom rade stojí nula pred jednotkou."}
+     preteba:"Pri nule pomáha prázdny tanier alebo prázdna krabička. Na číselnom rade stojí nula pred jednotkou."},
+    {typ:"tlac", urovne:3, text:"Písanie nuly, prázdny tanier a číselný rad od nuly. Počítanie s nulou, porovnávanie a odpočítavanie rakety. Výzva: pravda alebo nie, hádanky na myslené číslo a všetky príklady s výsledkom 0.", subor:"mat-nula.pdf"}
   ]},
 
 { id:"anj-autumn", datum:"2026-10-21", predmet:"ANJ", kod:"ANJ-RE-2",
@@ -544,7 +545,7 @@ window.KARTY = [
     {typ:"tlac", urovne:3, text:"Hádanky na M, jedlo na mmm, hľadanie slova mama a obťahovanie M. Slabika ma v oblúčikoch a prvé vety. Výzva: detektívne hádanky a slovná pyramída.", subor:"sjl-m-hadanky.pdf"}
   ]},
 
-{ id:"mat-rozklad-5", datum:"2026-10-14", predmet:"MAT", kod:"MAT-CO-4",
+{ id:"mat-rozklad-5", datum:"2026-10-28", predmet:"MAT", kod:"MAT-CO-4",
   nazov:"Päť prstov, päť orieškov: rozklad čísla 5",
   uvod:"Päť sa dá rozdeliť rôzne: 4 a 1, 3 a 2, 5 a 0. Veverička schová časť orieškov do vrecúška a dieťa háda, koľko ich tam je. Stačí si pomôcť prstami jednej ruky.",
   meta:["dieťa samo","3 minúty","tablet alebo prsty"],
@@ -585,7 +586,7 @@ window.KARTY = [
     {typ:"tlac", urovne:3, text:"Mmm a aaa je ma: obťahovanie slabík, čo sa začína na ma, prečítaj a nakresli MAMA a MÁM. Výzva: škriatok poplietol písmená, koľko písmen a koľko slabík.", subor:"sjl-a-ma.pdf"}
   ]},
 
-{ id:"mat-uberame", datum:"2026-10-07", predmet:"MAT", kod:"MAT-CO-3",
+{ id:"mat-uberame", datum:"2026-10-21", predmet:"MAT", kod:"MAT-CO-3",
   nazov:"Uberáme: koľko zostalo?",
   uvod:"Na stole sú štyri sušienky a dve zjeme. Koľko zostalo? Pri uberaní dieťa najprv počíta, čo bolo, potom čo zmizlo, a nakoniec to, čo zostalo.",
   meta:["spolu s rodičom","5 minút","fazuľky, hrnček"],
@@ -622,7 +623,7 @@ window.KARTY = [
     {typ:"tlac", urovne:3, text:"Oblúčiky pod obrázky, hra na robota, triedenie podľa počtu slabík a pokusné čítanie MA-MA, SO-VA. Výzva: slabikové schody a prečo má malá rybička dlhšie slovo.", subor:"sjl-tlieskame.pdf"}
   ]},
 
-{ id:"mat-pridavame", datum:"2026-09-30", predmet:"MAT", kod:"MAT-CO-3",
+{ id:"mat-pridavame", datum:"2026-10-14", predmet:"MAT", kod:"MAT-CO-3",
   nazov:"Pridávame: koľko je spolu?",
   uvod:"Na jednom tanieri sú dve jahody, na druhom jedna. Koľko je spolu? Dieťa počíta jahody na tablete na úrovni Ľahšie, kde súčet nepresiahne štyri.",
   meta:["dieťa samo","2 minúty","tablet so zvukom"],
