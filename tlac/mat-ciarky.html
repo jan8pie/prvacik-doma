@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="sk"><head><meta charset="utf-8"><title>Čiarky a tabuľka – pracovný list (3 úrovne)</title>
+<link rel="stylesheet" href="list.css">
+<style>
+  .kopa{display:flex;flex-wrap:wrap;gap:.5mm 3mm;justify-content:center;align-items:center;border:1.2px dashed #999;border-radius:3mm;padding:1.2mm 4mm}
+  .kopa .pic{width:10.5mm;height:10.5mm}
+  .tbl{display:grid;grid-template-columns:20mm 1fr 14mm;gap:0;align-items:stretch}
+  .tbl>*{border-bottom:1.2px solid #111;display:flex;align-items:center;min-height:9mm;padding:.2mm 2mm}
+  .tbl>.h{font-size:12.5px;color:#444;min-height:6mm;border-bottom:1.2px solid #111}
+  .tbl .eti{font-size:17px;font-weight:700}
+  .tbl .eti .pic{width:8mm;height:8mm}
+  .tbl .kt{border-left:1.2px solid #111;border-right:1.2px solid #111}
+  .tbl .cs{justify-content:center}
+  .tbl .cs .okno,.kl .okno{width:8.5mm;height:8.5mm}
+  .tbl.siroka{grid-template-columns:26mm 1fr 14mm}
+  .car{display:inline-flex;gap:3mm;align-items:center}
+  .car svg{height:7mm;width:auto;display:block;overflow:visible}
+  .car line{stroke:#111;stroke-width:5;stroke-linecap:round}
+  .stlp{display:flex;gap:0}
+  .stlp i{display:block;width:7.5mm;height:7.5mm;border:1.3px solid #111;margin-left:-1.3px;background:#fff}
+  .stlp i.p{background:repeating-linear-gradient(45deg,#111 0 .45mm,#fff .45mm 1.5mm)}
+  .graf{display:grid;grid-template-columns:14mm 1fr;gap:.8mm 3mm;align-items:center}
+  .graf .pic{width:9mm;height:9mm}
+  .volba{display:flex;align-items:center;gap:3mm;font-size:17px;font-weight:700}
+  .volba .pic{width:9.5mm;height:9.5mm}
+  .pikto{display:grid;grid-template-columns:24mm 1fr 14mm;gap:1.4mm 3mm;align-items:center}
+  .pikto .pic{width:10.5mm;height:10.5mm}.pikto .okno{width:10.5mm;height:10.5mm}
+  .pikto .r{display:flex;gap:1.5mm}
+  .kl{display:flex;align-items:center;gap:2mm;font-size:15px}
+  .pozn2{font-size:14px;color:#444}
+  .kocka-tbl{display:grid;grid-template-columns:repeat(6,1fr);border:1.2px solid #111}
+  .kocka-tbl>div{border-left:1.2px solid #111;display:flex;flex-direction:column;align-items:center;gap:1mm;padding:1.5mm 0 1mm}
+  .kocka-tbl>div:first-child{border-left:none}
+  .kocka-tbl .tl{height:12mm;width:100%;display:flex;align-items:center;justify-content:center}
+  .chybny{display:flex;align-items:center;gap:5mm}
+</style></head>
+<body>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 1 – ĽAHŠIE                                                     -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="1">
+  <header class="hlava" data-predmet="Matematika">Čiarky a tabuľka</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Spočítaj obrázky. Zapíš ich čiarkami (jeden obrázok = jedna čiarka) a napíš číslo.</span></div>
+    <div class="plocha" style="display:flex;flex-direction:column;gap:3mm">
+      <div class="kopa"><i o="jablko"></i><i o="hviezda"></i><i o="jahoda"></i><i o="jablko"></i><i o="jahoda"></i><i o="hviezda"></i><i o="jablko"></i><i o="jahoda"></i><i o="jablko"></i></div>
+      <div class="tbl">
+        <div class="h">Obrázok</div><div class="h kt" style="border-left:1.2px solid #111">Čiarky</div><div class="h cs">Číslo</div>
+        <div class="eti"><i o="jablko"></i></div><div class="kt"></div><div class="cs"><span class="okno"></span></div>
+        <div class="eti"><i o="jahoda"></i></div><div class="kt"></div><div class="cs"><span class="okno"></span></div>
+        <div class="eti"><i o="hviezda"></i></div><div class="kt"></div><div class="cs"><span class="okno"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Ria zapísala čiarkami, koľko má samolepiek. Vyfarbi toľko štvorčekov, koľko je čiarok.</span></div>
+    <div class="plocha">
+      <div class="graf">
+        <i o="zajac"></i><div style="display:flex;align-items:center;gap:5mm"><span class="car" data-n="3"></span><span class="stlp" data-n="6"></span></div>
+        <i o="macka"></i><div style="display:flex;align-items:center;gap:5mm"><span class="car" data-n="5"></span><span class="stlp" data-n="6"></span></div>
+        <i o="pes"></i><div style="display:flex;align-items:center;gap:5mm"><span class="car" data-n="2"></span><span class="stlp" data-n="6"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Pozri sa na stĺpce. Zakrúžkuj, čoho je najviac, a podčiarkni, čoho je najmenej.</span></div>
+    <div class="plocha" style="display:flex;flex-direction:column;gap:3mm">
+      <div class="graf">
+        <i o="jablko"></i><span class="stlp" data-n="6" data-p="4"></span>
+        <i o="jahoda"></i><span class="stlp" data-n="6" data-p="6"></span>
+        <i o="hviezda"></i><span class="stlp" data-n="6" data-p="3"></span>
+      </div>
+      <div class="volba" style="justify-content:space-around">Najviac je: <i o="jablko"></i><i o="jahoda"></i><i o="hviezda"></i> Najmenej je: <i o="jablko"></i><i o="jahoda"></i><i o="hviezda"></i></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Spočítaj doma a zapíš čiarkami.</span></div>
+    <div class="plocha">
+      <div class="tbl siroka">
+        <div class="eti">okná</div><div class="kt"></div><div class="cs"><span class="okno"></span></div>
+        <div class="eti">dvere</div><div class="kt"></div><div class="cs"><span class="okno"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Čiarky sú najstarší spôsob počítania. Dieťa ukáže prstom na obrázok a hneď urobí čiarku, aby nič nezabudlo ani nespočítalo dvakrát. Piata čiarka sa píše naprieč cez štyri: vznikne „zväzok“ po päť. V úlohe 3 stačí povedať: „Ktorý stĺpec je najdlhší?“ V úlohe 4 sa spýtajte, čoho je doma viac.
+      <b>Riešenie:</b> 1 – jablká 4, jahody 3, hviezdy 2 · 2 – 3, 5, 2 štvorčeky · 3 – najviac jahody, najmenej hviezdy · 4 – podľa domova.
+      <span class="std">MAT-ZV-2 · ŠVP MAT, Závislosti, vzťahy a práca s údajmi: „zber, triedenie, usporiadanie a zaznamenávanie údajov graficky – tabuľka, graf, diagram, piktogram, početnosti vyjadrené sčítacími čiarkami a numericky“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 2 – BEŽNÉ                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="2">
+  <header class="hlava" data-predmet="Matematika">Čiarky a tabuľka</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Spočítaj obrázky. Zapíš ich čiarkami a napíš číslo.</span></div>
+    <div class="plocha" style="display:flex;flex-direction:column;gap:3mm">
+      <div class="kopa"><i o="jahoda"></i><i o="hviezda"></i><i o="jablko"></i><i o="jablko"></i><i o="jahoda"></i><i o="jablko"></i><i o="hviezda"></i><i o="jablko"></i><i o="jahoda"></i><i o="jablko"></i><i o="jahoda"></i><i o="hviezda"></i></div>
+      <div class="tbl">
+        <div class="h">Obrázok</div><div class="h kt" style="border-left:1.2px solid #111">Čiarky</div><div class="h cs">Číslo</div>
+        <div class="eti"><i o="jablko"></i></div><div class="kt"></div><div class="cs"><span class="okno"></span></div>
+        <div class="eti"><i o="jahoda"></i></div><div class="kt"></div><div class="cs"><span class="okno"></span></div>
+        <div class="eti"><i o="hviezda"></i></div><div class="kt"></div><div class="cs"><span class="okno"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Pozri sa na tabuľku a odpovedz.</span></div>
+    <div class="plocha" style="display:flex;flex-direction:column;gap:3mm">
+      <div class="tbl">
+        <div class="h">Zvieratko</div><div class="h kt" style="border-left:1.2px solid #111">Čiarky</div><div class="h cs">Číslo</div>
+        <div class="eti"><i o="zajac"></i></div><div class="kt"><span class="car" data-n="6"></span></div><div class="cs">6</div>
+        <div class="eti"><i o="macka"></i></div><div class="kt"><span class="car" data-n="3"></span></div><div class="cs">3</div>
+        <div class="eti"><i o="pes"></i></div><div class="kt"><span class="car" data-n="7"></span></div><div class="cs">7</div>
+      </div>
+      <div class="volba" style="justify-content:space-between;font-size:16px">
+        <span class="kl">Zajacov a mačiek je spolu: <span class="okno"></span></span>
+        <span class="kl">Psov je viac ako mačiek o: <span class="okno"></span></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Vyfarbi toľko štvorčekov, koľko ukazuje číslo.</span></div>
+    <div class="plocha">
+      <div class="graf" style="grid-template-columns:14mm 8mm 1fr">
+        <i o="jablko"></i><b style="font-size:20px">5</b><span class="stlp" data-n="8"></span>
+        <i o="jahoda"></i><b style="font-size:20px">7</b><span class="stlp" data-n="8"></span>
+        <i o="hviezda"></i><b style="font-size:20px">3</b><span class="stlp" data-n="8"></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Doplň chýbajúce údaje do tabuľky.</span></div>
+    <div class="plocha">
+      <div class="tbl">
+        <div class="h">Obrázok</div><div class="h kt" style="border-left:1.2px solid #111">Čiarky</div><div class="h cs">Číslo</div>
+        <div class="eti"><i o="kvet"></i></div><div class="kt"><span class="car" data-n="4"></span></div><div class="cs"><span class="okno"></span></div>
+        <div class="eti"><i o="auto"></i></div><div class="kt"></div><div class="cs">6</div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> V úlohe 2 sa nechajte vysvetliť, ako dieťa porovnáva. Pri „o koľko viac“ môže škrtať čiarky po dvojiciach. V úlohe 4 sa dopĺňa raz číslo, raz čiarky.
+      <b>Riešenie:</b> 1 – jablká 5, jahody 4, hviezdy 3 · 2 – zajace a mačky spolu 9; psov je o 4 viac ako mačiek · 3 – štvorčeky 5, 7, 3 · 4 – kvety: číslo 4 · autá: 6 čiarok.
+      <span class="std">MAT-ZV-2 · ŠVP MAT, Závislosti, vzťahy a práca s údajmi: „doplnenie chýbajúcich údajov do tabuliek a grafov“ · „určovanie početností a ich porovnávanie“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 3 – VÝZVA                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="3">
+  <header class="hlava" data-predmet="Matematika">Čiarky, obrázky a kocka</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>V tejto tabuľke znamená jeden obrázok 2 kusy. Koľko kusov je v každom riadku?<span class="pozn">Potom spočítaj, koľko je spolu jahôd a hviezd.</span></span></div>
+    <div class="plocha">
+      <div class="pikto">
+        <i o="jahoda"></i><div class="r"><i o="jahoda" n="4"></i></div><span class="okno"></span>
+        <i o="hviezda"></i><div class="r"><i o="hviezda" n="2"></i></div><span class="okno"></span>
+        <i o="srdce"></i><div class="r"><i o="srdce" n="3"></i></div><span class="okno"></span>
+      </div>
+      <div class="kl" style="justify-content:flex-end;margin-top:2mm;font-size:16px">Jahôd a hviezd je spolu: <span class="okno"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Jeden obrázok znamená 2 kusy. Nakresli správny počet obrázkov.</span></div>
+    <div class="plocha">
+      <div class="pikto">
+        <span style="font-size:17px;font-weight:700">6 mačiek</span><div class="r" style="border-bottom:1.2px dotted #999;height:10mm"></div><span></span>
+        <span style="font-size:17px;font-weight:700">4 psy</span><div class="r" style="border-bottom:1.2px dotted #999;height:10mm"></div><span></span>
+        <span style="font-size:17px;font-weight:700">10 zajacov</span><div class="r" style="border-bottom:1.2px dotted #999;height:10mm"></div><span></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Hoď kockou 12-krát. Zapíš čiarkami, koľkokrát padlo každé číslo.</span></div>
+    <div class="plocha" style="display:flex;flex-direction:column;gap:3mm">
+      <div class="kocka-tbl">
+        <div><i kocka="1" class="m"></i><span class="tl"></span></div>
+        <div><i kocka="2" class="m"></i><span class="tl"></span></div>
+        <div><i kocka="3" class="m"></i><span class="tl"></span></div>
+        <div><i kocka="4" class="m"></i><span class="tl"></span></div>
+        <div><i kocka="5" class="m"></i><span class="tl"></span></div>
+        <div><i kocka="6" class="m"></i><span class="tl"></span></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:16px;font-weight:700">
+        <span class="kl">Najčastejšie padlo číslo <span class="okno m"></span></span>
+        <span class="kl">Všetkých čiarok je <span class="okno m"></span> (má ich byť 12)</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Chyták: Ria zapísala čiarkami hviezdy a napísala číslo 7. Má pravdu? Ak nie, oprav.</span></div>
+    <div class="plocha chybny">
+      <i o="hviezda"></i><span class="car" data-n="8"></span><b style="font-size:26px">7</b>
+      <span class="kl" style="margin-left:auto;font-size:16px">Správne je: <span class="okno"></span></span>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Jeden obrázok je viac kusov, dieťa počíta po dvoch. V úlohe 3 môžete použiť skutočnú kocku. Kontrola „má byť 12“ učí, že údaje sa dajú overiť. V chytáku Ria jednu čiarku prehliadla.
+      <b>Riešenie:</b> 1 – jahody 8, hviezdy 4, srdcia 6; spolu jahôd a hviezd 12 · 2 – 3 mačky, 2 psy, 5 zajacov (obrázkov) · 3 – podľa hodov, súčet čiarok je 12 · 4 – nemá pravdu, správne je 8.
+      <span class="std">MAT-ZV-2 · ŠVP MAT, Závislosti, vzťahy a práca s údajmi: „zber, triedenie, usporiadanie a zaznamenávanie údajov graficky – tabuľka, graf, diagram, piktogram, početnosti vyjadrené sčítacími čiarkami a numericky“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<script src="obrazky.js"></script><script src="nastroje.js"></script>
+<script>
+/* čiarky: <span class="car" data-n="7"></span> – po päť naprieč; štvorčeky: <span class="stlp" data-n="8" data-p="4"> (data-p = vyfarbené) */
+document.querySelectorAll(".car").forEach(el=>{
+  const n = +el.dataset.n; let s = "";
+  for(let g=0; g<Math.ceil(n/5); g++){
+    const k = Math.min(5, n-5*g), w = k===5 ? 66 : (k-1)*17+6;
+    let l = ""; for(let i=0;i<Math.min(k,4);i++) l += `<line x1="${5+i*17}" y1="4" x2="${5+i*17}" y2="52"/>`;
+    if(k===5) l += `<line x1="-2" y1="44" x2="${w+4}" y2="12"/>`;
+    s += `<svg viewBox="0 0 ${w+4} 56">${l}</svg>`;
+  }
+  el.innerHTML = s;
+});
+document.querySelectorAll(".stlp").forEach(el=>{
+  const n = +el.dataset.n, p = +(el.dataset.p||0);
+  el.innerHTML = Array.from({length:n},(_,i)=>`<i class="${i<p?"p":""}"></i>`).join("");
+});
+</script>
+</body></html>

@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="sk"><head><meta charset="utf-8"><title>Rozklad čísla 6 – pracovný list (3 úrovne)</title>
+<link rel="stylesheet" href="list.css">
+<style>
+  .dom-rad{display:flex;justify-content:space-around;align-items:flex-end;gap:4mm}
+  .dom-rad>div{display:flex;flex-direction:column;align-items:center;gap:2mm;font-size:22px;font-weight:700}
+  .dom-rad .okno{width:11mm;height:11mm}.dom-rad .eq{display:flex;align-items:center;gap:1.5mm;white-space:nowrap}
+  .taniere{display:grid;grid-template-columns:1fr 1fr;gap:2mm 8mm}
+  .tan-rad{display:flex;align-items:center;gap:3mm;border-bottom:1px dotted #bbb;padding-bottom:1.5mm}
+  .tan-rad:last-child{border:none;padding-bottom:0}
+  .tan-rad .jabl{display:flex;flex-wrap:wrap;width:44mm;gap:.5mm}
+  .tan-rad .jabl .pic{width:9mm;height:9mm}
+  .tanier{width:21mm;height:21mm;border:1.4px solid #111;border-radius:50%;flex:none;position:relative}
+  .tanier::after{content:"";position:absolute;inset:3mm;border:1px dotted #999;border-radius:50%}
+  .tan-rad .ex{margin-left:auto;display:flex;align-items:center;gap:1.5mm;font-size:24px;font-weight:700}
+  .tan-rad .ex .okno{width:10.5mm;height:10.5mm}
+  .dm{display:inline-flex;flex-direction:column;align-items:center;width:38mm}
+  .dm svg{width:38mm;height:15mm;display:block;overflow:visible}
+  .dm svg polygon{fill:#fff;stroke:#111;stroke-width:2.6;stroke-linejoin:round}
+  .dm svg text{font-family:"Andika";font-weight:700;font-size:25px;text-anchor:middle;fill:#111}
+  .dm .izby{display:grid;grid-template-columns:1fr 1fr;width:34mm;border:1.4px solid #111;border-top:none}
+  .dm .izby>span{height:11mm;display:flex;align-items:center;justify-content:center;font-size:23px;font-weight:700}
+  .dm .izby>span+span{border-left:1.4px solid #111}
+  .dm .izby .okno{width:8.5mm;height:8.5mm;border-radius:2mm}
+  .dm-rad{display:flex;justify-content:space-around}
+  .spoj{display:flex;justify-content:space-between;padding:0 12mm}
+  .spoj .st{display:flex;flex-direction:column;gap:3.4mm}
+  .spoj .st>div{display:flex;align-items:center;gap:3mm}
+  .spoj .pol{min-width:20mm;height:11mm;border:1.4px solid #111;border-radius:2.5mm;display:flex;align-items:center;justify-content:center;font-size:25px;font-weight:700}
+  .spoj .bod{width:3.6mm;height:3.6mm;border-radius:50%;background:#111}
+  .rozklady{display:grid;grid-template-columns:1fr 1fr 1fr;gap:3.4mm 6mm}
+  .rozklady>div{display:flex;align-items:center;gap:1.5mm;font-size:24px;font-weight:700;white-space:nowrap}
+  .rozklady .okno{width:10.5mm;height:10.5mm}
+  .kocky{display:flex;flex-direction:column;gap:2mm}
+  .kocky>div{display:flex;align-items:center;gap:2.5mm;font-size:24px;font-weight:700;border-bottom:1px dotted #bbb;padding-bottom:1.5mm}
+  .kocky>div:last-child{border:none;padding-bottom:0}
+  .kocky .okno{width:10.5mm;height:10.5mm}
+  .pyr{display:flex;flex-direction:column;align-items:center}
+  .pyr .r{display:flex}
+  .pyr span{width:15mm;height:11mm;border:1.4px solid #111;margin:-.7px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;background:#fff}
+  .pyr span.o{background:#fff}
+  .pyr-rad{display:flex;justify-content:space-around;align-items:flex-end}
+  .scitance{display:grid;grid-template-columns:1fr 1fr;gap:3.2mm 8mm}
+  .scitance>div{display:flex;align-items:center;gap:1.5mm;font-size:23px;font-weight:700;white-space:nowrap}
+  .scitance .okno{width:10.5mm;height:10.5mm}
+  .linka2{border-bottom:1.2px solid #111;min-width:60mm;display:inline-block;height:8mm}
+</style></head>
+<body>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 1 – ĽAHŠIE                                                     -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="1">
+  <header class="hlava" data-predmet="Matematika">Číslo 6 a jeho časti</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Na každom domine je spolu 6 bodiek. Dokresli bodky na prázdnu polovicu.</span></div>
+    <div class="plocha dom-rad">
+      <div><i domino="4 -" class="lezi"></i><span class="eq">4 + <span class="okno"></span> = 6</span></div>
+      <div><i domino="2 -" class="lezi"></i><span class="eq">2 + <span class="okno"></span> = 6</span></div>
+      <div><i domino="5 -" class="lezi"></i><span class="eq">5 + <span class="okno"></span> = 6</span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Rozlož 6 jabĺk na dva taniere. Nakresli jablká na taniere a napíš, koľko je na každom.</span></div>
+    <div class="plocha">
+      <div class="tan-rad"><div class="jabl"><i o="jablko" n="6"></i></div><span class="tanier"></span><span class="tanier"></span><div class="ex"><span class="okno"></span> + <span class="okno"></span> = 6</div></div>
+      <div class="tan-rad"><div class="jabl"><i o="jablko" n="6"></i></div><span class="tanier"></span><span class="tanier"></span><div class="ex"><span class="okno"></span> + <span class="okno"></span> = 6</div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Domčeky: na streche je číslo 6. V izbách musia byť spolu 6. Dopíš chýbajúce číslo.</span></div>
+    <div class="plocha dm-rad">
+      <div class="dm" data-s="6" data-a="3" data-b=""></div>
+      <div class="dm" data-s="6" data-a="" data-b="2"></div>
+      <div class="dm" data-s="6" data-a="5" data-b=""></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Spoj dvojice, ktoré spolu dajú 6.</span></div>
+    <div class="plocha spoj">
+      <div class="st"><div><span class="pol">1</span><span class="bod"></span></div><div><span class="pol">2</span><span class="bod"></span></div><div><span class="pol">0</span><span class="bod"></span></div><div><span class="pol">3</span><span class="bod"></span></div></div>
+      <div class="st"><div><span class="bod"></span><span class="pol">4</span></div><div><span class="bod"></span><span class="pol">6</span></div><div><span class="bod"></span><span class="pol">3</span></div><div><span class="bod"></span><span class="pol">5</span></div></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Číslo 6 sa dá rozložiť na dve časti rôznymi spôsobmi: 1 a 5, 2 a 4, 3 a 3. Skúste to najprv s mincami, kockami alebo jablkami na tanieroch. Dieťa nech povie veľa slovami: „Tri a tri je šesť.“ Ak sa pomýli, spočítajte bodky spolu.
+      <b>Riešenie:</b> 1 – 2, 4, 1 · 2 – napr. 3 + 3 a 4 + 2 (iné rozklady sú správne tiež) · 3 – 3, 4, 1 · 4 – 1 s 5, 2 s 4, 0 s 6, 3 s 3.
+      <span class="std">MAT-CO-4 · ŠVP MAT, Čísla a operácie s číslami: „modelovanie a využívanie rôznych rozkladov čísel“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 2 – BEŽNÉ                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="2">
+  <header class="hlava" data-predmet="Matematika">Číslo 6 a jeho časti</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Rozlož číslo 6. Dopíš druhú časť.</span></div>
+    <div class="plocha rozklady">
+      <div>6 = 1 + <span class="okno"></span></div>
+      <div>6 = 2 + <span class="okno"></span></div>
+      <div>6 = 3 + <span class="okno"></span></div>
+      <div>6 = 4 + <span class="okno"></span></div>
+      <div>6 = 5 + <span class="okno"></span></div>
+      <div>6 = 0 + <span class="okno"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Domčeky: súčet v izbách je číslo na streche. Dopíš chýbajúce číslo.</span></div>
+    <div class="plocha dm-rad">
+      <div class="dm" data-s="6" data-a="2" data-b=""></div>
+      <div class="dm" data-s="5" data-a="" data-b="1"></div>
+      <div class="dm" data-s="6" data-a="" data-b="6"></div>
+      <div class="dm" data-s="4" data-a="3" data-b=""></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Pyramída: číslo nad dvojicou je ich súčet. Dopíš prázdne políčka.</span></div>
+    <div class="plocha pyr-rad">
+      <div class="pyr">
+        <div class="r"><span class="o"></span></div>
+        <div class="r"><span class="o"></span><span class="o"></span></div>
+        <div class="r"><span>2</span><span>1</span><span>2</span></div>
+      </div>
+      <div class="pyr">
+        <div class="r"><span>6</span></div>
+        <div class="r"><span>3</span><span class="o"></span></div>
+        <div class="r"><span>1</span><span class="o"></span><span>1</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Dve kocky padli dokopy na 6. Dokresli bodky a napíš príklad. Nájdi tri rôzne možnosti.</span></div>
+    <div class="plocha kocky">
+      <div><i kocka="" class="m"></i>+<i kocka="" class="m"></i>= 6 <span style="margin-left:auto"><span class="okno"></span> + <span class="okno"></span> = <span class="okno"></span></span></div>
+      <div><i kocka="" class="m"></i>+<i kocka="" class="m"></i>= 6 <span style="margin-left:auto"><span class="okno"></span> + <span class="okno"></span> = <span class="okno"></span></span></div>
+      <div><i kocka="" class="m"></i>+<i kocka="" class="m"></i>= 6 <span style="margin-left:auto"><span class="okno"></span> + <span class="okno"></span> = <span class="okno"></span></span></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> V úlohe 3 začnite od spodného radu: dve susedné čísla sa sčítajú a výsledok ide nahor. V úlohe 4 stačí nájsť tri možnosti z 1 + 5, 2 + 4, 3 + 3, 4 + 2, 5 + 1. Dieťa môže skúsiť hodiť skutočné kocky.
+      <b>Riešenie:</b> 1 – 5, 4, 3, 2, 1, 6 · 2 – 4, 4, 0, 1 · 3 – vľavo 3 a 3, hore 6; vpravo dole 2, v strede 3 · 4 – napr. 1 + 5, 2 + 4, 3 + 3.
+      <span class="std">MAT-CO-4 · ŠVP MAT, Čísla a operácie s číslami: „modelovanie a využívanie rôznych rozkladov čísel“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 3 – VÝZVA                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="3">
+  <header class="hlava" data-predmet="Matematika">Číslo 6 na viac častí</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Číslo 6 sa dá rozložiť aj na tri časti. Dopíš chýbajúce číslo.</span></div>
+    <div class="plocha scitance">
+      <div>6 = 1 + 2 + <span class="okno"></span></div>
+      <div>6 = 2 + 2 + <span class="okno"></span></div>
+      <div>6 = <span class="okno"></span> + 3 + 1</div>
+      <div>6 = 1 + <span class="okno"></span> + 4</div>
+      <div>6 = 1 + 1 + 1 + <span class="okno"></span></div>
+      <div>6 = 2 + <span class="okno"></span> + 2 + 1</div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Nájdi všetky rozklady čísla 6 na dve časti. Napríklad 1 + 5 je to isté ako 5 + 1. Aj 0 + 6 sa počíta. Koľko ich je?</span></div>
+    <div class="plocha" style="display:flex;flex-direction:column;gap:3mm">
+      <div class="rozklady" style="grid-template-columns:1fr 1fr">
+        <div>6 = <span class="okno"></span> + <span class="okno"></span></div>
+        <div>6 = <span class="okno"></span> + <span class="okno"></span></div>
+        <div>6 = <span class="okno"></span> + <span class="okno"></span></div>
+        <div>6 = <span class="okno"></span> + <span class="okno"></span></div>
+      </div>
+      <div class="kl" style="display:flex;justify-content:flex-end;align-items:center;gap:2mm;font-size:17px;font-weight:700">Našiel som <span class="okno m"></span> rozklady.</div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Pyramída: číslo nad dvojicou je ich súčet. Vypočítaj, ktoré čísla chýbajú dole.</span></div>
+    <div class="plocha pyr-rad">
+      <div class="pyr">
+        <div class="r"><span>6</span></div>
+        <div class="r"><span>2</span><span class="o"></span></div>
+        <div class="r"><span>1</span><span class="o"></span><span class="o"></span></div>
+      </div>
+      <div class="pyr">
+        <div class="r"><span class="o"></span></div>
+        <div class="r"><span>4</span><span>3</span></div>
+        <div class="r"><span class="o"></span><span>1</span><span class="o"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Chyták: Mia napísala 6 = 3 + 4. Ktoré číslo treba zmeniť, aby to sedelo? Napíš dve možnosti.</span></div>
+    <div class="plocha" style="display:flex;flex-direction:column;gap:3mm">
+      <div class="rozklady" style="grid-template-columns:1fr 1fr">
+        <div>6 = <span class="okno"></span> + <span class="okno"></span></div>
+        <div>6 = <span class="okno"></span> + <span class="okno"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Výzva ukazuje, že rozkladov je viac a dá sa ich vymenovať systematicky: od 0 + 6 po 3 + 3. V úlohe 3 sa pozerá aj dozadu: ak hore je 6 a vľavo 2, vpravo musí byť 4. V chytáku sú dve opravy: 3 + 3 alebo 2 + 4.
+      <b>Riešenie:</b> 1 – 3, 2, 2, 1, 3, 1 · 2 – 0 + 6, 1 + 5, 2 + 4, 3 + 3; štyri rozklady · 3 – vľavo dole 1, 1, 3 a vpravo hore 4; vpravo dole 3, 1, 2 a hore 7 · 4 – 3 + 3 alebo 2 + 4.
+      <span class="std">MAT-CO-4 · ŠVP MAT, Čísla a operácie s číslami: „modelovanie a využívanie rôznych rozkladov čísel“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<script src="obrazky.js"></script><script src="nastroje.js"></script>
+<script>
+document.querySelectorAll(".dm").forEach(el=>{
+  const iz = v => v==="" ? '<span><span class="okno"></span></span>' : `<span>${v}</span>`;
+  el.innerHTML = `<svg viewBox="0 0 100 40"><polygon points="2,38 50,3 98,38"/><text x="50" y="31">${el.dataset.s}</text></svg><div class="izby">${iz(el.dataset.a)}${iz(el.dataset.b)}</div>`;
+});
+</script>
+</body></html>

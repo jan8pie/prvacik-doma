@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="sk"><head><meta charset="utf-8"><title>Čo už viem – slovenčina – pracovný list (3 úrovne)</title>
+<link rel="stylesheet" href="list.css">
+<style>
+  .spoj{display:grid;grid-template-columns:1fr 1fr;gap:2.5mm 50mm;max-width:130mm;margin:0 auto;align-items:center}
+  .spoj>div{display:flex;align-items:center;gap:3mm;font-size:24px;font-weight:700}
+  .spoj>div.pr{flex-direction:row-reverse}
+  .spoj .bod{width:3.6mm;height:3.6mm}
+  .spoj .pic{width:17mm;height:17mm}
+  .spoj .slab{min-width:12mm;height:11mm;font-size:23px}
+  .dvojice{display:grid;grid-template-columns:repeat(3,1fr);gap:3mm 6mm;text-align:center}
+  .dvojice>div{display:flex;justify-content:center;gap:4mm;font-size:28px;font-weight:700}
+  .dvojice>div span{min-width:15mm;height:12mm;display:flex;align-items:center;justify-content:center;border:1.2px solid #bbb;border-radius:2.5mm}
+  .prve{display:grid;grid-template-columns:repeat(4,1fr);gap:2mm 3mm;text-align:center}
+  .prve>div{display:flex;flex-direction:column;align-items:center;gap:1.5mm}
+  .prve .pic{width:20mm;height:20mm}
+  .prve .okno{width:11mm;height:11mm}
+  .slabrad{display:grid;grid-template-columns:repeat(6,1fr);gap:3mm 2mm;font-size:26px;font-weight:700;text-align:center}
+  .slabrad span{border:1.2px solid #bbb;border-radius:2.5mm;padding:1mm 0}
+  .slova3{display:flex;gap:6mm;justify-content:center;font-size:28px;font-weight:700}
+  .tajne{display:grid;grid-template-columns:1fr;gap:3mm}
+  .tajne .r{display:flex;align-items:center;gap:3mm}
+  .tajne .r>div{display:flex;flex-direction:column;align-items:center;gap:1mm}
+  .tajne .pic{width:13mm;height:13mm}
+  .tajne .okno{width:9mm;height:9mm}
+  .tajne .rovna{font-size:24px;font-weight:700}
+  .tajne .kr{width:36mm;height:17mm;border:1.2px dashed #777;border-radius:3mm;margin-left:auto}
+  .nema{display:flex;flex-direction:column;gap:2mm}
+  .nema>div{display:flex;align-items:center;justify-content:space-around}
+  .nema .ob{display:flex;gap:14mm}
+  .nema .pic{width:14mm;height:14mm}
+  .nema .pis{flex:1;min-width:0;height:9mm}
+  .mojslovo{display:grid;grid-template-columns:1fr 1fr;gap:5mm}
+  .mojslovo>div{display:flex;flex-direction:column;gap:2mm;font-size:15px}
+  .mojslovo .kresli{height:20mm}
+  .mojslovo .pis{display:block;width:100%;min-width:0}
+  .hodnot{display:flex;gap:6mm;justify-content:space-around;font-size:17px;font-weight:700;text-align:center}
+  .hodnot>div{display:flex;flex-direction:column;align-items:center;gap:1.5mm}
+  .hodnot .kruzok{width:9mm;height:9mm}
+  .pis.kratky{min-width:24mm}
+  .list[data-uroven="1"] .spoj{gap:5mm 50mm}
+  .list[data-uroven="1"] .spoj .pic{width:19mm;height:19mm}
+  .list[data-uroven="1"] .dvojice span{height:14mm;min-width:20mm;font-size:32px}
+  .list[data-uroven="1"] .hodnot{padding:3mm 0}
+</style></head>
+<body>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 1 – ĽAHŠIE                                                     -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="1">
+  <header class="hlava" data-predmet="Slovenský jazyk">Čo už viem</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Povedz slovo nahlas. Akou hláskou sa začína? Spoj obrázok s písmenom.</span></div>
+    <div class="plocha spoj">
+      <div><i o="auto"></i><span class="bod"></span></div><div class="pr"><span class="slab">M</span><span class="bod"></span></div>
+      <div><i o="melon"></i><span class="bod"></span></div><div class="pr"><span class="slab">L</span><span class="bod"></span></div>
+      <div><i o="lama"></i><span class="bod"></span></div><div class="pr"><span class="slab">A</span><span class="bod"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Rodič povie slabiku. Ty zakrúžkuj tú, ktorú počuješ.</span></div>
+    <div class="plocha dvojice">
+      <div><span>ma</span><span>la</span></div><div><span>mi</span><span>me</span></div><div><span>li</span><span>le</span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Prečítaj slovo a spoj ho s obrázkom.</span></div>
+    <div class="plocha spoj">
+      <div><span class="slab" style="min-width:26mm">lama</span><span class="bod"></span></div><div class="pr"><i o="mama"></i><span class="bod"></span></div>
+      <div><span class="slab" style="min-width:26mm">mama</span><span class="bod"></span></div><div class="pr"><i o="lama"></i><span class="bod"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Čo mi išlo najlepšie? Vyfarbi krúžok.</span></div>
+    <div class="plocha hodnot">
+      <div><span class="kruzok"></span>hlásky na začiatku slova</div>
+      <div><span class="kruzok"></span>slabiky</div>
+      <div><span class="kruzok"></span>čítanie slov</div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Zadania prečítajte. V úlohe 1 povedzte slová spolu: auto, melón, lama. V úlohe 2 povedzte po jednej slabike z každého rámčeka v tomto poradí: ma, me, li. Úloha 4 nie je skúška, dieťa si samo všimne, čo mu ide. Čo vyfarbilo najmenej, to si ešte spolu precvičte.
+      <b>Riešenie:</b> 1 – auto–A, melón–M, lama–L · 3 – lama – lama, mama – mama.
+      <span class="std">SJL-RV-1 · ŠVP SJL, Elementárne čítanie: „čítanie slabík, slov, viet a krátkych textov s postupne sa zvyšujúcou náročnosťou“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 2 – BEŽNÉ                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="2">
+  <header class="hlava" data-predmet="Slovenský jazyk">Čo už viem</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Povedz slovo nahlas. Napíš písmeno, ktorým sa začína.</span></div>
+    <div class="plocha prve">
+      <div><i o="auto"></i><span class="okno"></span></div>
+      <div><i o="lama"></i><span class="okno"></span></div>
+      <div><i o="myska"></i><span class="okno"></span></div>
+      <div><i o="melon"></i><span class="okno"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Prečítaj slabiky. Zakrúžkuj tie, ktoré sú dlhé (majú dĺžeň).</span></div>
+    <div class="plocha slabrad"><span>ma</span><span>má</span><span>li</span><span>lí</span><span>me</span><span>mé</span><span>la</span><span>lá</span><span>mi</span><span>le</span><span>mí</span><span>lé</span></div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Prečítaj slová a spoj ich s obrázkami.</span></div>
+    <div class="plocha spoj">
+      <div><span class="slab" style="min-width:26mm">Emil</span><span class="bod"></span></div><div class="pr"><i o="mama"></i><span class="bod"></span></div>
+      <div><span class="slab" style="min-width:26mm">mama</span><span class="bod"></span></div><div class="pr"><i o="chlapec"></i><span class="bod"></span></div>
+      <div><span class="slab" style="min-width:26mm">lama</span><span class="bod"></span></div><div class="pr"><i o="lama"></i><span class="bod"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Prečítaj vetu. Nakresli, čo si prečítal. Potom vyfarbi, čo ti išlo najlepšie.</span></div>
+    <div class="plocha mojslovo">
+      <div>Mama má Emila.<span class="kresli"></span></div>
+      <div class="hodnot" style="flex-direction:column;align-items:flex-start;justify-content:center;gap:2.5mm;font-size:15px"><span style="display:flex;gap:3mm;align-items:center"><span class="kruzok"></span>hlásky</span><span style="display:flex;gap:3mm;align-items:center"><span class="kruzok"></span>slabiky</span><span style="display:flex;gap:3mm;align-items:center"><span class="kruzok"></span>slová a vety</span></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Úlohy sú zámerne premiešané zo starších tém: prvá hláska, slabiky, čítanie. Dieťa číta samo nahlas. Pri hláskach vyslovujte M a L ťahavo („mmm“, „lll“). Ak mu niečo nejde, nevadí, o tom je tento list: ukáže, čo si treba ešte pozrieť.
+      <b>Riešenie:</b> 1 – A, L, M, M · 2 – má, lí, mé, lá, mí, lé · 3 – Emil – chlapec, mama – mama, lama – lama.
+      <span class="std">SJL-RV-1 · ŠVP SJL, Elementárne čítanie: „čítanie slabík, slov, viet a krátkych textov s postupne sa zvyšujúcou náročnosťou“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 3 – VÝZVA                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="3">
+  <header class="hlava" data-predmet="Slovenský jazyk">Čo už viem</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Tajné slová. Prvé hlásky obrázkov ti prezradia slovo. Napíš ho a nakresli.</span></div>
+    <div class="plocha tajne">
+      <div class="r"><div><i o="myska"></i><span class="okno"></span></div><div><i o="auto"></i><span class="okno"></span></div><div><i o="myska"></i><span class="okno"></span></div><div><i o="auto"></i><span class="okno"></span></div><span class="rovna">=</span><span class="kr"></span></div>
+      <div class="r"><div><i o="lev"></i><span class="okno"></span></div><div><i o="auto"></i><span class="okno"></span></div><div><i o="melon"></i><span class="okno"></span></div><div><i o="auto"></i><span class="okno"></span></div><span class="rovna">=</span><span class="kr"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Rýchlo a presne. Prečítaj nahlas všetky slabiky za 10 sekúnd. Rodič meria čas.</span></div>
+    <div class="plocha">
+      <div class="slabrad"><span>ma</span><span>lí</span><span>me</span><span>má</span><span>la</span><span>mí</span></div>
+      <div style="margin-top:3mm;font-size:16px;display:flex;align-items:center;gap:3mm">Stihol som to bez chyby za <span class="okno"></span> sekúnd.</div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Ktorý obrázok nemá v názve hlásku A? Prečiarkni ho.<span class="pozn">Povedz si slová pomaly. A môže byť aj na konci.</span></span></div>
+    <div class="plocha nema">
+      <div><span class="ob"><i o="lama"></i><i o="auto"></i><i o="mak"></i><i o="melon"></i></span></div>
+      <div><span class="ob"><i o="mama"></i><i o="ryba"></i><i o="lev"></i><i o="misa"></i></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Vymysli vlastné slovo z písmen A, M, E, L, I. Napíš ho a nakresli.<span class="pozn">Nemusí byť skutočné. Ak je skutočné, nakresli, čo znamená.</span></span></div>
+    <div class="plocha mojslovo">
+      <div>Moje slovo:<span class="pis"></span><span class="kresli"></span></div>
+      <div>Moje druhé slovo:<span class="pis"></span><span class="kresli"></span></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Výzva je pre deti, ktoré staršie učivo zvládajú isto. V úlohe 3 pomáha pomaly vysloviť slovo; A môže byť aj na konci (ryba, misa). V úlohe 4 nemusí vzniknúť skutočné slovo, stačí, že dieťa skladá písmená.
+      <b>Riešenie:</b> 1 – MAMA, LAMA · 3 – melón (1. riadok) a lev (2. riadok) · 4 – vlastné.
+      <span class="std">SJL-RV-1 · ŠVP SJL, Elementárne čítanie: „čítanie slabík, slov, viet a krátkych textov s postupne sa zvyšujúcou náročnosťou“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<script src="obrazky.js"></script><script src="nastroje.js"></script>
+</body></html>

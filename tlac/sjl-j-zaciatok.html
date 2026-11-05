@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="sk"><head><meta charset="utf-8"><title>Čo sa začína na J – pracovný list (3 úrovne)</title>
+<link rel="stylesheet" href="list.css">
+<style>
+  .scena{fill:none;stroke:#111;stroke-linecap:round;stroke-linejoin:round}
+  /* kruhy pod obrázkami */
+  .vyber6{display:grid;grid-template-columns:repeat(6,1fr);gap:3mm;text-align:center}
+  .vyber6>div{display:flex;flex-direction:column;align-items:center;gap:2.5mm}
+  .vyber6 .pic{width:20mm;height:20mm}
+  .vyber6 .kruzok{width:9mm;height:9mm}
+  /* písmená na hľadanie */
+  .pismena{display:flex;justify-content:space-around;font-size:40px;font-weight:700;letter-spacing:2px;padding:2mm 0}
+  .pismena+.pismena{border-top:1px dotted #bbb}
+  .spolu-j{display:flex;align-items:center;gap:3mm;font-size:18px;margin-top:2mm}
+  /* prvé písmeno */
+  .prve{display:grid;grid-template-columns:repeat(6,1fr);gap:2mm 3mm;text-align:center}
+  .prve>div{display:flex;flex-direction:column;align-items:center;gap:2mm}
+  .prve .pic{width:17mm;height:17mm}
+  .prve .okno{width:11mm;height:11mm}
+  .vybera{display:flex;gap:6mm;justify-content:center;font-size:26px;font-weight:700;margin-bottom:2mm}
+  .vybera span{width:11.5mm;height:11.5mm;border:1.4px solid #111;border-radius:50%;display:flex;align-items:center;justify-content:center}
+  /* slabiky: kruhy */
+  .slab-kruhy{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5mm 6mm}
+  .slab-kruhy>div{display:flex;align-items:center;gap:3mm}
+  .slab-kruhy .pic{width:14mm;height:14mm}
+  .slab-kruhy .kruhy{display:flex;gap:1.5mm}
+  .slab-kruhy .kruhy i{display:block;width:7.5mm;height:7.5mm;border:1.4px solid #111;border-radius:50%}
+  /* tajný obrázok */
+  .tajny{display:flex;align-items:center;justify-content:center;gap:8mm}
+  .tajny .siet{grid-template-columns:repeat(9,12.5mm);grid-auto-rows:9.8mm}
+  .tajny .siet span{font-size:23px}
+  .tajny .otazka{display:flex;flex-direction:column;align-items:center;gap:2mm;font-size:14px;text-align:center;width:32mm}
+  /* vláčik */
+  .vlacik{display:flex;align-items:flex-end;gap:2mm;justify-content:center}
+  .vlacik .vag{display:flex;flex-direction:column;align-items:center;gap:1mm}
+  .vlacik .vag .box{width:30mm;height:25mm;border:1.5px solid #111;border-radius:3mm;display:flex;align-items:center;justify-content:center}
+  .vlacik .vag .box.prazdny{border-style:dashed}
+  .vlacik .vag .pic{width:20mm;height:20mm}
+  .vlacik .sp{width:5mm;border-top:2px solid #111;margin-bottom:15mm}
+  .vlacik .kolesa{display:flex;gap:11mm}
+  .vlacik .kolesa i{display:block;width:5.5mm;height:5.5mm;border:1.5px solid #111;border-radius:50%;background:#fff}
+  /* dlhšie slovo */
+  .dvojice{display:grid;grid-template-columns:repeat(3,1fr);gap:3mm;padding:3.5mm 3mm}
+  .dvojice>div{display:flex;align-items:center;justify-content:space-around;gap:1mm;border:1px solid #bbb;border-radius:3mm;padding:2mm 1mm}
+  .dvojice .pic{width:16mm;height:16mm}
+  .dvojice .vs{font-size:13px;color:#666}
+  /* stopy */
+  .stopy{display:flex;flex-direction:column;gap:2.5mm}
+  .stopy .ob{display:flex;justify-content:space-around;margin-bottom:1mm}
+  .stopy .ob .pic{width:19mm;height:19mm}
+  .stopy .st{display:flex;align-items:center;gap:3mm;font-size:15px}
+  .stopy .st b{flex:none;width:6.5mm;height:6.5mm;border:1.4px solid #111;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px}
+  .stopy .st .pis{min-width:30mm;height:8mm}
+  .rady{display:grid;grid-template-columns:1fr 1fr;gap:3mm 8mm}
+  .rady>div{display:flex;align-items:center;gap:1.6mm;font-size:23px;font-weight:700;letter-spacing:3px;word-spacing:3px}
+  .rady .okno{width:9.5mm;height:10mm}
+.obtiahni{height:21mm}.linka .prazdne{height:21mm}
+</style></head>
+<body>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 1 – ĽAHŠIE                                                     -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="1">
+  <header class="hlava" data-predmet="Slovenský jazyk">Písmeno J</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Obtiahni veľké J a malé j.<span class="pozn">Povedz pri tom: j – j – ježko.</span></span></div>
+    <div class="plocha"><div class="linka" style="justify-content:space-around">
+      <i obtiahni="J" w="64"></i><i obtiahni="J" w="64"></i><i obtiahni="J" w="64"></i>
+      <span style="width:4mm"></span>
+      <i obtiahni="j" w="48"></i><i obtiahni="j" w="48"></i><i obtiahni="j" w="48"></i>
+    </div></div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Povedz každé slovo nahlas. Zakrúžkuj obrázok, ak sa začína na J.</span></div>
+    <div class="plocha vyber6">
+      <div><i o="jablko"></i><span class="kruzok"></span></div>
+      <div><i o="lama"></i><span class="kruzok"></span></div>
+      <div><i o="jahoda"></i><span class="kruzok"></span></div>
+      <div><i o="auto"></i><span class="kruzok"></span></div>
+      <div><i o="jezko"></i><span class="kruzok"></span></div>
+      <div><i o="myska"></i><span class="kruzok"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Nájdi J medzi podobnými písmenami. Zakrúžkuj každé J.<span class="pozn">Koľko ich je v každom riadku? Napíš číslo do okienka.</span></span></div>
+    <div class="plocha">
+      <div class="pismena" style="align-items:center"><span>L</span><span>J</span><span>I</span><span>J</span><span>T</span><span>J</span><span>U</span><span>I</span><span class="okno"></span></div>
+      <div class="pismena" style="align-items:center"><span>J</span><span>T</span><span>I</span><span>J</span><span>L</span><span>U</span><span>J</span><span>I</span><span class="okno"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Nakresli niečo, čo sa začína na J.<span class="pozn">Pomôže ti jablko, jahoda alebo ježko.</span></span></div>
+    <div class="plocha kresli vyplna" style="min-height:64mm"></div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Zadania prečítajte. Hlásku J vyslovujte krátko a pevne („j“), nie „jé“. V úlohe 2 povedzte slová spolu s dieťaťom: jablko, lama, jahoda, auto, ježko, myš. Písmeno J sa deti práve učia, preto nevadí, ak ho ešte nevie čítať, stačí, že ho pozná podľa tvaru.
+      <b>Riešenie:</b> 2 – jablko, jahoda, ježko · 3 – 3 a 3.
+      <span class="std">SJL-PP-2 · ŠVP SJL, Písaná produkcia: „sluchové identifikovanie a rozlišovanie zvukov, slov, slabík, hlások“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 2 – BEŽNÉ                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="2">
+  <header class="hlava" data-predmet="Slovenský jazyk">Prvé písmeno</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Povedz slovo nahlas. Ktorým písmenom sa začína? Napíš ho do okienka.<span class="pozn">Máš na výber: A, L, M, J.</span></span></div>
+    <div class="plocha">
+      <div class="vybera"><span>A</span><span>L</span><span>M</span><span>J</span></div>
+      <div class="prve">
+        <div><i o="jahoda"></i><span class="okno"></span></div>
+        <div><i o="lama"></i><span class="okno"></span></div>
+        <div><i o="auto"></i><span class="okno"></span></div>
+        <div><i o="myska"></i><span class="okno"></span></div>
+        <div><i o="jezko"></i><span class="okno"></span></div>
+        <div><i o="melon"></i><span class="okno"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Vytlieskaj slovo po slabikách. Vyfarbi toľko krúžkov, koľko slabík počuješ.</span></div>
+    <div class="plocha slab-kruhy">
+      <div><i o="jahoda"></i><span class="kruhy"><i></i><i></i><i></i><i></i></span></div>
+      <div><i o="jablko"></i><span class="kruhy"><i></i><i></i><i></i><i></i></span></div>
+      <div><i o="jezko"></i><span class="kruhy"><i></i><i></i><i></i><i></i></span></div>
+      <div><i o="melon"></i><span class="kruhy"><i></i><i></i><i></i><i></i></span></div>
+      <div><i o="malina"></i><span class="kruhy"><i></i><i></i><i></i><i></i></span></div>
+      <div><i o="jojo"></i><span class="kruhy"><i></i><i></i><i></i><i></i></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Vyfarbi všetky políčka s písmenom J alebo j. Čo sa ukáže?<span class="pozn">Pozor na podobné písmená I, L, T a U.</span></span></div>
+    <div class="plocha tajny">
+      <div class="siet" id="tajny2"></div>
+      <div class="otazka">Ukázalo sa:<span class="okno siroke" style="height:16mm"></span>Ako sa to volá po slovensky?<span class="pis" style="min-width:28mm"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Obtiahni J a potom napíš J sám, ako vieš.</span></div>
+    <div class="plocha"><div class="linka">
+      <i obtiahni="J" w="64"></i><i obtiahni="J" w="64"></i><span class="prazdne"></span><span class="prazdne"></span><span class="prazdne"></span><span class="prazdne"></span><span class="prazdne"></span>
+    </div></div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Zadania prečítajte. V úlohe 1 povedzte slová spolu: jahoda, lama, auto, myš, ježko, melón. V úlohe 2 pomôže tlieskanie alebo kývanie bradou, každá slabika jeden úder. Slabiky: ja-ho-da, jab-lko, jež-ko, me-lón, ma-li-na, jo-jo. Dieťa ešte nemusí vedieť čítať slová s J, tu stačí poznať písmeno podľa tvaru.
+      <b>Riešenie:</b> 1 – J, L, A, M, J, M · 2 – 3, 2, 2, 2, 3, 2 · 3 – srdce.
+      <span class="std">SJL-PP-2 · ŠVP SJL, Písaná produkcia: „sluchové identifikovanie a rozlišovanie zvukov, slov, slabík, hlások“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 3 – VÝZVA                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="3">
+  <header class="hlava" data-predmet="Slovenský jazyk">Detektív J</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Slovný vláčik: posledná hláska jedného slova je prvá hláska ďalšieho. Dokresli posledný vagón.<span class="pozn">Čo sa začína na O?</span></span></div>
+    <div class="plocha vlacik">
+      <div class="vag"><div class="box"><i o="lama"></i></div><div class="kolesa"><i></i><i></i></div></div><span class="sp"></span>
+      <div class="vag"><div class="box"><i o="auto"></i></div><div class="kolesa"><i></i><i></i></div></div><span class="sp"></span>
+      <div class="vag"><div class="box"><i o="oko"></i></div><div class="kolesa"><i></i><i></i></div></div><span class="sp"></span>
+      <div class="vag"><div class="box prazdny"></div><div class="kolesa"><i></i><i></i></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Chyták: ktoré slovo je dlhšie? Zakrúžkuj. Počítaj slabiky, nie veľkosť obrázka.</span></div>
+    <div class="plocha dvojice">
+      <div><i o="jablko"></i><span class="vs">alebo</span><i o="jahoda"></i></div>
+      <div><i o="auto"></i><span class="vs">alebo</span><i o="autobus"></i></div>
+      <div><i o="mak"></i><span class="vs">alebo</span><i o="mamut"></i></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Hádanka s viacerými stopami. Ktorý obrázok to je? Napíš číslo hádanky pod správny obrázok.</span></div>
+    <div class="plocha stopy">
+      <div class="ob"><span style="text-align:center"><i o="jablko"></i><br><span class="okno m"></span></span><span style="text-align:center"><i o="jahoda"></i><br><span class="okno m"></span></span><span style="text-align:center"><i o="jezko"></i><br><span class="okno m"></span></span><span style="text-align:center"><i o="jelen"></i><br><span class="okno m"></span></span><span style="text-align:center"><i o="jojo"></i><br><span class="okno m"></span></span></div>
+      <div class="st"><b>1</b>Začína sa na J. Dá sa zjesť. Má tri slabiky.</div>
+      <div class="st"><b>2</b>Začína sa na J. Je to zviera. Má bodliny.</div>
+      <div class="st"><b>3</b>Začína sa na J. Nedá sa zjesť a nie je to zviera. Hráš sa s ním a má šnúrku.</div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Objav pravidlo a pokračuj.</span></div>
+    <div class="plocha rady">
+      <div>J L J L J <span class="okno"></span></div>
+      <div>M M J M M J <span class="okno"></span><span class="okno"></span></div>
+      <div>A J A J J A J J J <span class="okno"></span></div>
+      <div>J I J I I J I I I <span class="okno"></span></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Výzva je pre deti, ktoré hlásky počujú isto. V úlohe 1 je viac správnych riešení (osa, ovca, okno…), stačí slovo na O; ak dieťa nevie nakresliť, nech ho aspoň povie. V úlohe 2 pomáha tlieskanie. V úlohe 3 vezmite jednu stopu po druhej a vylučujte obrázky.
+      <b>Riešenie:</b> 2 – jahoda (3), autobus (3), mamut (2) · 3 – 1 jahoda, 2 ježko, 3 jojo · 4 – J; J J; J J J J (pribúda o jedno J); I I I I.
+      <span class="std">SJL-PP-2 · ŠVP SJL, Písaná produkcia: „sluchové identifikovanie a rozlišovanie zvukov, slov, slabík, hlások“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<script>
+/* tajný obrázok z písmen (úroveň 2): X = J alebo j, tvar srdca */
+(function(){
+  const vzor = [".XX...XX.", "XXXX.XXXX", "XXXXXXXXX", ".XXXXXXX.", "....X...."];
+  const j = ["J","j","j","J","j","J","j","j"], ine = ["I","L","T","U","l","i","I","T","L","u","M","i","T","L"];
+  let a = 0, b = 0, h = "";
+  vzor.forEach(r => [...r].forEach(c => { h += `<span>${c==="X" ? j[a++ % j.length] : ine[b++ % ine.length]}</span>`; }));
+  document.getElementById("tajny2").innerHTML = h;
+})();
+</script>
+<script src="obrazky.js"></script><script src="nastroje.js"></script>
+</body></html>

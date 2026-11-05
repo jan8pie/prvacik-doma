@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="sk"><head><meta charset="utf-8"><title>Skáčeme po číselnej osi do 6 – pracovný list (3 úrovne)</title>
+<link rel="stylesheet" href="list.css">
+<style>
+  .skrad{display:grid;grid-template-columns:120mm 1fr;align-items:center;gap:2mm}
+  .skrad+.skrad{border-top:1px dotted #bbb;padding-top:.4mm;margin-top:.4mm}
+  .skrad .ex{display:flex;align-items:center;justify-content:flex-end;gap:1.5mm;font-size:25px;font-weight:700;white-space:nowrap}
+  .sk{width:120mm;display:block}
+  .sk svg{width:100%;display:block;overflow:visible}
+  .sk text{font-family:"Andika";font-size:36px;text-anchor:middle;fill:#111}
+  .sk .lab{font-size:30px;font-weight:700}
+  .sk .skrytie{fill:#fff;stroke:#111;stroke-width:3}
+  .sk .bod{fill:#111}
+  .sk .okruh{fill:none;stroke:#111;stroke-width:3}
+  .sk path.ob{fill:none;stroke:#111;stroke-width:4;stroke-linecap:round}
+  .sk path.ob.sl{stroke-dasharray:10 8}
+  .sk line{stroke:#111;stroke-width:3;stroke-linecap:round}
+  .okno.m{width:10.5mm;height:10.5mm}
+  .stred2{display:flex;align-items:center;gap:3mm;font-size:17px;font-weight:700;justify-content:flex-end}
+  .ex .zn{font-size:25px}
+</style></head>
+<body>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 1 – ĽAHŠIE                                                     -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="1">
+  <header class="hlava" data-predmet="Matematika">Zajko skáče po číselnej osi</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Zajko skáče po číselnej osi. Pozri sa, kam dopadol, a dopíš výsledok.</span></div>
+    <div class="plocha">
+      <div class="skrad"><div class="sk" data-os="0 6" data-arc="1>3"></div><div class="ex">1 + 2 = <span class="okno"></span></div></div>
+      <div class="skrad"><div class="sk" data-os="0 6" data-arc="2>5"></div><div class="ex">2 + 3 = <span class="okno"></span></div></div>
+      <div class="skrad"><div class="sk" data-os="0 6" data-arc="5>2"></div><div class="ex">5 − 3 = <span class="okno"></span></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Nakresli zajkov skok oblúkom a dopíš výsledok.</span></div>
+    <div class="plocha">
+      <div class="skrad"><div class="sk" data-os="0 6" data-mark="2"></div><div class="ex">2 + 2 = <span class="okno"></span></div></div>
+      <div class="skrad"><div class="sk" data-os="0 6" data-mark="6"></div><div class="ex">6 − 3 = <span class="okno"></span></div></div>
+      <div class="skrad"><div class="sk" data-os="0 6" data-mark="4"></div><div class="ex">4 − 1 = <span class="okno"></span></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Dopíš do okienok čísla, ktoré chýbajú na číselnej osi.</span></div>
+    <div class="plocha">
+      <div class="sk" data-os="0 6" data-skry="1 3 4 6" data-bez="1" style="margin:0 auto"></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Vymysli vlastný skok. Nakresli oblúk a napíš príklad.</span></div>
+    <div class="plocha">
+      <div class="skrad"><div class="sk" data-os="0 6"></div><div class="ex"><span class="okno"></span> <span class="zn">+</span> <span class="okno"></span> <span class="zn">=</span> <span class="okno"></span></div></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Číselná os je cesta, po ktorej skáče zajko. Sčítanie je skok doprava, odčítanie skok doľava. Nechajte dieťa skákať prstom po papieri alebo po čísliciach 0 – 6 položených na zemi. Úlohu 2 začnite od bodky: odkiaľ zajko vyskočí? Nevadí, ak dieťa skáče po jednej a počíta.
+      <b>Riešenie:</b> 1 – 3, 5, 2 · 2 – 4, 3, 3 · 3 – chýbajú 1, 3, 4, 6 · 4 – dieťa vymyslí vlastný príklad, skontrolujte, či sedí s oblúkom.
+      <span class="std">MAT-CO-3 · ŠVP MAT, Čísla a operácie s číslami: „znalosť a používanie statických a dynamických modelov sčítania a odčítania“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 2 – BEŽNÉ                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="2">
+  <header class="hlava" data-predmet="Matematika">Zajko skáče po číselnej osi</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Pozri sa na oblúk a napíš príklad.</span></div>
+    <div class="plocha">
+      <div class="skrad"><div class="sk" data-os="0 6" data-arc="2>4"></div><div class="ex"><span class="okno m"></span> <span class="zn">+</span> <span class="okno m"></span> <span class="zn">=</span> <span class="okno m"></span></div></div>
+      <div class="skrad"><div class="sk" data-os="0 6" data-arc="1>5"></div><div class="ex"><span class="okno m"></span> <span class="zn">+</span> <span class="okno m"></span> <span class="zn">=</span> <span class="okno m"></span></div></div>
+      <div class="skrad"><div class="sk" data-os="0 6" data-arc="6>3"></div><div class="ex"><span class="okno m"></span> <span class="zn">−</span> <span class="okno m"></span> <span class="zn">=</span> <span class="okno m"></span></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Nakresli skok oblúkom a dopíš výsledok.</span></div>
+    <div class="plocha">
+      <div class="skrad"><div class="sk" data-os="0 6" data-mark="1"></div><div class="ex">1 + 4 = <span class="okno"></span></div></div>
+      <div class="skrad"><div class="sk" data-os="0 6" data-mark="6"></div><div class="ex">6 − 4 = <span class="okno"></span></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Zajko je na bodke. Koľko skokov musí urobiť, aby sa dostal na kruh? Nakresli oblúk a dopíš číslo.</span></div>
+    <div class="plocha">
+      <div class="skrad"><div class="sk" data-os="0 6" data-mark="1" data-okruh="5"></div><div class="ex">1 + <span class="okno"></span> = 5</div></div>
+      <div class="skrad"><div class="sk" data-os="0 6" data-mark="6" data-okruh="2"></div><div class="ex">6 − <span class="okno"></span> = 2</div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Zajko začína na 0 a skáče vždy o 2. Zakrúžkuj čísla, na ktoré dopadne.</span></div>
+    <div class="plocha">
+      <div class="sk" data-os="0 6" data-bez="1" data-mark="0" style="margin:0 auto"></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> V úlohe 3 ide o doplnenie: „Koľko skokov chýba?“ Dieťa môže skákať prstom a počítať skoky, nie čísla, na ktoré dopadne. Ak sa pomýli, nechajte ho nakresliť oblúk a spočítať dieliky osi. V úlohe 4 sa zajko nezastaví, kým nenarazí na koniec osi.
+      <b>Riešenie:</b> 1 – 2 + 2 = 4 · 1 + 4 = 5 · 6 − 3 = 3 · 2 – 5, 2 · 3 – 4, 4 · 4 – 0, 2, 4, 6.
+      <span class="std">MAT-CO-3 · ŠVP MAT, Čísla a operácie s číslami: „znalosť a používanie statických a dynamických modelov sčítania a odčítania“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 3 – VÝZVA                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="3">
+  <header class="hlava" data-predmet="Matematika">Zajko a dlhé skoky</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Zajko urobil dva skoky za sebou. Dopíš výsledok.</span></div>
+    <div class="plocha">
+      <div class="skrad"><div class="sk" data-os="0 6" data-arc="1>3 3>6"></div><div class="ex">1 + 2 + 3 = <span class="okno"></span></div></div>
+      <div class="skrad"><div class="sk" data-os="0 6" data-arc="2>5 5>4"></div><div class="ex">2 + 3 − 1 = <span class="okno"></span></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Zajko skáče len o 2 alebo o 3. Nájdi obe cesty z 0 na 6 a nakresli ich.</span></div>
+    <div class="plocha">
+      <div class="skrad"><div class="sk" data-os="0 6" data-mark="0" data-okruh="6"></div><div class="ex"></div></div>
+      <div class="skrad"><div class="sk" data-os="0 6" data-mark="0" data-okruh="6"></div><div class="ex"></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Zajko začína na 0. Zakrúžkuj čísla, na ktoré dopadne. Potom odpovedz.</span></div>
+    <div class="plocha">
+      <div class="skrad"><div class="sk" data-os="0 6" data-bez="1"></div><div class="ex" style="font-size:17px;font-weight:700">skáče po 2</div></div>
+      <div class="skrad"><div class="sk" data-os="0 6" data-bez="1"></div><div class="ex" style="font-size:17px;font-weight:700">skáče po 3</div></div>
+      <div class="stred2" style="margin-top:.5mm">Na ktoré číslo (okrem 0) dopadne oboma spôsobmi? <span class="okno"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Chyták: Zajko stál na 3 a skočil o 2 dozadu. Medveď tvrdí, že dopadol na 5. Má pravdu?</span></div>
+    <div class="plocha">
+      <div class="skrad"><div class="sk" data-os="0 6" data-mark="3"></div><div class="ex" style="font-size:17px">Dopadol na: <span class="okno"></span></div></div>
+      <div class="riadky" style="margin-top:0"><i style="height:9mm"></i></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Výzva je pre deti, ktoré už skáču po osi bez problémov. V úlohe 2 existujú len dve cesty: 3 + 3 a 2 + 2 + 2. Nechajte dieťa objaviť, že nech skáče akokoľvek, vždy sa dostane na 6. V úlohe 3 ide o objav, že 6 je číslo, ktoré „trafia“ obaja zajkovia. V úlohe 4 stačí vysloviť: „Dozadu znamená menej.“
+      <b>Riešenie:</b> 1 – 6 a 4 · 2 – cesty 3 + 3 a 2 + 2 + 2 · 3 – po 2: 0, 2, 4, 6; po 3: 0, 3, 6; spoločné číslo je 6 · 4 – dopadol na 1; Medveď nemá pravdu, lebo skočil dozadu (3 − 2 = 1), a nie dopredu.
+      <span class="std">MAT-CO-3 · ŠVP MAT, Čísla a operácie s číslami: „znalosť a používanie statických a dynamických modelov sčítania a odčítania“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<script src="obrazky.js"></script><script src="nastroje.js"></script>
+<script>
+/* číselná os so skokmi: data-os="0 6" data-arc="1>3 3>6" data-mark="2" data-okruh="5" data-skry="1 3" data-bez="1" (bez miesta na oblúky) */
+document.querySelectorAll(".sk").forEach(el=>{
+  const [a,b] = el.dataset.os.split(/\s+/).map(Number);
+  const arcs = (el.dataset.arc||"").split(/\s+/).filter(Boolean).map(s=>s.split(">").map(Number));
+  const skry = (el.dataset.skry||"").split(/\s+/).filter(Boolean).map(Number);
+  const mark = (el.dataset.mark||"").split(/\s+/).filter(Boolean).map(Number);
+  const okr = (el.dataset.okruh||"").split(/\s+/).filter(Boolean).map(Number);
+  const bez = !!el.dataset.bez;
+  const W = 100*(b-a)+100, ya = bez ? 18 : 46, H = ya + 62;
+  const X = i => 50 + 100*(i-a);
+  let s = `<line x1="14" y1="${ya}" x2="${W-14}" y2="${ya}"/><path d="M${W-30} ${ya-9} L${W-12} ${ya} L${W-30} ${ya+9}" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round"/>`;
+  for(let i=a;i<=b;i++){
+    s += `<line x1="${X(i)}" y1="${ya-10}" x2="${X(i)}" y2="${ya+10}"/>`;
+    s += skry.includes(i) ? `<rect class="skrytie" x="${X(i)-26}" y="${ya+18}" width="52" height="52" rx="7"/>` : `<text x="${X(i)}" y="${ya+52}">${i}</text>`;
+  }
+  if(skry.length) s = s;
+  mark.forEach(i=>{ s += `<circle class="bod" cx="${X(i)}" cy="${ya}" r="12"/>`; });
+  okr.forEach(i=>{ s += `<circle class="okruh" cx="${X(i)}" cy="${ya}" r="17"/>`; });
+  arcs.forEach(([p,q])=>{
+    const d = Math.abs(q-p), h = Math.min(16+9*d, 46);
+    const x1 = X(p), x2 = X(q), cx = (x1+x2)/2, y0 = ya - 14, cy = y0 - h;
+    s += `<path class="ob" d="M${x1} ${y0} Q${cx} ${cy} ${x2} ${y0}"/>`;
+    // šípka na konci: smer dotyčnice (z riadiaceho bodu do konca)
+    const tx = x2-cx, ty = y0-cy, L = Math.hypot(tx,ty), ux = tx/L, uy = ty/L, px = -uy, py = ux, k = 13;
+    s += `<path class="ob" d="M${x2-ux*k+px*k*.65} ${y0-uy*k+py*k*.65} L${x2} ${y0} L${x2-ux*k-px*k*.65} ${y0-uy*k-py*k*.65}"/>`;
+    if(el.dataset.lab){ const t = (q>p?"+":"−")+d; s += `<text class="lab" x="${cx}" y="${y0-(h+6)/2-6}">${t}</text>`; }
+  });
+  el.innerHTML = `<svg viewBox="0 0 ${W} ${H}">${s}</svg>`;
+});
+</script>
+</body></html>
