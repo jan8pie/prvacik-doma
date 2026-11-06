@@ -1,0 +1,88 @@
+/* Hra s kockami – vzhľad hry (spoločný pre stránku kocky.html aj karty na webe).
+   Číslo = kocky v rámikoch po 10. Každé číslo v príklade má svoju farbu,
+   kocky 1 – 5 v rámiku sú tmavší odtieň, 6 – 10 svetlejší.
+   Triedy hry začínajú na kk-, aby sa nebili so zvyškom stránky. */
+:root{
+  /* 6 farieb kociek, každá v dvoch odtieňoch: a = kocky 1 – 5, b = kocky 6 – 10 */
+  --p0a:#2F6BD8; --p0b:#86AEF0;   /* modrá */
+  --p1a:#DB7512; --p1b:#F3B566;   /* oranžová */
+  --p2a:#2A9455; --p2b:#86CFA0;   /* zelená */
+  --p3a:#7A4CC8; --p3b:#B79AE8;   /* fialová */
+  --p4a:#CF3F36; --p4b:#EF9790;   /* červená */
+  --p5a:#11817F; --p5b:#6CC6C3;   /* tyrkysová */
+  --rod:#3A4656; --ghost:#B9C4D2;
+  --hint:#F5B800; --hint-ink:#1C2633;   /* tlačidlo ? (nápoveda) */
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --p0a:#4A84EC; --p0b:#A3C1F5; --p1a:#EE8A24; --p1b:#F7C688; --p2a:#3AAE69; --p2b:#9BDBB2;
+  --p3a:#9066DC; --p3b:#C7B0F1; --p4a:#E2554B; --p4b:#F4A9A3; --p5a:#1FA09D; --p5b:#86D6D3;
+  --rod:#C9D2DE; --ghost:#46546A; --hint:#F7C948; --hint-ink:#12171E}}
+:root[data-theme="dark"]{
+  --p0a:#4A84EC; --p0b:#A3C1F5; --p1a:#EE8A24; --p1b:#F7C688; --p2a:#3AAE69; --p2b:#9BDBB2;
+  --p3a:#9066DC; --p3b:#C7B0F1; --p4a:#E2554B; --p4b:#F4A9A3; --p5a:#1FA09D; --p5b:#86D6D3;
+  --rod:#C9D2DE; --ghost:#46546A; --hint:#F7C948; --hint-ink:#12171E}
+
+.kk{display:flex;flex-direction:column;gap:12px;min-width:0}
+.kk [hidden]{display:none!important}
+.kk-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.kk-kolo{font-family:var(--f-head);font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums}
+.kk-dots{display:flex;gap:5px}.kk-dots i{width:10px;height:10px;border-radius:50%;background:var(--line)}.kk-dots i.on{background:var(--accent)}
+.kk-zadanie{font-family:var(--f-head);font-weight:600;font-size:20px;margin:0}
+.kk-rovnica{font-family:var(--f-head);font-weight:700;font-size:32px;font-variant-numeric:tabular-nums;margin:0;letter-spacing:.02em;
+  display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:0 .3em}
+.kk-vys{display:inline-block;min-width:1.6em;padding:0 .2em;border-bottom:3px solid var(--line);color:var(--ink);text-align:center}
+.kk-vys.ok{color:var(--ok);border-color:var(--ok)}
+.kk-ciel{font-family:var(--f-head);font-weight:700;font-size:64px;line-height:1;text-align:center;font-variant-numeric:tabular-nums}
+.kk-t0{color:var(--p0a)}.kk-t1{color:var(--p1a)}.kk-t2{color:var(--p2a)}.kk-t3{color:var(--p3a)}.kk-t4{color:var(--p4a)}.kk-t5{color:var(--p5a)}
+.kk-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center}
+
+.kk-scene{--k:28px;--g:3px;display:flex;justify-content:center;align-items:flex-end;gap:16px;padding:4px 0;min-width:0;overflow:hidden}
+.kk-cols{display:flex;align-items:flex-end;gap:8px}
+.kk-colw{display:flex;flex-direction:column;align-items:center;gap:4px}
+.kk-cnum{font-family:var(--f-head);font-weight:700;font-size:clamp(13px,calc(var(--k)*.55),20px);line-height:1.2;min-height:1.2em;color:var(--muted);font-variant-numeric:tabular-nums}
+.kk-bez-cisel .kk-cnum{visibility:hidden}
+/* rámik presne na 10 kociek: 10 kociek + 9 medzier + vnútorný okraj 3 px + rámik 2 px z každej strany */
+.kk-col{display:flex;flex-direction:column-reverse;gap:var(--g);padding:3px;border-radius:7px;border:2px solid transparent;
+  width:calc(var(--k) + 10px);height:calc(var(--k)*10 + var(--g)*9 + 10px);justify-content:flex-start;align-items:center}
+.kk-col.ones{border:2px dashed var(--ghost)}
+.kk-col.rod{border:2px solid var(--rod)}
+.kk-k{width:var(--k);height:var(--k);border-radius:calc(var(--k)*.16);flex:none;background:var(--c1);
+  box-shadow:inset 0 calc(var(--k)*-.1) 0 rgba(0,0,0,.2), inset 0 2px 0 rgba(255,255,255,.3)}
+.kk-k.h{background:var(--c2)}
+.kk-f0{--c1:var(--p0a);--c2:var(--p0b)}.kk-f1{--c1:var(--p1a);--c2:var(--p1b)}.kk-f2{--c1:var(--p2a);--c2:var(--p2b)}
+.kk-f3{--c1:var(--p3a);--c2:var(--p3b)}.kk-f4{--c1:var(--p4a);--c2:var(--p4b)}.kk-f5{--c1:var(--p5a);--c2:var(--p5b)}
+.kk-plus{font-family:var(--f-head);font-weight:700;font-size:30px;color:var(--muted);align-self:center}
+
+/* odpoveď: rad číslic, ? ukáže možnosti */
+.kk-vstup{display:flex;flex-direction:column;gap:10px}
+.kk-klav{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+@media (min-width:640px){.kk-klav{grid-template-columns:repeat(10,minmax(0,1fr))}}
+.kk-num{font-family:var(--f-head);font-weight:700;font-size:26px;min-height:56px;border-radius:12px;border:2px solid var(--line);background:var(--soft);color:var(--ink);cursor:pointer;font-variant-numeric:tabular-nums}
+.kk-num:disabled,.kk-tile:disabled{cursor:default}
+.kk-pomoc{display:flex;justify-content:center;gap:10px}
+.kk-pomoc .btn{min-width:72px;font-size:22px;justify-content:center}
+.kk-nap{display:inline-grid;place-items:center;width:60px;height:60px;margin-left:14px;vertical-align:middle;border-radius:50%;border:0;background:var(--hint);color:var(--hint-ink);font-family:var(--f-head);font-weight:700;font-size:34px;line-height:1;cursor:pointer;box-shadow:0 3px 0 rgba(0,0,0,.18)}
+.kk-nap:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(0,0,0,.18)}
+.kk-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(72px,1fr));gap:10px}
+.kk-tile{font-family:var(--f-head);font-weight:700;font-size:30px;min-height:64px;border-radius:14px;border:2px solid var(--line);background:var(--soft);color:var(--ink);cursor:pointer;font-variant-numeric:tabular-nums}
+.kk-tile.ok{background:var(--ok);border-color:var(--ok);color:var(--card)}
+.kk-tile.no{opacity:.4}
+.kk-status{min-height:1.5em;margin:0;font-size:16px;font-weight:400;color:var(--muted);text-align:center}
+.kk-status.ok{color:var(--ok);font-weight:700}
+.kk-stav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.kk-stav .btn{min-height:60px;font-size:18px;justify-content:center}
+.kk-koniec{display:flex;flex-direction:column;align-items:center;gap:10px;padding:20px 0;text-align:center}
+.kk-koniec .kk-hv{width:84px;height:84px;color:#E8B000}
+.kk-koniec p{font-family:var(--f-head);font-weight:600;font-size:22px;margin:0}
+.kk-koniec p.kk-small{font-family:var(--f-body);font-weight:400;font-size:14px;color:var(--muted)}
+
+/* na celej obrazovke pre dieťa */
+.kid .kk{max-width:900px;width:100%;margin:0 auto;flex:1}
+.kid .kk-zadanie{font-size:24px;text-align:center}
+.kid .kk-tile{font-size:38px;min-height:84px}
+.kid .kk-num{font-size:30px;min-height:64px}
+.kid .kk-nap{width:72px;height:72px;font-size:40px}
+
+@keyframes kk-tras{0%,100%{transform:none}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.kk-tras{animation:kk-tras .3s 2}
+@media (prefers-reduced-motion:reduce){.kk-tras{animation:none}}

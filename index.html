@@ -8,6 +8,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Lexend:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="kocky.css">
 <style>
 /* Rozloženie: jeden stĺpec kariet pod sebou (ako sociálna sieť), najnovšie navrchu, delené po týždňoch. */
 :root{
@@ -196,6 +197,7 @@ a.btn.primary{color:var(--accent-ink)}
 .kid .line .tile{font-size:clamp(34px,9vw,60px)}
 .kid .plate{font-size:40px;max-width:220px}
 .kid .eq{font-size:36px}
+.kid .kk-uvod{display:none}
 .about{font-size:13.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;margin-top:10px}
 .about p{margin:0 0 6px}
 .about a{color:var(--muted)}
@@ -229,6 +231,7 @@ a.btn.primary{color:var(--accent-ink)}
 </div>
 
 <script src="karty.js"></script>
+<script src="kocky.js"></script>
 <script>
 /* ===== IKONY (jednotná sada, dajú sa vymeniť na jednom mieste) ===== */
 const IKONY = {
@@ -468,8 +471,21 @@ document.querySelectorAll("[data-hra]").forEach(el=>{
     </div>
     <div class="game"></div>`;
   const game=el.querySelector(".game");
+  /* Hra s kockami (kocky.js) má vlastné kolá a odpovede. Úroveň v karte povie, čo sa robí a do koľko. */
+  let kocky=null;
+  if(hra.druh==="kocky"){
+    if(uvod) game.insertAdjacentHTML("beforebegin", `<p class="kk-uvod">${esc(uvod)}</p>`);   /* text pre rodiča, dieťaťu sa neukáže */
+    kocky = Kocky.hra(game, {say:(t)=>say(t,"sk-SK"), kol:hra.kol||4,
+      priKonci:()=>{ if(!ov.contains(el)) return false; hotovo(); kocky.spusti(null,{automaticky:false}); return true; }});
+  }
+  const nastavKocky = () => {
+    const x = Object.assign({rezim:hra.rezim||"kolko", u:uroven}, hra.urovne[uroven][2]||{});
+    x.rozsah = x.rozsah || (!x.max || x.max<=10 ? 10 : x.max<=20 ? 20 : 100);
+    return x;
+  };
   function nova(){
     const moje = ++cislo;   /* ak medzitým príde nové kolo (zmena obťažnosti), staré čakanie sa zahodí */
+    if(kocky){ kocky.spusti(nastavKocky(), {automaticky:hovor}); return; }
     if(rodic){ RODIC[hra.druh](game, uroven); return; }
     kolo = HRY[hra.druh](hra, uroven, uvod);
     const hlas = kolo.hlas || kolo.text;

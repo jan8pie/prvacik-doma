@@ -15,7 +15,9 @@
    kod:     značka témy (predmet-komponent-číslo)
    stdn:    štandard ŠVP (citát)
    bloky:   rozhovor, aktivita, pocuvanie, hadanka, spolu, tlac
-   hry (aktivita): vyber, rozklad, slabiky, poradie, sucet, porovnaj
+   hry (aktivita): vyber, rozklad, slabiky, poradie, sucet, porovnaj, kocky
+   kocky:   rezim "kolko" (Koľko je?, Výzva = postav číslo) alebo "spoj" (+, Výzva = najprv odhad);
+            pri úrovni {max:6} = čísla najviac do 6 (podľa témy), {max:20} alebo {max:100} = väčšie čísla
    pocuvanie: jazyk:"sk-SK" pre slovenčinu (inak angličtina), citanie:true = veľké slová bez obrázkov
 
    Pravidlo pre text čítaný nahlas: veta, ktorá končí číslom, nemá bodku.
@@ -206,6 +208,8 @@ window.KARTY = [
   meta:["spolu s rodičom","5 minút","bez pomôcok"],
   stdn:"ŠVP MAT, Čísla a operácie s číslami: „analyzovanie a navrhovanie metód riešenia jednoduchých slovných úloh na sčítanie a odčítanie – zväčšenie/zmenšenie čísla o niekoľko jednotiek“",
   bloky:[
+    {typ:"aktivita", text:"Príbeh na kockách: k jednej skupine kociek pribudnú ďalšie. Koľko ich je spolu? Pri Výzve dieťa najprv odhadne a až potom sa kocky spoja.",
+     hra:{druh:"kocky", rezim:"spoj", urovne:[["●","Ľahšie",{max:5}],["●●","Bežné",{max:6}],["●●●","Výzva",{max:6}]], predvolena:1, kol:4}},
     {typ:"hadanka", text:"Na strome sedeli 4 vtáčiky. Priletel ešte jeden. Koľko vtáčikov je na strome?", odpoved:"5 vtáčikov 🐦 (4 a 1 je 5)"},
     {typ:"hadanka", text:"Na tanieri bolo 5 jahôd. Ježko Bodliak zjedol dve. Koľko jahôd zostalo?", odpoved:"3 jahody 🍓 (5 mínus 2 sú 3)"},
     {typ:"hadanka", text:"Veverička mala v jednej labke 3 oriešky a v druhej labke tiež tri. Koľko orieškov mala spolu?", odpoved:"6 orieškov 🌰 (3 a 3 je 6)"},
@@ -283,6 +287,8 @@ window.KARTY = [
   meta:["spolu s rodičom","5 minút","hracia kocka, fazuľky"],
   stdn:"ŠVP MAT, Čísla a operácie s číslami: „porozumenie pojmov sčítanec, súčet, menšenec, menšiteľ, rozdiel“",
   bloky:[
+    {typ:"aktivita", text:"Na tablete sú dve skupiny kociek. Dieťa ich spojí a spočíta, koľko je spolu. Pri Výzve najprv odhadne výsledok a až potom sa kocky spoja.",
+     hra:{druh:"kocky", rezim:"spoj", urovne:[["●","Ľahšie",{max:4}],["●●","Bežné",{max:6}],["●●●","Výzva",{max:6}]], predvolena:1, kol:4}},
     {typ:"spolu", text:"Striedajte sa. Kto má v kole väčší súčet, dostane fazuľku. Ak je súčet rovnaký, fazuľku dostanú obaja. Vyhráva ten, kto má prvý päť fazuliek."},
     {typ:"tlac", urovne:3, text:"Bodky na kocke, súčet dvoch kociek, hra pre dvoch a kockové bingo. Výzva: tajomstvo protiľahlých stien a všetky spôsoby, ako hodiť 6.", subor:"mat-kocka.pdf"},
     {typ:"rozhovor", zacni:"„Padla mi trojka a potom dvojka. Koľko to je spolu?“",
@@ -363,6 +369,8 @@ window.KARTY = [
   meta:["spolu s rodičom","10 minút","doma alebo vonku"],
   stdn:"ŠVP MAT, Čísla a operácie s číslami: „porozumenie a modelovanie čísel ako počtu prvkov množiny, ako poradie, ako predchodcu alebo nasledovníka“",
   bloky:[
+    {typ:"aktivita", text:"Koľko kociek je v rámiku? Dieťa napíše číslo, žltý otáznik ukáže možnosti. Pri Výzve dieťa vidí číslo a kocky postaví samo.",
+     hra:{druh:"kocky", rezim:"kolko", urovne:[["●","Ľahšie",{max:5}],["●●","Bežné",{max:6}],["●●●","Výzva",{max:6}]], predvolena:1, kol:4}},
     {typ:"spolu", text:"Lov na šestky: každú nájdenú šestku (6 lyžičiek, 6 gombíkov, 6 bodiek) si zapíšte čiarkou alebo nakreslite. Keď sa vec nedá spočítať naraz, ukladajte ju po jednej do radu."},
     {typ:"tlac", urovne:3, text:"Šestka v krabičke vajec, na krídlach motýľa, na domine aj doma. Výzva: nohy zvieratiek, spravodlivé delenie orieškov a hádanky.", subor:"mat-6-okolo.pdf"},
     {typ:"rozhovor", zacni:"„V krabičke je 6 vajíčok. Myslíš, že by sa tam zmestilo aj siedme?“",
