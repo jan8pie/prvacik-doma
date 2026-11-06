@@ -256,7 +256,7 @@ function hra(el, o={}){
     ]};
     velkost(sc, Math.max(ga.stlpce.length+gb.stlpce.length+1, spolu.stlpce.length), 2);
     vykresli(sc,[ga,gb],{znamienko:true}); ANIM.presun(sc,null,{oneskorenie:s>20?5:20});
-    zadaj(odhad?`Koľko je ${a} a ${c}? Najprv odhadni, potom uvidíš`:"Koľko kociek bude spolu? Ťukni na Spoj");
+    zadaj(odhad?`Koľko je ${a} a ${c}?`:"Koľko kociek bude spolu? Ťukni na Spoj");
     let spojene=false, chyby=0;
     const spoj = async () => {
       if(spojene) return; spojene=true;
