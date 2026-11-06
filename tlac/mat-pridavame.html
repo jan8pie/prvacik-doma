@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="sk"><head><meta charset="utf-8"><title>Pridávame – pracovný list (3 úrovne)</title>
+<link rel="stylesheet" href="list.css">
+<style>
+  .vyb{display:flex;gap:5mm;font-size:26px;font-weight:700;justify-content:center}
+  .tan3{display:grid;grid-template-columns:repeat(3,1fr);gap:5mm}
+  .tan3>div{display:flex;flex-direction:column;align-items:center;gap:2mm;border:1px solid #bbb;border-radius:3mm;padding:2mm}
+  .tan3 .dvojt{display:flex;align-items:center;gap:1.5mm}
+  .tanier.m .pic{width:5.8mm;height:5.8mm}
+  .luka{display:flex;align-items:center;gap:5mm}
+  .luka .miesto{width:30mm;height:22mm;border:1.4px dashed #777;border-radius:2mm}
+  .vezu{display:grid;grid-template-columns:1fr auto;gap:2.5mm 6mm;align-items:center}
+  .vezu .kveza i{width:6.8mm;height:6.8mm}
+  .ex{display:flex;align-items:center;gap:1.6mm;font-size:24px;font-weight:700;white-space:nowrap}
+  .ex .okno{width:10.5mm;height:10.5mm}
+  .tan4{display:grid;grid-template-columns:1fr 1fr;gap:4mm 6mm}
+  .tan4>div{display:flex;align-items:center;justify-content:space-between;gap:1.5mm;border:1px solid #bbb;border-radius:3mm;padding:1.5mm 2mm}
+  .tan4 .dvojt{display:flex;align-items:center;gap:1mm}
+  .tan4 .tanier{width:18mm;height:13mm;padding:0 1.6mm;box-shadow:inset 0 0 0 1.5mm #fff, inset 0 0 0 1.8mm #111}
+  .tan4 .tanier .pic{width:4.6mm;height:4.6mm;stroke-width:6}
+  .tan4 .ex{font-size:21px;gap:1.2mm}
+  .tan4 .ex .okno{width:8.5mm;height:8.5mm;border-radius:2mm}
+  .dom3{display:flex;justify-content:space-around}
+  .dom3>div{display:flex;flex-direction:column;align-items:center;gap:2mm}
+  .domino.vel .kocka{width:15mm;height:15mm}
+  .pribeh{display:flex;flex-direction:column;gap:2mm}
+  .pribeh>div{display:grid;grid-template-columns:1fr auto;align-items:center;gap:4mm;border-bottom:1px dotted #bbb;padding-bottom:2mm}
+  .pribeh>div:last-child{border:none;padding-bottom:0}
+  .pribeh .tx{font-size:15.5px;font-weight:700;display:flex;flex-direction:column;gap:1.5mm}
+  .pribeh .obr{display:flex;align-items:center;gap:1mm}
+  .doms{display:grid;grid-template-columns:repeat(6,1fr);justify-items:center}
+  .objav{display:flex;flex-direction:column;gap:2.5mm}
+  .objav>div{display:flex;align-items:center;gap:4mm}
+  .zv{display:grid;grid-template-columns:1fr 1fr;gap:5mm}
+  .zv>div{display:flex;align-items:center;gap:3mm;border:1px solid #bbb;border-radius:3mm;padding:2mm}
+  .zv .miesto{flex:1;height:15mm;border:1px dashed #999;border-radius:2mm}
+  .ot{display:flex;flex-direction:column;gap:2mm;font-size:15.5px;font-weight:700;margin-top:2.5mm}
+  .ot>div{display:flex;align-items:center;gap:3mm;justify-content:space-between}
+</style></head>
+<body>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 1 – ĽAHŠIE                                                     -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="1">
+  <header class="hlava" data-predmet="Matematika">Pridávame</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Obťahuj číslice a znak plus. Začni hore.</span></div>
+    <div class="plocha">
+      <div class="linka"><i obtiahni="1"></i><i obtiahni="1"></i><i obtiahni="2"></i><i obtiahni="2"></i><i obtiahni="3"></i><i obtiahni="3"></i><i obtiahni="+"></i></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Koľko jahôd je na oboch tanieroch spolu? Zakrúžkuj číslo.</span></div>
+    <div class="plocha tan3">
+      <div><div class="dvojt"><div class="tanier m"><i o="jahoda"></i></div><div class="tanier m"><i o="jahoda"></i></div></div><div class="vyb"><span>1</span><span>2</span><span>3</span></div></div>
+      <div><div class="dvojt"><div class="tanier m"><i o="jahoda" n="2"></i></div><div class="tanier m"><i o="jahoda"></i></div></div><div class="vyb"><span>2</span><span>3</span><span>4</span></div></div>
+      <div><div class="dvojt"><div class="tanier m"><i o="jahoda"></i></div><div class="tanier m"><i o="jahoda" n="3"></i></div></div><div class="vyb"><span>3</span><span>4</span><span>5</span></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Na lúke sú 2 zajace. Pribehol ešte jeden. Dokresli ho. Koľko zajacov je teraz na lúke?</span></div>
+    <div class="plocha luka">
+      <i o="zajac" n="2" class="s"></i><span class="znak">+</span><div class="miesto"></div>
+      <div class="vyb" style="margin-left:auto"><span>2</span><span>3</span><span>4</span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Veže z kociek ako v Hre s kockami. Sivé kocky tam už boli, pruhované pribudli. Koľko kociek je spolu? Zakrúžkuj.</span></div>
+    <div class="plocha vezu">
+      <i veza="1 1" class="lezi"></i><div class="vyb"><span>1</span><span>2</span><span>3</span></div>
+      <i veza="2 1" class="lezi"></i><div class="vyb"><span>2</span><span>3</span><span>4</span></div>
+      <i veza="1 3" class="lezi"></i><div class="vyb"><span>3</span><span>4</span><span>5</span></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Zadania prečítajte. Pridávanie je začiatok sčítania: k tomu, čo už je, niečo pribudne. Nevadí, ak dieťa počíta všetko znova od jedna; neskôr začne počítať ďalej od väčšieho čísla. Pri vežiach môže dieťa kocky vyfarbiť dvoma farbami, ako sú v hre na webe.
+      <b>Riešenie:</b> 1 – obťahovanie · 2 – 2, 3, 4 · 3 – 3 zajace · 4 – 2, 3, 4.
+      <span class="std">MAT-CO-3 · ŠVP MAT, Čísla a operácie s číslami: „porozumenie pojmov sčítanec, súčet, menšenec, menšiteľ, rozdiel“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 2 – BEŽNÉ                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="2">
+  <header class="hlava" data-predmet="Matematika">Koľko je spolu?</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Napíš príklad k obrázku.</span></div>
+    <div class="plocha tan4">
+      <div><div class="dvojt"><div class="tanier m"><i o="jablko" n="2"></i></div><div class="tanier m"><i o="jablko"></i></div></div><span class="ex"><span class="okno"></span>+<span class="okno"></span>=<span class="okno"></span></span></div>
+      <div><div class="dvojt"><div class="tanier m"><i o="jablko"></i></div><div class="tanier m"><i o="jablko" n="2"></i></div></div><span class="ex"><span class="okno"></span>+<span class="okno"></span>=<span class="okno"></span></span></div>
+      <div><div class="dvojt"><div class="tanier m"><i o="jablko" n="2"></i></div><div class="tanier m"><i o="jablko" n="2"></i></div></div><span class="ex"><span class="okno"></span>+<span class="okno"></span>=<span class="okno"></span></span></div>
+      <div><div class="dvojt"><div class="tanier m"><i o="jablko" n="3"></i></div><div class="tanier m"><i o="jablko"></i></div></div><span class="ex"><span class="okno"></span>+<span class="okno"></span>=<span class="okno"></span></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Veže z kociek: sivé plus pruhované. Dopíš, koľko kociek je spolu.</span></div>
+    <div class="plocha vezu">
+      <i veza="1 2" class="lezi"></i><span class="ex">1 + 2 = <span class="okno"></span></span>
+      <i veza="3 1" class="lezi"></i><span class="ex">3 + 1 = <span class="okno"></span></span>
+      <i veza="2 2" class="lezi"></i><span class="ex">2 + 2 = <span class="okno"></span></span>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Nakresli bodky na domino podľa príkladu. Potom dopíš výsledok.</span></div>
+    <div class="plocha dom3">
+      <div><i domino="- -" class="lezi vel" data-k=""></i><span class="ex">1 + 1 = <span class="okno"></span></span></div>
+      <div><i domino="- -" class="lezi vel" data-k=""></i><span class="ex">2 + 1 = <span class="okno"></span></span></div>
+      <div><i domino="- -" class="lezi vel" data-k=""></i><span class="ex">1 + 3 = <span class="okno"></span></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Príbehy. Napíš príklad a výsledok.</span></div>
+    <div class="plocha pribeh">
+      <div><div class="tx">Na strome sedeli 2 vtáčiky. Prileteli ešte dva. Koľko vtáčikov je teraz na strome?<span class="obr"><i o="vtak" n="2" class="m"></i>&nbsp;+&nbsp;<i o="vtak" n="2" class="m"></i></span></div><span class="ex"><span class="okno"></span>+<span class="okno"></span>=<span class="okno"></span></span></div>
+      <div><div class="tx">V košíku boli 3 jablká. Babka pridala ešte jedno. Koľko jabĺk je v košíku?<span class="obr"><i o="jablko" n="3" class="m"></i>&nbsp;+&nbsp;<i o="jablko" class="m"></i></span></div><span class="ex"><span class="okno"></span>+<span class="okno"></span>=<span class="okno"></span></span></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Zadania prečítajte. Príklad sa číta „dva plus jeden sa rovná tri“. V škole sa čísla, ktoré sčítame, volajú sčítance a výsledok súčet. Pri príbehoch nechajte dieťa najprv povedať, čo sa stalo, a až potom zapísať príklad.
+      <b>Riešenie:</b> 1 – 2 + 1 = 3, 1 + 2 = 3, 2 + 2 = 4, 3 + 1 = 4 · 2 – 3, 4, 4 · 3 – 2, 3, 4 (bodky 1 a 1, 2 a 1, 1 a 3) · 4 – 2 + 2 = 4, 3 + 1 = 4.
+      <span class="std">MAT-CO-3 · ŠVP MAT, Čísla a operácie s číslami: „porozumenie pojmov sčítanec, súčet, menšenec, menšiteľ, rozdiel“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 3 – VÝZVA                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="3">
+  <header class="hlava" data-predmet="Matematika">Pridávanie trochu inak</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Každá veža má mať spolu 4 kocky. Koľko kociek treba pridať? Dokresli ich a dopíš číslo.</span></div>
+    <div class="plocha vezu">
+      <i veza="3" class="lezi"></i><span class="ex">3 + <span class="okno"></span> = 4</span>
+      <i veza="1" class="lezi"></i><span class="ex">1 + <span class="okno"></span> = 4</span>
+      <i veza="2" class="lezi"></i><span class="ex">2 + <span class="okno"></span> = 4</span>
+      <i veza="4" class="lezi"></i><span class="ex">4 + <span class="okno"></span> = 4</span>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Zakrúžkuj každé domino, ktoré má spolu presne 4 bodky.<span class="pozn">Pozor, jedno domino má jednu polovicu prázdnu.</span></span></div>
+    <div class="plocha doms">
+      <i domino="1 3"></i><i domino="2 1"></i><i domino="2 2"></i><i domino="4 -"></i><i domino="3 2"></i><i domino="3 1"></i>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Malý objav. Nakresli na taniere jablká podľa príkladu a vypočítaj.</span></div>
+    <div class="plocha objav">
+      <div><div class="tanier m"></div><div class="tanier m"></div><span class="ex">1 + 3 = <span class="okno"></span></span></div>
+      <div><div class="tanier m"></div><div class="tanier m"></div><span class="ex">3 + 1 = <span class="okno"></span></span></div>
+      <div style="font-size:15.5px;font-weight:700">Čo si všimneš? Povedz to rodičovi. Platí to aj pri 2 + 1 a 1 + 2?</div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Ježko má 1 jablko. Zajko má o 1 jablko viac ako ježko. Nakresli im jablká.</span></div>
+    <div class="plocha">
+      <div class="zv">
+        <div><i o="jezko" class="s"></i><div class="miesto"></div></div>
+        <div><i o="zajac" class="s"></i><div class="miesto"></div></div>
+      </div>
+      <div class="ot">
+        <div>Koľko jabĺk majú spolu? Napíš príklad. <span class="ex"><span class="okno m"></span>+<span class="okno m"></span>=<span class="okno m"></span></span></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Výzva nehľadá výsledok, ale chýbajúce číslo a pravidlo. V úlohe 1 je chyták 4 + 0 = 4: netreba pridať nič. V úlohe 3 je objav, že na poradí pri sčítaní nezáleží (1 + 3 = 3 + 1). V úlohe 4 je „o jedno viac“ nové slovné spojenie, oplatí sa ho ukázať na skutočných jablkách.
+      <b>Riešenie:</b> 1 – 1, 3, 2, 0 · 2 – domino 1 a 3, 2 a 2, 4 a prázdna polovica, 3 a 1 · 3 – 4 a 4, výsledok je rovnaký · 4 – zajko 2 jablká, spolu 1 + 2 = 3.
+      <span class="std">MAT-CO-3 · ŠVP MAT, Čísla a operácie s číslami: „porozumenie pojmov sčítanec, súčet, menšenec, menšiteľ, rozdiel“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<script src="obrazky.js"></script><script src="nastroje.js"></script>
+</body></html>

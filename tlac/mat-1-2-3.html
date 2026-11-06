@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="sk"><head><meta charset="utf-8"><title>Jeden, dva, tri – pracovný list (3 úrovne)</title>
+<link rel="stylesheet" href="list.css">
+<style>
+  .skup{display:flex;flex-wrap:wrap;align-items:center;align-content:center;justify-content:center;gap:1.2mm;border:1.2px solid #111;border-radius:3mm;padding:2mm}
+  .spoj2{display:flex;flex-direction:column;gap:7mm}
+  .spoj2>div{display:flex;justify-content:space-around;align-items:center}
+  .spoj2 .skup{width:36mm;height:20mm}
+  .spoj2 .skup .pic{width:10mm;height:10mm;stroke-width:4.8}
+  .farbi{display:flex;flex-direction:column;gap:1.5mm}
+  .farbi>div{display:flex;align-items:center;gap:4mm}
+  .farbi .kto{border-right:1.2px solid #111;padding-right:5mm}
+  .farbi .pic{width:11mm;height:11mm;stroke-width:4.6}
+  .tri{display:grid;grid-template-columns:repeat(3,1fr);gap:6mm}
+  .tri .skup{height:18mm}
+  .tri .pic{width:12mm;height:12mm;stroke-width:4.4}
+  .telo{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm}
+  .telo>div{display:flex;flex-direction:column;align-items:center;gap:2mm;border:1px solid #bbb;border-radius:3mm;padding:2mm}
+  .telo .vol{display:flex;gap:3mm}
+  .ciarky{display:inline-flex;gap:1.6mm;align-items:center;height:9mm}
+  .ciarky i{display:block;width:1.3mm;height:9mm;background:#111;border-radius:.6mm}
+  .zapis{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm}
+  .zapis>div{display:flex;flex-direction:column;align-items:center;gap:2mm}
+  .zapis .skup{width:100%;height:19mm}
+  .zapis .pic{width:10mm;height:10mm;stroke-width:4.8}
+  .zapis .lin{width:100%;height:12mm;border-bottom:1.3px solid #111}
+  .pole{position:relative;height:38mm}
+  .pole .pic{position:absolute;width:13mm;height:13mm;stroke-width:4.2}
+  .k-cisla{display:flex;flex-direction:column;gap:12mm}
+  .k-cisla>div{display:flex;justify-content:space-around;align-items:center}
+  .k-cisla .velke{font-size:44px;font-weight:700;width:16mm;height:16mm;border:1.4px solid #111;border-radius:50%;display:flex;align-items:center;justify-content:center}
+  .k-cisla .skup{min-width:26mm;height:17mm}
+  .k-cisla .skup .pic{width:9mm;height:9mm;stroke-width:5}
+  .scena{border:1.2px solid #111;border-radius:3mm;height:33mm;position:relative}
+  .scena .zem{position:absolute;bottom:9mm;left:0;right:0;border-top:1.4px solid #111}
+  .osem{display:grid;grid-template-columns:repeat(4,1fr);gap:3mm}
+  .osem .skup{height:20mm;position:relative}
+  .osem .pic{width:9mm;height:9mm;stroke-width:5}
+  .osem .abs .pic{position:absolute}
+  .usi{display:flex;flex-direction:column;gap:2mm}
+  .usi>div{display:grid;grid-template-columns:1fr 1fr;gap:5mm;align-items:center;border-bottom:1px dotted #bbb;padding-bottom:2mm}
+  .usi>div:last-child{border:none;padding-bottom:0}
+  .usi .tx{display:flex;align-items:center;gap:2mm;font-size:15px;font-weight:700}
+  .usi .lin{height:12mm;border-bottom:1.3px solid #111;position:relative}
+  .usi .lin::before{content:"čiarky:";position:absolute;left:0;bottom:1mm;font-size:11px;color:#777}
+  .rohy{display:grid;grid-template-columns:repeat(3,1fr);gap:5mm}
+  .rohy>div{display:flex;flex-direction:column;gap:1.5mm;font-size:14px;font-weight:700;text-align:center}
+  .rohy .miesto{height:24mm;border:1px dashed #999;border-radius:2mm}
+  .nepatri{display:flex;flex-direction:column;gap:3mm}
+  .nepatri>div{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm}
+  .nepatri .skup{height:15mm}
+  .nepatri .pic{width:9mm;height:9mm;stroke-width:5}
+</style></head>
+<body>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 1 – ĽAHŠIE                                                     -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="1">
+  <header class="hlava" data-predmet="Matematika">Jeden, dva, tri</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Spoj čiarou obrázky s kockou, ktorá má rovnako veľa bodiek.</span></div>
+    <div class="plocha spoj2">
+      <div><div class="skup"><i o="jablko" n="2"></i></div><div class="skup"><i o="ryba" n="3"></i></div><div class="skup"><i o="slnko"></i></div></div>
+      <div><i kocka="1" class="l"></i><i kocka="2" class="l"></i><i kocka="3" class="l"></i></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Vyfarbi presne toľko obrázkov, koľko bodiek je na kocke.</span></div>
+    <div class="plocha farbi">
+      <div><div class="kto"><i kocka="2"></i></div><i o="balon" n="5"></i></div>
+      <div><div class="kto"><i kocka="3"></i></div><i o="hviezda" n="5"></i></div>
+      <div><div class="kto"><i kocka="1"></i></div><i o="jablko" n="5"></i></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>V každom rámčeku majú byť 3 lopty. Dokresli tie, ktoré chýbajú.<span class="pozn">Pozor, jeden rámček je úplne prázdny.</span></span></div>
+    <div class="plocha tri">
+      <div class="skup"><i o="lopta" n="2"></i></div><div class="skup"><i o="lopta"></i></div><div class="skup"></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Koľko toho máš? Pri každom obrázku zakrúžkuj správnu kocku.</span></div>
+    <div class="plocha telo">
+      <div><i o="srdce" class="s"></i><div class="vol"><i kocka="1" class="m"></i><i kocka="2" class="m"></i></div></div>
+      <div><i o="oko" class="s"></i><div class="vol"><i kocka="1" class="m"></i><i kocka="2" class="m"></i></div></div>
+      <div><i o="ucho" class="s"></i><div class="vol"><i kocka="1" class="m"></i><i kocka="2" class="m"></i></div></div>
+      <div><i o="ruka" class="s"></i><div class="vol"><i kocka="1" class="m"></i><i kocka="2" class="m"></i></div></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Zadania prečítajte. Dieťa počíta ukazovaním prstom na každý obrázok a pritom nahlas povie „jeden, dva, tri“. Pri úlohe 4 sa dieťa môže dotknúť svojho ucha, oka a ruky.
+      <b>Riešenie:</b> 1 – 2 jablká a kocka 2, 3 ryby a kocka 3, slnko a kocka 1 · 2 – vyfarbiť 2 balóny, 3 hviezdy, 1 jablko · 3 – dokresliť 1, 2 a 3 lopty · 4 – srdce 1, oči 2, uši 2, ruky 2.
+      <span class="std">MAT-CO-1 · ŠVP MAT, Čísla a operácie s číslami: „porozumenie a modelovanie čísel ako počtu prvkov množiny, ako poradie, ako predchodcu alebo nasledovníka“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 2 – BEŽNÉ                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="2">
+  <header class="hlava" data-predmet="Matematika">Čiarky a dvojice</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Koľko ich je? Zapíš to čiarkami: jeden obrázok, jedna čiarka.<span class="pozn">Napríklad 2 obrázky = <span class="ciarky" style="height:3mm;vertical-align:middle"><i style="height:3.5mm;width:.8mm"></i><i style="height:3.5mm;width:.8mm"></i></span></span></span></div>
+    <div class="plocha zapis">
+      <div><div class="skup"><i o="mrkva" n="3"></i></div><div class="lin"></div></div>
+      <div><div class="skup"><i o="auto"></i></div><div class="lin"></div></div>
+      <div><div class="skup"><i o="vtak" n="2"></i></div><div class="lin"></div></div>
+      <div><div class="skup"><i o="kvet" n="3"></i></div><div class="lin"></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Nájdi dvojice. Zakrúžkuj vždy dva rovnaké obrázky spolu. Ktorý obrázok ostal sám? Vyfarbi ho.</span></div>
+    <div class="plocha pole">
+      <i o="lopta" style="left:4mm;top:3mm"></i><i o="ryba" style="left:30mm;top:22mm"></i><i o="auto" style="left:54mm;top:4mm"></i>
+      <i o="kvet" style="left:78mm;top:23mm"></i><i o="lopta" style="left:100mm;top:6mm"></i><i o="slimak" style="left:124mm;top:22mm"></i>
+      <i o="auto" style="left:148mm;top:2mm"></i><i o="ryba" style="left:6mm;top:24mm"></i><i o="kvet" style="left:150mm;top:24mm"></i>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Spoj každý rámček s číslom, ktoré k nemu patrí.<span class="pozn">K jednému číslu môže viesť aj viac čiar.</span></span></div>
+    <div class="plocha k-cisla">
+      <div>
+        <div class="skup"><i kocka="3" class="m"></i></div>
+        <div class="skup"><span class="ciarky"><i></i><i></i></span></div>
+        <div class="skup"><i o="hviezda"></i></div>
+        <div class="skup"><i domino="1 1" class="lezi"></i></div>
+        <div class="skup"><i o="jablko" n="3"></i></div>
+      </div>
+      <div><span class="velke">1</span><span class="velke">2</span><span class="velke">3</span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Nakresli obrázok: hore 1 slnko a 2 oblaky, dole na zemi 3 kvety.</span></div>
+    <div class="plocha" style="padding:2mm 5mm"><div class="scena"><div class="zem"></div></div></div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Zadania prečítajte. Čiarky sú najjednoduchší zápis počtu, deti ich poznajú aj zo školy. Pri úlohe 2 pomáha, keď dieťa už zakrúžkované dvojice prečiarkne. V úlohe 3 je pri čísle 2 až dvoje čiar (čiarky a domino), pri 3 tiež dvoje.
+      <b>Riešenie:</b> 1 – ||| · | · || · ||| · 2 – dvojice: lopty, ryby, autá, kvety; sám ostal slimák · 3 – kocka a jablká k 3, čiarky a domino k 2, hviezda k 1 · 4 – 1 slnko, 2 oblaky, 3 kvety.
+      <span class="std">MAT-CO-1, MAT-ZV-2 · ŠVP MAT, Čísla a operácie s číslami: „porozumenie a modelovanie čísel ako počtu prvkov množiny, ako poradie, ako predchodcu alebo nasledovníka“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 3 – VÝZVA                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="3">
+  <header class="hlava" data-predmet="Matematika">Detektív trojka</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Zakrúžkuj každý rámček, v ktorom sú presne 3 veci.<span class="pozn">Nezáleží na tom, ako ležia, aké sú veľké ani či sú rovnaké.</span></span></div>
+    <div class="plocha osem">
+      <div class="skup"><i o="jahoda" n="3"></i></div>
+      <div class="skup abs"><i o="jahoda" style="left:13mm;top:2mm"></i><i o="jahoda" style="left:6mm;top:9.5mm"></i><i o="jahoda" style="left:20mm;top:9.5mm"></i></div>
+      <div class="skup"><i o="jahoda" n="4"></i></div>
+      <div class="skup"><i o="lopta" style="width:5mm;height:5mm;stroke-width:8"></i><i o="lopta" style="width:16mm;height:16mm;stroke-width:3.2"></i><i o="lopta" style="width:9mm;height:9mm"></i></div>
+      <div class="skup"><i o="jablko"></i><i o="jahoda"></i><i o="jablko"></i></div>
+      <div class="skup abs"><i o="hviezda" style="left:2mm;top:2mm"></i><i o="hviezda" style="left:28mm;top:9mm"></i></div>
+      <div class="skup abs"><i o="ryba" style="left:3mm;top:9mm"></i><i o="ryba" style="left:16mm;top:2mm"></i><i o="ryba" style="left:28mm;top:9mm"></i></div>
+      <div class="skup"><i o="kvet" n="2"></i><i o="kvet" n="2"></i></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Spočítaj a zapíš čiarkami.</span></div>
+    <div class="plocha usi">
+      <div><span class="tx"><i o="zajac" class="m"></i>Jeden zajko má 2 uši. Koľko uší majú dva zajace?</span><div class="lin"></div></div>
+      <div><span class="tx"><i o="vtak" class="m"></i>Vtáčik má 2 nohy. Koľko nôh majú 2 vtáčiky?</span><div class="lin"></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Nakresli tvar s 3 rohmi a tvar, ktorý nemá žiadny roh.<span class="pozn">Bádateľ: dá sa nakresliť tvar, ktorý má len 2 rohy?</span></span></div>
+    <div class="plocha rohy">
+      <div>3 rohy<div class="miesto"></div></div>
+      <div>žiadny roh<div class="miesto"></div></div>
+      <div>2 rohy?<div class="miesto"></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Čo nepatrí? V každom rade tri rámčeky patria k sebe a jeden nie. Prečiarkni ho a povedz prečo.</span></div>
+    <div class="plocha nepatri">
+      <div>
+        <div class="skup"><i kocka="2" class="m"></i></div><div class="skup"><i o="jablko" n="2"></i></div>
+        <div class="skup"><i o="hviezda" n="3"></i></div><div class="skup"><span class="ciarky"><i></i><i></i></span></div>
+      </div>
+      <div>
+        <div class="skup"><i domino="2 1" class="lezi"></i></div><div class="skup"><i o="balon" n="2"></i></div>
+        <div class="skup"><i kocka="3" class="m"></i></div><div class="skup"><i o="ryba" n="3"></i></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Výzva skúša, či dieťa chápe, že počet sa nemení, keď veci ležia inak alebo sú rôzne veľké. V úlohe 3 je bádateľská otázka: tvar s 2 rohmi existuje, napríklad ako lodička alebo list (dva oblúky). Dieťa nemusí prísť na riešenie, stačí, keď skúša.
+      <b>Riešenie:</b> 1 – zakrúžkovať 1., 2., 4., 5. a 7. rámček (štyri jahody, dve hviezdy a štyri kvety nie) · 2 – |||| (4 uši), |||| (4 nohy) · 3 – trojuholník, kruh, lodička alebo list · 4 – 1. rad: hviezdy (sú 3, ostatné 2), 2. rad: balóny (sú 2, ostatné 3).
+      <span class="std">MAT-CO-1 · ŠVP MAT, Čísla a operácie s číslami: „porozumenie a modelovanie čísel ako počtu prvkov množiny, ako poradie, ako predchodcu alebo nasledovníka“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<script src="obrazky.js"></script><script src="nastroje.js"></script>
+</body></html>

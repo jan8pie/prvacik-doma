@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="sk"><head><meta charset="utf-8"><title>Kde je viac? – pracovný list (3 úrovne)</title>
+<link rel="stylesheet" href="list.css">
+<style>
+  .skup{display:flex;flex-wrap:wrap;align-items:center;align-content:center;justify-content:center;gap:1.2mm;border:1.2px solid #111;border-radius:3mm;padding:2mm;min-height:20mm}
+  .pary{display:grid;grid-template-columns:repeat(3,1fr);gap:5mm}
+  .par{display:grid;grid-template-columns:1fr 1fr;gap:2.5mm}
+  .par .pic{width:9mm;height:9mm;stroke-width:5.2}
+  .spoj{display:grid;grid-template-columns:1fr auto;align-items:center;gap:6mm}
+  .spoj .stlp{display:flex;flex-direction:column;align-items:center}
+  .odp{display:flex;flex-direction:column;align-items:center;gap:2mm;font-size:14px}
+  .odp>div{display:flex;gap:3mm}
+  .odp .pic{border:1.2px solid #999;border-radius:50%;padding:1.2mm}
+  .boxy{display:grid;grid-template-columns:1fr 1fr;gap:5mm}
+  .box{border:1.2px solid #111;border-radius:3mm;padding:2.5mm;display:flex;flex-direction:column;gap:4mm}
+  .box .r{display:flex;justify-content:space-around}
+  .box .pic{width:11mm;height:11mm;stroke-width:4.8}
+  .box .vol{display:flex;justify-content:center;gap:6mm;border-top:1px dotted #999;padding-top:2mm;font-size:13px;align-items:center}
+  .box .vol .pic{width:9mm;height:9mm;stroke-width:5;border:1.2px solid #999;border-radius:50%;padding:1mm}
+  .farbi{display:flex;flex-direction:column;gap:2mm}
+  .farbi .pic{width:12mm;height:12mm;stroke-width:4.4}
+  .farbi>div{display:flex;align-items:center;gap:3mm}
+  .farbi .kto{display:flex;gap:1mm;border-right:1.2px solid #111;padding-right:4mm;min-width:50mm}
+  .scena{border:1.2px solid #111;border-radius:3mm;height:38mm;position:relative;overflow:hidden}
+  .scena .hore{position:absolute;top:2mm;left:0;right:0;display:flex;justify-content:space-around;padding:0 18mm}
+  .scena .trava{position:absolute;bottom:0;left:0;right:0;height:9mm;border-top:1.4px solid #111;
+     background:repeating-linear-gradient(90deg,transparent 0 4mm,#fff 4mm 4.1mm)}
+  .scena .napis{position:absolute;font-size:12px;color:#555;font-weight:700;letter-spacing:.05em}
+  .kopky{display:flex;justify-content:space-around;align-items:flex-end}
+  .kopky>div{display:flex;flex-wrap:wrap;justify-content:center;width:22mm;gap:.6mm;border-bottom:1.4px solid #111;padding-bottom:1mm}
+  .kopky .pic{width:9mm;height:9mm;stroke-width:5}
+  .sposob{display:grid;grid-template-columns:30mm 1fr;align-items:center;gap:3mm;border-bottom:1px dotted #bbb;padding:1mm 0}
+  .sposob:last-child{border:none}
+  .sposob .tx{font-size:14.5px;font-weight:700;line-height:1.2}
+  .sposob .dvojica{display:flex;align-items:center;gap:3mm}
+  .sposob .skup{min-height:13mm;padding:1mm 2mm;flex-wrap:nowrap;min-width:62mm;justify-content:flex-start}
+  .sposob .pic{width:9mm;height:9mm;stroke-width:5}
+  .zvery{display:flex;justify-content:space-around;align-items:flex-end}
+  .zvery>div{display:flex;flex-direction:column;align-items:center;gap:1.5mm}
+  .zvery .miesto{width:40mm;height:15mm;border:1px dashed #999;border-radius:2mm}
+</style></head>
+<body>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 1 – ĽAHŠIE                                                     -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="1">
+  <header class="hlava" data-predmet="Matematika">Kde je viac?</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Kde je viac? Zakrúžkuj skupinku, v ktorej je viac.</span></div>
+    <div class="plocha pary">
+      <div class="par"><div class="skup"><i o="balon" n="2"></i></div><div class="skup"><i o="balon" n="4"></i></div></div>
+      <div class="par"><div class="skup"><i o="jablko" n="3"></i></div><div class="skup"><i o="jablko"></i></div></div>
+      <div class="par"><div class="skup"><i o="hviezda" n="2"></i></div><div class="skup"><i o="hviezda" n="5"></i></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Má každý zajko svoju mrkvu? Spoj čiarou vždy jedného zajka s jednou mrkvou.<span class="pozn">Čoho je viac? Zakrúžkuj to vpravo.</span></span></div>
+    <div class="plocha spoj">
+      <div style="display:flex;flex-direction:column;gap:9mm">
+        <div class="rad"><i o="zajac" n="4" class="s"></i></div>
+        <div class="rad" style="justify-content:flex-start;gap:16mm;padding-left:12mm"><i o="mrkva" n="3" class="s"></i></div>
+      </div>
+      <div class="odp">Viac je:<div><i o="zajac" class="s"></i><i o="mrkva" class="s"></i></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Prestieraj: na každý tanier nakresli jedno jablko.<span class="pozn">Potom povedz: je jabĺk rovnako ako tanierov?</span></span></div>
+    <div class="plocha rad"><div class="tanier"></div><div class="tanier"></div><div class="tanier"></div><div class="tanier"></div></div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Kde je menej? Teraz prečiarkni skupinku, v ktorej je menej.</span></div>
+    <div class="plocha pary">
+      <div class="par"><div class="skup"><i o="ryba" n="4"></i></div><div class="skup"><i o="ryba" n="2"></i></div></div>
+      <div class="par"><div class="skup"><i o="kvet"></i></div><div class="skup"><i o="kvet" n="3"></i></div></div>
+      <div class="par"><div class="skup"><i o="slimak" n="5"></i></div><div class="skup"><i o="slimak" n="3"></i></div></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Zadania prečítajte, dieťa ešte nemusí poznať čísla. Pri úlohe 2 sa porovnáva bez počítania: kto ostane bez mrkvy, toho je viac (v škole: priraďovanie). Pri úlohe 4 sa otočí otázka na „menej“, to býva pre deti ťažšie slovo.
+      <b>Riešenie:</b> 1 – 4 balóny, 3 jablká, 5 hviezd · 2 – viac je zajkov, jeden ostane bez mrkvy · 3 – 4 jablká, rovnako · 4 – 2 ryby, 1 kvet, 3 slimáky.
+      <span class="std">MAT-CO-2 · ŠVP MAT, Čísla a operácie s číslami: „aplikovanie metód porovnávania – väčší, menší, rovný, najväčší, najmenší“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 2 – BEŽNÉ                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="2">
+  <header class="hlava" data-predmet="Matematika">Viac, menej, rovnako</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Spoj čiarou dvojice. Zakrúžkuj, čoho je viac. Ak je rovnako, oboje.</span></div>
+    <div class="plocha boxy">
+      <div class="box">
+        <div class="r"><i o="pes" n="3"></i></div>
+        <div class="r" style="padding:0 6mm"><i o="lopta" n="3"></i></div>
+        <div class="vol">Viac je:<i o="pes"></i><i o="lopta"></i></div>
+      </div>
+      <div class="box">
+        <div class="r" style="padding:0 6mm"><i o="macka" n="3"></i></div>
+        <div class="r"><i o="ryba" n="4"></i></div>
+        <div class="vol">Viac je:<i o="macka"></i><i o="ryba"></i></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Urob to rovnako. Dokresli alebo prečiarkni, aby bolo v oboch rámčekoch rovnako.</span></div>
+    <div class="plocha" style="display:grid;grid-template-columns:1fr 1fr;gap:8mm">
+      <div class="par" style="grid-template-columns:1fr auto 1fr;align-items:center"><div class="skup"><i o="jahoda" n="4" class="m"></i></div><span class="znak">=</span><div class="skup"><i o="jahoda" n="2" class="m"></i></div></div>
+      <div class="par" style="grid-template-columns:1fr auto 1fr;align-items:center"><div class="skup"><i o="hviezda" class="m"></i></div><span class="znak">=</span><div class="skup"><i o="hviezda" n="3" class="m"></i></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Vyfarbi toľko kvetov, koľko je motýľov. V druhom riadku toľko mrkiev, koľko je zajkov.</span></div>
+    <div class="plocha farbi">
+      <div><div class="kto"><i o="motyl" n="3"></i></div><i o="kvet" n="6"></i></div>
+      <div><div class="kto"><i o="zajac" n="2"></i></div><i o="mrkva" n="5"></i></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Hore na oblohe sú 3 oblaky. Dole do trávy nakresli viac kvetov, ako je oblakov.<span class="pozn">Potom nakresli hore aj slniečko.</span></span></div>
+    <div class="plocha" style="padding:2mm">
+      <div class="scena">
+        <span class="napis" style="top:2mm;left:3mm">HORE</span><span class="napis" style="bottom:11mm;left:3mm">DOLE</span>
+        <div class="hore"><i o="oblak"></i><i o="oblak"></i><i o="oblak"></i></div>
+        <div class="trava"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Zadania prečítajte. Pri úlohe 2 sú dve správne cesty: dokresliť alebo prečiarknuť. Opýtajte sa, ako by to urobilo inak. V úlohe 4 je „viac“ každé číslo väčšie ako 3; dieťa môže kvety spájať s oblakmi čiarou. Pri slovách hore a dole ukážte rukou.
+      <b>Riešenie:</b> 1 – psíkov a lôpt je rovnako, viac je rýb · 2 – dokresliť 2 jahody vpravo alebo prečiarknuť 2 vľavo; dokresliť 2 hviezdy vľavo alebo prečiarknuť 2 vpravo · 3 – vyfarbené 3 kvety, 2 mrkvy · 4 – aspoň 4 kvety.
+      <span class="std">MAT-CO-2 · ŠVP MAT, Čísla a operácie s číslami: „aplikovanie metód porovnávania – väčší, menší, rovný, najväčší, najmenší“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 3 – VÝZVA                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="3">
+  <header class="hlava" data-predmet="Matematika">Viac neznamená väčšie</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Chyták! Kde je viac? Zakrúžkuj. Ak je rovnako, zakrúžkuj oboje.<span class="pozn">Nedaj sa oklamať veľkosťou ani tým, ako ďaleko sú od seba.</span></span></div>
+    <div class="plocha" style="display:grid;grid-template-columns:.9fr 1.1fr;gap:6mm;align-items:center">
+      <div class="par"><div class="skup"><i o="balon" n="3" style="width:14mm;height:14mm;stroke-width:3.8"></i></div><div class="skup"><i o="balon" n="5" style="width:6mm;height:6mm;stroke-width:7"></i></div></div>
+      <div style="display:flex;flex-direction:column;gap:2.5mm">
+        <div class="skup" style="min-height:0;justify-content:space-between;padding:1.5mm 3mm"><i o="lopta" n="4" class="m"></i></div>
+        <div class="skup" style="min-height:0;gap:.4mm;justify-content:center;padding:1.5mm 3mm"><i o="lopta" n="5" class="m"></i></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Myslím si kôpku jahôd. Je v nej viac ako 2, ale menej ako 4. Zakrúžkuj ju.<span class="pozn">Druhá hádanka: v mojej kôpke je viac ako 4. Tú kôpku prečiarkni.</span></span></div>
+    <div class="plocha kopky">
+      <div><i o="jahoda" n="4"></i></div><div><i o="jahoda" n="2"></i></div><div><i o="jahoda" n="5"></i></div><div><i o="jahoda" n="3"></i></div><div><i o="jahoda"></i></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Vľavo je 5 sušienok, vpravo 3. Urob rovnako, ale zakaždým inak.</span></div>
+    <div class="plocha" style="padding:1mm 5mm">
+      <div class="sposob"><span class="tx">1. Dokresli.</span><div class="dvojica"><div class="skup"><i o="susienka" n="5"></i></div><span class="znak">=</span><div class="skup"><i o="susienka" n="3"></i></div></div></div>
+      <div class="sposob"><span class="tx">2. Prečiarkni.</span><div class="dvojica"><div class="skup"><i o="susienka" n="5"></i></div><span class="znak">=</span><div class="skup"><i o="susienka" n="3"></i></div></div></div>
+      <div class="sposob"><span class="tx">3. Iba presuň.</span><div class="dvojica"><div class="skup"><i o="susienka" n="5"></i></div><span class="znak">=</span><div class="skup"><i o="susienka" n="3"></i></div></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Ježko má viac jabĺk ako zajko. Zajko má viac jabĺk ako myška.<span class="pozn">Kto má najviac? Zakrúžkuj ho. Potom nakresli každému jablká tak, aby to platilo.</span></span></div>
+    <div class="plocha zvery">
+      <div><i o="jezko" class="s"></i><div class="miesto"></div></div>
+      <div><i o="zajac" class="s"></i><div class="miesto"></div></div>
+      <div><i o="myska" class="s"></i><div class="miesto"></div></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Výzva skúša, či dieťa naozaj porovnáva počet, a nie veľkosť alebo dĺžku radu. Pri úlohe 3 je tretí spôsob malý objav: nič nové sa nekreslí ani neje, jedna sušienka sa len presunie (prečiarkne vľavo a nakreslí vpravo), na každej strane sú potom 4. V úlohe 4 je viac správnych kresieb, stačí, aby mal ježko najviac a myška najmenej.
+      <b>Riešenie:</b> 1 – viac je malých balónov (5), viac lôpt je v kratšom rade (5, v dlhom sú 4) · 2 – kôpka s 3 jahodami; prečiarknuť kôpku s 5 · 3 – dokresliť 2 vpravo · prečiarknuť 2 vľavo · presunúť 1, bude 4 a 4 · 4 – najviac má ježko, napr. 3, 2, 1.
+      <span class="std">MAT-CO-2 · ŠVP MAT, Čísla a operácie s číslami: „aplikovanie metód porovnávania – väčší, menší, rovný, najväčší, najmenší“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<script src="obrazky.js"></script><script src="nastroje.js"></script>
+</body></html>

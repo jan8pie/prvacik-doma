@@ -12,6 +12,8 @@
      <i domino="3 2"></i>  <i domino="1 -"></i>        domino (- = prázdna polovica), class="lezi" naležato
      <i obtiahni="6"></i>  <i obtiahni="M" w="96"></i> číslo/písmeno na obťahovanie
      <i os="0 10" skry="3 7"></i>                     číselná os (skry = čísla, ktoré dieťa dopíše)
+     <i veza="3 2"></i>  <i veza="4" n="6"></i>         veža z kociek ako v Hre s kockami (zdola: 3 sivé, 2 šrafované,
+                                                      zvyšok prázdny; n = počet políčok, inak 10; po 5 medzera; class="lezi" naležato)
    Úroveň listu: <div class="list" data-uroven="1|2|3">
    ===================================================================== */
 (function(){
@@ -67,6 +69,14 @@ document.querySelectorAll("i[domino]").forEach(el=>{
 document.querySelectorAll("i[obtiahni]").forEach(el=>{
   const w = +(el.getAttribute("w")||64);
   nahrad(el, `<svg class="${triedy(el,"obtiahni")}" viewBox="0 0 ${w} 100" style="width:${(w/64*22).toFixed(1)}mm"><text x="2" y="92">${el.getAttribute("obtiahni")}</text></svg>`);
+});
+
+/* veža z kociek (rovnaký model ako Hra s kockami: rámik na 10, plní sa zdola) */
+document.querySelectorAll("i[veza]").forEach(el=>{
+  const [a,b] = (el.getAttribute("veza")+" 0").split(/\s+/).map(v=>+v||0);
+  const n = +(el.getAttribute("n")||10);
+  let s = ""; for(let i=1;i<=n;i++) s += `<i class="${i<=a?"a":i<=a+b?"b":""}${i==5&&n>5?" pat":""}"></i>`;
+  nahrad(el, `<span class="${triedy(el,"kveza")}"${styl(el)}>${s}</span>`);
 });
 
 /* číselná os */

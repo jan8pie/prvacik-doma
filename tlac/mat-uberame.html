@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="sk"><head><meta charset="utf-8"><title>Uberáme – pracovný list (3 úrovne)</title>
+<link rel="stylesheet" href="list.css">
+<style>
+  .vyb{display:flex;gap:5mm;font-size:26px;font-weight:700;justify-content:center}
+  .pr{position:relative;display:inline-flex}
+  .pr::before,.pr::after{content:"";position:absolute;left:-6%;right:-6%;top:50%;height:.55mm;background:#111;transform:rotate(40deg)}
+  .pr::after{transform:rotate(-40deg)}
+  .ex{display:flex;align-items:center;gap:1.6mm;font-size:24px;font-weight:700;white-space:nowrap}
+  .ex .okno{width:10.5mm;height:10.5mm}
+  .jez3{display:grid;grid-template-columns:repeat(3,1fr);gap:5mm}
+  .jez3>div{display:flex;flex-direction:column;align-items:center;gap:2mm;border:1px solid #bbb;border-radius:3mm;padding:2mm}
+  .jez3 .co{display:flex;align-items:center;gap:1.5mm;font-size:14px;font-weight:700}
+  .jez3 .tanier{width:30mm}
+  .lavky{display:grid;grid-template-columns:1fr 1fr;gap:6mm}
+  .lavky>div{display:flex;align-items:center;justify-content:space-between;gap:2mm;border:1px solid #bbb;border-radius:3mm;padding:2mm 3mm}
+  .lavky .vt{display:flex;gap:.5mm}
+  .lavky .vt .pic{width:11mm;height:11mm;stroke-width:4.6}
+  .lavky .vyb{font-size:22px;gap:3.5mm}
+  .kspoj{display:flex;flex-direction:column;gap:10mm}
+  .kspoj>div{display:flex;justify-content:space-around;align-items:center}
+  .velke{font-size:38px;font-weight:700;width:15mm;height:15mm;border:1.4px solid #111;border-radius:50%;display:flex;align-items:center;justify-content:center}
+  .k4{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm}
+  .k4>div{display:flex;flex-direction:column;align-items:center;gap:2mm}
+  .k4 i.kocka,.k4 .kocka{width:19mm;height:19mm;border-radius:3.6mm}
+  .k4 .ex{font-size:21px}.k4 .ex .okno{width:9mm;height:9mm}
+  .pres{display:flex;flex-direction:column;gap:2.5mm}
+  .pres>div{display:flex;align-items:center;justify-content:space-between;gap:3mm;border-bottom:1px dotted #bbb;padding-bottom:2mm}
+  .pres>div:last-child{border:none;padding-bottom:0}
+  .pres .obr{display:flex;gap:1.5mm}
+  .pres .obr .pic{width:14mm;height:14mm;stroke-width:4}
+  .pribeh{display:flex;flex-direction:column;gap:2mm}
+  .pribeh>div{display:flex;align-items:center;justify-content:space-between;gap:4mm;border-bottom:1px dotted #bbb;padding-bottom:2mm}
+  .pribeh>div:last-child{border:none;padding-bottom:0}
+  .pribeh .tx{font-size:15.5px;font-weight:700}
+  .pn{display:grid;grid-template-columns:1fr 1fr;gap:4mm 5mm}
+  .pn>div{display:flex;align-items:center;justify-content:space-between;gap:1.5mm;border:1px solid #bbb;border-radius:3mm;padding:2mm 2.5mm;min-width:0}
+  .pn .obr{display:flex;gap:.6mm}
+  .pn .obr .pic{width:7.5mm;height:7.5mm;stroke-width:5.4}
+  .pn .vol{display:flex;gap:2.5mm}
+  .pn .vol span{width:8.5mm;height:8.5mm;border:1.4px solid #111;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700}
+  .predpo{display:grid;grid-template-columns:1fr 1fr;gap:5mm}
+  .predpo>div{display:flex;flex-direction:column;gap:2mm;border:1px solid #bbb;border-radius:3mm;padding:2mm 3mm}
+  .predpo .dva{display:grid;grid-template-columns:1fr 1fr;gap:2mm}
+  .predpo .ram{border:1.2px solid #111;border-radius:2mm;min-height:17mm;display:flex;flex-wrap:wrap;align-items:center;align-content:center;justify-content:center;gap:.8mm;padding:1.5mm;position:relative;padding-top:5mm}
+  .predpo .ram b{position:absolute;top:1mm;left:2mm;font-size:11px;color:#555;letter-spacing:.04em}
+  .predpo .ram .pic{width:8mm;height:8mm;stroke-width:5.2}
+  .znaky{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm}
+  .znaky .ex{justify-content:center;font-size:26px}
+  .chyt{display:flex;flex-direction:column;gap:2.5mm}
+  .chyt>div{display:flex;flex-direction:column;gap:1.5mm;font-size:15.5px;font-weight:700;border-bottom:1px dotted #bbb;padding-bottom:2mm}
+  .chyt>div:last-child{border:none;padding-bottom:0}
+  .chyt .lin{border-bottom:1.2px solid #111;height:6mm}
+  .vlak{display:flex;flex-direction:column;gap:2.5mm}
+  .vlak>div{display:flex;align-items:center;gap:1.2mm;font-size:22px;font-weight:700}
+  .vlak .st{width:12mm;height:12mm;border:1.4px solid #111;border-radius:2.5mm;display:flex;align-items:center;justify-content:center}
+  .vlak .sip{display:flex;flex-direction:column;align-items:center;font-size:17px;line-height:1;min-width:10mm}
+  .vlak .sip i{display:block;width:10mm;height:3mm;position:relative}
+  .vlak .sip i::before{content:"";position:absolute;left:0;right:1.5mm;top:1.4mm;border-top:1.4px solid #111}
+  .vlak .sip i::after{content:"";position:absolute;right:.3mm;top:.4mm;width:2mm;height:2mm;border-top:1.4px solid #111;border-right:1.4px solid #111;transform:rotate(45deg)}
+</style></head>
+<body>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 1 – ĽAHŠIE                                                     -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="1">
+  <header class="hlava" data-predmet="Matematika">Uberáme</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Obťahuj číslicu 4 a znak mínus. Začni hore.</span></div>
+    <div class="plocha">
+      <div class="linka"><i obtiahni="4"></i><i obtiahni="4"></i><i obtiahni="4"></i><i obtiahni="−"></i><i obtiahni="−"></i><i obtiahni="−"></i><div class="prazdne"></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Ježko zjedol jahody. Prečiarkni toľko jahôd, koľko zjedol. Koľko zostalo? Zakrúžkuj.</span></div>
+    <div class="plocha jez3">
+      <div><div class="co"><i o="jezko" class="m"></i>zjedol 1</div><div class="tanier"><i o="jahoda" n="3"></i></div><div class="vyb"><span>1</span><span>2</span><span>3</span></div></div>
+      <div><div class="co"><i o="jezko" class="m"></i>zjedol 2</div><div class="tanier"><i o="jahoda" n="4"></i></div><div class="vyb"><span>1</span><span>2</span><span>3</span></div></div>
+      <div><div class="co"><i o="jezko" class="m"></i>zjedol 1</div><div class="tanier"><i o="jahoda" n="2"></i></div><div class="vyb"><span>1</span><span>2</span><span>3</span></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Prečiarknuté vtáčiky odleteli. Koľko ich zostalo? Zakrúžkuj.</span></div>
+    <div class="plocha lavky">
+      <div><div class="vt"><i o="vtak" n="2"></i><span class="pr"><i o="vtak"></i></span></div><div class="vyb"><span>1</span><span>2</span><span>3</span></div></div>
+      <div><div class="vt"><i o="vtak"></i><span class="pr"><i o="vtak"></i></span><span class="pr"><i o="vtak"></i></span><i o="vtak"></i></div><div class="vyb"><span>1</span><span>2</span><span>3</span></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Prečiarknuté bodky sme zobrali. Spoj kocku s číslom, koľko bodiek zostalo.</span></div>
+    <div class="plocha kspoj">
+      <div><i kocka="3" x="1" class="l"></i><i kocka="4" x="3" class="l"></i><i kocka="2" x="1" class="l"></i><i kocka="4" x="1" class="l"></i></div>
+      <div><span class="velke">1</span><span class="velke">2</span><span class="velke">3</span></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Zadania prečítajte. Pri uberaní dieťa najprv spočíta, čo bolo, potom prečiarkne, čo zmizlo, a nakoniec spočíta, čo zostalo. Prečiarknuté sa už nepočíta. Ak to ide ťažko, zahrajte sa so skutočnými jahodami alebo fazuľkami.
+      <b>Riešenie:</b> 1 – obťahovanie · 2 – 2, 2, 1 · 3 – 2, 2 · 4 – kocka 3 k číslu 2, kocka 4 (3 prečiarknuté) k 1, kocka 2 k 1, kocka 4 (1 prečiarknutá) k 3.
+      <span class="std">MAT-CO-3 · ŠVP MAT, Čísla a operácie s číslami: „porozumenie pojmov sčítanec, súčet, menšenec, menšiteľ, rozdiel“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 2 – BEŽNÉ                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="2">
+  <header class="hlava" data-predmet="Matematika">Koľko zostalo?</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Prečiarknuté bodky sme zobrali. Dopíš, koľko zostalo.</span></div>
+    <div class="plocha k4">
+      <div><i kocka="4" x="1"></i><span class="ex">4 − 1 = <span class="okno"></span></span></div>
+      <div><i kocka="3" x="2"></i><span class="ex">3 − 2 = <span class="okno"></span></span></div>
+      <div><i kocka="5" x="1"></i><span class="ex">5 − 1 = <span class="okno"></span></span></div>
+      <div><i kocka="4" x="2"></i><span class="ex">4 − 2 = <span class="okno"></span></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Najprv prečiarkni sám alebo sama, potom vypočítaj.</span></div>
+    <div class="plocha pres">
+      <div><div class="obr"><i o="balon" n="4"></i></div><span class="ex">4 − 3 = <span class="okno"></span></span></div>
+      <div><div class="obr"><i o="jablko" n="3"></i></div><span class="ex">3 − 1 = <span class="okno"></span></span></div>
+      <div><div class="obr"><i o="hviezda" n="5"></i></div><span class="ex">5 − 2 = <span class="okno"></span></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Príbehy. Napíš príklad a výsledok.</span></div>
+    <div class="plocha pribeh">
+      <div><span class="tx">Na strome boli 4 jablká. Dve spadli na zem. Koľko jabĺk zostalo na strome?</span><span class="ex"><span class="okno"></span>−<span class="okno"></span>=<span class="okno"></span></span></div>
+      <div><span class="tx">Na lúke sa hrali 3 zajace. Jeden odbehol domov. Koľko zajacov sa hrá ďalej?</span><span class="ex"><span class="okno"></span>−<span class="okno"></span>=<span class="okno"></span></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Je to pravda? Zakrúžkuj P (pravda) alebo N (nepravda).<span class="pozn">Prečiarknuté obrázky sme zobrali.</span></span></div>
+    <div class="plocha pn">
+      <div><div class="obr"><i o="susienka" n="2"></i><span class="pr"><i o="susienka"></i></span></div><span class="ex" style="font-size:20px">3 − 1 = 2</span><span class="vol"><span>P</span><span>N</span></span></div>
+      <div><div class="obr"><i o="kvet" n="2"></i><span class="pr"><i o="kvet"></i></span><span class="pr"><i o="kvet"></i></span></div><span class="ex" style="font-size:20px">4 − 2 = 1</span><span class="vol"><span>P</span><span>N</span></span></div>
+      <div><div class="obr"><i o="ryba" n="3"></i><span class="pr"><i o="ryba"></i></span></div><span class="ex" style="font-size:20px">4 − 1 = 3</span><span class="vol"><span>P</span><span>N</span></span></div>
+      <div><div class="obr"><i o="lopta"></i><span class="pr"><i o="lopta"></i></span></div><span class="ex" style="font-size:20px">2 − 1 = 2</span><span class="vol"><span>P</span><span>N</span></span></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Zadania prečítajte. Príklad sa číta „štyri mínus jeden sa rovná tri“. V škole sa výsledok odčítania volá rozdiel. Pri pravde a nepravde nechajte dieťa povedať, ako to má byť správne. Pri príbehoch najprv povedzte, čo bolo na začiatku a čo zmizlo.
+      <b>Riešenie:</b> 1 – 3, 1, 4, 2 · 2 – 1, 2, 3 · 3 – 4 − 2 = 2, 3 − 1 = 2 · 4 – P, N (4 − 2 = 2), P, N (2 − 1 = 1).
+      <span class="std">MAT-CO-3, MAT-CO-5 · ŠVP MAT, Čísla a operácie s číslami: „porozumenie pojmov sčítanec, súčet, menšenec, menšiteľ, rozdiel“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 3 – VÝZVA                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="3">
+  <header class="hlava" data-predmet="Matematika">Čo zmizlo?</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Pozri sa, čo bolo predtým a čo potom. Koľko zmizlo? Dopíš.</span></div>
+    <div class="plocha predpo">
+      <div><div class="dva"><div class="ram"><b>PREDTÝM</b><i o="balon" n="4"></i></div><div class="ram"><b>POTOM</b><i o="balon"></i></div></div><span class="ex" style="justify-content:center">4 − <span class="okno"></span> = 1</span></div>
+      <div><div class="dva"><div class="ram"><b>PREDTÝM</b><i o="susienka" n="5"></i></div><div class="ram"><b>POTOM</b><i o="susienka" n="2"></i></div></div><span class="ex" style="justify-content:center">5 − <span class="okno"></span> = 2</span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Pridať, alebo ubrať? Napíš do okienka + alebo −.</span></div>
+    <div class="plocha znaky">
+      <span class="ex">3 <span class="okno m"></span> 1 = 4</span><span class="ex">3 <span class="okno m"></span> 1 = 2</span>
+      <span class="ex">2 <span class="okno m"></span> 2 = 4</span><span class="ex">4 <span class="okno m"></span> 2 = 2</span>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Chytáky. Rozmýšľaj a povedz prečo.</span></div>
+    <div class="plocha chyt">
+      <div>Na tanieri sú 2 jablká. Zajko chce zjesť 3 jablká. Dá sa to? Prečo?<span class="lin"></span></div>
+      <div>Myška tvrdí, že 4 − 1 = 5. Má pravdu? Ako to má byť správne?<span class="ex" style="font-size:22px">4 − 1 = <span class="okno m"></span></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Vláčik počítania. Začni vľavo a počítaj krok po kroku. Kde vláčik skončí?</span></div>
+    <div class="plocha vlak">
+      <div><span class="st">4</span><span class="sip">− 1<i></i></span><span class="st"></span><span class="sip">+ 2<i></i></span><span class="st"></span><span class="sip">− 3<i></i></span><span class="st"></span><span class="sip">+ 1<i></i></span><span class="st"></span></div>
+      <div><span class="st">2</span><span class="sip">+ 2<i></i></span><span class="st"></span><span class="sip">− 1<i></i></span><span class="st"></span><span class="sip">− 2<i></i></span><span class="st"></span><span class="sip">+ 3<i></i></span><span class="st"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">5</span><span>Vymysli príbeh, v ktorom niečo zmizne. Nakresli ho a napíš príklad.</span></div>
+    <div class="plocha" style="display:grid;grid-template-columns:1fr auto;gap:5mm;align-items:center"><div style="height:14mm;border:1px dashed #999;border-radius:2mm"></div><span class="ex"><span class="okno"></span>−<span class="okno"></span>=<span class="okno"></span></span></div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Výzva hľadá, čo chýba, a núti premýšľať o tom, čo znamená plus a mínus. V úlohe 1 sa dá dokresliť, čo zmizlo. V úlohe 3 je odpoveď „nedá sa, viac ako je, zjesť nemôže“. Vláčik počíta krok za krokom, výsledok jedného kroku je začiatok ďalšieho. V úlohe 5 dieťa zadáva úlohu vám.
+      <b>Riešenie:</b> 1 – 3, 3 · 2 – +, −, +, − · 3 – nedá sa, sú len 2 jablká; nemá pravdu, 4 − 1 = 3 · 4 – 3, 5, 2, 3 · 4, 3, 1, 4 · 5 – vlastný príbeh.
+      <span class="std">MAT-CO-3, MAT-CO-5 · ŠVP MAT, Čísla a operácie s číslami: „porozumenie pojmov sčítanec, súčet, menšenec, menšiteľ, rozdiel“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<script src="obrazky.js"></script><script src="nastroje.js"></script>
+</body></html>

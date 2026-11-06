@@ -459,7 +459,8 @@ window.KARTY = [
      hra:{druh:"rozklad", urovne:[["●","Ľahšie",5],["●●","Bežné",6],["●●●","Výzva",10]], predvolena:1, kol:3}},
     {typ:"rozhovor", zacni:"„Na stole je 6 lyžičiek, ale budeme jesť štyria. Zostane nejaká navyše?“",
      otazky:["Koľko lyžičiek zostane? Ako si na to prišiel?","Mám v ruke 2 oriešky. Koľko ich treba, aby bolo 6?","Teraz zadaj úlohu ty mne. Možno sa schválne pomýlim."],
-     preteba:"V škole sa tomu hovorí rozklad čísla. Prsty a predmety sú v poriadku, nemusí to byť spamäti."}
+     preteba:"V škole sa tomu hovorí rozklad čísla. Prsty a predmety sú v poriadku, nemusí to byť spamäti."},
+    {typ:"tlac", urovne:3, text:"Koľko chýba do šiestich: vrecúško s orieškami, veže zo 6 kociek, zajace a mrkvy a hra pre dvoch Schovávačka. Výzva: dve vrecúška, tajný kód so zvieratkami a úloha, ktorú zadá dieťa.", subor:"mat-6.pdf"}
   ]},
 
 { id:"anj-school", datum:"2026-10-27", predmet:"ANJ", kod:"ANJ-RE-2",
@@ -564,7 +565,8 @@ window.KARTY = [
     {typ:"spolu", text:"Hra „Schovaj prsty“: rodič ukáže päť prstov a niekoľko z nich schová za chrbát druhej ruky. Dieťa povie, koľko je schovaných. Potom sa vymeňte."},
     {typ:"rozhovor", zacni:"„Mám päť ceruziek a dve ti požičiam. Koľko mi zostane?“",
      otazky:["Ako sa dá rozdeliť päť jabĺk medzi dvoch?","Ukáž päť na dvoch rukách inak ako 5 a 0.","Je to spravodlivé, keď má jeden 4 a druhý 1?"],
-     preteba:"V škole sa tomu hovorí rozklad čísla. Obe časti spolu dajú vždy celé číslo."}
+     preteba:"V škole sa tomu hovorí rozklad čísla. Obe časti spolu dajú vždy celé číslo."},
+    {typ:"tlac", urovne:3, text:"Päť na dve časti: vrecúško s orieškami, veže z kociek, domček čísla 5 a pravda alebo nepravda. Výzva: všetky náramky po poradí, bludisko súčtov a prečo sa 5 nedá rozdeliť napoly.", subor:"mat-rozklad-5.pdf"}
   ]},
 
 { id:"anj-classroom", datum:"2026-10-14", predmet:"ANJ", kod:"ANJ-RE-1",
@@ -603,7 +605,8 @@ window.KARTY = [
     {typ:"spolu", text:"Hra „Čo zmizlo pod hrnček“: dajte na stôl 3 až 5 fazuliek a spolu ich spočítajte. Dieťa zatvorí oči a vy niekoľko schováte pod hrnček. Koľko zostalo na stole? Koľko je pod hrnčekom? Potom sa vymeňte."},
     {typ:"rozhovor", zacni:"„Na strome boli tri vtáčiky a jeden odletel. Koľko ich tam ostalo?“",
      otazky:["Ako si to zistil? Ukážeš mi to na prstoch?","Čo by sa stalo, keby odleteli všetky?","Vymysli ty mne príbeh, v ktorom niečo ubudne."],
-     preteba:"Pri uberaní sa dobre hodia skutočné veci, ktoré môžu naozaj zmiznúť. Príklad sa dá zapísať napríklad 4 − 2 = 2"}
+     preteba:"Pri uberaní sa dobre hodia skutočné veci, ktoré môžu naozaj zmiznúť. Príklad sa dá zapísať napríklad 4 − 2 = 2"},
+    {typ:"tlac", urovne:3, text:"Uberanie: prečiarkni, čo zjedol ježko, vtáčiky odleteli, kocky a pravda alebo nepravda. Výzva: čo zmizlo, plus alebo mínus, chytáky a vláčik počítania.", subor:"mat-uberame.pdf"}
   ]},
 
 { id:"anj-please", datum:"2026-10-07", predmet:"ANJ", kod:"ANJ-IN-2",
@@ -641,7 +644,8 @@ window.KARTY = [
      hra:{druh:"sucet", urovne:[["●","Ľahšie"],["●●","Bežné"],["●●●","Výzva"]], predvolena:0, kol:4}},
     {typ:"rozhovor", zacni:"„Na lavičke sedeli dve deti a prišlo ešte jedno. Koľko ich sedí teraz?“",
      otazky:["Ako si to spočítal?","Koľko by ich bolo, keby prišli ešte dvaja?","Vymysli príbeh s pridávaním ty mne."],
-     preteba:"Pridávanie je v škole začiatok sčítania. Nevadí, ak dieťa ráta všetko znova od jedna."}
+     preteba:"Pridávanie je v škole začiatok sčítania. Nevadí, ak dieťa ráta všetko znova od jedna."},
+    {typ:"tlac", urovne:3, text:"Pridávanie do 4: obťahovanie 1, 2, 3 a plus, jahody na tanieroch, veže z kociek a príbehy. Výzva: koľko treba pridať, domino so 4 bodkami a objav, že 1 + 3 je to isté ako 3 + 1.", subor:"mat-pridavame.pdf"}
   ]},
 
 { id:"anj-feelings", datum:"2026-09-30", predmet:"ANJ", kod:"ANJ-PR-2",
@@ -680,7 +684,8 @@ window.KARTY = [
     {typ:"hadanka", text:"Koľko kolies má auto?", odpoved:"Štyri 🚗"},
     {typ:"hadanka", text:"Koľko prstov máš na jednej ruke?", odpoved:"Päť ✋"},
     {typ:"hadanka", text:"Koľko nôh má stolička?", odpoved:"Väčšinou štyri 🪑"},
-    {typ:"spolu", text:"Hľadajte spolu doma štvorice a pätice: 4 nohy stola, 5 lyžičiek v zásuvke, 4 rohy na okne. Za každú nájdenú vec dá dieťa fazuľku do misky. Koľko ich máte na konci?"}
+    {typ:"spolu", text:"Hľadajte spolu doma štvorice a pätice: 4 nohy stola, 5 lyžičiek v zásuvke, 4 rohy na okne. Za každú nájdenú vec dá dieťa fazuľku do misky. Koľko ich máte na konci?"},
+    {typ:"tlac", urovne:3, text:"Štyri a päť: kocka, prsty, obkreslená ruka, veža z kociek a zvieratká so štyrmi nohami. Výzva: chyták s piatimi, prečo vidíme len dve kolesá a náramky s piatimi korálkami.", subor:"mat-4-5.pdf"}
   ]},
 
 { id:"anj-yes-no", datum:"2026-09-23", predmet:"ANJ", kod:"ANJ-IN-2",
@@ -719,7 +724,8 @@ window.KARTY = [
     {typ:"hadanka", text:"Koľko nosov máš?", odpoved:"Jeden 👃"},
     {typ:"hadanka", text:"Koľko uší má zajačik?", odpoved:"Dve 🐰"},
     {typ:"hadanka", text:"Koľko kolies má trojkolka?", odpoved:"Tri – už to hovorí aj jej meno"},
-    {typ:"spolu", text:"Hra „Blesk“: na chvíľu ukážte dlaň s jedným, dvoma alebo troma gombíkmi a zatvorte ju. Dieťa povie, koľko ich videlo, a ukáže to na prstoch."}
+    {typ:"spolu", text:"Hra „Blesk“: na chvíľu ukážte dlaň s jedným, dvoma alebo troma gombíkmi a zatvorte ju. Dieťa povie, koľko ich videlo, a ukáže to na prstoch."},
+    {typ:"tlac", urovne:3, text:"Jeden, dva, tri: kocky, vyfarbovanie, čiarky a dvojice. Výzva: presne tri v rôznych podobách, uši a nohy, tvar s tromi rohmi a čo nepatrí.", subor:"mat-1-2-3.pdf"}
   ]},
 
 { id:"anj-toys", datum:"2026-09-16", predmet:"ANJ", kod:"ANJ-RE-2",
@@ -758,7 +764,8 @@ window.KARTY = [
     {typ:"spolu", text:"Postavte na stôl štyri rôzne hrnčeky alebo topánky celej rodiny. Dieťa ich zoradí od najmenšej po najväčšiu. Potom jednu vec schovajte a dieťa uhádne, ktorá chýba a kam patrila."},
     {typ:"rozhovor", zacni:"„Čia topánka je najväčšia? A čia najmenšia?“",
      otazky:["Ktorá vec je väčšia ako tvoja topánka?","Je niečo, čo je väčšie ako ocko?","Ako zistíš, ktorá ceruzka je najdlhšia?"],
-     preteba:"Pri porovnávaní je dobré postaviť veci vedľa seba na jednu čiaru. Slovo „najväčší“ patrí vždy k celej skupine."}
+     preteba:"Pri porovnávaní je dobré postaviť veci vedľa seba na jednu čiaru. Slovo „najväčší“ patrí vždy k celej skupine."},
+    {typ:"tlac", urovne:3, text:"Najväčší a najmenší: lopty, domy, misky pre tri macky, pastelky a snehuliak. Výzva: pastelky, ktoré nezačínajú na jednom mieste, a prečo je macko raz veľký a raz malý.", subor:"mat-najvacsi.pdf"}
   ]},
 
 { id:"anj-name", datum:"2026-09-09", predmet:"ANJ", kod:"ANJ-IN-1",
@@ -794,7 +801,8 @@ window.KARTY = [
   bloky:[
     {typ:"aktivita", text:"Porovnaj sušienky na tanieroch.",
      hra:{druh:"porovnaj", urovne:[["●","Ľahšie"],["●●","Bežné"],["●●●","Výzva"]], predvolena:0, kol:4}},
-    {typ:"spolu", text:"Prestierame: dieťa dá ku každému tanieru jednu lyžičku. Zostali lyžičky navyše, alebo nejaká chýba? Takto sa dá porovnať aj bez počítania, len priraďovaním."}
+    {typ:"spolu", text:"Prestierame: dieťa dá ku každému tanieru jednu lyžičku. Zostali lyžičky navyše, alebo nejaká chýba? Takto sa dá porovnať aj bez počítania, len priraďovaním."},
+    {typ:"tlac", urovne:3, text:"Kde je viac, menej a rovnako, bez počítania: priraďovanie zajkov a mrkiev, prestieranie, hore a dole. Výzva: chyták s veľkými a malými balónmi a tretí spôsob, ako urobiť rovnako.", subor:"mat-viac-menej.pdf"}
   ]},
 
 { id:"anj-hello", datum:"2026-09-02", predmet:"ANJ", kod:"ANJ-IN-1",
