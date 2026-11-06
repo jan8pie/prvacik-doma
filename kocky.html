@@ -8,22 +8,13 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Lexend:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="kocky.css">
 <style>
-/* Rozloženie: jeden stĺpec ako web Prváčik doma. Navrchu nastavenia pre rodiča, pod nimi hra.
-   „Podať dieťaťu“ presunie hru na celú obrazovku. Číslo = kocky v rámikoch po 10.
-   Farby: každé číslo v príklade má svoju farbu, kocky 1 – 5 v rámiku sú tmavší odtieň, 6 – 10 svetlejší. */
+/* Rozloženie stránky: jeden stĺpec ako web Prváčik doma. Navrchu nastavenia pre rodiča, pod nimi hra.
+   „Podať dieťaťu“ presunie hru na celú obrazovku. Vzhľad samotnej hry je v kocky.css. */
 :root{
   --bg:#EDF1F5; --card:#FFFFFF; --ink:#1C2633; --muted:#5A6676; --line:#D8DFE7; --soft:#F5F7FA;
   --accent:#2B62C9; --accent-ink:#FFFFFF;
-  /* 6 farieb kociek, každá v dvoch odtieňoch: a = kocky 1 – 5, b = kocky 6 – 10 */
-  --p0a:#2F6BD8; --p0b:#86AEF0;   /* modrá */
-  --p1a:#DB7512; --p1b:#F3B566;   /* oranžová */
-  --p2a:#2A9455; --p2b:#86CFA0;   /* zelená */
-  --p3a:#7A4CC8; --p3b:#B79AE8;   /* fialová */
-  --p4a:#CF3F36; --p4b:#EF9790;   /* červená */
-  --p5a:#11817F; --p5b:#6CC6C3;   /* tyrkysová */
-  --rod:#3A4656; --ghost:#B9C4D2;
-  --hint:#F5B800; --hint-ink:#1C2633;   /* tlačidlo ? (nápoveda) */
   --ok:#1F8A4C; --no:#B9473F;
   --f-head:"Lexend", "Trebuchet MS", system-ui, sans-serif;
   --f-body:"Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
@@ -31,16 +22,10 @@
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#12171E; --card:#1B222C; --ink:#E7ECF2; --muted:#9AA6B5; --line:#2D3745; --soft:#222B37;
-  --accent:#6E9BEF; --accent-ink:#0D1420;
-  --p0a:#4A84EC; --p0b:#A3C1F5; --p1a:#EE8A24; --p1b:#F7C688; --p2a:#3AAE69; --p2b:#9BDBB2;
-  --p3a:#9066DC; --p3b:#C7B0F1; --p4a:#E2554B; --p4b:#F4A9A3; --p5a:#1FA09D; --p5b:#86D6D3;
-  --rod:#C9D2DE; --ghost:#46546A; --hint:#F7C948; --hint-ink:#12171E; --ok:#5BC48F; --no:#EE7A70; color-scheme:dark}}
+  --accent:#6E9BEF; --accent-ink:#0D1420; --ok:#5BC48F; --no:#EE7A70; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#12171E; --card:#1B222C; --ink:#E7ECF2; --muted:#9AA6B5; --line:#2D3745; --soft:#222B37;
-  --accent:#6E9BEF; --accent-ink:#0D1420;
-  --p0a:#4A84EC; --p0b:#A3C1F5; --p1a:#EE8A24; --p1b:#F7C688; --p2a:#3AAE69; --p2b:#9BDBB2;
-  --p3a:#9066DC; --p3b:#C7B0F1; --p4a:#E2554B; --p4b:#F4A9A3; --p5a:#1FA09D; --p5b:#86D6D3;
-  --rod:#C9D2DE; --ghost:#46546A; --hint:#F7C948; --hint-ink:#12171E; --ok:#5BC48F; --no:#EE7A70; color-scheme:dark}
+  --accent:#6E9BEF; --accent-ink:#0D1420; --ok:#5BC48F; --no:#EE7A70; color-scheme:dark}
 
 *{box-sizing:border-box}
 [hidden]{display:none!important}
@@ -51,7 +36,6 @@ h1,h2,h3{font-family:var(--f-head);text-wrap:balance;margin:0;line-height:1.25}
 button{font:inherit;color:inherit}
 :focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
 .top{display:flex;flex-direction:column;gap:6px}
-.eyebrow{font-family:var(--f-head);font-size:12.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
 .top h1{font-size:clamp(28px,6vw,36px)}
 .top p{margin:0;color:var(--muted);max-width:62ch}
 .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:flex;flex-direction:column;gap:14px;min-width:0}
@@ -66,63 +50,11 @@ button{font:inherit;color:inherit}
 .segbtn .d{letter-spacing:.05em;margin-right:6px}
 .levelnote{font-size:15px;color:var(--muted);margin:0}
 .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-.row.c{justify-content:center}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--line);background:var(--card);border-radius:12px;padding:10px 16px;min-height:48px;cursor:pointer;font-family:var(--f-head);font-weight:600;font-size:16px}
 .btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
 .btn:disabled{opacity:.45;cursor:default}
 .btn svg{width:18px;height:18px}
 label.chk{display:inline-flex;gap:8px;align-items:center;font-size:15px;color:var(--muted);cursor:pointer}
-
-/* hra */
-.hra{display:flex;flex-direction:column;gap:12px;min-width:0}
-.hra-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
-.kolo{font-family:var(--f-head);font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums}
-.dots{display:flex;gap:5px}.dots i{width:10px;height:10px;border-radius:50%;background:var(--line)}.dots i.on{background:var(--accent)}
-.zadanie{font-family:var(--f-head);font-weight:600;font-size:20px;margin:0}
-.rovnica{font-family:var(--f-head);font-weight:700;font-size:32px;font-variant-numeric:tabular-nums;text-align:center;margin:0;letter-spacing:.02em}
-.vys{display:inline-block;min-width:1.6em;padding:0 .2em;border-bottom:3px solid var(--line);color:var(--ink)}
-.vys.ok{color:var(--ok);border-color:var(--ok)}
-.ciel{font-family:var(--f-head);font-weight:700;font-size:64px;line-height:1;text-align:center;font-variant-numeric:tabular-nums}
-.t0{color:var(--p0a)}.t1{color:var(--p1a)}.t2{color:var(--p2a)}.t3{color:var(--p3a)}.t4{color:var(--p4a)}.t5{color:var(--p5a)}
-
-.scene{--k:28px;--g:3px;display:flex;justify-content:center;align-items:flex-end;gap:16px;padding:4px 0;min-width:0;overflow:hidden}
-.cols{display:flex;align-items:flex-end;gap:8px}
-.colw{display:flex;flex-direction:column;align-items:center;gap:4px}
-.cnum{font-family:var(--f-head);font-weight:700;font-size:clamp(13px,calc(var(--k)*.55),20px);line-height:1.2;min-height:1.2em;color:var(--muted);font-variant-numeric:tabular-nums}
-.bez-cisel .cnum{visibility:hidden}
-/* rámik presne na 10 kociek: 10 kociek + 9 medzier + vnútorný okraj 3 px + rámik 2 px z každej strany */
-.col{display:flex;flex-direction:column-reverse;gap:var(--g);padding:3px;border-radius:7px;border:2px solid transparent;
-  width:calc(var(--k) + 10px);height:calc(var(--k)*10 + var(--g)*9 + 10px);justify-content:flex-start;align-items:center}
-.col.ones{border:2px dashed var(--ghost)}
-.col.rod{border:2px solid var(--rod)}
-.k{width:var(--k);height:var(--k);border-radius:calc(var(--k)*.16);flex:none;background:var(--c1);
-  box-shadow:inset 0 calc(var(--k)*-.1) 0 rgba(0,0,0,.2), inset 0 2px 0 rgba(255,255,255,.3)}
-.k.h{background:var(--c2)}
-.f0{--c1:var(--p0a);--c2:var(--p0b)}.f1{--c1:var(--p1a);--c2:var(--p1b)}.f2{--c1:var(--p2a);--c2:var(--p2b)}
-.f3{--c1:var(--p3a);--c2:var(--p3b)}.f4{--c1:var(--p4a);--c2:var(--p4b)}.f5{--c1:var(--p5a);--c2:var(--p5b)}
-.plus{font-family:var(--f-head);font-weight:700;font-size:30px;color:var(--muted);align-self:center}
-
-/* odpoveď: rad číslic, ? ukáže možnosti */
-.vstup{display:flex;flex-direction:column;gap:10px}
-.klav{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
-@media (min-width:640px){.klav{grid-template-columns:repeat(10,minmax(0,1fr))}}
-.num{font-family:var(--f-head);font-weight:700;font-size:26px;min-height:56px;border-radius:12px;border:2px solid var(--line);background:var(--soft);cursor:pointer;font-variant-numeric:tabular-nums}
-.pomoc{display:flex;justify-content:center;gap:10px}
-.pomoc .btn{min-width:72px;font-size:22px}
-.nap{display:inline-grid;place-items:center;width:60px;height:60px;margin-left:14px;vertical-align:middle;border-radius:50%;border:0;background:var(--hint);color:var(--hint-ink);font-family:var(--f-head);font-weight:700;font-size:34px;line-height:1;cursor:pointer;box-shadow:0 3px 0 rgba(0,0,0,.18)}
-.nap:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(0,0,0,.18)}
-.rovnica{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:0 .3em}
-.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(72px,1fr));gap:10px}
-.tile{font-family:var(--f-head);font-weight:700;font-size:30px;min-height:64px;border-radius:14px;border:2px solid var(--line);background:var(--soft);cursor:pointer;font-variant-numeric:tabular-nums}
-.tile.ok{background:var(--ok);border-color:var(--ok);color:var(--card)}
-.tile.no{opacity:.4}
-.status{min-height:1.5em;margin:0;font-size:16px;color:var(--muted);text-align:center}
-.status.ok{color:var(--ok);font-weight:700}
-.stav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.stav .btn{min-height:60px;font-size:18px}
-.koniec{display:flex;flex-direction:column;align-items:center;gap:10px;padding:20px 0;text-align:center}
-.koniec .hv{width:84px;height:84px;color:#E8B000}
-.koniec p{font-family:var(--f-head);font-weight:600;font-size:22px;margin:0}
 
 .tips{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px;font-size:16px}
 .small{font-size:14px;color:var(--muted);margin:0}
@@ -134,15 +66,8 @@ label.chk{display:inline-flex;gap:8px;align-items:center;font-size:15px;color:va
 .kid-x{position:relative;overflow:hidden;border:1px solid var(--line);background:var(--card);border-radius:10px;padding:8px 12px;font-family:var(--f-head);font-size:14px;cursor:pointer;touch-action:none;user-select:none;-webkit-user-select:none}
 .kid-x::after{content:"";position:absolute;inset:0;background:var(--accent);opacity:.25;transform:scaleX(0);transform-origin:left}
 .kid-x.hold::after{transform:scaleX(1);transition:transform .9s linear}
-.kid .hra{max-width:900px;width:100%;margin:0 auto;flex:1}
-.kid .zadanie{font-size:24px;text-align:center}
-.kid .tile{font-size:38px;min-height:84px}
-.kid .num{font-size:30px;min-height:64px}
-.kid .nap{width:72px;height:72px;font-size:40px}
 .kid .levelseg .segbtn{font-size:14px;padding:6px 10px;min-height:40px}
-@keyframes tras{0%,100%{transform:none}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
-.tras{animation:tras .3s 2}
-@media (prefers-reduced-motion:reduce){.tras{animation:none}.kid-x.hold::after{transition:none}}
+@media (prefers-reduced-motion:reduce){.kid-x.hold::after{transition:none}}
 .spat{font-family:var(--f-head);font-weight:600;font-size:15px;text-decoration:none;color:var(--accent)}
 </style>
 </head>
@@ -179,7 +104,7 @@ label.chk{display:inline-flex;gap:8px;align-items:center;font-size:15px;color:va
       <h2 id="h-hra">Hra</h2>
       <button class="btn primary" id="podat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>Podať dieťaťu</button>
     </div>
-    <div class="hra" id="hra" aria-live="polite"></div>
+    <div id="hra" aria-live="polite"></div>
   </section>
 
   <section class="card" aria-labelledby="h-tip">
@@ -194,8 +119,9 @@ label.chk{display:inline-flex;gap:8px;align-items:center;font-size:15px;color:va
   </section>
 </div>
 
+<script src="kocky.js"></script>
 <script>
-/* ===== nastavenia ===== */
+/* Stránka: nastavenia pre rodiča, hlas a režim pre dieťa. Samotná hra je v kocky.js. */
 const KOL = 5;
 const UROVNE = [["●","Ľahšie"],["●●","Bežné"],["●●●","Výzva"]];
 const POPIS = {
@@ -206,11 +132,8 @@ let cfg = {rezim:"kolko", rozsah:10, u:1};
 try{ const s = JSON.parse(localStorage.getItem("kocky-nastavenie")||"null"); if(s) cfg = Object.assign(cfg, s); }catch(e){}
 const uloz = () => { try{ localStorage.setItem("kocky-nastavenie", JSON.stringify(cfg)); }catch(e){} };
 
-/* Farby sa menia po kolách, vždy dvojica dobre odlíšiteľných farieb (nikdy červená so zelenou). */
-const PARY = [[0,1],[3,2],[5,4],[1,0],[2,3],[4,5]];
-
-/* ===== hlas (rovnako ako na webe: rozohriatie, pauza, nikdy neuseknúť) ===== */
-const PAUZA_MS = 500, PO_HLASE_MS = 700;
+/* hlas (rovnako ako na webe: rozohriatie, pauza, nikdy neuseknúť) */
+const PAUZA_MS = 500;
 let sayTimer = null;
 function say(t){
   if(!document.getElementById("hlas-zap").checked) return Promise.resolve(false);
@@ -223,281 +146,12 @@ function say(t){
     return new Promise(res=>{ const p=setTimeout(()=>res(false), PAUZA_MS+1500+String(t).length*110); u.onend=u.onerror=()=>{clearTimeout(p);res(true);}; });
   }catch(e){ return Promise.resolve(false); }
 }
-const pockaj = ms => new Promise(r=>setTimeout(r,ms));
 
-/* ===== slová pri číslach (kocka, desiatka sú ženského rodu) ===== */
-const kock = n => n===1?"jedna kocka":n===2?"dve kocky":n<5?`${n} kocky`:`${n} kociek`;
-const des = n => n===1?"jedna desiatka":n===2?"dve desiatky":n<5?`${n} desiatky`:`${n} desiatok`;
-const popis = n => { const t=Math.floor(n/10), o=n%10; return t===0?kock(o):o===0?des(t):`${des(t)} a ${kock(o)}`; };
+const hraEl = document.getElementById("hra");
+const hra = Kocky.hra(hraEl, {say, kol:KOL});
+const spusti = (automaticky) => hra.spusti(cfg, {automaticky});
 
-/* ===== animácie: všetky pohyby sú len tu, aby sa dali neskôr vymeniť ===== */
-const ANIM = {
-  ticho: matchMedia("(prefers-reduced-motion: reduce)").matches,
-  fotka(scene){ const m=new Map(); scene.querySelectorAll(".k").forEach(el=>m.set(el, el.getBoundingClientRect())); return m; },
-  /* kocky, ktoré boli na scéne, sa presunú z pôvodného miesta; nové „vyskočia“ */
-  presun(scene, pred, {trvanie=650, oneskorenie=18}={}){
-    if(this.ticho) return Promise.resolve();
-    let max=0, i=0;
-    scene.querySelectorAll(".k").forEach(el=>{
-      const o=pred&&pred.get(el), n=el.getBoundingClientRect(), d=i++*oneskorenie;
-      if(o){ const dx=o.left-n.left, dy=o.top-n.top; if(!dx&&!dy) return;
-        el.animate([{transform:`translate(${dx}px,${dy}px)`},{transform:"none"}],{duration:trvanie,delay:d,easing:"cubic-bezier(.3,.75,.25,1)",fill:"backwards"}); }
-      else el.animate([{transform:"scale(0)",opacity:0},{transform:"scale(1.12)",opacity:1,offset:.7},{transform:"none"}],{duration:320,delay:d,easing:"ease-out",fill:"backwards"});
-      max=Math.max(max,d+(o?trvanie:320));
-    });
-    return pockaj(max);
-  },
-  /* stĺpec kociek sa zabalí do desiatky */
-  zabal(col){
-    if(this.ticho||!col) return Promise.resolve();
-    col.animate([{transform:"none"},{transform:"scale(1.08,1.03)"},{transform:"none"}],{duration:420,easing:"ease-in-out"});
-    return pockaj(450);
-  },
-  tras(el){ if(!el) return; el.classList.remove("tras"); void el.offsetWidth; el.classList.add("tras"); }
-};
-
-/* ===== kocky a ich rozloženie ===== */
-const kocka = f => { const el=document.createElement("div"); el.className="k f"+f; return el; };
-/* skupina = {stlpce:[{rod, kusy:[kocky]}]} – desiatky, potom kocky navyše */
-function skupina(n, f){
-  const st=[];
-  for(let t=0;t<Math.floor(n/10);t++) st.push({rod:true, kusy:Array.from({length:10},()=>kocka(f))});
-  st.push({rod:false, kusy:Array.from({length:n%10},()=>kocka(f))});
-  return {stlpce:st};
-}
-const pocetKociek = g => g.stlpce.reduce((s,x)=>s+x.kusy.length,0);
-function velkost(scene, pocetStlpcov, skupin){
-  scene._v=[pocetStlpcov, skupin];
-  const W = scene.clientWidth || 320;
-  const vKid = !!scene.closest(".kid");
-  const H = Math.min(window.innerHeight*(vKid?.44:.40), 420);
-  let k = Math.floor((W - (skupin-1)*50) / pocetStlpcov - 18);
-  k = Math.min(k, Math.floor((H-40)/11.3), 40);
-  k = Math.max(10,k);
-  scene.style.setProperty("--k", k+"px");
-  scene.style.setProperty("--g", Math.max(2, Math.round(k*.12))+"px");
-}
-function vykresli(scene, skupiny, {znamienko=false}={}){
-  scene.replaceChildren();
-  skupiny.forEach((g,i)=>{
-    if(i>0 && znamienko){ const p=document.createElement("div"); p.className="plus"; p.textContent="+"; scene.append(p); }
-    const c=document.createElement("div"); c.className="cols";
-    g.stlpce.forEach(st=>{
-      const w=document.createElement("div"); w.className="colw";
-      const n=document.createElement("div"); n.className="cnum"; n.textContent = st.kusy.length ? st.kusy.length : "";
-      const s=document.createElement("div"); s.className="col "+(st.rod?"rod":"ones");
-      st.kusy.forEach((k,j)=>k.classList.toggle("h", j>=5));   /* 1 – 5 tmavší odtieň, 6 – 10 svetlejší */
-      s.append(...st.kusy); w.append(n,s); c.append(w);
-    });
-    scene.append(c);
-  });
-}
-
-/* ===== úlohy ===== */
-const nah = (a,b) => a + Math.floor(Math.random()*(b-a+1));
-const zamiesaj = a => { for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; };
-function moznosti(n, u, max){
-  const t=Math.floor(n/10), o=n%10, c=[];
-  if(n<=10){ c.push(...(u===0?[n+2,n-2,n+3,n-3]:[n+1,n-1,n+2,n-2])); }
-  else if(u===0){ c.push(n+10,n-10,n+5,n-5); }
-  else { if(o>0 && o*10+t!==n) c.push(o*10+t); c.push(n+1,n-1,n+10,n-10); }
-  for(let d=1; d<12; d++) c.push(n+d, n-d);
-  const ok = c.filter((x,i)=>x>=0 && x<=Math.max(max,10) && x!==n && c.indexOf(x)===i);
-  return zamiesaj([n, ...ok.slice(0, u===0?2:3)]);
-}
-function cisloKolko(){
-  const R=cfg.rozsah, u=cfg.u;
-  if(R===10) return u===0?nah(1,5):nah(3,10);
-  if(R===20) return u===0?nah(6,12):nah(11,20);
-  return u===0?nah(11,50):nah(21,99);
-}
-function prikladSpoj(){
-  const R=cfg.rozsah, u=cfg.u; let a,b;
-  if(R===10){ const s=u===0?nah(2,6):nah(5,10); a=nah(1,s-1); b=s-a; }
-  else if(R===20){ if(u===0){ a=nah(10,15); b=nah(1,9-a%10); } else { a=nah(5,9); b=nah(11-a,9); } }
-  else { if(u===0){ do{ a=nah(11,68); b=nah(10,99-a); }while(a%10+b%10>9 || b%10===0 && a%10===0); }
-         else { do{ a=nah(15,69); b=nah(5,99-a); }while(a%10+b%10<10 || a%10===0 || b%10===0); } }
-  return [a,b];
-}
-
-/* ===== odpoveď: rad číslic 0 – 9, tlačidlo ? ukáže možnosti ===== */
-function vstup(box, {spravne, moznosti:m, slot, ok, zle, napoveda}){
-  box.innerHTML = `<div class="klav">${[0,1,2,3,4,5,6,7,8,9].map(d=>`<button class="num" data-d="${d}">${d}</button>`).join("")}</div>
-    <div class="pomoc"><button class="btn" data-zmaz aria-label="Zmazať">⌫</button></div>
-    <div class="tiles" hidden>${m.map(x=>`<button class="tile" data-v="${x}">${x}</button>`).join("")}</div>`;
-  let pis="", hotovo=false;
-  const dlzka=String(spravne).length;
-  /* Žltý otáznik stojí hneď vedľa miesta na odpoveď, aby ho dieťa našlo. */
-  const nap=document.createElement("button"); nap.className="nap"; nap.type="button"; nap.textContent="?";
-  nap.setAttribute("aria-label","Nápoveda: ukáž možnosti"); nap.hidden=box.hidden; slot.after(nap); box._nap=nap;
-  const ukaz = () => { slot.textContent = pis || "\u00a0"; };
-  ukaz();
-  const vypni = () => { hotovo=true; nap.hidden=true; box.querySelectorAll("button").forEach(b=>b.disabled=true); slot.classList.add("ok"); slot.textContent=spravne; };
-  box.querySelectorAll("[data-d]").forEach(b=>b.onclick=()=>{
-    if(hotovo||zamok) return;
-    pis += b.dataset.d; ukaz();
-    if(pis.length<dlzka && +pis!==spravne) return;
-    if(+pis===spravne){ vypni(); ok(); }
-    else { const zly=pis; ANIM.tras(slot); setTimeout(()=>{ if(!hotovo){ pis=""; ukaz(); } },650); zle(+zly); }
-  });
-  box.querySelector("[data-zmaz]").onclick=()=>{ if(hotovo) return; pis=pis.slice(0,-1); ukaz(); };
-  nap.onclick=()=>{
-    if(hotovo) return; nap.hidden=true;
-    box.querySelector(".klav").hidden=true; box.querySelector(".pomoc").hidden=true; box.querySelector(".tiles").hidden=false;
-    pis=""; ukaz(); napoveda&&napoveda(); say("Vyber jedno číslo");
-  };
-  box.querySelectorAll(".tile").forEach(t=>t.onclick=()=>{
-    if(hotovo||zamok||t.disabled) return;
-    if(+t.dataset.v===spravne){ t.classList.add("ok"); vypni(); ok(); }
-    else { t.classList.add("no"); t.disabled=true; ANIM.tras(t); zle(+t.dataset.v); }
-  });
-}
-
-/* ===== hra ===== */
-const hra = document.getElementById("hra");
-let kolo=0, beh=0, zamok=false, posledne=new Set(), zadanieHlas="", automaticky=false;
-const farby = () => PARY[(kolo + beh) % PARY.length];
-
-function hlavicka(){
-  return `<div class="hra-top"><span class="kolo">Kolo ${kolo+1} z ${KOL}</span><span class="dots" aria-hidden="true">${Array.from({length:KOL},(_,i)=>`<i class="${i<kolo?"on":""}"></i>`).join("")}</span>
-  <button class="btn" data-zopakuj style="min-height:40px;padding:6px 12px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/></svg>Vypočuj</button></div>`;
-}
-function novyBeh(){ beh++; kolo=0; posledne.clear(); zamok=false; noveKolo(); }
-function noveKolo(){
-  if(kolo>=KOL) return koniec();
-  const b=beh;
-  if(cfg.rezim==="kolko" && cfg.u===2) return koloPostav(b);
-  if(cfg.rezim==="kolko") return koloKolko(b);
-  return koloSpoj(b);
-}
-function unikat(f){ let x, i=0; do{ x=f(); i++; }while(posledne.has(String(x)) && i<30); posledne.add(String(x)); return x; }
-function zadaj(t){ zadanieHlas=t; if(automaticky) say(t); }
-function dalsie(b, text){
-  zamok=true;
-  return say(text).then(()=>pockaj(PO_HLASE_MS)).then(()=>{ if(b!==beh) return; kolo++; zamok=false; noveKolo(); });
-}
-function rada(st, text){ st.className="status"; st.textContent=text; say(text); }
-
-/* Koľko je? Čísla nad rámikmi sú skryté, ukážu sa až s nápovedou ? */
-function koloKolko(b){
-  const n=unikat(cisloKolko), [f]=farby();
-  hra.innerHTML = `${hlavicka()}<p class="zadanie">Koľko je tu kociek?</p><div class="scene bez-cisel"></div>
-    <p class="rovnica"><span class="vys">?</span></p><div class="vstup"></div><p class="status" role="status"></p>`;
-  const sc=hra.querySelector(".scene"), g=skupina(n,f), st=hra.querySelector(".status");
-  velkost(sc, g.stlpce.length, 1); vykresli(sc,[g]); ANIM.presun(sc,null,{oneskorenie:n>20?6:25});
-  zadaj("Koľko je tu kociek?");
-  vstup(hra.querySelector(".vstup"), {spravne:n, moznosti:moznosti(n,cfg.u,cfg.rozsah), slot:hra.querySelector(".vys"),
-    napoveda:()=>sc.classList.remove("bez-cisel"),
-    ok:()=>{ sc.classList.remove("bez-cisel"); st.className="status ok"; st.textContent=`Áno! ${n}`; dalsie(b, n>10?`Áno! ${popis(n)}, spolu ${n}`:`Áno! ${n}`); },
-    zle:()=>rada(st, n>10 ? "Skús ešte raz. Najprv spočítaj plné rámiky: 10, 20, 30… a potom pridaj kocky navyše" : "Skús ešte raz. Ukáž prstom na každú kocku")
-  });
-}
-
-/* Postav číslo (●●● pri Koľko je?) */
-function koloPostav(b){
-  const n=unikat(cisloKolko), velke=cfg.rozsah>10, [f]=farby();
-  hra.innerHTML = `${hlavicka()}<p class="zadanie">Postav číslo</p><div class="ciel t${f}">${n}</div><div class="scene"></div>
-    <div class="stav">${velke?`<button class="btn" data-pridaj="10">+ desiatka</button>`:""}<button class="btn" data-pridaj="1">+ kocka</button>
-    <button class="btn" data-uber>− uber</button><button class="btn primary" data-hotovo>Hotovo</button></div><p class="status" role="status"></p>`;
-  const sc=hra.querySelector(".scene"), st=hra.querySelector(".status");
-  const g={stlpce:[{rod:false,kusy:[]}]}, jedn=()=>g.stlpce[g.stlpce.length-1];
-  velkost(sc, Math.max(4, Math.floor(n/10)+2), 1); vykresli(sc,[g]);
-  zadaj(`Postav číslo ${n}`);
-  const prekresli = async (pred) => {
-    vykresli(sc,[g]); await ANIM.presun(sc,pred,{trvanie:420,oneskorenie:0});
-    if(jedn().kusy.length===10){ jedn().rod=true; g.stlpce.push({rod:false,kusy:[]}); const p2=ANIM.fotka(sc); vykresli(sc,[g]);
-      await ANIM.presun(sc,p2,{trvanie:300,oneskorenie:0}); const r=sc.querySelectorAll(".col.rod"); await ANIM.zabal(r[r.length-1]); say("Desať kociek je jedna desiatka"); }
-  };
-  hra.querySelectorAll("[data-pridaj]").forEach(bt=>bt.onclick=async()=>{
-    if(zamok) return; if(pocetKociek(g)+ +bt.dataset.pridaj>100) return;
-    zamok=true; const pred=ANIM.fotka(sc);
-    if(bt.dataset.pridaj==="10") g.stlpce.splice(g.stlpce.length-1,0,{rod:true,kusy:Array.from({length:10},()=>kocka(f))});
-    else jedn().kusy.push(kocka(f));
-    await prekresli(pred); zamok=false; st.className="status"; st.textContent="";
-  });
-  hra.querySelector("[data-uber]").onclick=async()=>{
-    if(zamok) return; zamok=true; const pred=ANIM.fotka(sc);
-    if(jedn().kusy.length) jedn().kusy.pop();
-    else if(g.stlpce.length>1){ const t=g.stlpce.splice(g.stlpce.length-2,1)[0]; jedn().kusy.push(...t.kusy.slice(0,9)); }
-    await prekresli(pred); zamok=false;
-  };
-  hra.querySelector("[data-hotovo]").onclick=()=>{
-    if(zamok) return; const p=pocetKociek(g);
-    if(p===n){ st.className="status ok"; st.textContent=`Áno! ${n}`; hra.querySelectorAll(".stav .btn").forEach(x=>x.disabled=true);
-      dalsie(b, n>10?`Áno! ${popis(n)} je ${n}`:`Áno! To je ${n}`); }
-    else { ANIM.tras(hra.querySelector(".ciel"));
-      rada(st, p<n ? (Math.floor(p/10)<Math.floor(n/10) && velke ? "Ešte to nie je ono. Pozri, koľko desiatok potrebuješ" : "Ešte to nie je ono. Treba viac kociek") : "Ešte to nie je ono. Je tu priveľa kociek"); }
-  };
-}
-
-/* Spoj kocky: prvý blok ostane pokope, druhý sa k nemu priloží */
-function koloSpoj(b){
-  const [a,c]=unikat(prikladSpoj), s=a+c, odhad=cfg.u===2, [fa,fb]=farby();
-  hra.innerHTML = `${hlavicka()}<div class="scene"></div>
-    <p class="rovnica"><span class="t${fa}">${a}</span> + <span class="t${fb}">${c}</span> = <span class="vys">?</span></p>
-    <div class="row c"><button class="btn primary" data-spoj ${odhad?"hidden":""}>Spoj</button></div>
-    <div class="vstup" ${odhad?"":"hidden"}></div><p class="status" role="status"></p>`;
-  const sc=hra.querySelector(".scene"), ga=skupina(a,fa), gb=skupina(c,fb), st=hra.querySelector(".status"), box=hra.querySelector(".vstup");
-  /* Spojenie: kocky navyše druhého čísla najprv doplnia rámik prvého do desiatky,
-     potom sa priložia desiatky druhého čísla a nakoniec zvyšné kocky. Farby idú za sebou bez prerušenia. */
-  const onesA=ga.stlpce[ga.stlpce.length-1].kusy, onesB=gb.stlpce[gb.stlpce.length-1].kusy;
-  const doplnok=onesB.slice(0, 10-onesA.length), zvysok=onesB.slice(10-onesA.length), stred=[...onesA, ...doplnok];
-  const stredSt={rod:false, kusy:stred};
-  const spolu={stlpce:[
-    ...ga.stlpce.filter(x=>x.rod), ...(stred.length?[stredSt]:[]), ...gb.stlpce.filter(x=>x.rod),
-    ...(zvysok.length||!stred.length?[{rod:false,kusy:zvysok}]:[])
-  ]};
-  velkost(sc, Math.max(ga.stlpce.length+gb.stlpce.length+1, spolu.stlpce.length), 2);
-  vykresli(sc,[ga,gb],{znamienko:true}); ANIM.presun(sc,null,{oneskorenie:s>20?5:20});
-  zadaj(odhad?`Koľko je ${a} a ${c}? Najprv odhadni, potom uvidíš`:"Koľko kociek bude spolu? Ťukni na Spoj");
-  let spojene=false, chyby=0;
-  const spoj = async () => {
-    if(spojene) return; spojene=true;
-    const pred=ANIM.fotka(sc); vykresli(sc,[spolu]); await ANIM.presun(sc,pred,{trvanie:800,oneskorenie:12});
-    if(stred.length===10 && onesA.length && doplnok.length){
-      await pockaj(250); say("Desať kociek je jedna desiatka");
-      stredSt.rod=true; const p2=ANIM.fotka(sc); vykresli(sc,[spolu]);
-      await ANIM.presun(sc,p2,{trvanie:300,oneskorenie:0}); await ANIM.zabal(sc.querySelectorAll(".col")[spolu.stlpce.indexOf(stredSt)]);
-      await pockaj(400);
-    }
-    /* Bez prechodu cez desiatku a s desiatkami druhého čísla za sebou: neúplný rámik by bol v strede.
-       Z poslednej desiatky sa presunie toľko kociek, aby bol rámik plný; neúplný ostane posledný. */
-    const posl=spolu.stlpce[spolu.stlpce.length-1];
-    if(stred.length>0 && stred.length<10 && posl!==stredSt && posl.rod){
-      await pockaj(500);
-      const treba=10-stred.length, p3=ANIM.fotka(sc);
-      stred.push(...posl.kusy.splice(posl.kusy.length-treba, treba)); stredSt.rod=true; posl.rod=false;
-      vykresli(sc,[spolu]); await ANIM.presun(sc,p3,{trvanie:600,oneskorenie:60});
-      await ANIM.zabal(sc.querySelectorAll(".col")[spolu.stlpce.indexOf(stredSt)]); await pockaj(300);
-    }
-  };
-  const spBtn=hra.querySelector("[data-spoj]");
-  spBtn.onclick=async()=>{
-    if(zamok) return; zamok=true; spBtn.disabled=true; await spoj(); spBtn.hidden=true; zamok=false;
-    if(!odhad){ box.hidden=false; box._nap.hidden=false; zadanieHlas="Koľko je to spolu?"; say(zadanieHlas); }
-  };
-  vstup(box, {spravne:s, moznosti:moznosti(s, cfg.u===0?0:1, cfg.rozsah), slot:hra.querySelector(".vys"),
-    ok:async()=>{ st.className="status ok"; st.textContent=`Áno! ${a} + ${c} = ${s}`;
-      if(odhad && !spojene){ zamok=true; spBtn.hidden=true; await spoj(); zamok=false; }
-      dalsie(b, `Áno! ${a} a ${c} je ${s}`); },
-    zle:()=>{ chyby++;
-      if(odhad && chyby>=2 && !spojene){ spBtn.hidden=false; spBtn.disabled=false; rada(st,"Skús ešte raz. Ťukni na Spoj a pozri sa"); return; }
-      rada(st, odhad ? "Skús ešte raz. Najprv spoj kocky navyše: "+(a%10)+" a "+(c%10)
-        : (s>10?"Skús ešte raz. Spočítaj plné rámiky a potom kocky navyše":"Skús ešte raz. Spočítaj všetky kocky")); }
-  });
-}
-
-function koniec(){
-  hra.innerHTML = `<div class="koniec"><svg class="hv" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.5l2.9 6 6.6.8-4.9 4.5 1.3 6.5L12 17l-5.9 3.3 1.3-6.5L2.5 9.3l6.6-.8z"/></svg>
-    <p>Hotovo, výborne!</p><p class="small">${jeKid()?"Podaj tablet späť.":"Päť kôl je za vami."}</p><button class="btn primary" data-znova>Ešte raz</button></div>`;
-  say(jeKid()?"Hotovo, výborne! Podaj tablet späť":"Hotovo, výborne!");
-}
-hra.addEventListener("click", e=>{
-  if(e.target.closest("[data-zopakuj]")) say(zadanieHlas);
-  if(e.target.closest("[data-znova]")){ automaticky=true; novyBeh(); }
-});
-
-/* ===== ovládanie nastavení ===== */
+/* ovládanie nastavení */
 function kresliNastavenia(){
   document.querySelectorAll("[data-rezim]").forEach(x=>x.setAttribute("aria-pressed", x.dataset.rezim===cfg.rezim));
   document.querySelectorAll("[data-rozsah]").forEach(x=>x.setAttribute("aria-pressed", +x.dataset.rozsah===cfg.rozsah));
@@ -510,33 +164,31 @@ document.addEventListener("click", e=>{
   const r=e.target.closest("[data-rezim]"), z=e.target.closest("[data-rozsah]"), u=e.target.closest("[data-u]");
   if(!r&&!z&&!u) return;
   if(r) cfg.rezim=r.dataset.rezim; if(z) cfg.rozsah=+z.dataset.rozsah; if(u) cfg.u=+u.dataset.u;
-  uloz(); kresliNastavenia(); automaticky = jeKid(); novyBeh();
+  uloz(); kresliNastavenia(); spusti(jeKid());
 });
 
-/* ===== režim pre dieťa ===== */
+/* režim pre dieťa */
 const host = document.getElementById("hostitel");
 const kid = document.createElement("div"); kid.className="kid"; kid.hidden=true; kid.setAttribute("role","dialog"); kid.setAttribute("aria-modal","true"); kid.setAttribute("aria-label","Hra s kockami");
 kid.innerHTML = `<div class="kid-bar"><div class="seg levelseg" role="group" aria-label="Obťažnosť">${urovneHTML()}</div><button class="kid-x" id="kid-x">Späť k rodičovi <small>(podrž)</small></button></div>`;
 document.body.append(kid);
 const jeKid = () => !kid.hidden;
 document.getElementById("podat").onclick = () => {
-  kid.append(hra); kid.hidden=false; document.body.style.overflow="hidden";
+  kid.append(hraEl); kid.hidden=false; document.body.style.overflow="hidden";
   try{ const p=document.documentElement.requestFullscreen?.(); p&&p.catch(()=>{}); }catch(e){}
-  kresliNastavenia(); automaticky=true; novyBeh();
+  kresliNastavenia(); spusti(true);
 };
 function spat(){
-  host.append(hra); kid.hidden=true; document.body.style.overflow=""; automaticky=false;
+  host.append(hraEl); kid.hidden=true; document.body.style.overflow="";
   try{ if(document.fullscreenElement) document.exitFullscreen().catch(()=>{}); }catch(e){}
-  try{ speechSynthesis.cancel(); }catch(e){} novyBeh();
+  try{ speechSynthesis.cancel(); }catch(e){} spusti(false);
 }
 const kx=document.getElementById("kid-x"); let drz;
 kx.addEventListener("pointerdown",()=>{ kx.classList.add("hold"); drz=setTimeout(spat,900); });
 ["pointerup","pointerleave","pointercancel"].forEach(n=>kx.addEventListener(n,()=>{ clearTimeout(drz); kx.classList.remove("hold"); }));
 kx.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); spat(); } });
 
-let rs; addEventListener("resize",()=>{ clearTimeout(rs); rs=setTimeout(()=>{ const sc=hra.querySelector(".scene"); if(sc&&sc._v) velkost(sc, ...sc._v); },150); });
-
-kresliNastavenia(); novyBeh();
+kresliNastavenia(); spusti(false);
 </script>
 </body>
 </html>
