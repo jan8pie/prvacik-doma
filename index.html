@@ -542,10 +542,14 @@ function say(t, lang){
     ss.speak(warm);   /* hneď, ešte počas ťuknutia – iPad inak hlas nepustí */
     sayTimer = setTimeout(()=>ss.speak(u), PAUZA_MS);
     /* Vráti „sľub“, ktorý sa splní, keď hlas dočíta. Poistka: ak prehliadač koniec neohlási,
-       odhadneme dĺžku podľa počtu znakov. */
+       po odhade podľa počtu znakov ešte čakáme, kým hlas hovorí (najviac 15 s). Čísla sa čítajú
+       ako dlhé slová, preto samotný odhad na notebooku nestačil a ďalšia úloha prerušila hlas. */
     return new Promise(res=>{
-      const poistka = setTimeout(()=>res(false), PAUZA_MS + 1500 + String(t).length*110);
-      u.onend = u.onerror = () => { clearTimeout(poistka); res(true); };
+      const od = Date.now(); let poistka, hotovo = false;
+      const koniec = v => { if(hotovo) return; hotovo = true; clearTimeout(poistka); res(v); };
+      const kontrola = () => { if(ss.speaking && Date.now()-od < 15000) poistka = setTimeout(kontrola, 250); else koniec(false); };
+      poistka = setTimeout(kontrola, PAUZA_MS + 1500 + String(t).length*110);
+      u.onend = u.onerror = () => koniec(true);
     });
   }
   catch(e){ return Promise.resolve(false); }

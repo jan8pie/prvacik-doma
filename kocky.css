@@ -61,7 +61,7 @@
 .kk-num:disabled,.kk-tile:disabled{cursor:default}
 .kk-pomoc{display:flex;justify-content:center;gap:10px}
 .kk-pomoc .btn{min-width:72px;font-size:22px;justify-content:center}
-.kk-nap{display:inline-grid;place-items:center;width:60px;height:60px;margin-left:14px;vertical-align:middle;border-radius:50%;border:0;background:var(--hint);color:var(--hint-ink);font-family:var(--f-head);font-weight:700;font-size:34px;line-height:1;cursor:pointer;box-shadow:0 3px 0 rgba(0,0,0,.18)}
+.kk-nap{display:inline-grid;place-items:center;width:44px;height:44px;margin-left:10px;vertical-align:middle;border-radius:50%;border:0;background:var(--hint);color:var(--hint-ink);font-family:var(--f-head);font-weight:700;font-size:26px;line-height:1;cursor:pointer;box-shadow:0 3px 0 rgba(0,0,0,.18)}
 .kk-nap:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(0,0,0,.18)}
 .kk-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(72px,1fr));gap:10px}
 .kk-tile{font-family:var(--f-head);font-weight:700;font-size:30px;min-height:64px;border-radius:14px;border:2px solid var(--line);background:var(--soft);color:var(--ink);cursor:pointer;font-variant-numeric:tabular-nums}
@@ -81,7 +81,7 @@
 .kid .kk-zadanie{font-size:24px;text-align:center}
 .kid .kk-tile{font-size:38px;min-height:84px}
 .kid .kk-num{font-size:30px;min-height:64px}
-.kid .kk-nap{width:72px;height:72px;font-size:40px}
+.kid .kk-nap{width:52px;height:52px;font-size:30px}
 
 @keyframes kk-tras{0%,100%{transform:none}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
 .kk-tras{animation:kk-tras .3s 2}

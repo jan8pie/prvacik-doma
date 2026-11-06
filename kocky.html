@@ -143,7 +143,11 @@ function say(t){
     const warm = new SpeechSynthesisUtterance("a"); warm.lang="sk-SK"; warm.volume=0.02;
     const u = new SpeechSynthesisUtterance(t); u.lang="sk-SK"; u.rate = String(t).length<=8 ? .75 : .92;
     ss.speak(warm); sayTimer = setTimeout(()=>ss.speak(u), PAUZA_MS);
-    return new Promise(res=>{ const p=setTimeout(()=>res(false), PAUZA_MS+1500+String(t).length*110); u.onend=u.onerror=()=>{clearTimeout(p);res(true);}; });
+    /* Sľub sa splní, keď hlas dočíta. Poistka: ak koniec nepríde, čakáme, kým hlas ešte hovorí (najviac 15 s).
+       Čísla sa čítajú ako dlhé slová, preto odhad podľa znakov na notebooku nestačil. */
+    return new Promise(res=>{ const od=Date.now(); let p, hot=false; const kon=v=>{ if(hot) return; hot=true; clearTimeout(p); res(v); };
+      const kontrola=()=>{ if(ss.speaking && Date.now()-od<15000) p=setTimeout(kontrola,250); else kon(false); };
+      p=setTimeout(kontrola, PAUZA_MS+1500+String(t).length*110); u.onend=u.onerror=()=>kon(true); });
   }catch(e){ return Promise.resolve(false); }
 }
 
