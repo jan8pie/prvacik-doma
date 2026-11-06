@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="sk"><head><meta charset="utf-8"><title>Koľko orieškov je vo vrecúšku? – pracovný list (3 úrovne)</title>
+<link rel="stylesheet" href="list.css">
+<style>
+  .vyb{display:flex;gap:4mm;font-size:24px;font-weight:700;justify-content:center}
+  .ex{display:flex;align-items:center;gap:1.6mm;font-size:23px;font-weight:700;white-space:nowrap}
+  .ex .okno{width:10mm;height:10mm}
+  .vrec{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm}
+  .vrec>div{display:flex;flex-direction:column;align-items:center;gap:2mm;border:1px solid #bbb;border-radius:3mm;padding:2mm;min-width:0}
+  .vrec .obr{display:flex;align-items:flex-end;gap:1.5mm;min-height:17mm}
+  .vrec .or{display:flex;flex-wrap:wrap;width:17mm;gap:.6mm;justify-content:center}
+  .vrec .or .pic{width:8mm;height:8mm;stroke-width:5.2}
+  .vrec .vr{width:17mm;height:17mm;stroke-width:3.8}
+  .vezu{display:grid;grid-template-columns:1fr 1fr;gap:3mm 8mm}
+  .vezu>div{display:flex;align-items:center;gap:4mm}
+  .vezu .kveza i{width:8mm;height:8mm}
+  .zm{display:grid;grid-template-columns:1fr auto;gap:6mm;align-items:center}
+  .zm .r{display:flex;justify-content:space-around}
+  .zm .stl{display:flex;flex-direction:column;gap:4mm}
+  .odp{display:flex;flex-direction:column;align-items:center;gap:1.5mm;font-size:14px;font-weight:700;text-align:center}
+  .hra{display:grid;grid-template-columns:auto 1fr;gap:6mm;align-items:center}
+  .hra .or6{display:grid;grid-template-columns:repeat(3,11mm);gap:1.5mm}
+  .hra .or6 .pic{width:11mm;height:11mm;stroke-width:4.6}
+  .hra table{border-collapse:collapse;width:100%;font-size:14px;font-weight:700}
+  .hra td,.hra th{border:1.2px solid #111;height:7mm;text-align:center;padding:0 2mm}
+  .hra th{font-size:12.5px;background:#eee}
+  .vrec2{display:grid;grid-template-columns:1fr 1fr;gap:3mm 6mm}
+  .vrec2>div{display:flex;align-items:center;justify-content:space-between;gap:2mm;border:1px solid #bbb;border-radius:3mm;padding:1.5mm 3mm}
+  .vrec2 .obr{display:flex;align-items:center;gap:1mm}
+  .vrec2 .obr .ors{display:flex;flex-wrap:wrap;width:24mm;gap:.5mm;justify-content:flex-end}
+  .vrec2 .obr .ors .pic{width:7mm;height:7mm;stroke-width:5.6}
+  .vrec2 .obr .vr{width:14mm;height:14mm;stroke-width:4.2}
+  .vrec2>div{min-width:0}
+  .chyba{display:grid;grid-template-columns:repeat(3,1fr);gap:3mm 6mm}
+  .chyba .ex{justify-content:center}
+  .pribeh{display:flex;flex-direction:column;gap:2mm}
+  .pribeh>div{display:grid;grid-template-columns:1fr auto;align-items:center;gap:4mm;border-bottom:1px dotted #bbb;padding-bottom:2mm}
+  .pribeh>div:last-child{border:none;padding-bottom:0}
+  .pribeh .tx{font-size:15px;font-weight:700;display:flex;flex-direction:column;gap:1.5mm}
+  .pribeh .miesto{height:7mm;border:1px dashed #999;border-radius:2mm}
+  .spojv{display:flex;flex-direction:column;gap:6mm}
+  .spojv>div{display:flex;justify-content:space-around;align-items:center}
+  .cvr{position:relative;display:inline-flex}
+  .cvr .pic{width:17mm;height:17mm;stroke-width:3.6}
+  .cvr b{position:absolute;left:0;right:0;top:46%;text-align:center;font-size:24px;line-height:1}
+  .kopa{display:flex;flex-wrap:wrap;width:22mm;gap:.6mm;justify-content:center;border-bottom:1.3px solid #111;padding-bottom:1mm}
+  .kopa .pic{width:8mm;height:8mm;stroke-width:5.2}
+  .dve{display:flex;flex-direction:column;gap:2.5mm}
+  .dve>div{display:grid;grid-template-columns:1fr auto auto;gap:5mm;align-items:center;border-bottom:1px dotted #bbb;padding-bottom:2mm}
+  .dve>div:last-child{border:none;padding-bottom:0}
+  .dve .tx{font-size:15px;font-weight:700}
+  .dve .v{display:flex;align-items:center;gap:1.5mm}
+  .dve .v .pic{width:12mm;height:12mm;stroke-width:4.4}
+  .kod{display:grid;grid-template-columns:1fr 1fr;gap:3mm 8mm}
+  .kod>div{display:flex;align-items:center;gap:1.8mm;font-size:24px;font-weight:700}
+  .kod .pic{width:12mm;height:12mm;stroke-width:4.4}
+  .kod .okno{width:10mm;height:10mm}
+  .ja{display:grid;grid-template-columns:1fr auto;gap:5mm;align-items:center}
+  .ja .miesto{height:28mm;border:1px dashed #999;border-radius:2mm}
+</style></head>
+<body>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 1 – ĽAHŠIE                                                     -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="1">
+  <header class="hlava" data-predmet="Matematika">Koľko chýba do šiestich?</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Veverička má 6 orieškov. Niektoré schovala do vrecúška. Koľko je vo vrecúšku? Zakrúžkuj.</span></div>
+    <div class="plocha vrec">
+      <div><div class="obr"><div class="or"><i o="oriesok" n="5"></i></div><i o="vrecusko" class="vr"></i></div><div class="vyb"><span>1</span><span>2</span><span>3</span></div></div>
+      <div><div class="obr"><div class="or"><i o="oriesok" n="2"></i></div><i o="vrecusko" class="vr"></i></div><div class="vyb"><span>3</span><span>4</span><span>5</span></div></div>
+      <div><div class="obr"><div class="or"><i o="oriesok" n="4"></i></div><i o="vrecusko" class="vr"></i></div><div class="vyb"><span>1</span><span>2</span><span>3</span></div></div>
+      <div><div class="obr"><div class="or"><i o="oriesok" n="3"></i></div><i o="vrecusko" class="vr"></i></div><div class="vyb"><span>2</span><span>3</span><span>4</span></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Každá veža má mať 6 kociek. Vyfarbi kocky, ktoré chýbajú. Koľko si ich vyfarbil? Napíš.</span></div>
+    <div class="plocha vezu">
+      <div><i veza="4" n="6" class="lezi"></i><span class="okno"></span></div>
+      <div><i veza="2" n="6" class="lezi"></i><span class="okno"></span></div>
+      <div><i veza="5" n="6" class="lezi"></i><span class="okno"></span></div>
+      <div><i veza="3" n="6" class="lezi"></i><span class="okno"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Každý zajko dostane jednu mrkvu. Spoj čiarou. Koľko mrkiev zostane navyše? Zakrúžkuj.</span></div>
+    <div class="plocha zm">
+      <div class="stl"><div class="r" style="padding:0 14mm"><i o="zajac" n="4" class="s"></i></div><div class="r"><i o="mrkva" n="6" class="s"></i></div></div>
+      <div class="odp">Navyše:<div class="vyb"><span>1</span><span>2</span><span>3</span></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Hra pre dvoch: Schovávačka. Jeden zakryje dlaňou niekoľko orieškov, druhý háda, koľko je schovaných. Potom sa vymeňte.</span></div>
+    <div class="plocha hra">
+      <div class="or6"><i o="oriesok" n="6"></i></div>
+      <table><tr><th>Kolo</th><th>Vidím</th><th>Schovaných</th><th>Uhádol som?</th></tr>
+        <tr><td>1</td><td></td><td></td><td></td></tr><tr><td>2</td><td></td><td></td><td></td></tr><tr><td>3</td><td></td><td></td><td></td></tr><tr><td>4</td><td></td><td></td><td></td></tr></table>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Zadania prečítajte. Šesť sa dá rozdeliť na dve časti: 5 a 1, 4 a 2, 3 a 3, 2 a 4, 1 a 5. Ak dieťa nevie, koľko je vo vrecúšku, nech ukáže 6 prstov a sklopí toľko, koľko orieškov vidí. V hre stačí čísla zapisovať čiarkami alebo bodkami, za správne uhádnutie sa kreslí hviezdička.
+      <b>Riešenie:</b> 1 – 1, 4, 2, 3 · 2 – 2, 4, 1, 3 · 3 – 2 mrkvy navyše · 4 – hra.
+      <span class="std">MAT-CO-4 · ŠVP MAT, Čísla a operácie s číslami: „modelovanie a využívanie rôznych rozkladov čísel“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 2 – BEŽNÉ                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="2">
+  <header class="hlava" data-predmet="Matematika">Vrecúško a šestka</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Spolu je vždy 6 orieškov. Koľko je vo vrecúšku? Dopíš.</span></div>
+    <div class="plocha vrec2">
+      <div><div class="obr"><div class="ors"><i o="oriesok" n="4"></i></div><i o="vrecusko" class="vr"></i></div><span class="ex">6 = 4 + <span class="okno"></span></span></div>
+      <div><div class="obr"><div class="ors"><i o="oriesok"></i></div><i o="vrecusko" class="vr"></i></div><span class="ex">6 = 1 + <span class="okno"></span></span></div>
+      <div><div class="obr"><div class="ors"><i o="oriesok" n="3"></i></div><i o="vrecusko" class="vr"></i></div><span class="ex">6 = 3 + <span class="okno"></span></span></div>
+      <div><div class="obr"><div class="ors"><i o="oriesok" n="5"></i></div><i o="vrecusko" class="vr"></i></div><span class="ex">6 = 5 + <span class="okno"></span></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Koľko chýba do 6? Dopíš.</span></div>
+    <div class="plocha chyba">
+      <span class="ex">5 + <span class="okno"></span> = 6</span><span class="ex">2 + <span class="okno"></span> = 6</span><span class="ex">4 + <span class="okno"></span> = 6</span>
+      <span class="ex"><span class="okno"></span> + 3 = 6</span><span class="ex"><span class="okno"></span> + 1 = 6</span><span class="ex"><span class="okno"></span> + 4 = 6</span>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Spoj vrecúško s kôpkou orieškov tak, aby bolo spolu 6.<span class="pozn">Číslo na vrecúšku hovorí, koľko orieškov je v ňom.</span></span></div>
+    <div class="plocha spojv">
+      <div><span class="cvr"><i o="vrecusko"></i><b>1</b></span><span class="cvr"><i o="vrecusko"></i><b>4</b></span><span class="cvr"><i o="vrecusko"></i><b>3</b></span><span class="cvr"><i o="vrecusko"></i><b>2</b></span></div>
+      <div><div class="kopa"><i o="oriesok" n="3"></i></div><div class="kopa"><i o="oriesok" n="4"></i></div><div class="kopa"><i o="oriesok" n="5"></i></div><div class="kopa"><i o="oriesok" n="2"></i></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Príbehy. Nakresli, ak chceš, a napíš príklad.</span></div>
+    <div class="plocha pribeh">
+      <div><div class="tx">Na stole je 6 lyžičiek a 4 taniere. Ku každému tanieru dáme jednu lyžičku. Koľko lyžičiek zostane?<div class="miesto"></div></div><span class="ex"><span class="okno"></span>−<span class="okno"></span>=<span class="okno"></span></span></div>
+      <div><div class="tx">Mám v ruke 2 oriešky. Koľko ešte treba, aby ich bolo 6?<div class="miesto"></div></div><span class="ex"><span class="okno"></span>+<span class="okno"></span>=<span class="okno"></span></span></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Zadania prečítajte. Vrecúško je obrázok rozkladu: časť vidno, časť je schovaná, spolu je to celé číslo. V úlohe 2 je okienko raz vpredu: aj tu sa pýtame, koľko chýba do 6. Pri prvom príbehu stačí, keď dieťa povie odpoveď, zápis s mínusom môže urobiť s vami.
+      <b>Riešenie:</b> 1 – 2, 5, 3, 1 · 2 – 1, 4, 2, 3, 5, 2 · 3 – vrecúško 1 a 5 orieškov, 4 a 2, 3 a 3, 2 a 4 · 4 – 6 − 4 = 2, 2 + 4 = 6.
+      <span class="std">MAT-CO-4 · ŠVP MAT, Čísla a operácie s číslami: „modelovanie a využívanie rôznych rozkladov čísel“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 3 – VÝZVA                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="3">
+  <header class="hlava" data-predmet="Matematika">Veveričkine záhady</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Veverička má 6 orieškov v dvoch vrecúškach. Koľko je v každom?</span></div>
+    <div class="plocha dve">
+      <div><span class="tx">V oboch vrecúškach je rovnako.</span><span class="v"><i o="vrecusko"></i><span class="okno"></span></span><span class="v"><i o="vrecusko"></i><span class="okno"></span></span></div>
+      <div><span class="tx">V jednom sú o 2 oriešky viac ako v druhom.</span><span class="v"><i o="vrecusko"></i><span class="okno"></span></span><span class="v"><i o="vrecusko"></i><span class="okno"></span></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Tajný kód. Každé zvieratko znamená jedno číslo. Rovnaké zvieratko je vždy rovnaké číslo.</span></div>
+    <div class="plocha kod">
+      <div><i o="vevericka"></i>+<i o="vevericka"></i>= 6</div>
+      <div><i o="vevericka"></i>=<span class="okno"></span></div>
+      <div><i o="vevericka"></i>+<i o="jezko"></i>= 5</div>
+      <div><i o="jezko"></i>=<span class="okno"></span></div>
+      <div style="grid-column:1/3;justify-content:center;border-top:1px dotted #bbb;padding-top:2mm">A koľko je <i o="jezko"></i>+<i o="jezko"></i>= <span class="okno"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Chyták. Veverička hovorí: „Vonku mám 2 oriešky a vo vrecúšku 5. Spolu mám 6.“ Má pravdu?<span class="pozn">Ak nemá, koľko orieškov by muselo byť vo vrecúšku?</span></span></div>
+    <div class="plocha" style="display:flex;align-items:center;justify-content:space-between;gap:5mm">
+      <span style="display:flex;align-items:center;gap:1mm"><i o="oriesok" n="2" class="m"></i><span style="position:relative;display:inline-flex"><i o="vrecusko" class="s"></i></span></span>
+      <span class="vyb" style="font-size:18px;white-space:nowrap;align-items:center">Má pravdu: <span style="border:1.4px solid #111;border-radius:50%;padding:0 3mm">áno</span><span style="border:1.4px solid #111;border-radius:50%;padding:0 3mm">nie</span></span>
+      <span class="ex" style="font-size:18px">Vo vrecúšku by malo byť <span class="okno m"></span></span>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Teraz zadávaš ty. Nakresli vonku niekoľko orieškov. Rodič uhádne, koľko je vo vrecúšku, ak je spolu 6.</span></div>
+    <div class="plocha ja"><div class="miesto"></div><i o="vrecusko" style="width:26mm;height:26mm;stroke-width:3"></i></div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Výzva skúša rozklad šestky inak: v úlohe 1 treba skúšať a overovať (3 a 3, potom 4 a 2), v úlohe 2 je prvá „rovnica“ s obrázkami, ktorú dieťa rieši úvahou: dve rovnaké veveričky dajú 6, teda jedna je 3. V úlohe 4 sa role vymenia a dieťa kontroluje vás. Schválne sa raz pomýľte.
+      <b>Riešenie:</b> 1 – 3 a 3; 4 a 2 · 2 – veverička 3, ježko 2, ježko + ježko = 4 · 3 – nemá pravdu (2 + 5 = 7), vo vrecúšku by mali byť 4 · 4 – vlastná úloha.
+      <span class="std">MAT-CO-4 · ŠVP MAT, Čísla a operácie s číslami: „modelovanie a využívanie rôznych rozkladov čísel“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<script src="obrazky.js"></script><script src="nastroje.js"></script>
+</body></html>

@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="sk"><head><meta charset="utf-8"><title>Čísla 4 a 5 – pracovný list (3 úrovne)</title>
+<link rel="stylesheet" href="list.css">
+<style>
+  .skup{display:flex;flex-wrap:wrap;align-items:center;align-content:center;justify-content:center;gap:1.2mm;border:1.2px solid #111;border-radius:3mm;padding:2mm}
+  .kolko{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm}
+  .kolko>div{display:flex;flex-direction:column;align-items:center;gap:1.5mm}
+  .kolko .skup{width:100%;height:21mm}
+  .kolko .pic{width:9mm;height:9mm;stroke-width:5}
+  .vyb{display:flex;gap:6mm;font-size:28px;font-weight:700}
+  .farbi{display:flex;flex-direction:column;gap:2mm}
+  .farbi>div{display:flex;align-items:center;gap:4mm}
+  .farbi .kto{display:flex;align-items:center;gap:2mm;border-right:1.2px solid #111;padding-right:5mm;font-size:30px;font-weight:700}
+  .farbi .pic{width:12mm;height:12mm;stroke-width:4.4}
+  .kocky4{display:flex;justify-content:space-around}
+  .kocky4>div{display:flex;flex-direction:column;align-items:center;gap:1.5mm;font-size:30px;font-weight:700}
+  .ruka{display:grid;grid-template-columns:1fr auto;gap:5mm;align-items:center}
+  .ruka .miesto{height:57mm;border:1px dashed #999;border-radius:2mm}
+  .spoj45{display:flex;flex-direction:column;gap:9mm}
+  .spoj45>div{display:flex;justify-content:space-around;align-items:center}
+  .spoj45 .skup{min-width:25mm;height:18mm}
+  .spoj45 .pic{width:8mm;height:8mm;stroke-width:5.2}
+  .velke{font-size:44px;font-weight:700;width:17mm;height:17mm;border:1.4px solid #111;border-radius:50%;display:flex;align-items:center;justify-content:center}
+  .do5{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm}
+  .do5 .skup{height:23mm}
+  .do5 .pic{width:9mm;height:9mm;stroke-width:5}
+  .veze{display:grid;grid-template-columns:1fr;gap:2.5mm}
+  .veze .kveza i{width:8mm;height:8mm}
+  .veze>div{display:flex;align-items:center;gap:3mm;font-size:30px;font-weight:700}
+  .zver{display:grid;grid-template-columns:repeat(8,1fr);gap:2mm;justify-items:center}
+  .zver .pic{width:20mm;height:20mm;stroke-width:3.4}
+  .chytak{display:grid;grid-template-columns:repeat(4,1fr);gap:3mm}
+  .chytak .skup{height:19mm}
+  .chytak .pic{width:8mm;height:8mm;stroke-width:5.2}
+  .ciarky{display:inline-flex;gap:1.6mm;align-items:center;height:9mm}
+  .ciarky i{display:block;width:1.3mm;height:9mm;background:#111;border-radius:.6mm}
+  .auto{display:grid;grid-template-columns:auto 1fr;gap:5mm;align-items:center}
+  .auto .miesto{height:20mm;border:1px dashed #999;border-radius:2mm}
+  .auto .otazky{display:flex;flex-direction:column;gap:2mm;font-size:14.5px;font-weight:700}
+  .auto .otazky>div{display:flex;align-items:center;gap:2mm}
+  .koralky{display:grid;grid-template-columns:1fr 1fr;gap:3mm 8mm}
+  .koralky>div{display:flex;align-items:center;gap:1.5mm}
+  .koralky>div::before{content:"";width:5mm;border-top:1.3px solid #111}
+  .koralky>div::after{content:"";width:5mm;border-top:1.3px solid #111}
+  .koralky i{display:block;width:8.5mm;height:8.5mm;border:1.4px solid #111;border-radius:50%}
+  .hadanky{display:flex;flex-direction:column;gap:1.6mm}
+  .hadanky>div{display:flex;align-items:center;gap:4mm;font-size:16.5px;font-weight:700;border-bottom:1px dotted #bbb;padding-bottom:1.2mm}
+  .hadanky>div:last-child{border:none;padding-bottom:0}
+  .hadanky .tx{flex:1}
+  .hadanky .vyb{font-size:22px;gap:4.5mm}
+</style></head>
+<body>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 1 – ĽAHŠIE                                                     -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="1">
+  <header class="hlava" data-predmet="Matematika">Štyri a päť</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Koľko ich je? Spočítaj a zakrúžkuj správne číslo.</span></div>
+    <div class="plocha kolko">
+      <div><div class="skup"><i o="kvet" n="4"></i></div><div class="vyb"><span>4</span><span>5</span></div></div>
+      <div><div class="skup"><i o="jablko" n="5"></i></div><div class="vyb"><span>4</span><span>5</span></div></div>
+      <div><div class="skup"><i o="auto" n="4"></i></div><div class="vyb"><span>4</span><span>5</span></div></div>
+      <div><div class="skup"><i o="hviezda" n="5"></i></div><div class="vyb"><span>4</span><span>5</span></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Vyfarbi presne toľko obrázkov, koľko ukazuje číslo a kocka.</span></div>
+    <div class="plocha farbi">
+      <div><div class="kto">4 <i kocka="4" class="m"></i></div><i o="balon" n="7"></i></div>
+      <div><div class="kto">5 <i kocka="5" class="m"></i></div><i o="ryba" n="7"></i></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Nakresli na každú kocku toľko bodiek, koľko ukazuje číslo.</span></div>
+    <div class="plocha kocky4">
+      <div>4<i kocka="" class="l"></i></div><div>2<i kocka="" class="l"></i></div><div>5<i kocka="" class="l"></i></div><div>3<i kocka="" class="l"></i></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Polož ruku na papier a obkresli ju. Spočítaj prsty.<span class="pozn">Koľko prstov má tvoja ruka? Zakrúžkuj číslo.</span></span></div>
+    <div class="plocha ruka"><div class="miesto"></div><div class="vyb" style="flex-direction:column;gap:3mm;font-size:34px"><span>3</span><span>4</span><span>5</span></div></div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Zadania prečítajte. Pri počítaní nech dieťa ukazuje prstom na každý obrázok a už počítané si môže odškrtnúť. Kocka a prsty sú stále obrázky čísel, ktoré dieťa časom spozná naraz. Pri obkresľovaní ruky pomôžte, ak treba, a potom spolu spočítajte prsty.
+      <b>Riešenie:</b> 1 – 4 kvety, 5 jabĺk, 4 autá, 5 hviezd · 2 – vyfarbiť 4 balóny a 5 rýb · 3 – bodky ako na hracej kocke: 4, 2, 5, 3 · 4 – 5 prstov.
+      <span class="std">MAT-CO-1 · ŠVP MAT, Čísla a operácie s číslami: „porozumenie a modelovanie čísel ako počtu prvkov množiny, ako poradie, ako predchodcu alebo nasledovníka“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 2 – BEŽNÉ                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="2">
+  <header class="hlava" data-predmet="Matematika">Štyri a päť majú veľa tvárí</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Spoj každý rámček s číslom 4 alebo 5.</span></div>
+    <div class="plocha spoj45">
+      <div>
+        <div class="skup"><i kocka="5" class="m"></i></div>
+        <div class="skup"><i domino="2 2" class="lezi"></i></div>
+        <div class="skup"><span class="ciarky"><i></i><i></i><i></i><i></i><i></i></span></div>
+        <div class="skup"><i o="ruka" style="width:13mm;height:13mm;stroke-width:4"></i></div>
+        <div class="skup"><i o="mrkva" n="4"></i></div>
+        <div class="skup"><i domino="3 1" class="lezi"></i></div>
+      </div>
+      <div><span class="velke">4</span><span class="velke">5</span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>V každom rámčeku má byť 5 jahôd. Dokresli tie, ktoré chýbajú.</span></div>
+    <div class="plocha do5">
+      <div class="skup"><i o="jahoda" n="3"></i></div><div class="skup"><i o="jahoda" n="4"></i></div><div class="skup"><i o="jahoda" n="5"></i></div><div class="skup"><i o="jahoda"></i></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Postav vežu z kociek ako v Hre s kockami. Vyfarbi toľko kociek, koľko ukazuje číslo.<span class="pozn">Začni vľavo a vyfarbuj kocky za sebou.</span></span></div>
+    <div class="plocha veze">
+      <div>4 <i veza="0" class="lezi"></i></div><div>5 <i veza="0" class="lezi"></i></div>
+      <div>3 <i veza="0" class="lezi"></i></div><div>1 <i veza="0" class="lezi"></i></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Zakrúžkuj zvieratká, ktoré majú 4 nohy.</span></div>
+    <div class="plocha zver">
+      <i o="pesBok"></i><i o="vtak"></i><i o="slimak"></i><i o="mackaBok"></i><i o="mravec"></i><i o="lama"></i><i o="had"></i><i o="sliepka"></i>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Zadania prečítajte. Číslo 5 sa dá ukázať veľa spôsobmi: ruka, kocka, čiarky, domino. Keď ich dieťa spojí s tým istým číslom, chápe, že ide o počet, nie o obrázok. Veža v úlohe 3 je rovnaká ako v Hre s kockami na webe, po piatich kockách má malú medzeru.
+      <b>Riešenie:</b> 1 – k 5: kocka, čiarky, ruka; k 4: domino 2 a 2, mrkvy, domino 3 a 1 · 2 – dokresliť 2, 1, nič, 4 · 3 – vyfarbiť 4, 5, 3 a 1 kocku · 4 – pes, mačka, lama (mravec má 6 nôh, vtáčik a sliepka 2).
+      <span class="std">MAT-CO-1 · ŠVP MAT, Čísla a operácie s číslami: „porozumenie a modelovanie čísel ako počtu prvkov množiny, ako poradie, ako predchodcu alebo nasledovníka“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 3 – VÝZVA                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="3">
+  <header class="hlava" data-predmet="Matematika">Päť a záhady</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Chyták! Zakrúžkuj každý rámček, v ktorom je spolu presne 5.</span></div>
+    <div class="plocha chytak">
+      <div class="skup"><i domino="4 1" class="lezi"></i></div>
+      <div class="skup"><i domino="3 3" class="lezi"></i></div>
+      <div class="skup"><span class="ciarky"><i></i><i></i><i></i><i></i></span></div>
+      <div class="skup"><i kocka="2" class="m"></i><i kocka="3" class="m"></i></div>
+      <div class="skup"><i o="hviezda" n="6"></i></div>
+      <div class="skup"><i o="balon" n="3"></i><i o="lopta" n="2"></i></div>
+      <div class="skup"><i kocka="5" class="m"></i></div>
+      <div class="skup"><i kocka="4" class="m"></i><i kocka="1" class="m"></i><i kocka="1" class="m"></i></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Na obrázku vidíš pri aute len 2 kolesá. Je to všetko?</span></div>
+    <div class="plocha auto">
+      <i o="auto" style="width:34mm;height:34mm;stroke-width:2.4"></i>
+      <div class="otazky">
+        <div>Koľko kolies má auto naozaj? <span class="vyb" style="font-size:22px;gap:4mm"><span>2</span><span>3</span><span>4</span><span>5</span></span></div>
+        <div>Prečo vidíme len 2? Povedz to rodičovi.</div>
+        <div>Nakresli auto zhora, ako ho vidí vták. Nech sú vidno všetky kolesá.</div>
+        <div class="miesto"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Náramky s 5 korálkami. Vyfarbi korálky dvoma farbami, v každom náramku inak.<span class="pozn">Koľko rôznych náramkov nájdeš? Napríklad 4 červené a 1 modrá.</span></span></div>
+    <div class="plocha koralky">
+      <div><i></i><i></i><i></i><i></i><i></i></div><div><i></i><i></i><i></i><i></i><i></i></div>
+      <div><i></i><i></i><i></i><i></i><i></i></div><div><i></i><i></i><i></i><i></i><i></i></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Hádanky. Aké číslo som? Zakrúžkuj ho.</span></div>
+    <div class="plocha hadanky">
+      <div><span class="tx">Som väčšie ako 3 a menšie ako 5.</span><span class="vyb"><span>2</span><span>3</span><span>4</span><span>5</span></span></div>
+      <div><span class="tx">Je ma toľko, koľko prstov máš na jednej ruke.</span><span class="vyb"><span>2</span><span>3</span><span>4</span><span>5</span></span></div>
+      <div><span class="tx">Keď ma ukážeš na prstoch jednej ruky, jeden prst ostane schovaný.</span><span class="vyb"><span>2</span><span>3</span><span>4</span><span>5</span></span></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Výzva hľadá päťku v rôznych podobách a skúša aj myslenie: v úlohe 1 sú rámčeky, kde treba sčítať dve časti, v úlohe 2 ide o to, čo na obrázku nie je vidno (dve kolesá sú na druhej strane auta). Pri náramkoch sú rozklady čísla 5: 4 a 1, 3 a 2, 2 a 3, 1 a 4, aj 5 a 0, ak sa použije len jedna farba.
+      <b>Riešenie:</b> 1 – zakrúžkovať domino 4 a 1, kocky 2 a 3, balóny s loptami, kocku 5 (nie: 3 a 3, štyri čiarky, 6 hviezd, 4 + 1 + 1) · 2 – 4 kolesá · 3 – napr. 4 a 1, 3 a 2, 2 a 3, 1 a 4 · 4 – 4, 5, 4.
+      <span class="std">MAT-CO-1 · ŠVP MAT, Čísla a operácie s číslami: „porozumenie a modelovanie čísel ako počtu prvkov množiny, ako poradie, ako predchodcu alebo nasledovníka“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<script src="obrazky.js"></script><script src="nastroje.js"></script>
+</body></html>

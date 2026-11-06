@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="sk"><head><meta charset="utf-8"><title>Rozklad čísla 5 – pracovný list (3 úrovne)</title>
+<link rel="stylesheet" href="list.css">
+<style>
+  .vyb{display:flex;gap:4mm;font-size:24px;font-weight:700;justify-content:center}
+  .ex{display:flex;align-items:center;gap:1.6mm;font-size:23px;font-weight:700;white-space:nowrap}
+  .ex .okno{width:10mm;height:10mm}
+  .vrec{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm}
+  .vrec>div{display:flex;flex-direction:column;align-items:center;gap:2mm;border:1px solid #bbb;border-radius:3mm;padding:2mm}
+  .vrec .obr{display:flex;align-items:flex-end;gap:1.5mm;min-height:17mm}
+  .vrec .or{display:flex;flex-wrap:wrap;width:17mm;gap:.6mm;justify-content:center}
+  .vrec .or .pic{width:8mm;height:8mm;stroke-width:5.2}
+  .vrec .vr{width:17mm;height:17mm;stroke-width:3.8}
+  .vrec>div{min-width:0}
+  .vrec .obr{min-height:21mm}
+  .vezu{display:grid;grid-template-columns:auto 1fr;gap:2.5mm 6mm;align-items:center}
+  .vezu .kveza i{width:8mm;height:8mm}
+  .tan3{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm}
+  .tan3>div{display:flex;flex-direction:column;align-items:center;gap:2mm;border:1px solid #bbb;border-radius:3mm;padding:2mm}
+  .tan3 .d{display:flex;gap:1.5mm;align-items:center}
+  .tan3 .tanier{width:24mm;height:18mm}
+  .tanier.m .pic{width:5.8mm;height:5.8mm}
+  .domcek{width:46mm}
+  .domcek svg{display:block;width:46mm;height:16mm;overflow:visible}
+  .domcek table{width:100%;border-collapse:collapse}
+  .domcek td{border:1.4px solid #111;height:11mm;text-align:center;font-size:22px;font-weight:700;width:50%}
+  .pn{display:flex;flex-direction:column;gap:1.8mm}
+  .pn>div{display:flex;align-items:center;justify-content:space-between;gap:4mm;font-size:22px;font-weight:700;border-bottom:1px dotted #bbb;padding-bottom:1.5mm}
+  .pn>div:last-child{border:none;padding-bottom:0}
+  .pn .vol{display:flex;gap:2.5mm}
+  .pn .vol span{width:9mm;height:9mm;border:1.4px solid #111;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px}
+  .vrec2{display:grid;grid-template-columns:1fr 1fr;gap:3mm 6mm}
+  .vrec2>div{display:flex;align-items:center;justify-content:space-between;gap:2mm;border:1px solid #bbb;border-radius:3mm;padding:1.5mm 3mm}
+  .vrec2 .obr{display:flex;align-items:center;gap:1mm}
+  .vrec2 .obr .pic{width:8.5mm;height:8.5mm;stroke-width:5.2}
+  .vrec2 .obr .vr{width:17mm;height:17mm;stroke-width:3.8}
+  .kor{display:flex;flex-direction:column;gap:1.6mm}
+  .kor>div{display:flex;align-items:center;gap:1.2mm}
+  .kor>div>i{display:block;flex:none;width:6.5mm;height:6.5mm;border:1.4px solid #111;border-radius:50%}
+  .kor>div>i.s{background:#c4c4c4}
+  .kor .ex{margin-left:3mm;font-size:19px;gap:1mm}.kor .ex .okno{width:8mm;height:8mm;border-radius:2mm}
+  .blud{display:grid;grid-template-columns:repeat(5,1fr);border:1.4px solid #111}
+  .blud span{height:13mm;border:.8px solid #555;display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:700;position:relative}
+  .blud span.st::before,.blud span.ci::before{position:absolute;top:.6mm;left:1mm;font-size:9px;letter-spacing:.05em;color:#555}
+  .blud span.st::before{content:"ŠTART"}.blud span.ci::before{content:"CIEĽ"}
+  .chyt{display:flex;flex-direction:column;gap:2mm}
+  .chyt>div{display:flex;flex-direction:column;gap:1.5mm;font-size:15px;font-weight:700;border-bottom:1px dotted #bbb;padding-bottom:1.8mm}
+  .chyt>div:last-child{border:none;padding-bottom:0}
+  .chyt .lin{border-bottom:1.2px solid #111;height:6mm}
+  .dvevr{display:flex;align-items:center;justify-content:center;gap:10mm}
+  .dvevr>div{display:flex;flex-direction:column;align-items:center;gap:1.5mm}
+  .dvevr .vr{width:24mm;height:24mm;stroke-width:3}
+</style></head>
+<body>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 1 – ĽAHŠIE                                                     -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="1">
+  <header class="hlava" data-predmet="Matematika">Päť na dve časti</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Obťahuj päťky. Potom napíš ďalšie sama alebo sám. Začni hore.</span></div>
+    <div class="plocha">
+      <div class="linka"><i obtiahni="5"></i><i obtiahni="5"></i><i obtiahni="5"></i><i obtiahni="5"></i><div class="prazdne"></div><div class="prazdne"></div><div class="prazdne"></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Veverička má 5 orieškov. Niektoré schovala do vrecúška. Koľko je vo vrecúšku? Zakrúžkuj.</span></div>
+    <div class="plocha vrec">
+      <div><div class="obr"><div class="or"><i o="oriesok" n="3"></i></div><i o="vrecusko" class="vr"></i></div><div class="vyb"><span>1</span><span>2</span><span>3</span></div></div>
+      <div><div class="obr"><div class="or"><i o="oriesok"></i></div><i o="vrecusko" class="vr"></i></div><div class="vyb"><span>3</span><span>4</span><span>5</span></div></div>
+      <div><div class="obr"><div class="or"><i o="oriesok" n="4"></i></div><i o="vrecusko" class="vr"></i></div><div class="vyb"><span>1</span><span>2</span><span>3</span></div></div>
+      <div><div class="obr"><div class="or"><i o="oriesok" n="2"></i></div><i o="vrecusko" class="vr"></i></div><div class="vyb"><span>2</span><span>3</span><span>4</span></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Každá veža má 5 kociek. Koľko je sivých a koľko pruhovaných? Napíš.</span></div>
+    <div class="plocha vezu">
+      <i veza="4 1" class="lezi"></i><span class="ex">5 je <span class="okno"></span> a <span class="okno"></span></span>
+      <i veza="2 3" class="lezi"></i><span class="ex">5 je <span class="okno"></span> a <span class="okno"></span></span>
+      <i veza="1 4" class="lezi"></i><span class="ex">5 je <span class="okno"></span> a <span class="okno"></span></span>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Dokresli jablká na prázdny tanier, aby boli na oboch tanieroch spolu 5.</span></div>
+    <div class="plocha tan3">
+      <div><div class="d"><div class="tanier"><i o="jablko" n="3"></i></div><div class="tanier"></div></div></div>
+      <div><div class="d"><div class="tanier"><i o="jablko"></i></div><div class="tanier"></div></div></div>
+      <div><div class="d"><div class="tanier"><i o="jablko" n="4"></i></div><div class="tanier"></div></div></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Zadania prečítajte. Päť sa dá rozdeliť rôzne: 4 a 1, 3 a 2, 2 a 3, 1 a 4. Pri vrecúšku pomáhajú prsty jednej ruky: dieťa ukáže 5 prstov a toľko, koľko orieškov vidí, sklopí. Ostatné prsty sú vo vrecúšku.
+      <b>Riešenie:</b> 1 – obťahovanie · 2 – 2, 4, 1, 3 · 3 – 4 a 1, 2 a 3, 1 a 4 · 4 – dokresliť 2, 4, 1.
+      <span class="std">MAT-CO-4 · ŠVP MAT, Čísla a operácie s číslami: „modelovanie a využívanie rôznych rozkladov čísel“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 2 – BEŽNÉ                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="2">
+  <header class="hlava" data-predmet="Matematika">Domček čísla 5</header>
+
+  <div style="display:grid;grid-template-columns:auto 1fr;gap:7mm">
+    <section class="uloha">
+      <div class="zadanie"><span class="c">1</span><span>Domček čísla 5<span class="pozn">Na každom poschodí je spolu 5.<br>Dopíš, koľko chýba.</span></span></div>
+      <div class="domcek">
+        <svg viewBox="0 0 100 36"><path d="M2 35 L50 3 L98 35 Z" fill="#fff" stroke="#111" stroke-width="2.6" stroke-linejoin="round"/><text x="50" y="30" text-anchor="middle" style="font:700 19px Andika">5</text></svg>
+        <table><tr><td>4</td><td></td></tr><tr><td></td><td>2</td></tr><tr><td>1</td><td></td></tr><tr><td></td><td>1</td></tr><tr><td>2</td><td></td></tr></table>
+      </div>
+    </section>
+    <section class="uloha">
+      <div class="zadanie"><span class="c">2</span><span>Je to pravda? Zakrúžkuj P alebo N.</span></div>
+      <div class="plocha pn">
+        <div>5 = 3 + 2<span class="vol"><span>P</span><span>N</span></span></div>
+        <div>5 = 4 + 2<span class="vol"><span>P</span><span>N</span></span></div>
+        <div>5 = 1 + 4<span class="vol"><span>P</span><span>N</span></span></div>
+        <div>5 = 2 + 2<span class="vol"><span>P</span><span>N</span></span></div>
+        <div>5 = 2 + 3<span class="vol"><span>P</span><span>N</span></span></div>
+      </div>
+    </section>
+  </div>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Spolu je vždy 5 orieškov. Koľko je vo vrecúšku? Dopíš.</span></div>
+    <div class="plocha vrec2">
+      <div><div class="obr"><i o="oriesok" n="2"></i><i o="vrecusko" class="vr"></i></div><span class="ex">5 = 2 + <span class="okno"></span></span></div>
+      <div><div class="obr"><i o="oriesok" n="4"></i><i o="vrecusko" class="vr"></i></div><span class="ex">5 = 4 + <span class="okno"></span></span></div>
+      <div><div class="obr"><i o="oriesok"></i><i o="vrecusko" class="vr"></i></div><span class="ex">5 = 1 + <span class="okno"></span></span></div>
+      <div><div class="obr"><i o="oriesok" n="3"></i><i o="vrecusko" class="vr"></i></div><span class="ex">5 = 3 + <span class="okno"></span></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Vyfarbi v každej veži 5 kociek dvoma farbami, zakaždým inak. Napíš príklad.<span class="pozn">Ako v Hre s kockami: najprv kocky jednej farby, hneď za nimi druhej.</span></span></div>
+    <div class="plocha vezu">
+      <i veza="0" class="lezi"></i><span class="ex">5 = <span class="okno"></span> + <span class="okno"></span></span>
+      <i veza="0" class="lezi"></i><span class="ex">5 = <span class="okno"></span> + <span class="okno"></span></span>
+      <i veza="0" class="lezi"></i><span class="ex">5 = <span class="okno"></span> + <span class="okno"></span></span>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Zadania prečítajte. Domček čísla poznajú deti aj zo školy: na streche je celé číslo, v izbách jeho dve časti. Pri pravde a nepravde nechajte dieťa opraviť nepravdivý príklad. V úlohe 4 je viac správnych riešení, dôležité je, aby boli vyfarbené presne 5 kocky.
+      <b>Riešenie:</b> 1 – 1, 3, 4, 4, 3 · 2 – P, N, P, N, P · 3 – 3, 1, 4, 2 · 4 – napr. 5 = 4 + 1, 5 = 3 + 2, 5 = 2 + 3.
+      <span class="std">MAT-CO-4 · ŠVP MAT, Čísla a operácie s číslami: „modelovanie a využívanie rôznych rozkladov čísel“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 3 – VÝZVA                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="3">
+  <header class="hlava" data-predmet="Matematika">Päť a záhady</header>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:6mm">
+    <section class="uloha">
+      <div class="zadanie"><span class="c">1</span><span>Všetky náramky<span class="pozn">Sivé korálky sú vždy vľavo. V každom riadku je o jednu sivú menej. Vyfarbi a dopíš.</span></span></div>
+      <div class="plocha kor">
+        <div><i class="s"></i><i class="s"></i><i class="s"></i><i class="s"></i><i class="s"></i><span class="ex">5 + 0</span></div>
+        <div><i></i><i></i><i></i><i></i><i></i><span class="ex"><span class="okno"></span>+<span class="okno"></span></span></div>
+        <div><i></i><i></i><i></i><i></i><i></i><span class="ex"><span class="okno"></span>+<span class="okno"></span></span></div>
+        <div><i></i><i></i><i></i><i></i><i></i><span class="ex"><span class="okno"></span>+<span class="okno"></span></span></div>
+        <div><i></i><i></i><i></i><i></i><i></i><span class="ex"><span class="okno"></span>+<span class="okno"></span></span></div>
+        <div><i></i><i></i><i></i><i></i><i></i><span class="ex"><span class="okno"></span>+<span class="okno"></span></span></div>
+        <div style="font-size:14px;font-weight:700;margin-top:1mm">Koľko je spôsobov? <span class="okno m"></span></div>
+      </div>
+    </section>
+    <section class="uloha">
+      <div class="zadanie"><span class="c">2</span><span>Bludisko<span class="pozn">Choď zo štartu do cieľa. Smieš vstúpiť len na políčko, kde je spolu 5. Choď hore, dole, vľavo alebo vpravo.</span></span></div>
+      <div class="plocha blud" id="blud"></div>
+    </section>
+  </div>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Chytáky. Rozmýšľaj a povedz prečo.</span></div>
+    <div class="plocha chyt">
+      <div>Ria napísala 5 = 2 + 2. Zmeň jedno číslo tak, aby to platilo.<span class="ex" style="font-size:21px">5 = <span class="okno m"></span> + <span class="okno m"></span></span></div>
+      <div>Dá sa 5 jabĺk rozdeliť dvom zajkom tak, aby mali presne rovnako? Prečo?<span class="lin"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Veverička má 5 orieškov v dvoch vrecúškach. V jednom je o 1 viac ako v druhom. Koľko je v každom?</span></div>
+    <div class="plocha dvevr">
+      <div><i o="vrecusko" class="vr"></i><span class="okno"></span></div>
+      <div><i o="vrecusko" class="vr"></i><span class="okno"></span></div>
+      <i o="vevericka" style="width:20mm;height:20mm;stroke-width:3.4"></i>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Výzva hľadá všetky rozklady a postup. V úlohe 1 vznikajú „schody“: sivých ubúda a bielych pribúda, preto dieťa vie, že žiadny spôsob nevynechalo. V úlohe 3 je malý objav: 5 sa nedá rozdeliť na dve rovnaké časti, jedno jablko vždy zvýši (5 je nepárne číslo, to slovo zatiaľ netreba).
+      <b>Riešenie:</b> 1 – 4 + 1, 3 + 2, 2 + 3, 1 + 4, 0 + 5; 6 spôsobov · 2 – 2 + 3, 1 + 4, 3 + 2, 4 + 1, 2 + 3, 1 + 4, 3 + 2, 4 + 1 · 3 – 3 + 2 alebo 2 + 3; nedá sa, jedno jablko zvýši · 4 – 3 a 2.
+      <span class="std">MAT-CO-4 · ŠVP MAT, Čísla a operácie s číslami: „modelovanie a využívanie rôznych rozkladov čísel“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<script src="obrazky.js"></script><script src="nastroje.js"></script>
+<script>
+/* bludisko: cesta len cez súčty 5 */
+const B = [["2 + 3","3 + 3","1 + 3","2 + 2","4 + 2"],
+           ["1 + 4","3 + 2","2 + 1","3 + 1","1 + 1"],
+           ["2 + 2","4 + 1","2 + 3","1 + 4","3 + 3"],
+           ["1 + 2","4 + 2","3 + 1","3 + 2","4 + 1"]];
+document.getElementById("blud").innerHTML = B.flatMap((r,i)=>r.map((v,j)=>
+  `<span class="${i==0&&j==0?"st":i==3&&j==4?"ci":""}">${v}</span>`)).join("");
+</script>
+</body></html>
