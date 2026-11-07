@@ -149,8 +149,11 @@ button.pk-g.ok{outline:3px solid var(--ok);outline-offset:3px;cursor:default}
 .pk-stlpec{display:flex;flex-direction:column;align-items:center;gap:calc(var(--k)*.2);padding:calc(var(--k)*.15);border-radius:calc(var(--k)*.3);background:var(--soft);border:1px solid var(--line)}
 .pk-bunka{display:flex;justify-content:center;align-items:center;min-width:calc(var(--w,1)*var(--k));height:var(--k)}
 .pk-bunka:empty{border:3px dashed var(--ghost);border-radius:calc(var(--k)*.2);min-width:calc(var(--w,1)*var(--k) - 6px);height:calc(var(--k) - 6px)}
-.pk-sloty.spolu{gap:0}
-.pk-sloty.spolu .pk-slot{border-color:transparent;padding:0;min-width:0;transition:none}
+.pk-sloty.spolu{gap:calc(var(--k)*.08);position:relative;transition:transform .25s ease}
+.pk-sloty.spolu .pk-slot{border-color:transparent;border-left-width:0;border-right-width:0;padding:0;min-width:0;transition:none}
+/* po správnej odpovedi jeden zelený rámček okolo celého slova (slot: 3px okraj + 4px vzduch nad a pod kockou) */
+.pk-sloty.spolu.ok::before{content:"";position:absolute;left:-6px;right:-6px;top:1px;bottom:calc(var(--k)*.3 + 9px);
+  border:3px solid var(--ok);border-radius:calc(var(--k)*.26);pointer-events:none}
 .pk-obr.velky.stred{width:min(40vw,170px)}
 .kid .pk-obr.velky.stred{width:min(30vh,220px)}
 .pk-status{min-height:1.5em;margin:0;font-size:16px;color:var(--muted);text-align:center}
@@ -422,8 +425,13 @@ const ANIM = {
     return pockaj(trvanie);
   },
   cvak(el){ if(this.ticho||!el) return; el.animate([{transform:"none"},{transform:"scale(1.08,.92)"},{transform:"none"}],{duration:260,easing:"ease-out"}); },
-  trieda(el,c){ if(!el||this.ticho) return; el.classList.remove(c); void el.offsetWidth; el.classList.add(c); },
+  /* trieda s animáciou sa po skončení zmaže: inak by sa animácia spustila znova, keď sa kocka presunie (napr. nápoveda + ťuknutie) */
+  trieda(el,c){ if(!el||this.ticho) return; el.classList.remove(c); void el.offsetWidth; el.classList.add(c);
+    const f=e=>{ if(e.target!==el || e.animationName!==c) return; el.classList.remove(c); el.removeEventListener("animationend", f); };
+    el.addEventListener("animationend", f); },
   tras(el){ this.trieda(el,"pk-tras"); },
+  /* kocka, ktorá sa presúva, prestane skákať (nápoveda), aby nevyskočila z rámčeka */
+  stop(el){ if(el) el.classList.remove("pk-tras","pk-blik","pk-ozij"); },
   ozij(el){ this.trieda(el,"pk-ozij"); },
   blik(el){ this.trieda(el,"pk-blik"); },
   puls(el){ if(this.ticho||!el) return; el.animate([{transform:"scale(1)"},{transform:"scale(1.3)"},{transform:"scale(1)"}],{duration:450}); }
@@ -778,7 +786,7 @@ function hra(el, o={}){
     tacka.onclick = async e=>{
       const g=e.target.closest(".pk-g"); if(!g || zamok) return;
       const idx=obsad.indexOf(null); if(idx<0) return;
-      obsad[idx]=g; zamok=true;
+      obsad[idx]=g; zamok=true; ANIM.stop(g);
       await presun(()=>{ sloty[idx].append(g); farbi(g, slotSl[idx]); });
       if(b!==beh) return; zamok=false;
       if(obsad.every(Boolean)) skontroluj();
@@ -868,7 +876,7 @@ function hra(el, o={}){
     stlpEl.onclick = async e=>{
       const g=e.target.closest(".pk-g"); if(!g || zamok) return;
       const c=+g.dataset.c; if(zamk[c]){ ANIM.tras(g); return; }
-      zamok=true;
+      zamok=true; ANIM.stop(g);
       await presun(()=>{ if(vyb[c]) domov(vyb[c]); sloty[c].append(g); vyb[c]=g; });
       if(b!==beh) return; zamok=false;
       if(vyb.every(Boolean)) skontroluj();
@@ -889,10 +897,11 @@ function hra(el, o={}){
       zamok=true;
       const zle=[]; vyb.forEach((g,c)=>{ if(g.dataset.t!==ciel[c]) zle.push(c); });
       if(!zle.length){
-        ZVUK.ok(); vyb.forEach(g=>g.classList.add("ok")); st.className="pk-status ok"; st.textContent=`Áno! ${it.t}`;
+        ZVUK.ok(); vyb.forEach(g=>g.classList.remove("ok")); st.className="pk-status ok"; st.textContent=`Áno! ${it.t}`;
         /* slabiky sa prisunú k sebe do jedného slova */
         const pred=ANIM.fotka(vyb); slotyEl.classList.add("spolu"); await ANIM.presun(vyb, pred, 380); if(b!==beh) return;
-        await celeSlovo(b, vyb, it.t); if(b!==beh) return;
+        slotyEl.classList.add("ok");
+        await celeSlovo(b, [slotyEl], it.t); if(b!==beh) return;   /* slovo sa zdvihne aj s rámčekom */
         ANIM.ozij(obr); return dalsie(b, "");
       }
       ZVUK.zle();
