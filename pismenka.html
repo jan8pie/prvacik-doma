@@ -54,6 +54,7 @@ button{font:inherit;color:inherit}
 .seg{display:flex;flex-wrap:wrap;gap:6px}
 .segbtn{border:1px solid var(--line);background:var(--soft);border-radius:10px;padding:8px 14px;cursor:pointer;font-family:var(--f-head);font-weight:500;font-size:15px;min-height:44px}
 .segbtn[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.segbtn.mini{min-height:34px;padding:4px 10px;font-size:14px;margin-left:6px}
 .segbtn .d{letter-spacing:.05em;margin-right:6px}
 .levelnote{font-size:15px;color:var(--muted);margin:0}
 .levelnote.pozor{color:var(--no)}
@@ -107,7 +108,7 @@ html.velke .pk-k{text-transform:uppercase}
 .pk-mag svg{width:62%;height:62%}
 .pk-mag.daleko{margin:0 calc(var(--k)*.55)}
 .pk-m.daleko{width:calc(max(48px,var(--k)*.8) + var(--k)*1.1 + 10px)}
-.pk-ucha{display:grid;grid-template-columns:repeat(3,minmax(0,120px));gap:12px;justify-content:center;width:100%}
+.pk-ucha{display:grid;grid-template-columns:repeat(var(--n,2),minmax(0,130px));gap:12px;justify-content:center;width:100%}
 .pk-ucho{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:84px;border-radius:18px;border:2px solid var(--line);background:var(--soft);color:var(--ink);cursor:pointer;font-family:var(--f-head);font-weight:700;font-size:22px;transition:transform .2s,opacity .2s,border-color .2s}
 .pk-ucho svg{width:30px;height:30px}
 .pk-ucho.hra{border-color:var(--accent);background:var(--card);transform:scale(1.07)}
@@ -141,6 +142,17 @@ button.pk-g{border:0;padding:0;background:none;cursor:pointer;border-radius:calc
 button.pk-g.ok{outline:3px solid var(--ok);outline-offset:3px;cursor:default}
 .pk-nap{display:inline-grid;place-items:center;width:44px;height:44px;flex:none;border-radius:50%;border:0;background:var(--hint);color:var(--hint-ink);font-family:var(--f-head);font-weight:700;font-size:26px;line-height:1;cursor:pointer;box-shadow:0 3px 0 rgba(0,0,0,.18);padding:0}
 .pk-nap:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(0,0,0,.18)}
+/* Slabiky k obrázku: stĺpce slabík, pod nimi miesta na slovo, obrázok vedľa (na úzkej obrazovke pod nimi) */
+.pk-obl{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:16px 32px}
+.pk-lavo{display:flex;flex-direction:column;align-items:center;gap:16px}
+.pk-stlpce{display:flex;justify-content:center;gap:calc(var(--k)*.5)}
+.pk-stlpec{display:flex;flex-direction:column;align-items:center;gap:calc(var(--k)*.2);padding:calc(var(--k)*.15);border-radius:calc(var(--k)*.3);background:var(--soft);border:1px solid var(--line)}
+.pk-bunka{display:flex;justify-content:center;align-items:center;min-width:calc(var(--w,1)*var(--k));height:var(--k)}
+.pk-bunka:empty{border:3px dashed var(--ghost);border-radius:calc(var(--k)*.2);min-width:calc(var(--w,1)*var(--k) - 6px);height:calc(var(--k) - 6px)}
+.pk-sloty.spolu{gap:0}
+.pk-sloty.spolu .pk-slot{border-color:transparent;padding:0;min-width:0;transition:none}
+.pk-obr.velky.stred{width:min(40vw,170px)}
+.kid .pk-obr.velky.stred{width:min(30vh,220px)}
 .pk-status{min-height:1.5em;margin:0;font-size:16px;color:var(--muted);text-align:center}
 .pk-status.ok{color:var(--ok);font-weight:700}
 .pk-prazdne{padding:24px 8px;text-align:center;color:var(--muted)}
@@ -190,6 +202,7 @@ button.pk-g.ok{outline:3px solid var(--ok);outline-offset:3px;cursor:default}
       <div class="seg" role="group" aria-labelledby="l-rezim">
         <button class="segbtn" type="button" data-rezim="spoj">Spoj kocky</button>
         <button class="segbtn" type="button" data-rezim="postav">Postav slovo</button>
+        <button class="segbtn" type="button" data-rezim="obrazok">Slabiky k obrázku</button>
       </div></div>
     <div class="set"><span class="set-l" id="l-pis">Písmená, ktoré dieťa pozná (dlhé á, é, í… idú s krátkymi)</span>
       <div class="chips" role="group" aria-labelledby="l-pis" id="chips"></div>
@@ -197,7 +210,8 @@ button.pk-g.ok{outline:3px solid var(--ok);outline-offset:3px;cursor:default}
       <p class="levelnote" id="pocet"></p></div>
     <div class="set"><span class="set-l" id="l-uroven">Obťažnosť (vidí ju aj dieťa)</span>
       <div class="seg levelseg" role="group" aria-labelledby="l-uroven" id="seg-uroven"></div>
-      <p class="levelnote" id="levelnote"></p></div>
+      <p class="levelnote" id="levelnote"></p>
+      <p class="levelnote" id="zname" hidden></p></div>
     <div class="dva">
       <div class="set"><span class="set-l" id="l-pismo">Písmo na kockách</span>
         <div class="seg" role="group" aria-labelledby="l-pismo">
@@ -227,7 +241,9 @@ button.pk-g.ok{outline:3px solid var(--ok);outline-offset:3px;cursor:default}
   <section class="card" aria-labelledby="h-tip">
     <h2 id="h-tip">Pre rodiča</h2>
     <ul class="tips">
-      <li><b>Spoj kocky ●● a ●●● cvičí pohotové spojenie slabík do slova.</b> Slabiky sa priblížia v dvoch krokoch: dieťa ich prečíta pomaly, potom rýchlejšie a nakoniec naraz. Potom z troch slov, ktoré tablet prečíta, vyberie to napísané. Dve zlé majú písmenko navyše na začiatku alebo v strede.</li>
+      <li><b>Spoj kocky ●● a ●●● cvičí pohotové spojenie slabík do slova.</b> Slabiky sa priblížia v dvoch krokoch: dieťa ich prečíta pomaly, potom rýchlejšie a nakoniec naraz. Potom z dvoch slov, ktoré tablet prečíta, ťukne na to napísané (ťuknúť môže hneď, nemusí čakať). Zlé slovo má písmenko navyše na začiatku alebo v strede.</li>
+      <li><b>Známe slová idú rýchlo.</b> Keď dieťa slovo dvakrát za sebou prečíta správne na prvý pokus, nabudúce príde hneď spojené a tablet hneď ponúkne dve slová. Pri omyle sa slovo znova učí pomaly a v tej istej hre sa ešte vráti.</li>
+      <li><b>Slabiky k obrázku:</b> v každom stĺpci je jedna slabika slova a dve iné. Dieťa ťukne v každom stĺpci na jednu, len jedna kombinácia je slovo z obrázka. Pri omyle tablet prečíta, čo vzniklo (<i>ma-la</i> namiesto <i>la-ma</i>), dobrá slabika ostane. Ťuknutím na obrázok tablet povie, čo na ňom je.</li>
       <li><b>Najprv dieťa, potom tablet.</b> Tablet slovo prečíta po slabikách až po tom, čo ho dieťa prečíta samo. Počúvajte, ako číta nahlas.</li>
       <li><b>Oblúčik a farba ukazujú slabiku</b>, ako v škole. V Postav slovo je kocka sivá, kým nie je na mieste. Dlhá kocka je dlhá samohláska: <i>ma-la</i> a <i>ma-lá</i> nie je to isté.</li>
       <li><b>Hra číta len z vybraných písmen.</b> Obrázky, ktoré dieťa len počúva (napríklad pri slabike <i>ma</i> malina), môžu mať aj iné písmená.</li>
@@ -244,6 +260,8 @@ const OBR = {
   lama:"<path class=\"w\" d=\"M36 66 V92 H31 M46 68 V92 H41 M70 68 V92 H65 M80 66 V92 H75\"/><path class=\"w\" d=\"M30 56 C26 50 30 44 36 46 C38 40 46 40 48 44 C52 40 58 40 60 44 C64 40 70 40 72 44 C76 40 84 42 84 48 C90 50 90 58 86 62 C88 68 82 72 76 70 C72 74 66 74 62 70 C58 74 50 74 46 70 C42 74 34 72 34 68 C28 68 26 60 30 56 Z\"/><path class=\"w\" d=\"M86 50 C92 48 96 52 94 58 C92 60 88 60 86 58\"/><path class=\"w\" d=\"M24 30 C22 38 24 48 30 56 C34 52 38 50 40 46 C38 40 38 32 38 24\"/><path d=\"M26 38 C28 40 30 40 32 38 M27 46 C29 48 31 48 33 46\" style=\"stroke-width:1.5\"/><path class=\"w\" d=\"M30 8 C28 2 34 0 35 6 L35 12 M37 12 C38 4 44 4 42 12\"/><path class=\"w\" d=\"M38 24 C40 16 36 10 30 10 C24 10 20 14 18 18 L10 20 C6 22 6 28 10 30 L20 31 C24 32 28 32 30 30 C34 30 38 28 38 24 Z\"/><circle class=\"f\" cx=\"27\" cy=\"18\" r=\"2\"/><path d=\"M10 26 C12 27 14 27 16 26\" style=\"stroke-width:1.6\"/>",
   dievca:"<path class=\"w\" d=\"M31 42 C28 20 40 15 50 15 C60 15 72 20 69 42 C71 52 70 59 66 62 H34 C30 59 29 52 31 42 Z\"/><path class=\"w\" d=\"M50 53 L30 88 H70 Z\"/><path d=\"M43 62 L33 76 M57 62 L67 76\"/><path d=\"M42 88 V97 M58 88 V97\"/><circle class=\"w\" cx=\"50\" cy=\"39\" r=\"15\"/><path class=\"w\" d=\"M35 37 C35 25 43 22 50 24 C57 22 65 25 65 37 C60 31 55 30 50 32 C45 30 40 31 35 37 Z\"/><path class=\"w\" d=\"M50 15 L41 9 V21 Z M50 15 L59 9 V21 Z\" style=\"stroke-width:2\"/><circle class=\"f\" cx=\"50\" cy=\"15\" r=\"2.6\"/><circle class=\"f\" cx=\"44.5\" cy=\"41\" r=\"1.9\"/><circle class=\"f\" cx=\"55.5\" cy=\"41\" r=\"1.9\"/><path d=\"M45.5 47 C48 49.5 52 49.5 54.5 47\" style=\"stroke-width:1.8\"/>",
   chlapec:"<path class=\"w\" d=\"M34 56 H66 V80 H34 Z\"/><path d=\"M34 60 L26 76 M66 60 L74 76\"/><path class=\"w\" d=\"M36 80 V96 H48 V84 H52 V96 H64 V80 Z\"/><circle class=\"w\" cx=\"50\" cy=\"38\" r=\"16\"/><path class=\"w\" d=\"M33 38 C30 20 46 16 56 22 C62 22 68 28 67 38 C62 30 56 28 50 32 C46 28 40 28 33 38 Z\"/><circle class=\"f\" cx=\"44\" cy=\"41\" r=\"1.9\"/><circle class=\"f\" cx=\"56\" cy=\"41\" r=\"1.9\"/><path d=\"M45 47 C48 50 52 50 55 47\" style=\"stroke-width:1.8\"/>",
+  jama:"<path class=\"w\" d=\"M4 50 H26 C26 84 70 84 70 50 H96 V90 H4 Z\"/><path class=\"w\" d=\"M70 50 C72 36 90 34 96 50 Z\"/><path d=\"M86 40 L91 10 M85 10 H97\" style=\"stroke-width:3.4\"/><path d=\"M8 50 l3 -7 l3 7 M16 50 l2 -5 l2 5\" style=\"stroke-width:2\"/><circle cx=\"16\" cy=\"70\" r=\"2.5\" style=\"stroke-width:2\"/><circle cx=\"84\" cy=\"76\" r=\"3\" style=\"stroke-width:2\"/><circle cx=\"48\" cy=\"84\" r=\"2\" style=\"stroke-width:2\"/><path d=\"M34 62 C36 70 42 74 48 75\" style=\"stroke-width:1.8\"/>",
+  osa:"<path d=\"M42 48 C30 26 40 12 50 22 C54 28 52 40 48 48 M50 48 C56 28 72 22 74 32 C76 42 64 48 52 50\" style=\"stroke-width:2.2\"/><path class=\"w\" d=\"M46 58 C52 44 80 46 88 60 C80 74 52 74 46 58 Z\"/><path class=\"f\" d=\"M58 48.5 C55 54 55 64 58 69.5 L64 70.5 C61 64 61 54 64 47.5 Z M71 49.5 C68 54 68 64 71 69.5 L76 67.5 C74 62 74 56 76 51.5 Z\"/><path d=\"M88 60 L96 62\"/><ellipse class=\"w\" cx=\"40\" cy=\"58\" rx=\"8\" ry=\"7\"/><circle class=\"w\" cx=\"24\" cy=\"58\" r=\"10\"/><circle class=\"f\" cx=\"20\" cy=\"56\" r=\"2.6\"/><path d=\"M19 49 C16 40 12 37 7 39 M25 48 C26 40 24 35 19 31\"/><path d=\"M36 64 L31 76 M42 65 L42 78 M48 65 L53 76\" style=\"stroke-width:2.2\"/>",
   misa:"<path class=\"w\" d=\"M10 46 H90 C88 70 72 84 50 84 C28 84 12 70 10 46 Z\"/><path d=\"M38 84 V90 H62 V84\"/><path d=\"M30 38 C32 30 38 30 40 38 M46 36 C48 26 56 26 58 36 M62 38 C64 32 70 32 72 38\"/>",
   jojo:"<ellipse class=\"w\" cx=\"50\" cy=\"12\" rx=\"8\" ry=\"6\"/><path d=\"M50 18 C43 28 57 36 50 44\"/><circle class=\"w\" cx=\"50\" cy=\"70\" r=\"27\"/><circle cx=\"50\" cy=\"70\" r=\"17\" style=\"stroke-width:2\"/><circle class=\"f\" cx=\"50\" cy=\"70\" r=\"4.5\"/><path d=\"M26 56 C30 50 36 46 42 45\" style=\"stroke-width:2\"/>",
   sova:"<path class=\"w\" d=\"M26 40 L22 18 L38 28 C46 25 54 25 62 28 L78 18 L74 40 C82 56 80 80 70 90 H30 C20 80 18 56 26 40 Z\"/><circle class=\"w\" cx=\"39\" cy=\"44\" r=\"11\"/><circle class=\"w\" cx=\"61\" cy=\"44\" r=\"11\"/><circle class=\"f\" cx=\"40\" cy=\"45\" r=\"4.5\"/><circle class=\"f\" cx=\"60\" cy=\"45\" r=\"4.5\"/><path class=\"w\" d=\"M46 54 L54 54 L50 62 Z\"/><path d=\"M26 56 C24 70 30 80 36 84 M74 56 C76 70 70 80 64 84\"/><path d=\"M42 68 l4 4 l4 -4 l4 4 l4 -4 M42 77 l4 4 l4 -4 l4 4 l4 -4\" style=\"stroke-width:1.6\"/><path d=\"M38 90 v5 M43 90 v5 M57 90 v5 M62 90 v5\" style=\"stroke-width:2.4\"/>",
@@ -344,7 +362,7 @@ const BEZ_SLABIK = new Set(["ň","ť","ľ","ď"]);
 const SLOVA = [
   ["ma-ma","mama"],["la-ma","lama"],["E-ma","dievca",1],["E-la","dievca",1],["Li-li","dievca",1],["Mi-la","dievca",1],
   ["E-mil","chlapec",1],["ma-lá",""],["Ma-ja","dievca",1],["Sa-mo","chlapec",1],["Mi-lo","chlapec",1],["Ju-lo","chlapec",1],
-  ["mi-sa","misa"],["jo-jo","jojo"],["so-va","sova"],["o-ko","oko"],["pí-la","pila"],["ru-ka","ruka"],["ry-ba","ryba"],
+  ["mi-sa","misa"],["ja-ma","jama"],["o-sa","osa"],["jo-jo","jojo"],["so-va","sova"],["o-ko","oko"],["pí-la","pila"],["ru-ka","ruka"],["ry-ba","ryba"],
   ["vá-za","vaza"],["au-to","auto"],["ko-ru-na","koruna"],["ma-li-na","malina"],["mi-mi-no","mimino"],["la-vi-ca","lavica"],
   ["me-lón","melon"],["ma-mut","mamut"],["lam-pa","lampa"],["lop-ta","lopta"],["kot-va","kotva"],["je-leň","jelen"],
   ["ba-lón","balon"],["pa-vúk","pavuk"],["lí-zan-ka","lizanka"],["ra-ke-ta","raketa"],["ko-šík","kosik"],["pes","pes"],
@@ -357,7 +375,7 @@ const SLOVA = [
 });
 
 /* čo hovorí hlas pri obrázku (dieťa to len počuje, preto môžu byť aj iné písmená) */
-const POCUJ = {mama:"mama",lama:"lama",dievca:"dievča",chlapec:"chlapec",misa:"misa",jojo:"jojo",sova:"sova",oko:"oko",pila:"píla",
+const POCUJ = {mama:"mama",lama:"lama",jama:"jama",osa:"osa",dievca:"dievča",chlapec:"chlapec",misa:"misa",jojo:"jojo",sova:"sova",oko:"oko",pila:"píla",
   ruka:"ruka",ryba:"ryba",vaza:"váza",auto:"auto",koruna:"koruna",malina:"malina",mimino:"mimino",lavica:"lavica",melon:"melón",
   mamut:"mamut",lampa:"lampa",lopta:"lopta",kotva:"kotva",jelen:"jeleň",balon:"balón",pavuk:"pavúk",lizanka:"lízanka",raketa:"raketa",
   kosik:"košík",pes:"pes",lev:"lev",mak:"mak",syr:"syr",dom:"dom",had:"had",list:"list",hodiny:"hodiny",bubon:"bubon",vagon:"vagón",
@@ -448,32 +466,86 @@ function rusiveObrazky(spravny, n, podobny){
     .map(k=>({k, s:podobny(POCUJ[k])+Math.random()*1.5})).sort((a,b)=>b.s-a.s);
   return kand.slice(0,n).map(x=>x.k);
 }
+/* Slabiky k obrázku: len slová s obrázkom, mená nie (obrázok dievčaťa nepovie, že je to Ema) */
+function poolObrazok(z, u){
+  const s=z.slova.filter(x=>x.o && !x.meno && x.sl.length>=2);
+  const p = u===0 ? s.filter(x=>!x.tazke) : u===1 ? s.filter(x=>x.sl.length===2) : s;
+  return (u>0 && p.length<3) ? s : p;
+}
+/* slabiky podobné slabike s: iná samohláska (aj dlhá), iná spoluhláska na začiatku, pri ●●● aj zatvorená/otvorená */
+function podobneSlabiky(s, z, zatv){
+  const out=new Set(z.slabiky), iv=[...s].findIndex(jeSam);
+  if(iv<0) return [];
+  const sam=KRATKE.filter(v=>z.zn.has(v)), spol=[...z.zn].filter(c=>!jeSam(c) && !BEZ_SLABIK.has(c));
+  sam.forEach(v=>[v, NA_DLHU[v]].forEach(y=>out.add(s.slice(0,iv)+y+s.slice(iv+1))));
+  if(iv===1) spol.forEach(c=>out.add(c+s.slice(1)));
+  if(zatv){ if(iv===s.length-1) spol.forEach(c=>out.add(s+c)); else out.add(s.slice(0,iv+1)); }
+  return [...out].filter(x=>x!==s && !(MAKKE.has(x[0]) && zakl(x[1]||"")==="y"));
+}
+/* ako veľmi sa slabika x podobá na s (rovnaký začiatok, samohláska, dĺžka) */
+const podoba = (x, s) => (x[0]===s[0]?2:0) + ([...x].some(c=>jeSam(c) && [...s].some(d=>zakl(d)===zakl(c)))?1:0) + (x.length===s.length?1:0);
+
+/* známe slová: keď dieťa slovo 2× za sebou prečíta správne na prvý pokus, potom príde hneď spojené (bez čakania) */
+const ZNAME = {
+  kluc:"pismenka-zname", d:{},
+  nacitaj(){ try{ this.d=JSON.parse(localStorage.getItem(this.kluc)||"{}")||{}; }catch(e){ this.d={}; } },
+  uloz(){ try{ localStorage.setItem(this.kluc, JSON.stringify(this.d)); }catch(e){} },
+  je(t){ return (this.d[t]||0)>=2; },
+  zapis(t, ok){ this.d[t] = ok ? Math.min((this.d[t]||0)+1, 9) : 0; this.uloz(); },
+  zoznam(){ return Object.keys(this.d).filter(t=>this.je(t)); },
+  zabudni(){ this.d={}; this.uloz(); }
+};
+ZNAME.nacitaj();
 
 /* ===== jedna hra v jednom prvku stránky ===== */
 function hra(el, o={}){
   const say = o.say || (()=>Promise.resolve(false));
   const jeKid = () => !!el.closest(".kid");
   const KOL = o.kol || 5;
-  let cfg, kolo=0, beh=0, zamok=false, posledne=new Set(), zadanieHlas="", automaticky=false, rozmer=null;
+  let cfg, kolo=0, beh=0, zamok=false, posledne=new Set(), znova=[], zadanieHlas="", automaticky=false, rozmer=null;
   el.classList.add("pk");
 
-  function nastavK(jednotky, navyse){
-    rozmer=[jednotky, navyse];
-    const w = el.clientWidth || 320, max = jeKid() ? 92 : 68;
-    const k = Math.max(26, Math.min(max, Math.floor((w - navyse)/jednotky)));
+  function nastavK(jednotky, navyse, strop){
+    rozmer=[jednotky, navyse, strop];
+    const w = el.clientWidth || 320, max = strop || (jeKid() ? 92 : 68);
+    let k = Math.max(26, Math.min(max, Math.floor((w - navyse)/jednotky)));
     el.style.setProperty("--k", k+"px");
+    /* Slabiky k obrázku pre dieťa: keď sa nezmestí na obrazovku (telefón), zmenší sa najprv obrázok, potom kocky */
+    const kid=el.closest(".kid"), obr=el.querySelector(".pk-obr.stred");
+    if(strop && kid){
+      let ow=Math.floor(Math.min(innerHeight*.3, 220)); if(obr) obr.style.width=ow+"px";
+      for(let i=0; i<16 && kid.scrollHeight>kid.clientHeight+2; i++){
+        if(obr && ow>120){ ow=Math.floor(ow*.88); obr.style.width=ow+"px"; }
+        else if(k>34){ k=Math.floor(k*.92); el.style.setProperty("--k", k+"px"); }
+        else break;
+      }
+    } else if(obr) obr.style.width="";
   }
   function hlavicka(){
     return `<div class="pk-top"><span class="pk-kolo">Kolo ${kolo+1} z ${KOL}</span><span class="pk-dots" aria-hidden="true">${Array.from({length:KOL},(_,i)=>`<i class="${i<kolo?"on":""}"></i>`).join("")}</span>
     <button class="btn" type="button" data-zopakuj style="min-height:40px;padding:6px 12px">${IK_HLAS}Vypočuj</button></div>`;
   }
-  function zadaj(t){ zadanieHlas=t; if(automaticky) say(t); }
+  function zadaj(t, nahlas=true){ zadanieHlas=t; if(automaticky && nahlas) say(t); }
   function unikat(pool, kluc){ let x, i=0; do{ x=vyber(pool); i++; }while(posledne.has(kluc(x)) && i<30); posledne.add(kluc(x)); return x; }
+  /* slovo na kolo: najprv to, ktoré sa pred dvoma kolami pokazilo; inak nové (prednosť, napr. neznáme slová, v 3 zo 4 prípadov) */
+  function vyberKolo(pool, kluc, prednost){
+    const i=znova.findIndex(x=>x.kolo<=kolo);
+    if(i>=0){ const x=znova.splice(i,1)[0].it; posledne.add(kluc(x)); return x; }
+    if(prednost){ const p=pool.filter(x=>prednost(x) && !posledne.has(kluc(x))); if(p.length && Math.random()<.75) return unikat(p, kluc); }
+    return unikat(pool, kluc);
+  }
+  const zopakuj = it => { if(kolo+2<KOL && !znova.some(x=>x.it===it)) znova.push({it, kolo:kolo+2}); };
   async function dalsie(b, text){
     zamok=true; automaticky=true;
     if(text) await say(text);
-    await pockaj(800);
+    await pockaj(500);
     if(b!==beh) return; kolo++; zamok=false; noveKolo();
+  }
+  /* celé slovo naraz: všetky slabiky sa zdvihnú a tablet ho prečíta */
+  async function celeSlovo(b, skup, t){
+    skup.forEach(s=>s.classList.add("svieti"));
+    await Promise.all([say(t), pockaj(650)]);
+    if(b===beh) skup.forEach(s=>s.classList.remove("svieti"));
   }
   /* hlas číta slabiky po jednej, slabika sa pri tom zdvihne; potom celé slovo */
   async function citaj(b, skup, texty, cele){
@@ -491,10 +563,10 @@ function hra(el, o={}){
   }
   function prazdne(text){ el.innerHTML = `<div class="pk-prazdne">${text}</div>`; }
 
-  function novyBeh(){ beh++; kolo=0; posledne.clear(); zamok=false; noveKolo(); }
+  function novyBeh(){ beh++; kolo=0; posledne.clear(); znova=[]; zamok=false; noveKolo(); }
   function noveKolo(){
     if(kolo>=KOL) return koniec();
-    return cfg.rezim==="postav" ? koloPostav(beh) : koloSpoj(beh);
+    return cfg.rezim==="postav" ? koloPostav(beh) : cfg.rezim==="obrazok" ? koloObrazok(beh) : koloSpoj(beh);
   }
 
   /* výber obrázka: dieťa ukáže, čo prečítalo */
@@ -513,8 +585,8 @@ function hra(el, o={}){
   function koloSpoj(b){
     const z=zasoba(cfg), u=cfg.u, pool=poolSpoj(z,u);
     if(!pool.length) return prazdne(u===0 ? "S týmito písmenami sa nedá spojiť slabika. Pridajte aspoň jednu spoluhlásku a jednu samohlásku." : "S týmito písmenami zatiaľ nie je žiadne slovo. Pridajte písmená alebo zvoľte obťažnosť ●.");
+    if(u>0) return koloSlova(b, vyberKolo(pool, x=>x.t, x=>!ZNAME.je(x.t)), z);
     const it = unikat(pool, x=>x.t);
-    if(u>0) return koloSlova(b, it, z);
     el.innerHTML = `${hlavicka()}<p class="pk-zad">Spoj písmenká do slabiky</p>
       <div class="pk-scena"><div class="pk-slovo" role="group" aria-label="Kocky s písmenami"></div></div>
       <div class="pk-dole"></div><p class="pk-status" role="status"></p>`;
@@ -566,15 +638,17 @@ function hra(el, o={}){
   }
 
   /* ---------- SPOJ ●● ●●●: slabiky sa priblížia v dvoch krokoch (bližšie, spolu).
-     Dieťa číta stále rýchlejšie, potom vyberie, ktoré slovo je napísané.
-     Rušivé možnosti majú písmenko navyše na začiatku alebo v strede (presne táto chyba sa stáva pri spájaní). ---------- */
+     Dieťa číta stále rýchlejšie, potom z dvoch slov, ktoré tablet prečíta, ťukne na to napísané.
+     Zlé slovo má písmenko navyše na začiatku alebo v strede (presne táto chyba sa stáva pri spájaní).
+     Známe slovo (2× za sebou správne na prvý pokus) príde hneď spojené a tablet ponúkne slová hneď. ---------- */
   function koloSlova(b, it, z){
-    el.innerHTML = `${hlavicka()}<p class="pk-zad">${it.meno?"Spoj slabiky do mena":"Spoj slabiky do slova"}</p>
+    const zname = ZNAME.je(it.t);
+    el.innerHTML = `${hlavicka()}<p class="pk-zad">${zname ? (it.meno?"Prečítaj meno":"Prečítaj slovo") : (it.meno?"Spoj slabiky do mena":"Spoj slabiky do slova")}</p>
       <div class="pk-scena"><div class="pk-slovo" role="group" aria-label="Slabiky"></div></div>
       <div class="pk-dole"></div><p class="pk-status" role="status"></p>`;
     const sc=el.querySelector(".pk-slovo"), dole=el.querySelector(".pk-dole"), st=el.querySelector(".pk-status");
     const skup = it.sl.map((s,si)=>{ const g=document.createElement("span"); g.className="pk-g sl"; [...s].forEach(ch=>g.append(kocka(ch,si))); return g; });
-    const stav = Array(it.sl.length-1).fill(0);   /* medzi slabikami: 0 ďaleko, 1 bližšie, 2 spolu */
+    const stav = Array(it.sl.length-1).fill(zname?2:0);   /* medzi slabikami: 0 ďaleko, 1 bližšie, 2 spolu */
     nastavK(sirka(it.t) + (it.sl.length-1)*1.6, 70);
     function kresli(){
       sc.innerHTML=""; const i0=stav.findIndex(x=>x<2);
@@ -586,7 +660,7 @@ function hra(el, o={}){
         sc.append(g);
       });
     }
-    let hotovo=false;
+    let hotovo=zname;
     sc.onclick = async e=>{
       if(zamok || hotovo) return;
       const i0=stav.findIndex(x=>x<2); if(i0<0) return;
@@ -594,7 +668,7 @@ function hra(el, o={}){
       if(!(e.target.closest(".pk-mag") || (kde && (kde===skup[i0] || kde===skup[i0+1])))){ ANIM.puls(sc.querySelector(".pk-mag")); return; }
       const pred=ANIM.fotka(skup); stav[i0]++; kresli(); zamok=true;
       if(stav[i0]===2) ZVUK.cvak(); else ZVUK.tuk();
-      await ANIM.presun(skup, pred, 520); if(b!==beh) return;
+      await ANIM.presun(skup, pred, 480); if(b!==beh) return;
       zamok=false;
       if(stav[i0]===2) ANIM.cvak(skup[i0+1]);
       if(stav.every(x=>x===2)){ hotovo=true; return over(); }
@@ -602,44 +676,55 @@ function hra(el, o={}){
       const [text, hlas] = stav[i0]===1 ? ["Skús rýchlejšie. Potom ťukni na šípky.", "Skús rýchlejšie"] : ["Spoj ďalšiu slabiku.", "Spoj ďalšiu slabiku"];
       st.textContent = text; zadanieHlas = hlas; say(hlas);
     };
+    /* dve slová na výber; ťuknúť sa dá hneď, aj kým ich tablet číta */
     async function over(){
       zamok=true;
-      st.textContent="Prečítaj celé slovo naraz.";
-      await say("Prečítaj celé slovo naraz"); await pockaj(1300); if(b!==beh) return;
       const v=zamiesaj(varianty(it, z));
-      dole.innerHTML = `<div class="pk-ucha">${v.map((w,i)=>`<button class="pk-ucho" type="button" data-w="${w}" aria-label="Možnosť ${i+1}">${IK_HLAS}<span>${i+1}</span></button>`).join("")}</div>`;
+      st.textContent = zname ? "Prečítaj slovo. Ktoré je napísané? Ťukni." : "Prečítaj celé slovo naraz. Ktoré je napísané? Ťukni.";
+      dole.innerHTML = `<div class="pk-ucha" style="--n:${v.length}">${v.map((w,i)=>`<button class="pk-ucho" type="button" data-w="${w}" aria-label="Možnosť ${i+1}">${IK_HLAS}<span>${i+1}</span></button>`).join("")}</div>`;
       const btns=[...dole.querySelectorAll(".pk-ucho")];
-      /* tablet prehrá možnosti po jednej, tlačidlo pri tom svieti */
+      let prehra=0, vybrate=false;
       const prehraj = async ()=>{
-        zamok=true;
-        for(const x of btns){ if(b!==beh) return; if(x.disabled) continue;
-          x.classList.add("hra"); await Promise.all([say(x.dataset.w), pockaj(700)]); x.classList.remove("hra"); await pockaj(250); }
-        zamok=false;
+        const moje=++prehra;
+        for(const x of btns){
+          if(b!==beh || moje!==prehra || vybrate) return;
+          x.classList.add("hra"); await Promise.all([say(x.dataset.w), pockaj(600)]); x.classList.remove("hra");
+          if(moje!==prehra || vybrate) return; await pockaj(200);
+        }
       };
       zadanieHlas = prehraj;
-      st.textContent="Ktoré slovo je napísané? Počúvaj a ťukni.";
-      await say("Ktoré slovo je napísané? Počúvaj"); if(b!==beh) return;
-      await prehraj(); if(b!==beh) return;
       btns.forEach(x=>x.onclick=async ()=>{
-        if(zamok||x.disabled) return;
-        zamok=true; x.classList.add("hra"); await say(x.dataset.w); x.classList.remove("hra"); if(b!==beh) return;
-        if(x.dataset.w===it.t){
-          x.classList.add("ok"); btns.forEach(y=>y.disabled=true); ZVUK.ok(); st.className="pk-status ok"; st.textContent=`Áno! ${it.t}`;
-          await citaj(b, skup, it.sl, true); if(b!==beh) return;
-          if(it.o){ dole.innerHTML=`<div class="pk-obr maly">${svg(it.o)}</div>`; ANIM.ozij(dole.firstChild); }
-          dalsie(b, it.meno ? `${it.t} je meno` : "Výborne!");
+        if(vybrate || b!==beh) return;
+        vybrate=true; prehra++; btns.forEach(y=>{ y.classList.remove("hra"); y.disabled=true; });
+        const spravne=btns.find(y=>y.dataset.w===it.t);
+        if(x===spravne){
+          x.classList.add("ok"); ZVUK.ok(); st.className="pk-status ok"; st.textContent=`Áno! ${it.t}`;
+          ZNAME.zapis(it.t, true); o.priZmene && o.priZmene();
+          await celeSlovo(b, skup, it.t); if(b!==beh) return;
+          if(it.o){ dole.innerHTML=`<div class="pk-obr maly">${svg(it.o)}</div>`; ANIM.ozij(dole.firstChild); await pockaj(500); }
+          dalsie(b, it.meno && !zname ? `${it.t} je meno` : "");
         } else {
-          x.classList.add("no"); x.disabled=true; ANIM.tras(x); ZVUK.zle();
-          st.textContent="To tam nie je napísané. Pozri sa na každé písmenko.";
-          await pockaj(400); await citaj(b, skup, it.sl); zamok=false;
+          x.classList.add("no"); ANIM.tras(x); ZVUK.zle(); st.textContent="Pozri sa na každé písmenko.";
+          if(ZNAME.d[it.t]){ ZNAME.zapis(it.t, false); o.priZmene && o.priZmene(); }
+          zopakuj(it);
+          await pockaj(350); if(b!==beh) return;
+          await citaj(b, skup, it.sl, true); if(b!==beh) return;
+          spravne.classList.add("ok");
+          dalsie(b, "");
         }
       });
+      zamok=false;
+      /* dieťa najprv číta samo, potom tablet prečíta obe slová (pri prvom kole aj otázku) */
+      await pockaj(zname ? 500 : 900); if(b!==beh || vybrate) return;
+      if(kolo===0 && automaticky){ await say("Ktoré slovo je napísané?"); if(b!==beh || vybrate) return; }
+      prehraj();
     }
     kresli();
+    if(zname){ skup.forEach(g=>g.classList.add("nove")); return over(); }
     st.textContent="Prečítaj slabiky. Potom ťukni na šípky.";
-    zadaj("Prečítaj slabiky. Potom ťukni na šípky.");
+    zadaj("Prečítaj slabiky. Potom ťukni na šípky.", kolo===0);
   }
-  /* čo tablet ponúkne: správne slovo, písmenko navyše v strede, písmenko navyše na začiatku (inak prehodené slabiky) */
+  /* čo tablet ponúkne: správne slovo a jedno s písmenkom navyše v strede alebo na začiatku (inak prehodené slabiky) */
   function varianty(it, z){
     const t=it.t, low=t.toLowerCase(), out=[t];
     const je = w => out.some(x=>x.toLowerCase()===w.toLowerCase());
@@ -648,11 +733,10 @@ function hra(el, o={}){
     const velke = t[0]!==t[0].toLowerCase();
     const tvar = w => velke ? w[0].toUpperCase()+w.slice(1) : w;
     const vloz = pos => { for(const c of kand){ if(c===low[pos-1] || c===low[pos]) continue; const w=tvar(low.slice(0,pos)+c+low.slice(pos)); if(!je(w)) return w; } return null; };
-    const a=vloz(it.sl[0].length); if(a) out.push(a);
-    const c=vloz(jeSam(low[0]) ? 0 : 1); if(c) out.push(c);
-    if(out.length<3){ const w=tvar(it.sl.slice(1).concat(it.sl[0]).join("").toLowerCase()); if(!je(w)) out.push(w); }
-    if(out.length<3){ const w=vloz(Math.max(1,low.length-1)); if(w) out.push(w); }
-    return out.slice(0,3);
+    for(const pos of zamiesaj([it.sl[0].length, jeSam(low[0]) ? 0 : 1])){ const w=vloz(pos); if(w){ out.push(w); return out; } }
+    const w=tvar(it.sl.slice(1).concat(it.sl[0]).join("").toLowerCase()); if(!je(w)){ out.push(w); return out; }
+    const w2=vloz(Math.max(1,low.length-1)); if(w2) out.push(w2);
+    return out;
   }
 
   /* ---------- POSTAV SLOVO: dieťa počuje slovo a skladá ho ---------- */
@@ -750,6 +834,104 @@ function hra(el, o={}){
     return out;
   }
 
+  /* ---------- SLABIKY K OBRÁZKU: hore stĺpce so slabikami (jeden stĺpec = jedna slabika slova), pri nich obrázok.
+     Dieťa ťukne v každom stĺpci na jednu slabiku. Len jedna kombinácia je slovo z obrázka.
+     Stĺpec má farbu svojej slabiky v slove (1. modrá, 2. oranžová…). ---------- */
+  function koloObrazok(b){
+    const z=zasoba(cfg), u=cfg.u, pool=poolObrazok(z,u);
+    if(!pool.length) return prazdne("S týmito písmenami zatiaľ nie je žiadne slovo s obrázkom. Pridajte písmená (napríklad J, O, S) alebo skúste režim Spoj kocky.");
+    const it=vyberKolo(pool, x=>x.t), ciel=it.sl, n=ciel.length;
+    const stlpce=stlpceSlabik(it, z, u);
+    const sir=stlpce.map(c=>Math.max(...c.map(sirka)));
+    el.innerHTML = `${hlavicka()}<p class="pk-zad">Čo je na obrázku?</p>
+      <div class="pk-obl"><div class="pk-lavo">
+        <div class="pk-stlpce" role="group" aria-label="Slabiky">${stlpce.map((c,ci)=>`<div class="pk-stlpec">${c.map((t,ri)=>`<span class="pk-bunka" style="--w:${sir[ci]}"><button class="pk-g" type="button" data-t="${t}" data-c="${ci}" data-r="${ri}" aria-label="${t}"></button></span>`).join("")}</div>`).join("")}</div>
+        <div class="pk-riadok"><div class="pk-sloty">${sir.map(w=>`<span class="pk-slot sl" style="--w:${w}"></span>`).join("")}</div><button class="pk-nap" type="button" aria-label="Nápoveda">?</button></div>
+      </div><button class="pk-obr velky stred" type="button" data-hlas aria-label="Vypočuj slovo">${svg(it.o)}</button></div>
+      <p class="pk-status" role="status"></p>`;
+    const stlpEl=el.querySelector(".pk-stlpce"), slotyEl=el.querySelector(".pk-sloty"), st=el.querySelector(".pk-status"), obr=el.querySelector("[data-hlas]"), nap=el.querySelector(".pk-nap");
+    const sloty=[...slotyEl.children], kusy=[...stlpEl.querySelectorAll(".pk-g")];
+    kusy.forEach(g=>[...g.dataset.t].forEach(ch=>g.append(kocka(ch, +g.dataset.c))));
+    const vyb=Array(n).fill(null), zamk=Array(n).fill(false);
+    nastavK(sir.reduce((a,w)=>a+w,0) + n*.3 + (n-1)*.5, 24, jeKid() ? 84 : 60);
+
+    const domov = g => stlpEl.children[+g.dataset.c].children[+g.dataset.r].append(g);
+    async function presun(zmena){ const pred=ANIM.fotka(kusy); zmena(); ZVUK.tuk(); await ANIM.presun(kusy, pred, 340); }
+    stlpEl.onclick = async e=>{
+      const g=e.target.closest(".pk-g"); if(!g || zamok) return;
+      const c=+g.dataset.c; if(zamk[c]){ ANIM.tras(g); return; }
+      zamok=true;
+      await presun(()=>{ if(vyb[c]) domov(vyb[c]); sloty[c].append(g); vyb[c]=g; });
+      if(b!==beh) return; zamok=false;
+      if(vyb.every(Boolean)) skontroluj();
+    };
+    slotyEl.onclick = async e=>{
+      const g=e.target.closest(".pk-g"); if(!g || zamok) return;
+      const c=+g.dataset.c; if(zamk[c]) return;
+      zamok=true; await presun(()=>{ domov(g); vyb[c]=null; }); zamok=false;
+    };
+    obr.onclick = ()=>say(it.t);
+    nap.onclick = async ()=>{
+      if(zamok) return;
+      zamok=true; await say(ciel.join(", ")); zamok=false; if(b!==beh) return;
+      const c=vyb.findIndex((g,i)=>!zamk[i] && (!g || g.dataset.t!==ciel[i])); if(c<0) return;
+      ANIM.blik(kusy.find(g=>+g.dataset.c===c && g.dataset.t===ciel[c]));
+    };
+    async function skontroluj(){
+      zamok=true;
+      const zle=[]; vyb.forEach((g,c)=>{ if(g.dataset.t!==ciel[c]) zle.push(c); });
+      if(!zle.length){
+        ZVUK.ok(); vyb.forEach(g=>g.classList.add("ok")); st.className="pk-status ok"; st.textContent=`Áno! ${it.t}`;
+        /* slabiky sa prisunú k sebe do jedného slova */
+        const pred=ANIM.fotka(vyb); slotyEl.classList.add("spolu"); await ANIM.presun(vyb, pred, 380); if(b!==beh) return;
+        await celeSlovo(b, vyb, it.t); if(b!==beh) return;
+        ANIM.ozij(obr); return dalsie(b, "");
+      }
+      ZVUK.zle();
+      vyb.forEach((g,c)=>{ if(!zle.includes(c)){ zamk[c]=true; g.classList.add("ok"); } });
+      zle.forEach(c=>ANIM.tras(vyb[c]));
+      st.textContent="To nie je ono. Tablet prečíta, čo vzniklo.";
+      /* tablet prečíta, čo vzniklo (ma-la namiesto la-ma), zlá slabika sa vráti */
+      await say(vyb.map(g=>g.dataset.t).join("")); if(b!==beh) return;
+      await presun(()=>zle.forEach(c=>{ domov(vyb[c]); vyb[c]=null; }));
+      if(b!==beh) return;
+      zopakuj(it);
+      st.textContent="Skús ešte raz. Ťukni na obrázok a počúvaj."; zamok=false;
+    }
+    st.textContent="V každom stĺpci ťukni na jednu slabiku.";
+    zadaj("Čo je na obrázku? Nájdi slabiky.", kolo===0);
+  }
+  /* stĺpce: v každom správna slabika a 2 iné zo známych písmen.
+     ● iné slabiky sa líšia viac, ●● ●●● sú podobné (la, le, lá) a niekedy je tam slabika z druhého stĺpca (ma-la namiesto la-ma).
+     Overí sa, že len jedna kombinácia dá slovo z obrázka. */
+  function stlpceSlabik(it, z, u){
+    const sl=it.sl.map(s=>s.toLowerCase()), t=sl.join("");
+    let st=null;
+    for(let pokus=0; pokus<12; pokus++){
+      st = sl.map((s,i)=>{
+        const dlha=[...s].some(jeDlha);
+        let kand=podobneSlabiky(s, z, u===2).filter(x=>u>0 || dlha || ![...x].some(jeDlha));
+        let vyb;
+        if(u===0) vyb = kand.filter(x=>!sl.includes(x)).map(x=>({x, s:podoba(x,s)+Math.random()*1.3})).sort((a,c)=>a.s-c.s).map(o=>o.x).slice(0,2);
+        else {
+          /* jedna s rovnakým začiatkom (la → le, lá), jedna s iným (la → ma); niekedy slabika z iného stĺpca */
+          const a=zamiesaj(kand.filter(x=>x[0]===s[0])), c=zamiesaj(kand.filter(x=>x[0]!==s[0])).sort((x,y)=>podoba(y,s)-podoba(x,s));
+          vyb=[a[0], c[0]].filter(Boolean);
+          const ina=sl.filter((y,j)=>j!==i && y!==s);
+          if(ina.length && Math.random()<.5 && !vyb.includes(ina[0])) vyb[Math.min(1, vyb.length)]=ina[0];
+          for(const x of [...a.slice(1), ...c.slice(1)]){ if(vyb.length>=2) break; if(!vyb.includes(x)) vyb.push(x); }
+        }
+        return zamiesaj([s, ...vyb.slice(0,2)]);
+      });
+      let spravne=0;
+      const skus=(i, w)=>{ if(i===st.length){ if(w===t) spravne++; return; } st[i].forEach(x=>skus(i+1, w+x)); };
+      skus(0, "");
+      if(spravne===1) break;
+    }
+    /* meno nie je, ale veľké písmeno na začiatku by sa zachovalo */
+    return st.map((c,i)=>c.map(x=>x===sl[i] ? it.sl[i] : x));
+  }
+
   function koniec(){
     if(o.priKonci && o.priKonci()) return;
     el.innerHTML = `<div class="pk-koniec">${IK_HVIEZDA}
@@ -771,11 +953,14 @@ function hra(el, o={}){
 const UROVNE = [["●","Ľahšie"],["●●","Bežné"],["●●●","Výzva"]];
 const POPIS = {
   spoj:["Dve kocky sa spoja do slabiky (ma, li). Dieťa ju prečíta a ťukne na obrázok, ktorý sa začína rovnako.",
-        "Dve slabiky sa priblížia v dvoch krokoch a spoja (ma-ma, Mi-la). Dieťa číta stále rýchlejšie, potom vyberie, ktoré slovo je napísané. Pozor na písmenko navyše.",
+        "Dve slabiky sa priblížia v dvoch krokoch a spoja (ma-ma, Mi-la). Dieťa číta stále rýchlejšie, potom z dvoch slov vyberie to napísané. Pozor na písmenko navyše. Známe slová prídu hneď spojené.",
         "To isté s ťažšími slovami: zatvorená slabika (E-mil), dlhá samohláska (ma-lá), tri slabiky."],
   postav:["Dieťa vidí obrázok a počuje slovo. Poskladá ho zo slabík, v ponuke je jedna slabika navyše.",
           "To isté, v ponuke sú podobné slabiky (la, le, lá) a pribudnú aj dlhšie slová.",
-          "Slovo skladá po písmenkách. Pozor na dlhú a krátku samohlásku (a, á)."]
+          "Slovo skladá po písmenkách. Pozor na dlhú a krátku samohlásku (a, á)."],
+  obrazok:["Hore sú dva stĺpce po troch slabikách, pri nich obrázok. Dieťa v každom stĺpci ťukne na jednu slabiku, aby vzniklo slovo z obrázka. Ostatné slabiky sa líšia viac (la, me, mi).",
+           "To isté, slabiky v stĺpci sú podobné (la, le, lá) a niekedy je v stĺpci aj slabika z druhého (ma-la namiesto la-ma).",
+           "Aj dlhšie slová: pri troch slabikách sú tri stĺpce, pribudnú zatvorené slabiky (mut, lón) a dlhé samohlásky."]
 };
 let cfg = {rezim:"spoj", u:1, pismena:SKOLA.slice(), velke:false, farby:true};
 try{ const s=JSON.parse(localStorage.getItem("pismenka-nastavenie")||"null"); if(s) cfg=Object.assign(cfg,s); }catch(e){}
@@ -799,7 +984,7 @@ function say(t){
 }
 
 const hraEl = document.getElementById("hra");
-const h = hra(hraEl, {say, kol:5});
+const h = hra(hraEl, {say, kol:5, priZmene:kresliZname});
 const spusti = a => h.spusti(cfg, {automaticky:a});
 
 function kresliNastavenia(){
@@ -811,11 +996,21 @@ function kresliNastavenia(){
   document.querySelectorAll("[data-farby]").forEach(x=>x.setAttribute("aria-pressed", !!+x.dataset.farby===!!cfg.farby));
   document.querySelectorAll("[data-p]").forEach(x=>x.setAttribute("aria-pressed", cfg.pismena.includes(x.dataset.p)));
   document.getElementById("levelnote").textContent = POPIS[cfg.rezim][cfg.u];
-  const z=zasoba(cfg), n = cfg.rezim==="spoj" ? poolSpoj(z,cfg.u).length : poolPostav(z,cfg.u).length;
+  const z=zasoba(cfg), n = (cfg.rezim==="spoj" ? poolSpoj : cfg.rezim==="obrazok" ? poolObrazok : poolPostav)(z,cfg.u).length;
   const co = cfg.rezim==="spoj" && cfg.u===0 ? (n===1?"slabiku":n>=2&&n<=4?"slabiky":"slabík") : (n===1?"slovo":n>=2&&n<=4?"slová":"slov");
   const p=document.getElementById("pocet");
   p.textContent = n ? `S týmito písmenami má hra ${n} ${co} na vybranú obťažnosť.` : "S týmito písmenami sa v tejto obťažnosti nedá hrať. Pridajte písmená.";
   p.classList.toggle("pozor", n<3);
+  if(n<3 && cfg.rezim==="obrazok") p.textContent += " Slov s obrázkom je zatiaľ málo, pridajte ďalšie písmená (napríklad J, O, S).";
+  kresliZname();
+}
+/* zoznam známych slov (idú rýchlo) a tlačidlo na zabudnutie */
+function kresliZname(){
+  const zn=document.getElementById("zname"), x=ZNAME.zoznam();
+  zn.hidden = !(cfg.rezim==="spoj" && cfg.u>0);
+  zn.innerHTML = x.length
+    ? `Známe slová (prídu hneď spojené): <b>${x.join(", ")}</b> <button class="segbtn mini" type="button" id="zabudni">Zabudnúť</button>`
+    : "Slovo, ktoré dieťa dvakrát za sebou prečíta správne na prvý pokus, si hra zapamätá ako známe a potom ho dá hneď spojené.";
 }
 const urovneHTML = () => UROVNE.map(([d,n],i)=>`<button class="segbtn" type="button" data-u="${i}"><span class="d" aria-hidden="true">${d}</span>${n}</button>`).join("");
 document.getElementById("seg-uroven").innerHTML = urovneHTML();
@@ -823,6 +1018,7 @@ document.getElementById("chips").innerHTML = PORADIE.map(p=>`<button class="chip
 document.addEventListener("click", e=>{
   const r=e.target.closest("[data-rezim]"), u=e.target.closest("[data-u]"), v=e.target.closest("[data-velke]"), f=e.target.closest("[data-farby]"), p=e.target.closest("[data-p]");
   const sk=e.target.closest("#p-skola"), vs=e.target.closest("#p-vsetky");
+  if(e.target.closest("#zabudni")){ ZNAME.zabudni(); kresliZname(); return; }
   if(!r&&!u&&!v&&!f&&!p&&!sk&&!vs) return;
   if(r) cfg.rezim=r.dataset.rezim; if(u) cfg.u=+u.dataset.u; if(v) cfg.velke=!!+v.dataset.velke; if(f) cfg.farby=!!+f.dataset.farby;
   if(p){ const x=p.dataset.p; cfg.pismena = cfg.pismena.includes(x) ? cfg.pismena.filter(y=>y!==x) : PORADIE.filter(y=>y===x||cfg.pismena.includes(y)); }
