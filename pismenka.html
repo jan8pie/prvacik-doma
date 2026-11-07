@@ -243,12 +243,13 @@ button.pk-g.ok{outline:3px solid var(--ok);outline-offset:3px;cursor:default}
     <ul class="tips">
       <li><b>Spoj kocky ●● a ●●● cvičí pohotové spojenie slabík do slova.</b> Slabiky sa priblížia v dvoch krokoch: dieťa ich prečíta pomaly, potom rýchlejšie a nakoniec naraz. Potom z dvoch slov, ktoré tablet prečíta, ťukne na to napísané (ťuknúť môže hneď, nemusí čakať). Zlé slovo má písmenko navyše na začiatku alebo v strede.</li>
       <li><b>Známe slová idú rýchlo.</b> Keď dieťa slovo dvakrát za sebou prečíta správne na prvý pokus, nabudúce príde hneď spojené a tablet hneď ponúkne dve slová. Pri omyle sa slovo znova učí pomaly a v tej istej hre sa ešte vráti.</li>
-      <li><b>Slabiky k obrázku:</b> v každom stĺpci je jedna slabika slova a dve iné. Dieťa ťukne v každom stĺpci na jednu, len jedna kombinácia je slovo z obrázka. Pri omyle tablet prečíta, čo vzniklo (<i>ma-la</i> namiesto <i>la-ma</i>), dobrá slabika ostane. Ťuknutím na obrázok tablet povie, čo na ňom je.</li>
+      <li><b>Slabiky k obrázku:</b> v každom stĺpci je jedna slabika slova a dve iné. Dieťa ťukne v každom stĺpci na jednu, len jedna kombinácia je slovo z obrázka. Pri omyle tablet prečíta, čo vzniklo (<i>ma-la</i> namiesto <i>la-ma</i>), dobrá slabika ostane. Ťuknutím na obrázok tablet povie, čo na ňom je. Pri obrázku dievčaťa alebo chlapca dieťa hľadá meno (Ema, Emil): zo stĺpcov sa dá poskladať len jedno.</li>
+      <li><b>Slová sa v jednej hre neopakujú</b> (okrem slova, ktoré sa v Spoj kocky pokazilo). Keď je s vybranými písmenami slov menej ako päť, hra má menej kôl.</li>
       <li><b>Najprv dieťa, potom tablet.</b> Tablet slovo prečíta po slabikách až po tom, čo ho dieťa prečíta samo. Počúvajte, ako číta nahlas.</li>
       <li><b>Oblúčik a farba ukazujú slabiku</b>, ako v škole. V Postav slovo je kocka sivá, kým nie je na mieste. Dlhá kocka je dlhá samohláska: <i>ma-la</i> a <i>ma-lá</i> nie je to isté.</li>
       <li><b>Hra číta len z vybraných písmen.</b> Obrázky, ktoré dieťa len počúva (napríklad pri slabike <i>ma</i> malina), môžu mať aj iné písmená.</li>
       <li><b>Postav slovo:</b> pri omyle tablet prečíta, čo vzniklo, a zlá kocka sa vráti. Žltý otáznik prečíta slovo po slabikách a ukáže, čo patrí ďalej.</li>
-      <li>Päť kôl trvá pár minút. K vám sa vrátite podržaním tlačidla <i>Späť k rodičovi</i>.</li>
+      <li>Hra má najviac päť kôl a trvá pár minút. K vám sa vrátite podržaním tlačidla <i>Späť k rodičovi</i>.</li>
     </ul>
     <p class="small">Stránka nič neukladá ani neposiela, len si v tomto zariadení zapamätá posledné nastavenie. Čítanie nahlas používa hlas zabudovaný v zariadení.</p>
   </section>
@@ -466,9 +467,9 @@ function rusiveObrazky(spravny, n, podobny){
     .map(k=>({k, s:podobny(POCUJ[k])+Math.random()*1.5})).sort((a,b)=>b.s-a.s);
   return kand.slice(0,n).map(x=>x.k);
 }
-/* Slabiky k obrázku: len slová s obrázkom, mená nie (obrázok dievčaťa nepovie, že je to Ema) */
+/* Slabiky k obrázku: slová s obrázkom; mená majú obrázok dievčaťa alebo chlapca (mien je málo, dieťa háda) */
 function poolObrazok(z, u){
-  const s=z.slova.filter(x=>x.o && !x.meno && x.sl.length>=2);
+  const s=z.slova.filter(x=>x.o && x.sl.length>=2);
   const p = u===0 ? s.filter(x=>!x.tazke) : u===1 ? s.filter(x=>x.sl.length===2) : s;
   return (u>0 && p.length<3) ? s : p;
 }
@@ -502,7 +503,7 @@ function hra(el, o={}){
   const say = o.say || (()=>Promise.resolve(false));
   const jeKid = () => !!el.closest(".kid");
   const KOL = o.kol || 5;
-  let cfg, kolo=0, beh=0, zamok=false, posledne=new Set(), znova=[], zadanieHlas="", automaticky=false, rozmer=null;
+  let cfg, kol=KOL, kolo=0, beh=0, zamok=false, posledne=new Set(), znova=[], zadanieHlas="", automaticky=false, rozmer=null;
   el.classList.add("pk");
 
   function nastavK(jednotky, navyse, strop){
@@ -522,11 +523,12 @@ function hra(el, o={}){
     } else if(obr) obr.style.width="";
   }
   function hlavicka(){
-    return `<div class="pk-top"><span class="pk-kolo">Kolo ${kolo+1} z ${KOL}</span><span class="pk-dots" aria-hidden="true">${Array.from({length:KOL},(_,i)=>`<i class="${i<kolo?"on":""}"></i>`).join("")}</span>
+    return `<div class="pk-top"><span class="pk-kolo">Kolo ${kolo+1} z ${kol}</span><span class="pk-dots" aria-hidden="true">${Array.from({length:kol},(_,i)=>`<i class="${i<kolo?"on":""}"></i>`).join("")}</span>
     <button class="btn" type="button" data-zopakuj style="min-height:40px;padding:6px 12px">${IK_HLAS}Vypočuj</button></div>`;
   }
   function zadaj(t, nahlas=true){ zadanieHlas=t; if(automaticky && nahlas) say(t); }
-  function unikat(pool, kluc){ let x, i=0; do{ x=vyber(pool); i++; }while(posledne.has(kluc(x)) && i<30); posledne.add(kluc(x)); return x; }
+  /* slovo, ktoré v tejto hre ešte nebolo (kôl je najviac toľko, koľko je slov) */
+  function unikat(pool, kluc){ const volne=pool.filter(x=>!posledne.has(kluc(x))); const x=vyber(volne.length ? volne : pool); posledne.add(kluc(x)); return x; }
   /* slovo na kolo: najprv to, ktoré sa pred dvoma kolami pokazilo; inak nové (prednosť, napr. neznáme slová, v 3 zo 4 prípadov) */
   function vyberKolo(pool, kluc, prednost){
     const i=znova.findIndex(x=>x.kolo<=kolo);
@@ -534,7 +536,7 @@ function hra(el, o={}){
     if(prednost){ const p=pool.filter(x=>prednost(x) && !posledne.has(kluc(x))); if(p.length && Math.random()<.75) return unikat(p, kluc); }
     return unikat(pool, kluc);
   }
-  const zopakuj = it => { if(kolo+2<KOL && !znova.some(x=>x.it===it)) znova.push({it, kolo:kolo+2}); };
+  const zopakuj = it => { if(kolo+2<kol && !znova.some(x=>x.it===it)) znova.push({it, kolo:kolo+2}); };
   async function dalsie(b, text){
     zamok=true; automaticky=true;
     if(text) await say(text);
@@ -563,9 +565,15 @@ function hra(el, o={}){
   }
   function prazdne(text){ el.innerHTML = `<div class="pk-prazdne">${text}</div>`; }
 
-  function novyBeh(){ beh++; kolo=0; posledne.clear(); znova=[]; zamok=false; noveKolo(); }
+  /* keď je slov (slabík) menej ako kôl, hra je kratšia a nič sa neopakuje */
+  function novyBeh(){
+    beh++; kolo=0; posledne.clear(); znova=[]; zamok=false;
+    const z=zasoba(cfg), n=(cfg.rezim==="postav" ? poolPostav : cfg.rezim==="obrazok" ? poolObrazok : poolSpoj)(z, cfg.u).length;
+    kol = Math.max(1, Math.min(KOL, n));
+    noveKolo();
+  }
   function noveKolo(){
-    if(kolo>=KOL) return koniec();
+    if(kolo>=kol) return koniec();
     return cfg.rezim==="postav" ? koloPostav(beh) : cfg.rezim==="obrazok" ? koloObrazok(beh) : koloSpoj(beh);
   }
 
@@ -843,7 +851,7 @@ function hra(el, o={}){
     const it=vyberKolo(pool, x=>x.t), ciel=it.sl, n=ciel.length;
     const stlpce=stlpceSlabik(it, z, u);
     const sir=stlpce.map(c=>Math.max(...c.map(sirka)));
-    el.innerHTML = `${hlavicka()}<p class="pk-zad">Čo je na obrázku?</p>
+    el.innerHTML = `${hlavicka()}<p class="pk-zad">${it.meno?"Ako sa volá?":"Čo je na obrázku?"}</p>
       <div class="pk-obl"><div class="pk-lavo">
         <div class="pk-stlpce" role="group" aria-label="Slabiky">${stlpce.map((c,ci)=>`<div class="pk-stlpec">${c.map((t,ri)=>`<span class="pk-bunka" style="--w:${sir[ci]}"><button class="pk-g" type="button" data-t="${t}" data-c="${ci}" data-r="${ri}" aria-label="${t}"></button></span>`).join("")}</div>`).join("")}</div>
         <div class="pk-riadok"><div class="pk-sloty">${sir.map(w=>`<span class="pk-slot sl" style="--w:${w}"></span>`).join("")}</div><button class="pk-nap" type="button" aria-label="Nápoveda">?</button></div>
@@ -895,19 +903,20 @@ function hra(el, o={}){
       await say(vyb.map(g=>g.dataset.t).join("")); if(b!==beh) return;
       await presun(()=>zle.forEach(c=>{ domov(vyb[c]); vyb[c]=null; }));
       if(b!==beh) return;
-      zopakuj(it);
       st.textContent="Skús ešte raz. Ťukni na obrázok a počúvaj."; zamok=false;
     }
     st.textContent="V každom stĺpci ťukni na jednu slabiku.";
-    zadaj("Čo je na obrázku? Nájdi slabiky.", kolo===0);
+    zadaj(it.meno ? "Ako sa volá? Nájdi slabiky." : "Čo je na obrázku? Nájdi slabiky.", kolo===0 || it.meno);
   }
   /* stĺpce: v každom správna slabika a 2 iné zo známych písmen.
      ● iné slabiky sa líšia viac, ●● ●●● sú podobné (la, le, lá) a niekedy je tam slabika z druhého stĺpca (ma-la namiesto la-ma).
-     Overí sa, že len jedna kombinácia dá slovo z obrázka. */
+     Overí sa, že len jedna kombinácia dá slovo z obrázka a žiadna iná nedá iné slovo s tým istým obrázkom
+     (pri Ema sa z tých istých stĺpcov nesmie dať poskladať Ela ani Mila). */
   function stlpceSlabik(it, z, u){
     const sl=it.sl.map(s=>s.toLowerCase()), t=sl.join("");
+    const ine=new Set(z.slova.filter(x=>x.o===it.o && x.t!==it.t).map(x=>x.t.toLowerCase()));
     let st=null;
-    for(let pokus=0; pokus<12; pokus++){
+    for(let pokus=0; pokus<40; pokus++){
       st = sl.map((s,i)=>{
         const dlha=[...s].some(jeDlha);
         let kand=podobneSlabiky(s, z, u===2).filter(x=>u>0 || dlha || ![...x].some(jeDlha));
@@ -923,13 +932,14 @@ function hra(el, o={}){
         }
         return zamiesaj([s, ...vyb.slice(0,2)]);
       });
-      let spravne=0;
-      const skus=(i, w)=>{ if(i===st.length){ if(w===t) spravne++; return; } st[i].forEach(x=>skus(i+1, w+x)); };
+      let spravne=0, ineSlovo=false;
+      const skus=(i, w)=>{ if(i===st.length){ if(w===t) spravne++; if(ine.has(w)) ineSlovo=true; return; } st[i].forEach(x=>skus(i+1, w+x)); };
       skus(0, "");
-      if(spravne===1) break;
+      if(spravne===1 && !ineSlovo) break;
     }
-    /* meno nie je, ale veľké písmeno na začiatku by sa zachovalo */
-    return st.map((c,i)=>c.map(x=>x===sl[i] ? it.sl[i] : x));
+    /* pri mene majú veľké písmeno všetky slabiky v prvom stĺpci, aby ho neprezradilo */
+    const velke = x => x[0].toUpperCase()+x.slice(1);
+    return st.map((c,i)=>c.map(x=>x===sl[i] ? it.sl[i] : (it.meno && i===0 ? velke(x) : x)));
   }
 
   function koniec(){
@@ -958,7 +968,7 @@ const POPIS = {
   postav:["Dieťa vidí obrázok a počuje slovo. Poskladá ho zo slabík, v ponuke je jedna slabika navyše.",
           "To isté, v ponuke sú podobné slabiky (la, le, lá) a pribudnú aj dlhšie slová.",
           "Slovo skladá po písmenkách. Pozor na dlhú a krátku samohlásku (a, á)."],
-  obrazok:["Hore sú dva stĺpce po troch slabikách, pri nich obrázok. Dieťa v každom stĺpci ťukne na jednu slabiku, aby vzniklo slovo z obrázka. Ostatné slabiky sa líšia viac (la, me, mi).",
+  obrazok:["Hore sú dva stĺpce po troch slabikách, pri nich obrázok. Dieťa v každom stĺpci ťukne na jednu slabiku, aby vzniklo slovo z obrázka. Ostatné slabiky sa líšia viac (la, me, mi). Pri obrázku dievčaťa alebo chlapca hľadá meno.",
            "To isté, slabiky v stĺpci sú podobné (la, le, lá) a niekedy je v stĺpci aj slabika z druhého (ma-la namiesto la-ma).",
            "Aj dlhšie slová: pri troch slabikách sú tri stĺpce, pribudnú zatvorené slabiky (mut, lón) a dlhé samohlásky."]
 };
