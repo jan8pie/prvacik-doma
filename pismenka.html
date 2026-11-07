@@ -143,6 +143,9 @@ html.velke .pk-k{text-transform:uppercase}
 .pk-sloty.skryte .pk-slot{min-width:calc(2*var(--k) + 14px)}
 .pk-sloty.skryte .pk-slot:empty{border-color:transparent;border-bottom-color:var(--ghost);border-radius:0}
 .pk-sloty.skryte .pk-slot:empty::after{display:none}
+/* po správnej odpovedi rámčeky sledujú čítanie: každá slabika vcelku (kým sa číta po slabikách), potom jeden rámček okolo celého slova */
+.pk-sloty.hotovo .pk-slot{border-color:transparent}
+.pk-sk.ok::before{content:"";position:absolute;left:1px;right:1px;top:1px;bottom:1px;border:3px solid var(--ok);border-radius:calc(var(--k)*.26);pointer-events:none}
 .pk-tacka{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;padding:6px 0;min-height:calc(var(--k) + 12px)}
 button.pk-g{border:0;padding:0;background:none;cursor:pointer;border-radius:calc(var(--k)*.2);touch-action:manipulation}
 button.pk-g.ok{outline:3px solid var(--ok);outline-offset:3px;cursor:default}
@@ -426,9 +429,12 @@ const ANIM = {
   /* prvky sa presunú z pôvodného miesta na nové (FLIP) */
   presun(els, pred, trvanie=420){
     if(this.ticho) return Promise.resolve();
+    const an=[];
     els.forEach(el=>{ const o=pred.get(el); if(!o) return; const n=el.getBoundingClientRect(); const dx=o.left-n.left, dy=o.top-n.top;
-      if(!dx&&!dy) return; el.animate([{transform:`translate(${dx}px,${dy}px)`},{transform:"none"}],{duration:trvanie,easing:"cubic-bezier(.3,.8,.25,1)"}); });
-    return pockaj(trvanie);
+      if(!dx&&!dy) return; an.push(el.animate([{transform:`translate(${dx}px,${dy}px)`},{transform:"none"}],{duration:trvanie,easing:"cubic-bezier(.3,.8,.25,1)"})); });
+    /* ďalší krok čaká, kým animácie naozaj skončia (na pomalom zariadení sa začnú neskôr než časovač); potom sa zrušia, aby kocka nezostala mimo miesta */
+    const hotovo = Promise.race([Promise.all(an.map(a=>a.finished.catch(()=>{}))), pockaj(trvanie+700)]);
+    return Promise.all([pockaj(trvanie), hotovo]).then(()=>an.forEach(a=>{ try{ a.cancel(); }catch(e){} }));
   },
   cvak(el){ if(this.ticho||!el) return; el.animate([{transform:"none"},{transform:"scale(1.08,.92)"},{transform:"none"}],{duration:260,easing:"ease-out"}); },
   /* trieda s animáciou sa po skončení zmaže: inak by sa animácia spustila znova, keď sa kocka presunie (napr. nápoveda + ťuknutie) */
@@ -816,8 +822,18 @@ function hra(el, o={}){
       zamok=true;
       if(!zle.length){
         /* veľké písmeno mena dáme na správne miesto (li-Li → Li-li) */
-        obsad.forEach((g,i)=>{ g.classList.add("ok"); if(g.dataset.t!==ciel[i]){ g.dataset.t=ciel[i]; g.textContent=""; [...ciel[i]].forEach(ch=>g.append(kocka(ch, slotSl[i]))); } }); ZVUK.ok(); st.className="pk-status ok"; st.textContent=`Áno! ${it.t}`;
-        await citaj(b, pismenka ? skupSlot : obsad, it.sl, true); if(b!==beh) return;
+        obsad.forEach((g,i)=>{ g.classList.remove("ok"); ANIM.stop(g); if(g.dataset.t!==ciel[i]){ g.dataset.t=ciel[i]; g.textContent=""; [...ciel[i]].forEach(ch=>g.append(kocka(ch, slotSl[i]))); } });
+        ZVUK.ok(); st.className="pk-status ok"; st.textContent=`Áno! ${it.t}`;
+        /* zelené rámčeky sledujú čítanie: najprv každá slabika vcelku (číta sa po slabikách), potom jeden okolo celého slova */
+        const skupiny = pismenka ? skupSlot : obsad;
+        slotyEl.classList.add("hotovo"); skupiny.forEach(x=>x.classList.add("ok"));
+        await citaj(b, skupiny, it.sl, false); if(b!==beh) return;
+        if(skupiny.length>1){
+          skupiny.forEach(x=>x.classList.remove("ok"));
+          const pred=ANIM.fotka(obsad); slotyEl.classList.add("spolu"); await ANIM.presun(obsad, pred, 380); if(b!==beh) return;
+          slotyEl.classList.add("ok");
+          await celeSlovo(b, [slotyEl], it.t); if(b!==beh) return;
+        }
         ANIM.ozij(obr); return dalsie(b, it.meno ? "" : "Výborne!");
       }
       ZVUK.zle();
@@ -995,13 +1011,16 @@ const uloz = () => { try{ localStorage.setItem("pismenka-nastavenie", JSON.strin
 /* hlas (rovnako ako v Hre s kockami: rozohriatie, pauza, nikdy neuseknúť) */
 const PAUZA_MS = 500;
 let sayTimer = null;
+/* niektoré hlasy čítajú samostatnú slabiku ako skratku (mil → milión); takým slabikám pošleme pravopis, ktorý znie rovnako */
+const VYSLOVNOST = {mil:"mill"};
+const hlasText = t => String(t).replace(/(^|[^\p{L}])(mil)(?=$|[^\p{L}])/giu, (m,pre,w)=>pre+VYSLOVNOST[w.toLowerCase()]);
 function say(t){
   if(!t || !document.getElementById("hlas-zap").checked) return Promise.resolve(false);
   try{
     if(!("speechSynthesis" in window)) throw 0;
     const ss = window.speechSynthesis; ss.cancel(); clearTimeout(sayTimer);
     const warm = new SpeechSynthesisUtterance("a"); warm.lang="sk-SK"; warm.volume=0.02;
-    const u = new SpeechSynthesisUtterance(t); u.lang="sk-SK"; u.rate = String(t).length<=8 ? .75 : .92;
+    const u = new SpeechSynthesisUtterance(hlasText(t)); u.lang="sk-SK"; u.rate = String(t).length<=8 ? .75 : .92;
     ss.speak(warm); sayTimer = setTimeout(()=>ss.speak(u), PAUZA_MS);
     return new Promise(res=>{ const od=Date.now(); let p, hot=false; const kon=v=>{ if(hot) return; hot=true; clearTimeout(p); res(v); };
       const kontrola=()=>{ if(ss.speaking && Date.now()-od<15000) p=setTimeout(kontrola,250); else kon(false); };
