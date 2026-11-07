@@ -7,7 +7,8 @@
      const h = Kocky.hra(prvok, {say, kol:5, priKonci});
      h.spusti({rezim:"spoj", rozsah:10, u:1, max:6}, {automaticky:true});
 
-   rezim    "kolko" (Koľko je?, pri u:2 dieťa číslo postaví) alebo "spoj" (+)
+   rezim    "kolko" (Koľko je?, pri u:2 dieťa číslo postaví), "spoj" (+) alebo
+            "stavby" (obrázky z kociek: u:0 spočítaj, u:1 kde je viac, u:2 koľko chýba)
    rozsah   10, 20 alebo 100
    u        0 Ľahšie, 1 Bežné, 2 Výzva
    max      (nepovinné) najväčšie číslo pri rozsahu 10, napr. 6 podľa témy v škole
@@ -50,6 +51,12 @@ const ANIM = {
     col.animate([{transform:"none"},{transform:"scale(1.08,1.03)"},{transform:"none"}],{duration:420,easing:"ease-in-out"});
     return pockaj(450);
   },
+  /* prázdne miesta sa postupne zaplnia kockami */
+  objav(els, {oneskorenie=110}={}){
+    if(this.ticho||!els.length) return Promise.resolve();
+    els.forEach((el,i)=>el.animate([{transform:"scale(0)",opacity:0},{transform:"scale(1.15)",opacity:1,offset:.7},{transform:"none"}],{duration:320,delay:i*oneskorenie,easing:"ease-out",fill:"backwards"}));
+    return pockaj((els.length-1)*oneskorenie+340);
+  },
   tras(el){ if(!el) return; el.classList.remove("kk-tras"); void el.offsetWidth; el.classList.add("kk-tras"); }
 };
 
@@ -74,19 +81,24 @@ function velkost(scene, pocetStlpcov, skupin){
   scene.style.setProperty("--k", k+"px");
   scene.style.setProperty("--g", Math.max(2, Math.round(k*.12))+"px");
 }
+/* rámiky jednej skupiny; číslo nad rámikom počíta len kocky (nie prázdne miesta) */
+function stlpce(g){
+  const c=document.createElement("div"); c.className="kk-cols";
+  g.stlpce.forEach(st=>{
+    const w=document.createElement("div"); w.className="kk-colw";
+    const plne=st.kusy.filter(k=>!k.classList.contains("kk-duch")).length;
+    const n=document.createElement("div"); n.className="kk-cnum"; n.textContent = plne ? plne : "";
+    const s=document.createElement("div"); s.className="kk-col "+(st.rod?"rod":"ones");
+    st.kusy.forEach((k,j)=>{ k.classList.toggle("h", j>=5); k.style.gridArea=""; });   /* 1 – 5 tmavší odtieň, 6 – 10 svetlejší */
+    s.append(...st.kusy); w.append(n,s); c.append(w);
+  });
+  return c;
+}
 function vykresli(scene, skupiny, {znamienko=false}={}){
   scene.replaceChildren();
   skupiny.forEach((g,i)=>{
     if(i>0 && znamienko){ const p=document.createElement("div"); p.className="kk-plus"; p.textContent="+"; scene.append(p); }
-    const c=document.createElement("div"); c.className="kk-cols";
-    g.stlpce.forEach(st=>{
-      const w=document.createElement("div"); w.className="kk-colw";
-      const n=document.createElement("div"); n.className="kk-cnum"; n.textContent = st.kusy.length ? st.kusy.length : "";
-      const s=document.createElement("div"); s.className="kk-col "+(st.rod?"rod":"ones");
-      st.kusy.forEach((k,j)=>k.classList.toggle("h", j>=5));   /* 1 – 5 tmavší odtieň, 6 – 10 svetlejší */
-      s.append(...st.kusy); w.append(n,s); c.append(w);
-    });
-    scene.append(c);
+    scene.append(stlpce(g));
   });
 }
 
@@ -118,6 +130,105 @@ function prikladSpoj(cfg){
   else { if(u===0){ do{ a=nah(11,68); b=nah(10,99-a); }while(a%10+b%10>9 || b%10===0 && a%10===0); }
          else { do{ a=nah(15,69); b=nah(5,99-a); }while(a%10+b%10<10 || a%10===0 || b%10===0); } }
   return [a,b];
+}
+
+/* ===== Stavby z kociek: obrázky a stavby, ktoré sa dajú upratať do rámikov =====
+   Obrázok = mriežka, # je kocka. Počet kociek sa ráta sám. Mená sú v 1. páde („Koľko kociek má …?“). */
+const VZORY = [
+  ["dom",      ".#./###/#.#"],
+  ["stolička", "#../#../###/#.#"],
+  ["auto",     ".##./####/#..#"],
+  ["raketa",   ".#./###/###/#.#"],
+  ["schody",   "#.../##../###./####"],
+  ["hríb",     ".###./#####/..#../..#.."],
+  ["jedlička", "..#../.###./#####/..#.."],
+  ["auto",     ".###./#####/.#.#."],
+  ["loďka",    "..#../..##./#####/.###."],
+  ["srdce",    "##.##/#####/.###./..#.."],
+  ["strom",    "..#../.###./#####/.###./..#../..#.."],
+  ["dom",      "..#../.###./#####/.#.##/.#.##"],
+  ["schody",   "#..../##.../###../####./#####"],
+  ["pes",      "....##/#...##/#####./#####./#...#."],
+  ["raketa",   "..#../.###./.###./.###./#####/#.#.#"],
+  ["auto",     "..###../#######/#######/.#...#."],
+  ["ryba",     "..##.../.####.#/#######/.####.#/..##..."],
+  ["vláčik",   "#....../###.###/#######/#######/.#.#.#."],
+  ["hrad",     "#.#.#.#/#######/#######/##...##/##...##"],
+  ["robot",    "..###../..###../#######/#.###.#/#.###.#/..#.#../..#.#.."],
+  ["raketa",   "...#.../..###../..###../..###../..###../.#####./##.#.##/#..#..#"],
+  ["dom",      "...#.../..###../.#####./#######/.#####./.##.##./.##.##."],
+  ["loď",      "...#..../...##.../...###../...####./...#..../########/.######./..####.."],
+  ["strom",    "...#.../..###../.#####./#######/..###../.#####./#######/...#.../...#..."],
+  ["hrad",     "#.#.#.#.#/#########/#########/###.#.###/###...###/###...###"]
+].map(([meno, kresba])=>{
+  const r=kresba.split("/"), bunky=[];
+  r.forEach((riadok,y)=>[...riadok].forEach((z,x)=>{ if(z==="#") bunky.push([x,y]); }));
+  return {meno, w:Math.max(...r.map(x=>x.length)), h:r.length, bunky};
+});
+const kopia = v => ({meno:v.meno, w:v.w, h:v.h, bunky:v.bunky.map(b=>[...b])});
+/* stavba: stĺpce rôznej výšky, spolu presne n kociek */
+function stavba(n, {kompakt=false}={}){
+  const maxH = n<=10?5:n<=20?6:8;
+  const wMin=Math.max(1,Math.ceil(n/maxH)), wMax=Math.max(wMin, Math.min(n, 9, Math.ceil(Math.sqrt(n))+(kompakt?0:2)));
+  let w = nah(wMin, wMax); if(n>=4 && w===1) w=Math.min(wMax,2);
+  const v=Array(w).fill(1); let zvys=n-w;
+  while(zvys>0){ const i=nah(0,w-1); if(v[i]<maxH){ v[i]++; zvys--; } }
+  const h=Math.max(...v), bunky=[];
+  v.forEach((vy,x)=>{ for(let j=0;j<vy;j++) bunky.push([x,h-1-j]); });
+  return {meno: w===1?"veža":"stavba", w, h, bunky};
+}
+/* had: dlhý a tenký, vyzerá väčší, než je (dobré pri porovnávaní) */
+function had(n){
+  const w = n<=10?3:n<=20?4:6, bunky=[];
+  let x=0, y=0, smer=1;
+  while(bunky.length<n){
+    bunky.push([x,y]);
+    if(y%2===0){ const nx=x+smer; if(nx<0||nx>=w){ y++; } else x=nx; }
+    else { y++; smer=-smer; }
+  }
+  return {meno:"had", w, h:y+1, bunky};
+}
+function tvar(n, typ){
+  const v=VZORY.filter(x=>x.bunky.length===n);
+  if(typ==="had" && n>=4) return had(n);
+  if(typ==="kompakt") return v.length && Math.random()<.7 ? kopia(v[nah(0,v.length-1)]) : stavba(n,{kompakt:true});
+  const r=Math.random();
+  if(v.length && r<.6) return kopia(v[nah(0,v.length-1)]);
+  return r<.8 || n<4 ? stavba(n) : had(n);
+}
+function tvarVRozsahu(lo, hi){
+  const v=VZORY.filter(x=>x.bunky.length>=lo && x.bunky.length<=hi);
+  if(v.length && Math.random()<.65) return kopia(v[nah(0,v.length-1)]);
+  return tvar(nah(lo,hi));
+}
+const rozpatieStavby = cfg => { const M=strop(cfg); return cfg.rozsah===10?[Math.min(3,M),M]:cfg.rozsah===20?[11,20]:[21,50]; };
+/* veľkosť kocky tak, aby sa zmestila stavba aj rámiky (kocky pri upratovaní nemenia veľkosť) */
+function velkostStavby(scene, boxy){
+  scene._vs=boxy;
+  const W = scene.clientWidth || 320, vKid=!!scene.closest(".kid");
+  const H = Math.min(window.innerHeight*(vKid?.44:.40), 420);
+  const Wb = boxy.length>1 ? (W-16)/2 - 20 : W;
+  let k=40;
+  boxy.forEach(b=>{ k=Math.min(k, Math.floor(Wb/(b.w*1.12)), Math.floor((H-24)/(b.h*1.12)), Math.floor(Wb/b.stlpcov - 18)); });
+  k = Math.min(k, Math.floor((H-40)/11.3));
+  k = Math.max(10,k);
+  scene.style.setProperty("--k", k+"px");
+  scene.style.setProperty("--g", Math.max(2, Math.round(k*.12))+"px");
+}
+/* nakreslí stavbu do mriežky; bunky = [{x,y,el}] */
+function mriezka(s){
+  const m=document.createElement("div"); m.className="kk-stavba";
+  m.style.gridTemplateColumns=`repeat(${s.w}, var(--k))`; m.style.gridTemplateRows=`repeat(${s.h}, var(--k))`;
+  s.bunky.forEach(b=>{ b.el.classList.remove("h"); b.el.style.gridArea=`${b.y+1} / ${b.x+1}`; m.append(b.el); });
+  return m;
+}
+/* poradie pri upratovaní: zdola nahor, zľava doprava; kocky po 10 do rámikov (ako skupina()) */
+const zdola = bunky => [...bunky].sort((p,q)=>q.y-p.y || p.x-q.x);
+function doRamikov(kusy){
+  const st=[];
+  for(let i=0;i+10<=kusy.length;i+=10) st.push({rod:true, kusy:kusy.slice(i,i+10)});
+  st.push({rod:false, kusy:kusy.slice(Math.floor(kusy.length/10)*10)});
+  return {stlpce:st};
 }
 
 const IK_HLAS = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/></svg>';
@@ -173,6 +284,7 @@ function hra(el, o={}){
   function noveKolo(){
     if(kolo>=KOL) return koniec();
     const b=beh;
+    if(cfg.rezim==="stavby") return koloStavby(b);
     if(cfg.rezim==="kolko" && cfg.u===2) return koloPostav(b);
     if(cfg.rezim==="kolko") return koloKolko(b);
     return koloSpoj(b);
@@ -294,6 +406,116 @@ function hra(el, o={}){
     });
   }
 
+  /* ===== Stavby z kociek ===== */
+  function unikatK(f, kluc){ let x, i=0; do{ x=f(); i++; }while(posledne.has(kluc(x)) && i<30); posledne.add(kluc(x)); return x; }
+  /* ťuknutie na kocku (alebo prázdne miesto) ju očísluje; ťuknutie na poslednú číslo zruší */
+  function cislovanie(sc){
+    const rady={k:[], d:[]};
+    sc.onclick = e=>{
+      const k=e.target.closest(".kk-stavba .kk-k"); if(!k||zamok) return;
+      const r=rady[k.classList.contains("kk-duch")?"d":"k"];
+      if(k.dataset.zn){ if(r[r.length-1]===k){ r.pop(); delete k.dataset.zn; k.textContent=""; } return; }
+      r.push(k); k.dataset.zn=r.length; k.textContent=r.length; say(String(r.length));
+    };
+    return () => { rady.k.length=0; rady.d.length=0; sc.querySelectorAll(".kk-k").forEach(k=>{ delete k.dataset.zn; k.textContent=""; }); };
+  }
+  const IK_UPRAC = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="6" height="18" rx="1.5"/><rect x="14" y="11" width="6" height="10" rx="1.5" stroke-dasharray="2.5 2"/></svg>';
+  const velke = t => t.charAt(0).toUpperCase()+t.slice(1);
+
+  /* ● Koľko kociek má stavba?   ●●● Koľko kociek chýba? */
+  function koloStavby(b){
+    if(cfg.u===1) return koloPorovnaj(b);
+    const dopln=cfg.u===2, [fa,fb]=farby(), [lo,hi]=rozpatieStavby(cfg);
+    const s=unikatK(()=> dopln && cfg.rozsah===10 ? tvar(hi) : tvarVRozsahu(lo,hi), x=>x.meno+x.bunky.length);
+    const t=s.bunky.length;
+    const m = !dopln ? 0 : cfg.rozsah===10 ? nah(Math.min(2,t-1), Math.max(1,t-2)) : cfg.rozsah===20 ? nah(2, Math.min(9,t-3)) : nah(3, Math.min(15,t-6));
+    const a=t-m;
+    /* chýbajú horné kocky: stavba ešte nie je dostavaná */
+    const bunky=[...s.bunky].sort((p,q)=>p[1]-q[1] || p[0]-q[0]).map(([x,y],i)=>{ const el=kocka(i<m?fb:fa); if(i<m) el.classList.add("kk-duch"); return {x,y,el,chyba:i<m}; });
+    el.innerHTML = `${hlavicka()}<p class="kk-zadanie">${dopln?"Koľko kociek chýba?":`Koľko kociek má ${s.meno}?`}</p><div class="kk-scene kk-bez-cisel"></div>
+      <div class="kk-row"><button class="btn" type="button" data-uprac>${IK_UPRAC}Uprac do rámikov</button></div>
+      <p class="kk-rovnica">${dopln?`<span class="kk-t${fa}">${a}</span> + <span class="kk-vys">?</span> = <span>${t}</span>`:`<span class="kk-vys">?</span>`}</p>
+      <div class="kk-vstup"></div><p class="kk-status" role="status"></p>`;
+    const sc=el.querySelector(".kk-scene"), st=el.querySelector(".kk-status"), upBtn=el.querySelector("[data-uprac]");
+    velkostStavby(sc, [{w:s.w, h:s.h, stlpcov:Math.floor(t/10)+1}]);
+    sc.append(mriezka({...s, bunky})); ANIM.presun(sc,null,{oneskorenie:t>20?8:30});
+    const zrus=cislovanie(sc);
+    zadaj(dopln?"Koľko kociek chýba? Ťukni na prázdne miesta a počítaj":`Koľko kociek má ${s.meno}?`);
+    /* najprv kocky stavby, potom chýbajúce (aj keď sú už doplnené), aby farby išli za sebou */
+    const zoradene = () => [...zdola(bunky.filter(x=>!x.chyba)), ...zdola(bunky.filter(x=>x.chyba))].map(x=>x.el);
+    let upratane=false, g=null;
+    const uprac = async () => {
+      if(upratane) return; upratane=true; upBtn.hidden=true; zrus();
+      const pred=ANIM.fotka(sc); g=doRamikov(zoradene()); vykresli(sc,[g]);
+      await ANIM.presun(sc,pred,{trvanie:750, oneskorenie:t>20?10:35});
+    };
+    upBtn.onclick=async()=>{ if(zamok) return; zamok=true; await uprac(); zamok=false;
+      if(t>10) say(dopln?"Koľko prázdnych miest je v rámikoch?":"Spočítaj plné rámiky: 10, 20, 30… a potom kocky navyše"); };
+    vstup(el.querySelector(".kk-vstup"), {spravne:dopln?m:t, moznosti:moznosti(dopln?m:t, 1, cfg), slot:el.querySelector(".kk-vys"),
+      napoveda:()=>sc.classList.remove("kk-bez-cisel"),
+      ok:async()=>{
+        zamok=true; upBtn.hidden=true; zrus();
+        st.className="kk-status ok"; st.textContent = dopln?`Áno! ${a} + ${m} = ${t}`:`Áno! ${t}`;
+        if(dopln){ const d=[...sc.querySelectorAll(".kk-duch")]; d.forEach(x=>x.classList.remove("kk-duch")); await ANIM.objav(d,{oneskorenie:t>20?60:110}); if(upratane) vykresli(sc,[g]); }
+        if(!upratane){ await pockaj(350); await uprac(); }
+        sc.classList.remove("kk-bez-cisel");
+        dalsie(b, dopln?`Áno! ${a} a ${m} je ${t}`:`Áno! ${velke(s.meno)} má ${kock(t)}${t>10?`. To sú ${popis(t)}`:""}`);
+      },
+      zle:()=>rada(st, dopln
+        ? (upratane?"Skús ešte raz. Spočítaj prázdne miesta":"Skús ešte raz. Ťukni na každé prázdne miesto a počítaj")
+        : (t<=10?"Skús ešte raz. Ťukni na každú kocku a počítaj":upratane?"Skús ešte raz. Spočítaj plné rámiky: 10, 20, 30… a potom kocky navyše":"Skús ešte raz. Ťukni na Uprac do rámikov"))
+    });
+  }
+
+  /* ●● Kde je viac (menej) kociek? Tvar klame, rámiky povedia pravdu. */
+  function koloPorovnaj(b){
+    const R=cfg.rozsah, M=strop(cfg), [fa,fb]=farby();
+    const [lo,hi] = R===10?[Math.min(2,M),M]:R===20?[8,20]:[20,45], dmax = R===10?2:R===20?3:5;
+    const [nA,nB] = unikatK(()=>{ let x,y; do{ x=nah(lo,hi); y = Math.random()<.2 ? x : x+nah(1,dmax)*(Math.random()<.5?1:-1); }while(y<Math.max(1,lo-1)||y>hi); return [x,y]; }, p=>"p"+p);
+    const viac = Math.random()<.65;
+    /* polovica kôl klame: menšie číslo je dlhý had, väčšie je kompaktná stavba */
+    const klam = nA!==nB && Math.random()<.5;
+    const typ = n => klam ? (n===Math.min(nA,nB)?"had":"kompakt") : null;
+    const sA=tvar(nA, typ(nA)), sB=tvar(nB, typ(nB));
+    const bA=sA.bunky.map(([x,y])=>({x,y,el:kocka(fa)})), bB=sB.bunky.map(([x,y])=>({x,y,el:kocka(fb)}));
+    const spravne = nA===nB ? "=" : (nA>nB)===viac ? "0" : "1";
+    el.innerHTML = `${hlavicka()}<p class="kk-zadanie">Kde je <b>${viac?"viac":"menej"}</b> kociek?</p>
+      <div class="kk-scene kk-dve kk-bez-cisel"><div class="kk-box" role="button" tabindex="0" data-volba="0" aria-label="Ľavá stavba"></div><div class="kk-box" role="button" tabindex="0" data-volba="1" aria-label="Pravá stavba"></div></div>
+      <p class="kk-rovnica" hidden></p>
+      <div class="kk-row"><button class="btn" type="button" data-uprac>${IK_UPRAC}Uprac do rámikov</button><button class="btn" type="button" data-volba="=">Rovnako</button></div>
+      <p class="kk-status" role="status"></p>`;
+    const sc=el.querySelector(".kk-scene"), st=el.querySelector(".kk-status"), upBtn=el.querySelector("[data-uprac]"), [boxA,boxB]=sc.querySelectorAll(".kk-box");
+    velkostStavby(sc, [{w:sA.w,h:sA.h,stlpcov:Math.floor(nA/10)+1},{w:sB.w,h:sB.h,stlpcov:Math.floor(nB/10)+1}]);
+    boxA.append(mriezka({...sA,bunky:bA})); boxB.append(mriezka({...sB,bunky:bB})); ANIM.presun(sc,null,{oneskorenie:nA+nB>30?6:20});
+    zadaj(`Kde je ${viac?"viac":"menej"} kociek? Ťukni na stavbu, alebo na Rovnako`);
+    let upratane=false, hotovo=false;
+    const uprac = async () => {
+      if(upratane) return; upratane=true; upBtn.hidden=true;
+      const pred=ANIM.fotka(sc);
+      boxA.replaceChildren(stlpce(doRamikov(zdola(bA).map(x=>x.el)))); boxB.replaceChildren(stlpce(doRamikov(zdola(bB).map(x=>x.el))));
+      await ANIM.presun(sc,pred,{trvanie:750, oneskorenie:nA+nB>30?8:28});
+    };
+    upBtn.onclick=async()=>{ if(zamok) return; zamok=true; await uprac(); zamok=false; };
+    const zvol = async v => {
+      if(zamok||hotovo) return;
+      const ciel = v==="="?el.querySelector('.kk-row [data-volba="="]'):v==="0"?boxA:boxB;
+      if(ciel.classList.contains("no")) return;
+      if(v!==spravne){ ciel.classList.add("no"); ANIM.tras(ciel);
+        rada(st, upratane ? (R===10?"Skús ešte raz. Porovnaj, kde je vyšší stĺpec":"Skús ešte raz. Porovnaj plné rámiky a potom kocky navyše") : "Skús ešte raz. Ťukni na Uprac do rámikov a porovnaj");
+        return; }
+      hotovo=true; zamok=true; ciel.classList.add("ok"); upBtn.hidden=true;
+      if(!upratane){ await pockaj(300); await uprac(); }
+      sc.classList.remove("kk-bez-cisel");
+      const zn = nA===nB?"=":nA>nB?">":"<", rov=el.querySelector(".kk-rovnica");
+      rov.innerHTML=`<span class="kk-t${fa}">${nA}</span> ${zn} <span class="kk-t${fb}">${nB}</span>`; rov.hidden=false;
+      const vac=Math.max(nA,nB), men=Math.min(nA,nB);
+      st.className="kk-status ok"; st.textContent=`Áno! ${nA} ${zn} ${nB}`;
+      dalsie(b, nA===nB ? `Áno! Na oboch stranách je ${kock(nA)}` : viac ? `Áno! ${vac} je viac ako ${men}` : `Áno! ${men} je menej ako ${vac}`);
+    };
+    el.querySelectorAll("[data-volba]").forEach(x=>{ x.onclick=()=>zvol(x.dataset.volba);
+      if(x.classList.contains("kk-box")) x.onkeydown=e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); zvol(x.dataset.volba); } }; });
+  }
+
   function koniec(){
     if(o.priKonci && o.priKonci()) return;
     el.innerHTML = `<div class="kk-koniec">${IK_HVIEZDA}
@@ -304,7 +526,7 @@ function hra(el, o={}){
     if(e.target.closest("[data-zopakuj]")) say(zadanieHlas);
     if(e.target.closest("[data-znova]")){ automaticky=true; novyBeh(); }
   });
-  let rs; addEventListener("resize",()=>{ clearTimeout(rs); rs=setTimeout(()=>{ const sc=el.querySelector(".kk-scene"); if(sc&&sc._v) velkost(sc, ...sc._v); },150); });
+  let rs; addEventListener("resize",()=>{ clearTimeout(rs); rs=setTimeout(()=>{ const sc=el.querySelector(".kk-scene"); if(sc&&sc._vs) velkostStavby(sc, sc._vs); else if(sc&&sc._v) velkost(sc, ...sc._v); },150); });
 
   return {
     /* nové nastavenie a nová hra od 1. kola; automaticky = hneď prečítať zadanie */
