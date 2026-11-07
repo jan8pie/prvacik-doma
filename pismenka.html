@@ -137,6 +137,12 @@ html.velke .pk-k{text-transform:uppercase}
   border:3px dashed var(--ghost);border-radius:calc(var(--k)*.26);padding:4px}
 .pk-slot.sl::after{content:"";position:absolute;left:12%;right:12%;top:calc(100% + 5px);height:calc(var(--k)*.24);border:3px solid var(--arc);border-top:0;border-radius:0 0 50% 50% / 0 0 100% 100%}
 .pk-sk{position:relative;display:flex;gap:4px;transition:transform .25s ease}
+/* Slabiky: kým dieťa nič nevyberie, je pod stĺpcami len jedna čiarkovaná čiara (nie rámčeky podľa dĺžky slabík).
+   Rámček a oblúčik pribudnú až okolo zvolenej slabiky, správnej aj nesprávnej. Všetky miesta majú rovnakú šírku (2 kocky). */
+.pk-sloty.skryte{gap:calc(var(--k)*.08)}
+.pk-sloty.skryte .pk-slot{min-width:calc(2*var(--k) + 14px)}
+.pk-sloty.skryte .pk-slot:empty{border-color:transparent;border-bottom-color:var(--ghost);border-radius:0}
+.pk-sloty.skryte .pk-slot:empty::after{display:none}
 .pk-tacka{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;padding:6px 0;min-height:calc(var(--k) + 12px)}
 button.pk-g{border:0;padding:0;background:none;cursor:pointer;border-radius:calc(var(--k)*.2);touch-action:manipulation}
 button.pk-g.ok{outline:3px solid var(--ok);outline-offset:3px;cursor:default}
@@ -771,6 +777,7 @@ function hra(el, o={}){
     if(pismenka){
       it.sl.forEach((s,si)=>{ const sk=document.createElement("span"); sk.className="pk-sk"; [...s].forEach(ch=>{ const x=document.createElement("span"); x.className="pk-slot"; x.style.setProperty("--w", jeDlha(ch)?1.55:1); sk.append(x); sloty.push(x); slotSl.push(si); }); slotyEl.append(sk); skupSlot.push(sk); });
     } else {
+      slotyEl.classList.add("skryte");
       it.sl.forEach((s,si)=>{ const x=document.createElement("span"); x.className="pk-slot sl"; x.style.setProperty("--w", sirka(s)); slotyEl.append(x); sloty.push(x); slotSl.push(si); });
     }
     const nap=document.createElement("button"); nap.type="button"; nap.className="pk-nap"; nap.textContent="?"; nap.setAttribute("aria-label","Nápoveda");
@@ -778,7 +785,7 @@ function hra(el, o={}){
     const kusy = zamiesaj([...ciel, ...navyse]).map((t,i)=>{ const g=document.createElement("button"); g.type="button"; g.className="pk-g"; g.dataset.t=t; g.dataset.i=i; g.setAttribute("aria-label",t); [...t].forEach(ch=>g.append(kocka(ch,"n"))); return g; });
     tacka.append(...kusy);
     const obsad=Array(ciel.length).fill(null), zamk=Array(ciel.length).fill(false);
-    const jednotky = pismenka ? sirka(it.t)*1.2 + (it.sl.length-1)*.35 : sirka(it.t) + (it.sl.length-1)*.35;
+    const jednotky = pismenka ? sirka(it.t)*1.2 + (it.sl.length-1)*.35 : it.sl.reduce((a,x)=>a+Math.max(sirka(x),2),0) + (it.sl.length-1)*.35;
     nastavK(Math.max(jednotky, 3.2), 60 + ciel.length*16);
 
     function doTacky(g){ const i=+g.dataset.i; const za=[...tacka.children].find(x=>+x.dataset.i>i); tacka.insertBefore(g, za||null); }
@@ -862,14 +869,14 @@ function hra(el, o={}){
     el.innerHTML = `${hlavicka()}<p class="pk-zad">${it.meno?"Ako sa volá?":"Čo je na obrázku?"}</p>
       <div class="pk-obl"><div class="pk-lavo">
         <div class="pk-stlpce" role="group" aria-label="Slabiky">${stlpce.map((c,ci)=>`<div class="pk-stlpec">${c.map((t,ri)=>`<span class="pk-bunka" style="--w:${sir[ci]}"><button class="pk-g" type="button" data-t="${t}" data-c="${ci}" data-r="${ri}" aria-label="${t}"></button></span>`).join("")}</div>`).join("")}</div>
-        <div class="pk-riadok"><div class="pk-sloty">${sir.map(w=>`<span class="pk-slot sl" style="--w:${w}"></span>`).join("")}</div><button class="pk-nap" type="button" aria-label="Nápoveda">?</button></div>
+        <div class="pk-riadok"><div class="pk-sloty skryte">${sir.map(w=>`<span class="pk-slot sl" style="--w:${w}"></span>`).join("")}</div><button class="pk-nap" type="button" aria-label="Nápoveda">?</button></div>
       </div><button class="pk-obr velky stred" type="button" data-hlas aria-label="Vypočuj slovo">${svg(it.o)}</button></div>
       <p class="pk-status" role="status"></p>`;
     const stlpEl=el.querySelector(".pk-stlpce"), slotyEl=el.querySelector(".pk-sloty"), st=el.querySelector(".pk-status"), obr=el.querySelector("[data-hlas]"), nap=el.querySelector(".pk-nap");
     const sloty=[...slotyEl.children], kusy=[...stlpEl.querySelectorAll(".pk-g")];
     kusy.forEach(g=>[...g.dataset.t].forEach(ch=>g.append(kocka(ch, +g.dataset.c))));
     const vyb=Array(n).fill(null), zamk=Array(n).fill(false);
-    nastavK(sir.reduce((a,w)=>a+w,0) + n*.3 + (n-1)*.5, 24, jeKid() ? 84 : 60);
+    nastavK(sir.reduce((a,w)=>a+Math.max(w,2),0) + n*.3 + (n-1)*.5, 24, jeKid() ? 84 : 60);
 
     const domov = g => stlpEl.children[+g.dataset.c].children[+g.dataset.r].append(g);
     async function presun(zmena){ const pred=ANIM.fotka(kusy); zmena(); ZVUK.tuk(); await ANIM.presun(kusy, pred, 340); }
