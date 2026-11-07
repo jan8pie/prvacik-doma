@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Hra s kockami · Prváčik doma</title>
-<meta name="description" content="Hra pre prvákov: čísla do 100 ako kocky a desiatky, sčítanie s prechodom cez desiatku, s hlasom.">
+<meta name="description" content="Hra pre prvákov: čísla do 100 ako kocky a desiatky, sčítanie s prechodom cez desiatku, stavby z kociek, s hlasom.">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Lexend:wght@500;600;700&display=swap">
@@ -48,6 +48,7 @@ button{font:inherit;color:inherit}
 .segbtn{border:1px solid var(--line);background:var(--soft);border-radius:10px;padding:8px 14px;cursor:pointer;font-family:var(--f-head);font-weight:500;font-size:15px;min-height:44px}
 .segbtn[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
 .segbtn .d{letter-spacing:.05em;margin-right:6px}
+.segbtn small{font-size:11px;font-weight:700;background:var(--hint);color:var(--hint-ink);border-radius:6px;padding:1px 6px;margin-left:4px;vertical-align:2px}
 .levelnote{font-size:15px;color:var(--muted);margin:0}
 .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--line);background:var(--card);border-radius:12px;padding:10px 16px;min-height:48px;cursor:pointer;font-family:var(--f-head);font-weight:600;font-size:16px}
@@ -86,6 +87,7 @@ label.chk{display:inline-flex;gap:8px;align-items:center;font-size:15px;color:va
       <div class="seg" role="group" aria-labelledby="l-rezim" id="seg-rezim">
         <button class="segbtn" data-rezim="kolko">Koľko je?</button>
         <button class="segbtn" data-rezim="spoj">Spoj kocky (+)</button>
+        <button class="segbtn" data-rezim="stavby">Stavby z kociek <small>nové</small></button>
       </div></div>
     <div class="set"><span class="set-l" id="l-rozsah">Čísla</span>
       <div class="seg" role="group" aria-labelledby="l-rozsah" id="seg-rozsah">
@@ -112,6 +114,7 @@ label.chk{display:inline-flex;gap:8px;align-items:center;font-size:15px;color:va
     <ul class="tips">
       <li><b>Plný rámik je desiatka.</b> Kocky v čiarkovanom rámiku sú navyše. Kocky 1 – 5 majú tmavší odtieň, 6 – 10 svetlejší, aby sa dalo rýchlo vidieť, koľko chýba do desiatky.</li>
       <li><b>Spoj kocky:</b> druhé číslo najprv doplní prvé do plného rámika. Tak dieťa vidí, čo znamená prechod cez desiatku (napríklad 47 + 24).</li>
+      <li><b>Stavby z kociek:</b> kocky sú poskladané do obrázka, nie do rámikov. Tlačidlo <i>Uprac do rámikov</i> ich zoradí po desať, takže dieťa zažije, prečo sa oplatí počítať po desiatkach. Pri porovnávaní tvar klame (dlhý had verzus malý dom), rámiky povedia pravdu.</li>
       <li><b>Odpoveď</b> dieťa napíše radom číslic (dvojciferné číslo zľava). Žltý otáznik vedľa odpovede ukáže možnosti na výber.</li>
       <li>Päť kôl trvá pár minút. K vám sa vrátite podržaním tlačidla <i>Späť k rodičovi</i>.</li>
     </ul>
@@ -126,6 +129,7 @@ const KOL = 5;
 const UROVNE = [["●","Ľahšie"],["●●","Bežné"],["●●●","Výzva"]];
 const POPIS = {
   kolko:["Kocky sú pekne v rámikoch, dieťa napíše číslo. Pod ? sú 3 možnosti.","Väčšie čísla. Pod ? sú 4 možnosti s chytákmi (napr. 47 a 74).","Dieťa vidí číslicu a kocky postaví samo (pridá desiatku alebo kocku)."],
+  stavby:["Obrázok z kociek (dom, raketa, pes…). Dieťa kocky spočíta, ťuknutím si ich môže očíslovať. Uprac do rámikov ich zoradí po desať.","Dve stavby: kde je viac (alebo menej) kociek? Tvar klame, dlhý had môže mať menej kociek ako malý dom. Pravdu povedia rámiky.","Stavba nie je dostavaná: koľko kociek chýba? Do 10 je to doplnenie do desiatky (6 + ? = 10)."],
   spoj:["Dieťa ťukne Spoj a spočíta, koľko je spolu. Bez prechodu cez desiatku.","Spoj s prechodom cez desiatku: druhé číslo doplní prvé do plného rámika.","Najprv odhadni výsledok, až potom sa kocky spoja a ukážu, či to sedí."]
 };
 let cfg = {rezim:"kolko", rozsah:10, u:1};
