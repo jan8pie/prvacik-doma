@@ -64,15 +64,17 @@ button:focus-visible{outline:3px solid var(--anj);outline-offset:3px}
   transition:transform .2s ease,border-color .15s ease}
 .sl-tile:hover{border-color:var(--anj)}
 .sl-tile:active{transform:scale(.97)}
+.sl-tile{container-type:inline-size}
 .sl-tile .sl-obr{width:100%;height:100%;max-height:120px}
 .sl-tile .sl-slovo{font-family:var(--f-word);font-weight:700;font-size:clamp(22px,3.4vw,28px);min-height:36px;line-height:36px;color:var(--ink)}
 .sl-tile .sl-pocul{position:absolute;top:9px;right:9px;width:12px;height:12px;border-radius:50%;background:var(--anj)}
 
 /* obrázok: emoji, farebná škvrna, kocka, vlastné svg, scénka */
-.sl-obr{display:grid;place-items:center;font-family:var(--f-emoji);line-height:1}
+.sl-obr{display:grid;place-items:center;font-family:var(--f-emoji);line-height:1;min-width:0;max-width:100%;overflow:hidden}
+/* .sl-tile má container-type, aby sa scénka z dvoch emoji vždy zmestila do rámčeka a ostala v strede */
 .sl-obr .em{font-size:var(--em,76px)}
 .sl-obr.scena{display:flex;align-items:center;justify-content:center;gap:.06em}
-.sl-obr.scena .em{font-size:calc(var(--em,76px)*.72)}
+.sl-obr.scena .em{font-size:min(calc(var(--em,76px)*.6),30cqw)}
 .sl-obr svg{width:auto;height:var(--em,76px);max-width:100%;aspect-ratio:1}
 
 /* hovoriaci obrázok */
