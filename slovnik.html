@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Obrázkový slovník · Prváčik doma</title>
+<meta name="description" content="Obrázkový slovník angličtiny pre prvákov: dieťa ťukne na obrázok, tablet slovo pomaly povie a napísané slovo ukáže až potom, len na chvíľu.">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Andika:wght@400;700&family=Atkinson+Hyperlegible:wght@400;700&family=Lexend:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="slovnik.css?v=2">
+</head>
+<body>
+<div class="sl-wrap">
+  <a class="sl-spat" href="./">← Prváčik doma</a>
+  <header class="sl-head">
+    <div class="sl-title"><span class="sl-tag">Angličtina</span><h1>Obrázkový slovník</h1></div>
+    <button class="sl-rodic" id="btnRodic" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>Pre rodiča</button>
+  </header>
+  <div class="sl-oznam" id="oznam" hidden></div>
+  <nav class="sl-temy" id="temy" aria-label="Témy"></nav>
+  <p class="sl-pokyn" id="pokyn">Ťukni na obrázok. Tablet povie slovo po anglicky.</p>
+  <main class="sl-mriezka" id="mriezka"></main>
+</div>
+
+<script src="anj-slova.js?v=2"></script>
+<script src="slovnik.js?v=2"></script>
+</body>
+</html>
