@@ -2,7 +2,7 @@
    OBRÁZKOVÝ SLOVNÍK ANJ – jadro (dáta sú v anj-slova.js)
    Dieťa vidí obrázok, po ťuknutí ho tablet pomaly povie po anglicky,
    napísané slovo sa ukáže až potom, len na chvíľu, a zmizne.
-   Voľby: Len táto lekcia / Od začiatku, úroveň Základ / Viac / Najviac (koľko slov), SK (aj slovenský preklad).
+   Voľby: Len táto lekcia / Od začiatku, úroveň Základ / Viac / Najviac (koľko slov), Vety (po slove krátka veta s ním), SK (aj slovenský preklad).
    =====================================================================
    OBRÁZKY (vlastné SVG tam, kde emoji chýba alebo je nejasné)
    ===================================================================== */
@@ -111,7 +111,7 @@ const slov = n => n===1 ? "slovo" : n>=2 && n<=4 ? "slová" : "slov";
    lekcia + spolu sa dajú zadať aj adresou: slovnik.html#u3 alebo #u3+ (od začiatku)
    ===================================================================== */
 const PORADIE = Object.fromEntries(LEKCIE.map((l,i)=>[l.id,i]));
-const NAST = {pismo:"po", rychlost:0.65, lekcia:LEKCIE[0].id, spolu:false, uroven:1, sk:false};
+const NAST = {pismo:"po", rychlost:0.65, lekcia:LEKCIE[0].id, spolu:false, uroven:1, vety:false, sk:false};
 try{ Object.assign(NAST, JSON.parse(localStorage.getItem("slovnik-anj")||"{}")); }catch(e){}
 if("extra" in NAST){ if(NAST.extra && NAST.uroven===1) NAST.uroven = 2; delete NAST.extra; }   /* staré nastavenie Extra = Viac */
 if(![1,2,3].includes(NAST.uroven)) NAST.uroven = 1;
@@ -241,11 +241,12 @@ function vykresliVolby(){
     const sm = b.querySelector("small"); if(sm) sm.textContent = `+${navyse(sk, u)}`;
   });
   v.querySelector('[data-prep="sk"]').setAttribute("aria-pressed", NAST.sk);
+  v.querySelector('[data-prep="vety"]').setAttribute("aria-pressed", NAST.vety);
   const spolu = sk.reduce((n,l)=>n+viditelne(l).length, 0);
   const l = LEKCIE[PORADIE[NAST.lekcia]];
   document.getElementById("pokyn").textContent = NAST.spolu
     ? `Od začiatku po ${l.cislo==="Úvod" ? "úvod" : "lekciu " + l.cislo}: ${spolu} ${slov(spolu)}, najnovšie sú hore. Ťukni na obrázok.`
-    : `${spolu} ${slov(spolu)}. Ťukni na obrázok, tablet povie slovo po anglicky.`;
+    : `${spolu} ${slov(spolu)}. Ťukni na obrázok, tablet povie slovo po anglicky${NAST.vety ? " a potom krátku vetu s ním" : ""}.`;
 }
 function vykresliMriezku(){
   const sk = skupiny();
@@ -281,6 +282,7 @@ document.getElementById("mriezka").addEventListener("click", e => {
 
 /* ---------- ťuk na obrázok: povie slovo (a so SK aj preklad), potom slovo na chvíľu ukáže a schová ---------- */
 const UKAZ_MS = 2500;      /* ako dlho vidno napísané anglické slovo */
+const UKAZ_VETA_MS = 4000; /* ako dlho vidno napísanú vetu (prepínač Vety) */
 const IKONY = {
   zavri:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>`,
 };
@@ -290,7 +292,22 @@ function upokoj(t){
   if(!t) return;
   t.classList.remove("hovori");
   const sl = t.querySelector(".sl-slovo"); sl.classList.remove("ukaz","skry","sk"); sl.textContent = ""; sl.removeAttribute("lang");
+  skryVetu();
 }
+/* ---------- pruh s vetou dole (prepínač Vety): text až po vypočutí, slovo z obrázka zvýraznené ---------- */
+const VETABAR = document.getElementById("vetabar");
+function zvyrazni(veta, w){
+  const m = new RegExp("\\b" + w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i").exec(veta);
+  if(!m) return ESC(veta);
+  return ESC(veta.slice(0, m.index)) + "<mark>" + ESC(m[0]) + "</mark>" + ESC(veta.slice(m.index + m[0].length));
+}
+function ukazVetu(html, lang, tile){
+  /* keď je obrázok dole na obrazovke, pruh dáme hore, aby ho nezakryl */
+  if(tile) VETABAR.classList.toggle("hore", tile.getBoundingClientRect().bottom > innerHeight * 0.62);
+  VETABAR.lang = lang; VETABAR.innerHTML = html;
+  VETABAR.classList.toggle("sk", lang==="sk"); VETABAR.classList.add("on");
+}
+function skryVetu(){ VETABAR.classList.remove("on"); }
 async function ukazNaChvilu(sl, text, lang, ms, trieda, moj){
   sl.lang = lang; sl.textContent = text; sl.classList.toggle("sk", trieda==="sk"); sl.classList.add("ukaz");
   await pockaj(ms);
@@ -313,6 +330,32 @@ async function tukni(tile){
   pocute.add(s.w);
   if(!tile.querySelector(".sl-pocul")) tile.insertAdjacentHTML("beforeend", `<span class="sl-pocul" title="Už počul"></span>`);
   const sl = tile.querySelector(".sl-slovo");
+  /* VETY: po slove krátka veta s ním; so SK potom slovenská veta; nakoniec na chvíľu slovo aj veta napísané */
+  if(NAST.vety && s.veta){
+    await pockaj(ok ? 450 : 900);
+    if(moj!==tukId) return;
+    const okV = await povedz(s.veta, "en");
+    if(moj!==tukId) return;
+    if(NAST.sk && s.veta_sk){
+      await pockaj(250);
+      if(moj!==tukId) return;
+      ukazVetu(ESC(s.veta_sk), "sk", tile);
+      const okSk = await povedz(s.veta_sk, "sk");
+      if(moj!==tukId) return;
+      await pockaj(okSk ? 700 : 2200);
+      if(moj!==tukId) return;
+      skryVetu();
+      await pockaj(400);
+      if(moj!==tukId) return;
+    }
+    tile.classList.remove("hovori");
+    if(NAST.pismo!=="po") return;
+    await pockaj(okV ? 300 : 900);
+    if(moj!==tukId) return;
+    ukazVetu(zvyrazni(s.veta, s.w), "en", tile);
+    if(await ukazNaChvilu(sl, s.w, "en", UKAZ_VETA_MS, "en", moj)) upokoj(tile);
+    return;
+  }
   /* SK: po anglickom slove slovenský preklad nahlas a na chvíľu napísaný */
   if(NAST.sk && s.sk){
     await pockaj(250);
@@ -356,7 +399,7 @@ function otvorPanel(){
     <div class="sl-karta-top"><h2 id="pn-h">Pre rodiča</h2>
       <button class="sl-ikbtn" type="button" data-akcia="zavri" aria-label="Zavrieť">${IKONY.zavri}</button></div>
     <p>Podaj tablet dieťaťu. Nech ťukne na obrázok, vypočuje si slovo a zopakuje ho nahlas. Napísané slovo sa ukáže až po vypočutí a o chvíľu zmizne, aby si ho dieťa nezvyklo čítať po slovensky.</p>
-    <p><b>Lekcie</b> idú v poradí učebnice Beehive Starter (Lekcia 1 = Unit 1). <b>Od začiatku</b> ukáže všetky slová až po zvolenú lekciu, najnovšie hore. <b>Základ</b> sú slová z učebnice. <b>Viac</b> pridá pár slov navyše (prerušovaný rámček a ★), <b>Najviac</b> ešte ďalšie slová k téme (★★), pre deti, ktorým základ nestačí. <b>SK</b> po anglickom slove povie a na chvíľu ukáže aj slovenský preklad, keď obrázok nie je jasný.</p>
+    <p><b>Lekcie</b> idú v poradí učebnice Beehive Starter (Lekcia 1 = Unit 1). <b>Od začiatku</b> ukáže všetky slová až po zvolenú lekciu, najnovšie hore. <b>Základ</b> sú slová z učebnice. <b>Viac</b> pridá pár slov navyše (prerušovaný rámček a ★), <b>Najviac</b> ešte ďalšie slová k téme (★★), pre deti, ktorým základ nestačí. <b>Vety</b> po slove povie krátku vetu, v ktorej sa slovo použije (slovo sa v kontexte lepšie pamätá). <b>SK</b> po anglickom slove povie a na chvíľu ukáže aj slovenský preklad, keď obrázok nie je jasný; so zapnutými Vetami povie po slovensky celú vetu.</p>
     <div><h3>Napísané anglické slovo</h3><div class="sl-seg" data-nast="pismo">
       <button type="button" id="pismo-po" data-hod="po" aria-pressed="${NAST.pismo==="po"}">Na chvíľu po vypočutí</button>
       <button type="button" id="pismo-nikdy" data-hod="nikdy" aria-pressed="${NAST.pismo==="nikdy"}">Neukazovať nikdy</button></div></div>
@@ -368,7 +411,7 @@ function otvorPanel(){
       <button class="sl-btn" type="button" data-akcia="skus">Vyskúšať</button></div>
       <div class="sl-hlas" style="margin-top:8px"><span id="pn-hlas-sk">${popisHlasuSK()}</span>
       <button class="sl-btn" type="button" data-akcia="skus-sk">Vyskúšať</button></div></div>
-    ${sk.map(l => `<div><h3>${ESC(menoLekcie(l))} · ${ESC(l.nazov)} <span lang="en" class="sl-en">${ESC(l.en)}</span></h3><ul class="sl-zoznam">${viditelne(l).map(s=>`<li${urovenSlova(s) > 1 ? ` class="navyse"` : ""}><b lang="en">${ESC(s.w)}</b><span>${ESC(s.sk)}${urovenSlova(s) > 1 ? " · " + "★".repeat(urovenSlova(s)-1) : ""}</span></li>`).join("")}</ul></div>`).join("")}
+    ${sk.map(l => `<div><h3>${ESC(menoLekcie(l))} · ${ESC(l.nazov)} <span lang="en" class="sl-en">${ESC(l.en)}</span></h3><ul class="sl-zoznam">${viditelne(l).map(s=>`<li${urovenSlova(s) > 1 ? ` class="navyse"` : ""}><b lang="en">${ESC(s.w)}</b><span>${ESC(s.sk)}${urovenSlova(s) > 1 ? " · " + "★".repeat(urovenSlova(s)-1) : ""}</span>${NAST.vety && s.veta ? `<i class="sl-zveta"><span lang="en">${ESC(s.veta)}</span> ${ESC(s.veta_sk||"")}</i>` : ""}</li>`).join("")}</ul></div>`).join("")}
   </div>`;
   z.addEventListener("click", e => {
     if(e.target === z) return zavriPanel();
