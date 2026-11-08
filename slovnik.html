@@ -8,7 +8,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Andika:wght@400;700&family=Atkinson+Hyperlegible:wght@400;700&family=Lexend:wght@500;600;700&display=swap">
-<link rel="stylesheet" href="slovnik.css?v=4">
+<link rel="stylesheet" href="slovnik.css?v=5">
 </head>
 <body>
 <div class="sl-wrap">
@@ -30,13 +30,15 @@
       <button type="button" data-uroven="2" aria-pressed="false">Viac <small></small></button>
       <button type="button" data-uroven="3" aria-pressed="false">Najviac <small></small></button>
     </div>
+    <button class="sl-prep" type="button" data-prep="vety" aria-pressed="false"><span class="sw" aria-hidden="true"></span>Vety<small>slovo vo vete</small></button>
     <button class="sl-prep" type="button" data-prep="sk" aria-pressed="false"><span class="sw" aria-hidden="true"></span>SK<small>aj po slovensky</small></button>
   </div>
   <p class="sl-pokyn" id="pokyn">Ťukni na obrázok. Tablet povie slovo po anglicky.</p>
   <main class="sl-mriezka" id="mriezka"></main>
 </div>
+<div class="sl-vetabar" id="vetabar" aria-live="polite"></div>
 
-<script src="anj-slova.js?v=4"></script>
-<script src="slovnik.js?v=4"></script>
+<script src="anj-slova.js?v=5"></script>
+<script src="slovnik.js?v=5"></script>
 </body>
 </html>
