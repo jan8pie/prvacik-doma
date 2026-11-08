@@ -173,7 +173,7 @@ function ukazOznam(){
 
 /* Rovnaký postup ako na webe: najprv potichu „rozohriať“ hlas, potom po pauze slovo.
    Vráti sľub, ktorý sa splní, keď hlas dočíta (true), alebo keď hovoriť nevie (false). */
-const PAUZA_MS = 300;
+const PAUZA_MS = 0;   /* hlas sa zaradí hneď za tichý zahrievací zvuk, bez pevnej pauzy */
 let sayTimer = null, hovorId = 0;
 function povedz(text, jaz="en"){
   const id = ++hovorId;
@@ -183,16 +183,16 @@ function povedz(text, jaz="en"){
     const ss = window.speechSynthesis;
     const rychlost = jaz==="sk" ? 0.95 : NAST.rychlost;
     ss.cancel(); clearTimeout(sayTimer);
-    const warm = new SpeechSynthesisUtterance("a"); warm.voice = hlas; warm.lang = hlas.lang; warm.volume = 0.02; warm.rate = 1;
+    const warm = new SpeechSynthesisUtterance("a"); warm.voice = hlas; warm.lang = hlas.lang; warm.volume = 0.02; warm.rate = 2;
     const u = new SpeechSynthesisUtterance(text); u.voice = hlas; u.lang = hlas.lang; u.rate = rychlost; u.pitch = 1.05;
     ss.speak(warm);   /* hneď, ešte počas ťuknutia – iPad inak hlas nepustí */
-    sayTimer = setTimeout(()=>ss.speak(u), PAUZA_MS);
+    ss.speak(u);   /* ide hneď po krátkom zahrievacom "a" (rate 2); pevná pauza 300 ms zbytočne predlžovala čakanie */
     return new Promise(res=>{
       const od = Date.now(); let poistka, hotovo = false, zacal = false;
       const koniec = v => { if(hotovo) return; hotovo = true; clearTimeout(poistka); res(v && id===hovorId); };
       const kontrola = () => { if(ss.speaking && Date.now()-od < 12000) poistka = setTimeout(kontrola, 250); else koniec(zacal); };
       u.onstart = () => { zacal = true; };
-      poistka = setTimeout(kontrola, PAUZA_MS + 1200 + String(text).length*160/rychlost);
+      poistka = setTimeout(kontrola, 1500 + String(text).length*160/rychlost);
       u.onend = () => { zacal = true; koniec(true); };
       u.onerror = () => koniec(false);
     });
