@@ -2,7 +2,7 @@
    OBRÁZKOVÝ SLOVNÍK ANJ – jadro (dáta sú v anj-slova.js)
    Dieťa vidí obrázok, po ťuknutí ho tablet pomaly povie po anglicky,
    napísané slovo sa ukáže až potom, len na chvíľu, a zmizne.
-   Prepínače: Len táto lekcia / Od začiatku, Extra (slová navyše), SK (aj slovenský preklad).
+   Voľby: Len táto lekcia / Od začiatku, úroveň Základ / Viac / Najviac (koľko slov), SK (aj slovenský preklad).
    =====================================================================
    OBRÁZKY (vlastné SVG tam, kde emoji chýba alebo je nejasné)
    ===================================================================== */
@@ -90,36 +90,18 @@ function skvrna(hex){
     fill="${hex}" stroke="${svetla ? "#B9C2CD" : "rgba(0,0,0,.18)"}" stroke-width="${svetla ? 3 : 2}"/>
     <ellipse cx="36" cy="30" rx="10" ry="6" fill="#fff" opacity="${svetla ? 0 : .28}" transform="rotate(-25 36 30)"/></svg>`;
 }
-function kocka(n){
-  const B = {1:[[50,50]],2:[[30,30],[70,70]],3:[[28,28],[50,50],[72,72]],4:[[30,30],[70,30],[30,70],[70,70]],
-             5:[[28,28],[72,28],[50,50],[28,72],[72,72]],6:[[30,26],[70,26],[30,50],[70,50],[30,74],[70,74]]}[n]||[];
-  return `<svg viewBox="0 0 100 100" aria-hidden="true"><rect x="8" y="8" width="84" height="84" rx="16" fill="#FFFFFF" stroke="#3A4656" stroke-width="4"/>
-    ${B.map(([x,y])=>`<circle cx="${x}" cy="${y}" r="8.5" fill="#C2423A"/>`).join("")}</svg>`;
-}
-/* Čísla 7 – 20: bodky v rámčekoch po 10 (5 a 5), aby sa dali spočítať po päťkách a desiatkach */
-function ramik(n){
-  const CEL = 17, X0 = 7.5;
-  const ram = (y, kolko) => {
-    let s = `<rect x="${X0}" y="${y}" width="${CEL*5}" height="${CEL*2}" rx="4" fill="#FFFFFF" stroke="#3A4656" stroke-width="2.5"/>
-      <path d="M${X0} ${y+CEL} h${CEL*5}" stroke="#3A4656" stroke-width="1.5"/>`;
-    for(let i=1;i<5;i++) s += `<path d="M${X0+CEL*i} ${y} v${CEL*2}" stroke="#3A4656" stroke-width="1.5"/>`;
-    for(let i=0;i<kolko;i++) s += `<circle cx="${X0+CEL*(i%5)+CEL/2}" cy="${y+CEL*Math.floor(i/5)+CEL/2}" r="6" fill="#C2423A"/>`;
-    return s;
-  };
-  return `<svg viewBox="0 0 100 100" aria-hidden="true">${n<=10 ? ram(33, n) : ram(12, 10) + ram(54, n-10)}</svg>`;
-}
+/* Čísla: veľká napísaná číslica (deti ju poznajú rýchlejšie, ako spočítajú bodky) */
+const cislica = n => `<span class="cis">${ESC(n)}</span>`;
 function obrazok(obr){
   if(Array.isArray(obr)) return `<div class="sl-obr scena">${obr.map(e=>`<span class="em">${e}</span>`).join("")}</div>`;
   if(typeof obr==="object") return `<div class="sl-obr"><span class="em" style="--m:${obr.m||1}">${obr.em}</span></div>`;
   if(obr.startsWith("farba:")) return `<div class="sl-obr">${skvrna(obr.slice(6))}</div>`;
-  if(obr.startsWith("kocka:")) return `<div class="sl-obr">${kocka(+obr.slice(6))}</div>`;
-  if(obr.startsWith("ramik:")) return `<div class="sl-obr">${ramik(+obr.slice(6))}</div>`;
+  if(obr.startsWith("cislo:")) return `<div class="sl-obr">${cislica(obr.slice(6))}</div>`;
   if(obr.startsWith("svg:"))   return `<div class="sl-obr">${SVG[obr.slice(4)]||""}</div>`;
   return `<div class="sl-obr"><span class="em">${obr}</span></div>`;
 }
 function ikonka(obr){
   if(obr.startsWith("farba:")) return skvrna(obr.slice(6));
-  if(obr.startsWith("kocka:")) return kocka(+obr.slice(6));
   return obr;
 }
 const slov = n => n===1 ? "slovo" : n>=2 && n<=4 ? "slová" : "slov";
@@ -129,8 +111,10 @@ const slov = n => n===1 ? "slovo" : n>=2 && n<=4 ? "slová" : "slov";
    lekcia + spolu sa dajú zadať aj adresou: slovnik.html#u3 alebo #u3+ (od začiatku)
    ===================================================================== */
 const PORADIE = Object.fromEntries(LEKCIE.map((l,i)=>[l.id,i]));
-const NAST = {pismo:"po", rychlost:0.65, lekcia:LEKCIE[0].id, spolu:false, extra:false, sk:false};
+const NAST = {pismo:"po", rychlost:0.65, lekcia:LEKCIE[0].id, spolu:false, uroven:1, sk:false};
 try{ Object.assign(NAST, JSON.parse(localStorage.getItem("slovnik-anj")||"{}")); }catch(e){}
+if("extra" in NAST){ if(NAST.extra && NAST.uroven===1) NAST.uroven = 2; delete NAST.extra; }   /* staré nastavenie Extra = Viac */
+if(![1,2,3].includes(NAST.uroven)) NAST.uroven = 1;
 if(!(NAST.lekcia in PORADIE)) NAST.lekcia = LEKCIE[0].id;
 const ulozNast = () => { try{ localStorage.setItem("slovnik-anj", JSON.stringify(NAST)); }catch(e){} };
 function zAdresy(){
@@ -222,8 +206,11 @@ function stichni(){ tukId++; try{ speechSynthesis.cancel(); }catch(e){} upokoj(a
    ===================================================================== */
 zAdresy();
 const pocute = new Set();   /* slová, ktoré dieťa už počulo (len kým je stránka otvorená) */
-const viditelne = l => l.slova.filter(s => NAST.extra || !s.extra);
-const pocetExtra = l => l.slova.filter(s => s.extra).length;
+const urovenSlova = s => s.uroven || 1;
+const viditelne = l => l.slova.filter(s => urovenSlova(s) <= NAST.uroven);
+/* koľko slov pribudne s úrovňou u oproti Základu */
+const navyse = (lekcie, u) => lekcie.reduce((n,l) => n + l.slova.filter(s => urovenSlova(s) > 1 && urovenSlova(s) <= u).length, 0);
+const MENO_UROVNE = {2:"Viac", 3:"Najviac"};
 /* skupiny na obrazovke: jedna lekcia, alebo od začiatku (najnovšia lekcia hore) */
 function skupiny(){
   const i = PORADIE[NAST.lekcia];
@@ -234,34 +221,40 @@ const menoLekcie = l => l.cislo==="Úvod" ? "Úvod" : "Lekcia " + l.cislo;
 function vykresliLekcie(){
   const ja = PORADIE[NAST.lekcia];
   document.getElementById("temy").innerHTML = LEKCIE.map((l,i) =>
-    `<button class="sl-tema${NAST.spolu && i<ja ? " v-rozsahu" : ""}" type="button" data-lekcia="${l.id}" aria-pressed="${l.id===NAST.lekcia}">
+    `<button class="sl-tema${NAST.spolu && i<ja ? " v-rozsahu" : ""}" type="button" data-lekcia="${l.id}" aria-pressed="${l.id===NAST.lekcia}"
+       aria-label="${ESC(menoLekcie(l))}: ${ESC(l.nazov)}" title="${ESC(menoLekcie(l))}: ${ESC(l.nazov)}">
        <span class="ik" aria-hidden="true">${ikonka(l.ikona)}</span>
-       <span class="n">${ESC(l.nazov)}<span class="l">${ESC(menoLekcie(l))} · ${viditelne(l).length} ${slov(viditelne(l).length)}</span></span></button>`).join("");
-  const akt = document.querySelector(".sl-tema[aria-pressed=true]");
-  if(akt) akt.scrollIntoView({block:"nearest", inline:"nearest"});
+       <span class="c" aria-hidden="true">${ESC(l.cislo)}</span>
+       <span class="n" aria-hidden="true">${ESC(l.nazov)}</span></button>`).join("");
+  const l = LEKCIE[ja];
+  document.getElementById("lekcia").innerHTML =
+    `<span class="ik" aria-hidden="true">${ikonka(l.ikona)}</span><span>${ESC(menoLekcie(l))} · ${ESC(l.nazov)} <span lang="en" class="sl-en">${ESC(l.en)}</span></span>`;
 }
 function vykresliVolby(){
   const sk = skupiny();
-  const extra = sk.reduce((n,l)=>n+pocetExtra(l), 0);
   const v = document.getElementById("volby");
   v.querySelector('[data-spolu="0"]').setAttribute("aria-pressed", !NAST.spolu);
   v.querySelector('[data-spolu="1"]').setAttribute("aria-pressed", NAST.spolu);
-  v.querySelector('[data-prep="extra"]').setAttribute("aria-pressed", NAST.extra);
+  v.querySelectorAll("[data-uroven]").forEach(b => {
+    const u = +b.dataset.uroven;
+    b.setAttribute("aria-pressed", u===NAST.uroven);
+    const sm = b.querySelector("small"); if(sm) sm.textContent = `+${navyse(sk, u)}`;
+  });
   v.querySelector('[data-prep="sk"]').setAttribute("aria-pressed", NAST.sk);
-  v.querySelector("#extraPocet").textContent = `+${extra} ${slov(extra)}`;
   const spolu = sk.reduce((n,l)=>n+viditelne(l).length, 0);
   const l = LEKCIE[PORADIE[NAST.lekcia]];
   document.getElementById("pokyn").textContent = NAST.spolu
     ? `Od začiatku po ${l.cislo==="Úvod" ? "úvod" : "lekciu " + l.cislo}: ${spolu} ${slov(spolu)}, najnovšie sú hore. Ťukni na obrázok.`
-    : `Ťukni na obrázok. Tablet povie slovo po anglicky.`;
+    : `${spolu} ${slov(spolu)}. Ťukni na obrázok, tablet povie slovo po anglicky.`;
 }
 function vykresliMriezku(){
   const sk = skupiny();
   document.getElementById("mriezka").innerHTML = sk.map(l =>
     `<section class="sl-skupina">${NAST.spolu ? `<h2 class="sl-skup-h"><span class="ik" aria-hidden="true">${ikonka(l.ikona)}</span>${ESC(menoLekcie(l))} · ${ESC(l.nazov)}</h2>` : ""}
-     <div class="sl-grid">${l.slova.map((s,i) => (NAST.extra || !s.extra) ?
-      `<button class="sl-tile${s.extra ? " extra" : ""}" type="button" data-k="${l.id}:${i}" aria-label="Obrázok${s.extra ? " navyše" : ""}">
+     <div class="sl-grid">${l.slova.map((s,i) => urovenSlova(s) <= NAST.uroven ?
+      `<button class="sl-tile${urovenSlova(s) > 1 ? " navyse u" + urovenSlova(s) : ""}" type="button" data-k="${l.id}:${i}" aria-label="Obrázok${urovenSlova(s) > 1 ? ", úroveň " + MENO_UROVNE[urovenSlova(s)] : ""}">
          ${obrazok(s.obr)}
+         ${urovenSlova(s) > 1 ? `<span class="sl-znak" aria-hidden="true">${"★".repeat(urovenSlova(s)-1)}</span>` : ""}
          <span class="sl-vlny" aria-hidden="true"><i></i><i></i><i></i></span>
          <span class="sl-slovo" aria-live="polite"></span>
          ${pocute.has(s.w) ? `<span class="sl-pocul" title="Už počul"></span>` : ""}</button>` : "").join("")}</div></section>`).join("");
@@ -276,6 +269,8 @@ document.getElementById("temy").addEventListener("click", e => {
 document.getElementById("volby").addEventListener("click", e => {
   const r = e.target.closest("[data-spolu]");
   if(r){ NAST.spolu = r.dataset.spolu==="1"; zmena(); return; }
+  const u = e.target.closest("[data-uroven]");
+  if(u){ NAST.uroven = +u.dataset.uroven; zmena(); return; }
   const p = e.target.closest("[data-prep]");
   if(p){ NAST[p.dataset.prep] = !NAST[p.dataset.prep]; zmena(); }
 });
@@ -361,7 +356,7 @@ function otvorPanel(){
     <div class="sl-karta-top"><h2 id="pn-h">Pre rodiča</h2>
       <button class="sl-ikbtn" type="button" data-akcia="zavri" aria-label="Zavrieť">${IKONY.zavri}</button></div>
     <p>Podaj tablet dieťaťu. Nech ťukne na obrázok, vypočuje si slovo a zopakuje ho nahlas. Napísané slovo sa ukáže až po vypočutí a o chvíľu zmizne, aby si ho dieťa nezvyklo čítať po slovensky.</p>
-    <p><b>Lekcie</b> idú v poradí učebnice Beehive Starter (Lekcia 1 = Unit 1). <b>Od začiatku</b> ukáže všetky slová až po zvolenú lekciu, najnovšie hore. <b>Extra</b> pridá pár slov navyše (majú prerušovaný rámček). <b>SK</b> po anglickom slove povie a na chvíľu ukáže aj slovenský preklad, keď obrázok nie je jasný.</p>
+    <p><b>Lekcie</b> idú v poradí učebnice Beehive Starter (Lekcia 1 = Unit 1). <b>Od začiatku</b> ukáže všetky slová až po zvolenú lekciu, najnovšie hore. <b>Základ</b> sú slová z učebnice. <b>Viac</b> pridá pár slov navyše (prerušovaný rámček a ★), <b>Najviac</b> ešte ďalšie slová k téme (★★), pre deti, ktorým základ nestačí. <b>SK</b> po anglickom slove povie a na chvíľu ukáže aj slovenský preklad, keď obrázok nie je jasný.</p>
     <div><h3>Napísané anglické slovo</h3><div class="sl-seg" data-nast="pismo">
       <button type="button" id="pismo-po" data-hod="po" aria-pressed="${NAST.pismo==="po"}">Na chvíľu po vypočutí</button>
       <button type="button" id="pismo-nikdy" data-hod="nikdy" aria-pressed="${NAST.pismo==="nikdy"}">Neukazovať nikdy</button></div></div>
@@ -373,7 +368,7 @@ function otvorPanel(){
       <button class="sl-btn" type="button" data-akcia="skus">Vyskúšať</button></div>
       <div class="sl-hlas" style="margin-top:8px"><span id="pn-hlas-sk">${popisHlasuSK()}</span>
       <button class="sl-btn" type="button" data-akcia="skus-sk">Vyskúšať</button></div></div>
-    ${sk.map(l => `<div><h3>${ESC(menoLekcie(l))} · ${ESC(l.nazov)} <span lang="en" class="sl-en">${ESC(l.en)}</span></h3><ul class="sl-zoznam">${viditelne(l).map(s=>`<li${s.extra ? ` class="extra"` : ""}><b lang="en">${ESC(s.w)}</b><span>${ESC(s.sk)}${s.extra ? " · extra" : ""}</span></li>`).join("")}</ul></div>`).join("")}
+    ${sk.map(l => `<div><h3>${ESC(menoLekcie(l))} · ${ESC(l.nazov)} <span lang="en" class="sl-en">${ESC(l.en)}</span></h3><ul class="sl-zoznam">${viditelne(l).map(s=>`<li${urovenSlova(s) > 1 ? ` class="navyse"` : ""}><b lang="en">${ESC(s.w)}</b><span>${ESC(s.sk)}${urovenSlova(s) > 1 ? " · " + "★".repeat(urovenSlova(s)-1) : ""}</span></li>`).join("")}</ul></div>`).join("")}
   </div>`;
   z.addEventListener("click", e => {
     if(e.target === z) return zavriPanel();

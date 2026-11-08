@@ -45,19 +45,28 @@ button:focus-visible{outline:3px solid var(--anj);outline-offset:3px}
 .sl-oznam{background:var(--warn-soft);color:var(--ink);border:1px solid var(--warn);border-radius:12px;padding:12px 14px;font-size:15px}
 .sl-oznam b{color:var(--warn)}
 
-/* témy */
-.sl-temy{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
-.sl-tema{flex:0 0 auto;display:flex;align-items:center;gap:10px;min-height:56px;padding:8px 16px 8px 10px;border-radius:14px;
-  border:2px solid var(--line);background:var(--card);text-align:left}
-.sl-tema .ik{font-family:var(--f-emoji);font-size:30px;line-height:1;width:38px;height:38px;display:grid;place-items:center}
-.sl-tema .ik svg{width:34px;height:34px}
-.sl-tema span.n{font-family:var(--f-head);font-weight:600;font-size:15px;line-height:1.2}
-.sl-tema span.l{display:block;font-size:12.5px;color:var(--muted);font-family:var(--f-body);font-weight:400}
+/* lekcie: mriežka bez vodorovného posúvania (mobil 5 + 4, širšie 9 v rade, na PC aj s názvom) */
+.sl-temy{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.sl-tema{display:grid;justify-items:center;align-content:start;gap:2px;min-width:0;min-height:64px;padding:8px 4px 7px;border-radius:14px;
+  border:2px solid var(--line);background:var(--card);text-align:center}
+.sl-tema .ik{font-family:var(--f-emoji);font-size:28px;line-height:1;width:34px;height:34px;display:grid;place-items:center}
+.sl-tema .ik svg{width:30px;height:30px}
+.sl-tema .c{font-family:var(--f-head);font-weight:600;font-size:14px;line-height:1.2}
+.sl-tema .n{display:none;font-size:12.5px;line-height:1.25;color:var(--muted);text-wrap:balance}
+.sl-tema:hover{border-color:color-mix(in srgb,var(--anj) 60%,var(--line))}
 .sl-tema[aria-pressed="true"]{border-color:var(--anj);background:var(--anj-soft)}
 .sl-tema.v-rozsahu{border-color:color-mix(in srgb,var(--anj) 45%,var(--line))}
+@media (min-width:560px){.sl-temy{grid-template-columns:repeat(9,1fr)}}
+@media (min-width:820px){.sl-tema .n{display:block}.sl-tema{padding-inline:6px}}
+.sl-lekcia{display:flex;align-items:center;gap:10px;font-size:19px;font-weight:600;margin-top:-4px}
+.sl-lekcia .ik{font-family:var(--f-emoji);font-size:26px;line-height:1;width:32px;height:32px;display:grid;place-items:center;flex:0 0 auto}
+.sl-lekcia .ik svg{width:30px;height:30px}
+.sl-en{font-family:var(--f-body);font-weight:400;color:var(--muted)}
 
-/* voľby: len táto lekcia / od začiatku, Extra, SK */
-.sl-volby{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+/* voľby: len táto lekcia / od začiatku, úroveň Základ / Viac / Najviac, SK */
+.sl-volby{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
+.sl-volby .sl-seg button{min-height:48px;background:var(--card);font-family:var(--f-head);font-weight:600}
+.sl-volby .sl-seg small{font-family:var(--f-body);font-weight:400;font-size:13px;color:var(--muted)}
 .sl-prep{display:inline-flex;align-items:center;gap:9px;min-height:48px;padding:8px 14px 8px 10px;border-radius:12px;
   border:2px solid var(--line);background:var(--card);font-family:var(--f-head);font-weight:600;font-size:15px}
 .sl-prep small{font-family:var(--f-body);font-weight:400;font-size:13px;color:var(--muted)}
@@ -75,7 +84,7 @@ button:focus-visible{outline:3px solid var(--anj);outline-offset:3px}
 .sl-skup-h{display:flex;align-items:center;gap:10px;font-size:17px;font-weight:600;color:var(--ink)}
 .sl-skup-h .ik{font-family:var(--f-emoji);font-size:24px;line-height:1;width:30px;height:30px;display:grid;place-items:center}
 .sl-skup-h .ik svg{width:28px;height:28px}
-.sl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+.sl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(136px,1fr));gap:12px}
 .sl-tile{position:relative;display:grid;grid-template-rows:1fr auto;align-items:center;justify-items:center;gap:4px;
   aspect-ratio:1/1.08;max-width:100%;padding:14px 10px 10px;border-radius:var(--r);border:2px solid var(--line);background:var(--card);
   transition:transform .2s ease,border-color .15s ease}
@@ -86,7 +95,9 @@ button:focus-visible{outline:3px solid var(--anj);outline-offset:3px}
 .sl-tile .sl-slovo{font-family:var(--f-word);font-weight:700;font-size:min(28px,max(17px,14cqw));min-height:36px;line-height:1.15;
   display:flex;align-items:center;text-align:center;color:var(--ink)}
 .sl-tile .sl-slovo.sk{font-family:var(--f-body);font-weight:400;color:var(--sk)}
-.sl-tile.extra{border-style:dashed;border-color:color-mix(in srgb,var(--anj) 55%,var(--line))}
+.sl-tile.navyse{border-style:dashed;border-color:color-mix(in srgb,var(--anj) 55%,var(--line))}
+.sl-tile .sl-znak{position:absolute;top:6px;left:9px;font-size:13px;line-height:1;letter-spacing:1px;color:var(--anj);transition:opacity .2s}
+.sl-tile.hovori .sl-znak{opacity:0}
 .sl-tile .sl-pocul{position:absolute;top:9px;right:9px;width:12px;height:12px;border-radius:50%;background:var(--anj)}
 
 /* obrázok: emoji, farebná škvrna, kocka, vlastné svg, scénka */
@@ -95,6 +106,10 @@ button:focus-visible{outline:3px solid var(--anj);outline-offset:3px}
 .sl-obr .em{font-size:calc(var(--em,76px)*var(--m,1))}
 .sl-obr.scena{display:flex;align-items:center;justify-content:center;gap:.06em}
 .sl-obr.scena .em{font-size:min(calc(var(--em,76px)*.6),30cqw)}
+/* číslo: veľká číslica na svetlej tabuľke */
+.sl-obr .cis{display:grid;place-items:center;min-width:1.25em;padding:.06em .16em .02em;border-radius:.2em;
+  font-family:var(--f-word);font-weight:700;font-size:min(calc(var(--em,76px)*1.05),44cqw);line-height:1.1;
+  color:var(--ink);background:var(--soft);border:3px solid var(--line)}
 .sl-obr svg{width:auto;height:min(calc(var(--em,76px)*1.3),100%);max-width:100%;aspect-ratio:1}
 
 /* hovoriaci obrázok */
@@ -131,8 +146,10 @@ button:focus-visible{outline:3px solid var(--anj);outline-offset:3px}
 .sl-zoznam li{display:flex;justify-content:space-between;gap:8px;border-bottom:1px solid var(--line);padding:3px 0;min-width:0}
 .sl-zoznam b{font-family:var(--f-word)}
 .sl-zoznam span{color:var(--muted);text-align:right}
-.sl-zoznam li.extra b{font-weight:400}
+.sl-zoznam li.navyse b{font-weight:400}
 .sl-panel h3 .sl-en{font-family:var(--f-body);font-weight:400;color:var(--muted)}
-@media (max-width:440px){.sl-zoznam{grid-template-columns:1fr}.sl-grid{grid-template-columns:repeat(2,1fr);gap:10px}.sl-obr{--em:64px}}
+@media (max-width:440px){.sl-zoznam{grid-template-columns:1fr}.sl-grid{grid-template-columns:repeat(3,1fr);gap:8px}.sl-obr{--em:52px}
+  .sl-tile{padding:10px 4px 6px;gap:2px;aspect-ratio:1/1.16}.sl-tile .sl-slovo{font-size:min(22px,max(15px,15cqw));min-height:30px}.sl-tile .sl-znak{top:5px;left:6px;font-size:11px}
+  .sl-tile .sl-pocul{top:6px;right:6px;width:10px;height:10px}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition:none!important}}
-@media (max-width:440px){.sl-prep small{display:none}.sl-volby{gap:8px}}
+@media (max-width:440px){.sl-prep small{display:none}.sl-volby{gap:8px}.sl-volby .sl-seg button{padding-inline:11px}}
