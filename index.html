@@ -115,6 +115,8 @@ a.btn.primary{color:var(--accent-ink)}
 .tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
 .tile{aspect-ratio:1;border:2px solid var(--line);border-radius:14px;background:var(--soft);font-size:clamp(28px,8vw,40px);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;gap:2px;user-select:none;touch-action:manipulation}
 .tile small{font-size:12px;font-family:var(--f-body);color:var(--muted)}
+.tile small.po{visibility:hidden}.tile.pocul small.po{visibility:visible;animation:podpis .6s ease-out}
+@keyframes podpis{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 .tile.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 14%,var(--card))}
 .tile.no{border-color:var(--no);animation:shake .35s}
 @keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
@@ -242,6 +244,7 @@ const IKONY = {
   pocuvanie:{nazov:"Počúvanie", svg:'<path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/>'},
   tlac:     {nazov:"Na tlač", svg:'<path d="M7 9V3h10v6M7 17H4v-7h16v7h-3"/><path d="M7 14h10v7H7z"/>'},
   hadanka:  {nazov:"Hádanka", svg:'<path d="M9 9a3 3 0 1 1 4.5 2.6c-1 .6-1.5 1.2-1.5 2.4"/><circle cx="12" cy="18" r=".6"/><circle cx="12" cy="12" r="9.5"/>'},
+  slovnik:  {nazov:"Slovník", svg:'<path d="M4 5.5C4 4.7 4.7 4 5.5 4H11v16H5.5C4.7 20 4 19.3 4 18.5z"/><path d="M20 5.5c0-.8-.7-1.5-1.5-1.5H13v16h5.5c.8 0 1.5-.7 1.5-1.5z"/><path d="M15.5 9.5h2M15.5 13h2"/><circle cx="7.5" cy="10" r="1.6"/>'},
   spolu:    {nazov:"Spolu s rodičom", svg:'<circle cx="8" cy="7" r="2.5"/><circle cx="16.5" cy="9" r="2"/><path d="M3.5 20a4.5 4.5 0 0 1 9 0M13 20a3.5 3.5 0 0 1 7 0"/>'}
 };
 const svg = (k) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IKONY[k].svg}</svg>`;
@@ -305,7 +308,7 @@ function blokHTML(b, kid, i){
   if(b.typ==="pocuvanie") return `<div class="blk">${h("Počúvanie")}${KIDBTN}<p>${esc(b.text)}</p>
      <div class="tiles${b.citanie?" words":""}">${b.slova.map(([e,w,povedz])=>b.citanie
        ? `<button class="tile wordtile" data-say="${esc(povedz||w)}" data-lang="${b.jazyk||"sk-SK"}">${esc(w)}</button>`
-       : `<button class="tile" data-say="${esc(povedz||w)}" data-lang="${b.jazyk||"en-GB"}">${e}<small>${esc(w)}</small></button>`).join("")}</div></div>`;
+       : `<button class="tile" data-say="${esc(povedz||w)}" data-lang="${b.jazyk||"en-GB"}">${e}<small${/^sk/i.test(b.jazyk||"")?"":` class="po"`}>${esc(w)}</small></button>`).join("")}</div></div>`;
   if(b.typ==="aktivita"){
     if(b.hra.druh==="vyber"){
       return `<div class="blk">${h("Aktivita")}${KIDBTN}<div class="btns"><button class="btn" data-say="${esc(b.text)}" data-lang="sk-SK">${svg("pocuvanie")}Prečítaj zadanie</button></div>
@@ -316,11 +319,20 @@ function blokHTML(b, kid, i){
   }
   return "";
 }
+/* ANJ: tlačidlo do obrázkového slovníka (slovnik:"u1" = Lekcia 1, "start" = Úvod, "u2+" = od začiatku po lekciu 2) */
+function slovnikHTML(k){
+  const od = k.slovnik.endsWith("+"), id = k.slovnik.replace("+",""), c = id==="start" ? "" : id.slice(1);
+  const meno = c ? `Lekcia ${c}` : "Úvod";
+  return `<div class="blk"><h3>${svg("slovnik")}Obrázkový slovník</h3>
+     <p>${od ? `Všetky slová od začiatku po ${c ? `lekciu ${c}` : "úvod"}` : `Slová z učebnice, ${meno}`}. Dieťa ťuká na obrázky a počúva, napísané slovo uvidí až po vypočutí.</p>
+     <div class="btns"><a class="btn" href="slovnik.html#${esc(k.slovnik)}">${svg("slovnik")}Otvoriť slovník: ${meno}${od ? " od začiatku" : ""}</a></div></div>`;
+}
 
 function kartaHTML(k){
   const p = PREDMETY[k.predmet];
   const typy = [...new Set(k.bloky.map(b=>b.typ))];
   if(k.bloky.some(b=>b.typ==="aktivita"||b.typ==="pocuvanie"||b.typ==="hadanka") && !typy.includes("pocuvanie")) typy.push("pocuvanie");
+  if(k.slovnik) typy.push("slovnik");
   const nove = zverejnena(k) && (DNES - datum(k.datum)) / DEN <= 3;
   return `<article class="card" style="--c:${p.c}" id="${k.id}">
     <button class="head" aria-expanded="false" aria-controls="b-${k.id}">
@@ -333,6 +345,7 @@ function kartaHTML(k){
     </button>
     <div class="body" id="b-${k.id}" hidden>
       ${k.bloky.map((b,i)=>blokHTML(b,k.id,i)).join("")}
+      ${k.slovnik ? slovnikHTML(k) : ""}
       <div class="std">${k.kod} · ${esc(k.stdn)}</div>
     </div></article>`;
 }
@@ -596,7 +609,9 @@ document.addEventListener("click", e=>{
   if(head){ const card=head.parentElement, body=card.querySelector(".body"), open=body.hidden;
     body.hidden=!open; card.classList.toggle("open",open); head.setAttribute("aria-expanded",open);
     head.querySelector(".lbl").textContent = open?"Zavrieť":"Otvoriť"; return; }
-  const s=e.target.closest("[data-say]"); if(s){ say(s.dataset.say, s.dataset.lang); }
+  const s=e.target.closest("[data-say]");
+  if(s){ const dohovoril=say(s.dataset.say, s.dataset.lang);
+    if(s.querySelector("small.po")) dohovoril.then(()=>s.classList.add("pocul")); }   /* anglický podpis až po vypočutí */
   const p=e.target.closest("[data-pick]");
   if(p){ const blk=p.closest(".blk"), st=blk.querySelector(".status"); const docitane=say(p.dataset.pick,"sk-SK");
     p.classList.remove("no"); void p.offsetWidth;

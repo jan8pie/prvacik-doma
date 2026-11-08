@@ -18,7 +18,10 @@
    hry (aktivita): vyber, rozklad, slabiky, poradie, sucet, porovnaj, kocky
    kocky:   rezim "kolko" (Koľko je?, Výzva = postav číslo) alebo "spoj" (+, Výzva = najprv odhad);
             pri úrovni {max:6} = čísla najviac do 6 (podľa témy), {max:20} alebo {max:100} = väčšie čísla
-   pocuvanie: jazyk:"sk-SK" pre slovenčinu (inak angličtina), citanie:true = veľké slová bez obrázkov
+   pocuvanie: jazyk:"sk-SK" pre slovenčinu (inak angličtina), citanie:true = veľké slová bez obrázkov;
+              anglický podpis pod obrázkom sa ukáže až po vypočutí
+   slovnik:  (ANJ, pri karte) lekcia obrázkového slovníka, napr. slovnik:"u1" = Lekcia 1 Beehive,
+             "start" = Úvod, "u2+" = od začiatku po lekciu 2; karta dostane tlačidlo do slovníka
 
    Pravidlo pre text čítaný nahlas: veta, ktorá končí číslom, nemá bodku.
    ===================================================================== */
@@ -62,7 +65,7 @@ window.KARTY = [
      preteba:"V škole sa tomu hovorí rozklad čísla. Obe časti spolu dajú vždy celé číslo a poradie častí nevadí."}
   ]},
 
-{ id:"anj-chant-colours", datum:"2026-11-13", predmet:"ANJ", kod:"ANJ-RE-3",
+{ id:"anj-chant-colours", datum:"2026-11-13", predmet:"ANJ", kod:"ANJ-RE-3", slovnik:"u2",
   nazov:"Red, red, red: riekanka o farbách",
   uvod:"Krátka riekanka o farbách, ktorú sa dá tlieskať ako rytmus. Dieťa opakuje po tablete riadok po riadku a potom vymení jednu farbu za inú.",
   meta:["dieťa samo aj s rodičom","3 minúty","tablet so zvukom"],
@@ -97,7 +100,7 @@ window.KARTY = [
     {typ:"tlac", urovne:3, text:"Spočítaj obrázky, zapíš ich čiarkami a vyfarbi stĺpce. Výzva: obrázky, ktoré znamenajú dva kusy, hod kockou a chyták s chybou v zápise.", subor:"mat-ciarky.pdf"}
   ]},
 
-{ id:"anj-hello-this", datum:"2026-11-12", predmet:"ANJ", kod:"ANJ-IN-2",
+{ id:"anj-hello-this", datum:"2026-11-12", predmet:"ANJ", kod:"ANJ-IN-2", slovnik:"u1",
   nazov:"What's this? It's a pencil",
   uvod:"Rodič s plyšákom ukazuje na vec a pýta sa po anglicky: „What's this?“ Dieťa odpovedá aspoň jedným slovom. Vzorové vety si najprv vypočujete na tablete.",
   meta:["spolu s rodičom","5 minút","plyšák, školské veci"],
@@ -177,7 +180,7 @@ window.KARTY = [
      preteba:"V škole sa tomu hovorí vzor a jeho pravidlo. Rytmom (tlesk, dupot) sa to deti učia ľahšie ako z obrázkov."}
   ]},
 
-{ id:"anj-riddles-colours", datum:"2026-11-10", predmet:"ANJ", kod:"ANJ-RE-2",
+{ id:"anj-riddles-colours", datum:"2026-11-10", predmet:"ANJ", kod:"ANJ-RE-2", slovnik:"u2",
   nazov:"What am I? Hádanky a I spy",
   uvod:"Tri krátke anglické hádanky o jahode, čísle a žabke. Potom si zahrajte „I spy“: rodič povie „I spy something blue“ a dieťa hľadá v izbe niečo modré.",
   meta:["spolu s rodičom","5 minút","tablet so zvukom"],
@@ -217,7 +220,7 @@ window.KARTY = [
     {typ:"spolu", text:"Teraz vymyslí príbeh dieťa a vy počítate. Raz sa schválne pomýľte o jeden. Dieťa vás opraví a ukáže na prstoch, ako to má byť."}
   ]},
 
-{ id:"anj-co-zmizlo", datum:"2026-11-09", predmet:"ANJ", kod:"ANJ-PR-1",
+{ id:"anj-co-zmizlo", datum:"2026-11-09", predmet:"ANJ", kod:"ANJ-PR-1", slovnik:"u1",
   nazov:"What's missing? Čo zmizlo z tašky?",
   uvod:"Na stole sú štyri školské veci. Dieťa zavrie oči, vy jednu schováte a dieťa háda po anglicky, čo zmizlo: pencil, book, ruler alebo crayon?",
   meta:["spolu s rodičom","5 minút","školské veci"],
@@ -254,7 +257,7 @@ window.KARTY = [
      preteba:"Číslo hneď pred sa v škole volá predchodca, číslo hneď za nasledovník. Doma stačí „sused pred“ a „sused za“."}
   ]},
 
-{ id:"anj-bag", datum:"2026-11-06", predmet:"ANJ", kod:"ANJ-RE-2",
+{ id:"anj-bag", datum:"2026-11-06", predmet:"ANJ", kod:"ANJ-RE-2", slovnik:"u1",
   nazov:"What's in my bag? Hádanky o školských veciach",
   uvod:"„I am long and I have numbers. I help you draw straight lines. What am I?“",
   meta:["spolu s rodičom","3 minúty","školská taška"],
@@ -336,7 +339,7 @@ window.KARTY = [
      preteba:"Pomôcka, ktorú deti poznajú: znak sa otvára ako hladné ústa k väčšiemu číslu. V škole hovoria „je väčší ako“, „je menší ako“, „rovná sa“."}
   ]},
 
-{ id:"anj-colours", datum:"2026-11-04", predmet:"ANJ", kod:"ANJ-RE-2",
+{ id:"anj-colours", datum:"2026-11-04", predmet:"ANJ", kod:"ANJ-RE-2", slovnik:"u2",
   nazov:"Colours: red, blue, yellow, green",
   uvod:"Štyri farby po anglicky. Dieťa ťukne na farbu a vypočuje si ju, potom uhádne vec z krátkej anglickej hádanky. Na záver sa môžete zahrať „I spy“.",
   meta:["dieťa samo aj s rodičom","3 minúty","tablet so zvukom"],
@@ -378,7 +381,7 @@ window.KARTY = [
      preteba:"Nevadí, ak dieťa ráta po jednom. Pomáha, keď pri každom predmete ukáže prstom."}
   ]},
 
-{ id:"anj-numbers", datum:"2026-11-03", predmet:"ANJ", kod:"ANJ-RE-2",
+{ id:"anj-numbers", datum:"2026-11-03", predmet:"ANJ", kod:"ANJ-RE-2", slovnik:"u2+",
   nazov:"Numbers one to six",
   uvod:"Anglické čísla od one po six. Dieťa si ich vypočuje ťuknutím na kartičku a potom háda, ktoré číslo nasleduje po five. Hodí sa k matematike, kde sa práve preberá šestka.",
   meta:["dieťa samo","3 minúty","tablet so zvukom"],
@@ -463,7 +466,7 @@ window.KARTY = [
     {typ:"tlac", urovne:3, text:"Koľko chýba do šiestich: vrecúško s orieškami, veže zo 6 kociek, zajace a mrkvy a hra pre dvoch Schovávačka. Výzva: dve vrecúška, tajný kód so zvieratkami a úloha, ktorú zadá dieťa.", subor:"mat-6.pdf"}
   ]},
 
-{ id:"anj-school", datum:"2026-10-27", predmet:"ANJ", kod:"ANJ-RE-2",
+{ id:"anj-school", datum:"2026-10-27", predmet:"ANJ", kod:"ANJ-RE-2", slovnik:"u1",
   nazov:"School things: pencil, book, bag",
   uvod:"Päť anglických slov o školských veciach: pencil, book, bag, ruler, crayon. Dieťa si ich vypočuje a potom uhádne vec z krátkej anglickej hádanky.",
   meta:["dieťa samo","3 minúty","tablet so zvukom"],
@@ -569,7 +572,7 @@ window.KARTY = [
     {typ:"tlac", urovne:3, text:"Päť na dve časti: vrecúško s orieškami, veže z kociek, domček čísla 5 a pravda alebo nepravda. Výzva: všetky náramky po poradí, bludisko súčtov a prečo sa 5 nedá rozdeliť napoly.", subor:"mat-rozklad-5.pdf"}
   ]},
 
-{ id:"anj-classroom", datum:"2026-10-14", predmet:"ANJ", kod:"ANJ-RE-1",
+{ id:"anj-classroom", datum:"2026-10-14", predmet:"ANJ", kod:"ANJ-RE-1", slovnik:"u1",
   nazov:"Touch the door! Slová v triede",
   uvod:"Door, window, chair, table, board. Dieťa si slová vypočuje a potom ich hľadá doma: rodič povie „Touch the door!“ a dieťa beží a dotkne sa dverí.",
   meta:["spolu s rodičom","5 minút","tablet so zvukom"],
@@ -609,7 +612,7 @@ window.KARTY = [
     {typ:"tlac", urovne:3, text:"Uberanie: prečiarkni, čo zjedol ježko, vtáčiky odleteli, kocky a pravda alebo nepravda. Výzva: čo zmizlo, plus alebo mínus, chytáky a vláčik počítania.", subor:"mat-uberame.pdf"}
   ]},
 
-{ id:"anj-please", datum:"2026-10-07", predmet:"ANJ", kod:"ANJ-IN-2",
+{ id:"anj-please", datum:"2026-10-07", predmet:"ANJ", kod:"ANJ-IN-2", slovnik:"start",
   nazov:"Please, thank you! Hra na obchod",
   uvod:"„An apple, please.“ – „Here you are.“ – „Thank you!“ Zahrajte sa na obchod, v ktorom sa nakupuje len po anglicky a slušne.",
   meta:["spolu s rodičom","5 minút","ovocie alebo hračky"],
@@ -768,7 +771,7 @@ window.KARTY = [
     {typ:"tlac", urovne:3, text:"Najväčší a najmenší: lopty, domy, misky pre tri macky, pastelky a snehuliak. Výzva: pastelky, ktoré nezačínajú na jednom mieste, a prečo je macko raz veľký a raz malý.", subor:"mat-najvacsi.pdf"}
   ]},
 
-{ id:"anj-name", datum:"2026-09-09", predmet:"ANJ", kod:"ANJ-IN-1",
+{ id:"anj-name", datum:"2026-09-09", predmet:"ANJ", kod:"ANJ-IN-1", slovnik:"start",
   nazov:"What's your name? My name is…",
   uvod:"„Hello! What's your name?“ – „My name is Bobo.“ Plyšák sa predstaví po anglicky a pýta sa dieťaťa na meno. Potom sa predstavia všetky hračky.",
   meta:["spolu s rodičom","3 minúty","plyšák alebo bábka"],
@@ -805,7 +808,7 @@ window.KARTY = [
     {typ:"tlac", urovne:3, text:"Kde je viac, menej a rovnako, bez počítania: priraďovanie zajkov a mrkiev, prestieranie, hore a dole. Výzva: chyták s veľkými a malými balónmi a tretí spôsob, ako urobiť rovnako.", subor:"mat-viac-menej.pdf"}
   ]},
 
-{ id:"anj-hello", datum:"2026-09-02", predmet:"ANJ", kod:"ANJ-IN-1",
+{ id:"anj-hello", datum:"2026-09-02", predmet:"ANJ", kod:"ANJ-IN-1", slovnik:"start",
   nazov:"Hello! Goodbye! Prvé anglické slová",
   uvod:"Hello, goodbye, good morning, good night. Dieťa si pozdravy vypočuje a celý deň ich môže používať: ráno „Good morning!“, večer „Good night!“.",
   meta:["dieťa samo aj s rodičom","2 minúty","tablet so zvukom"],
