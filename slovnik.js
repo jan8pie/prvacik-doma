@@ -173,7 +173,7 @@ function ukazOznam(){
 
 /* Rovnaký postup ako na webe: najprv potichu „rozohriať“ hlas, potom po pauze slovo.
    Vráti sľub, ktorý sa splní, keď hlas dočíta (true), alebo keď hovoriť nevie (false). */
-const PAUZA_MS = 450;
+const PAUZA_MS = 300;
 let sayTimer = null, hovorId = 0;
 function povedz(text, jaz="en"){
   const id = ++hovorId;
@@ -246,7 +246,7 @@ function vykresliVolby(){
   const l = LEKCIE[PORADIE[NAST.lekcia]];
   document.getElementById("pokyn").textContent = NAST.spolu
     ? `Od začiatku po ${l.cislo==="Úvod" ? "úvod" : "lekciu " + l.cislo}: ${spolu} ${slov(spolu)}, najnovšie sú hore. Ťukni na obrázok.`
-    : `${spolu} ${slov(spolu)}. Ťukni na obrázok, tablet povie slovo po anglicky${NAST.vety ? " a potom krátku vetu s ním" : ""}.`;
+    : `${spolu} ${slov(spolu)}. Ťukni na obrázok, tablet povie slovo po anglicky${NAST.vety ? " a potom krátku vetu s ním (len zvukom)" : ""}.`;
 }
 function vykresliMriezku(){
   const sk = skupiny();
@@ -281,8 +281,7 @@ document.getElementById("mriezka").addEventListener("click", e => {
 });
 
 /* ---------- ťuk na obrázok: povie slovo (a so SK aj preklad), potom slovo na chvíľu ukáže a schová ---------- */
-const UKAZ_MS = 2500;      /* ako dlho vidno napísané anglické slovo */
-const UKAZ_VETA_MS = 4000; /* ako dlho vidno napísanú vetu (prepínač Vety) */
+const UKAZ_MS = 3000;      /* ako dlho vidno napísané slovo po vypočutí */
 const IKONY = {
   zavri:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>`,
 };
@@ -291,32 +290,13 @@ function slovoZ(k){ const [id,i] = k.split(":"); return LEKCIE[PORADIE[id]].slov
 function upokoj(t){
   if(!t) return;
   t.classList.remove("hovori");
-  const sl = t.querySelector(".sl-slovo"); sl.classList.remove("ukaz","skry","sk"); sl.textContent = ""; sl.removeAttribute("lang");
-  skryVetu();
+  const sl = t.querySelector(".sl-slovo"); sl.textContent = "";
 }
-/* ---------- pruh s vetou dole (prepínač Vety): text až po vypočutí, slovo z obrázka zvýraznené ---------- */
-const VETABAR = document.getElementById("vetabar");
-function zvyrazni(veta, w){
-  const m = new RegExp("\\b" + w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i").exec(veta);
-  if(!m) return ESC(veta);
-  return ESC(veta.slice(0, m.index)) + "<mark>" + ESC(m[0]) + "</mark>" + ESC(veta.slice(m.index + m[0].length));
-}
-function ukazVetu(html, lang, tile){
-  /* keď je obrázok dole na obrazovke, pruh dáme hore, aby ho nezakryl */
-  if(tile) VETABAR.classList.toggle("hore", tile.getBoundingClientRect().bottom > innerHeight * 0.62);
-  VETABAR.lang = lang; VETABAR.innerHTML = html;
-  VETABAR.classList.toggle("sk", lang==="sk"); VETABAR.classList.add("on");
-}
-function skryVetu(){ VETABAR.classList.remove("on"); }
-async function ukazNaChvilu(sl, text, lang, ms, trieda, moj){
-  sl.lang = lang; sl.textContent = text; sl.classList.toggle("sk", trieda==="sk"); sl.classList.add("ukaz");
-  await pockaj(ms);
-  if(moj!==tukId) return false;
-  sl.classList.add("skry");
-  await pockaj(600);
-  if(moj!==tukId) return false;
-  sl.classList.remove("ukaz","skry","sk"); sl.textContent = "";
-  return true;
+/* Text sa ukáže naraz, bez animácie, vždy pod obrázkom: anglické slovo veľké a tmavé, slovenské pod ním menšie. */
+function ukazSlova(sl, en, sk){
+  sl.textContent = "";
+  const e = document.createElement("span"); e.className = "en"; e.lang = "en"; e.textContent = en; sl.append(e);
+  if(sk){ const k = document.createElement("span"); k.className = "sk"; k.lang = "sk"; k.textContent = sk; sl.append(k); }
 }
 async function tukni(tile){
   const moj = ++tukId;
@@ -325,56 +305,31 @@ async function tukni(tile){
   upokoj(tile);
   aktivny = tile;
   tile.classList.add("hovori");
+  const sl = tile.querySelector(".sl-slovo");
   const ok = await povedz(s.w, "en");
   if(moj!==tukId) return;                      /* medzitým ťukol znova alebo na iný obrázok */
   pocute.add(s.w);
   if(!tile.querySelector(".sl-pocul")) tile.insertAdjacentHTML("beforeend", `<span class="sl-pocul" title="Už počul"></span>`);
-  const sl = tile.querySelector(".sl-slovo");
-  /* VETY: po slove krátka veta s ním; so SK potom slovenská veta; nakoniec na chvíľu slovo aj veta napísané */
-  if(NAST.vety && s.veta){
-    await pockaj(ok ? 450 : 900);
+  const sk = NAST.sk && s.sk ? s.sk : "";
+  if(NAST.pismo==="po") ukazSlova(sl, s.w, sk);   /* hneď po anglickej výslovnosti */
+  if(sk){
+    const okSk = await povedz(sk, "sk");
     if(moj!==tukId) return;
-    const okV = await povedz(s.veta, "en");
+  }
+  /* Vety: len zvukom (text viet sa nezobrazuje) – anglická veta, so SK potom slovenská */
+  if(NAST.vety && s.veta){
+    await povedz(s.veta, "en");
     if(moj!==tukId) return;
     if(NAST.sk && s.veta_sk){
-      await pockaj(250);
-      if(moj!==tukId) return;
-      ukazVetu(ESC(s.veta_sk), "sk", tile);
-      const okSk = await povedz(s.veta_sk, "sk");
-      if(moj!==tukId) return;
-      await pockaj(okSk ? 700 : 2200);
-      if(moj!==tukId) return;
-      skryVetu();
-      await pockaj(400);
+      await povedz(s.veta_sk, "sk");
       if(moj!==tukId) return;
     }
-    tile.classList.remove("hovori");
-    if(NAST.pismo!=="po") return;
-    await pockaj(okV ? 300 : 900);
-    if(moj!==tukId) return;
-    ukazVetu(zvyrazni(s.veta, s.w), "en", tile);
-    if(await ukazNaChvilu(sl, s.w, "en", UKAZ_VETA_MS, "en", moj)) upokoj(tile);
-    return;
-  }
-  /* SK: po anglickom slove slovenský preklad nahlas a na chvíľu napísaný */
-  if(NAST.sk && s.sk){
-    await pockaj(250);
-    if(moj!==tukId) return;
-    sl.lang = "sk"; sl.textContent = s.sk; sl.classList.add("sk","ukaz");
-    const okSk = await povedz(s.sk, "sk");
-    if(moj!==tukId) return;
-    await pockaj(okSk ? 700 : 1800);
-    if(moj!==tukId) return;
-    sl.classList.add("skry");
-    await pockaj(600);
-    if(moj!==tukId) return;
-    sl.classList.remove("ukaz","skry","sk"); sl.textContent = "";
   }
   tile.classList.remove("hovori");
   if(NAST.pismo!=="po") return;
-  await pockaj(ok ? 300 : 900);
+  await pockaj(UKAZ_MS);
   if(moj!==tukId) return;
-  if(await ukazNaChvilu(sl, s.w, "en", UKAZ_MS, "en", moj)) upokoj(tile);
+  upokoj(tile);
 }
 
 /* ---------- panel pre rodiča ---------- */

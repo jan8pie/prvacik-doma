@@ -2,7 +2,7 @@
 /* Rozloženie: hlavička s výberom témy, pod ňou mriežka veľkých obrázkov; ťuk otvorí veľkú kartu.
    Farby a písma ako na webe Prváčik doma (index.html), zelená = angličtina. */
 :root{
-  --bg:#EDF1F5; --card:#FFFFFF; --ink:#1C2633; --muted:#5A6676; --line:#D8DFE7; --soft:#F5F7FA;
+  --ink-max:#0B1118; --bg:#EDF1F5; --card:#FFFFFF; --ink:#1C2633; --muted:#5A6676; --line:#D8DFE7; --soft:#F5F7FA;
   --anj:#24865A; --anj-soft:#DDF0E5; --sk:#2559B8; --anj-ink:#FFFFFF; --warn:#9A5B0C; --warn-soft:#FCEFD9;
   --shade:rgba(20,30,45,.55);
   --f-head:"Lexend","Trebuchet MS",system-ui,sans-serif;
@@ -12,11 +12,11 @@
   --r:16px;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#12171E; --card:#1B222C; --ink:#E7ECF2; --muted:#9AA6B5; --line:#2D3745; --soft:#222B37;
+  --ink-max:#FFFFFF; --bg:#12171E; --card:#1B222C; --ink:#E7ECF2; --muted:#9AA6B5; --line:#2D3745; --soft:#222B37;
   --anj:#5BC48F; --anj-soft:#1E3A2C; --sk:#8DB4FF; --anj-ink:#0D1A13; --warn:#E8B25E; --warn-soft:#3A2D18;
   --shade:rgba(0,0,0,.7); color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#12171E; --card:#1B222C; --ink:#E7ECF2; --muted:#9AA6B5; --line:#2D3745; --soft:#222B37;
+  --ink-max:#FFFFFF; --bg:#12171E; --card:#1B222C; --ink:#E7ECF2; --muted:#9AA6B5; --line:#2D3745; --soft:#222B37;
   --anj:#5BC48F; --anj-soft:#1E3A2C; --sk:#8DB4FF; --anj-ink:#0D1A13; --warn:#E8B25E; --warn-soft:#3A2D18;
   --shade:rgba(0,0,0,.7); color-scheme:dark}
 
@@ -94,7 +94,10 @@ button:focus-visible{outline:3px solid var(--anj);outline-offset:3px}
 .sl-tile .sl-obr{width:100%;height:100%;max-height:120px}
 .sl-tile .sl-slovo{font-family:var(--f-word);font-weight:700;font-size:min(28px,max(17px,14cqw));min-height:36px;line-height:1.15;
   display:flex;align-items:center;text-align:center;color:var(--ink)}
-.sl-tile .sl-slovo.sk{font-family:var(--f-body);font-weight:400;color:var(--sk)}
+.sl-tile .sl-slovo{flex-direction:column;justify-content:center;gap:1px}
+.sl-slovo .en{display:block;color:var(--ink-max);font-size:1em;font-weight:800}
+.sl-slovo .sk{display:block;color:var(--muted);font-family:var(--f-body);font-weight:400;font-size:.78em;line-height:1.2}
+.sl-tile .sl-slovo{min-height:36px}
 .sl-tile.navyse{border-style:dashed;border-color:color-mix(in srgb,var(--anj) 55%,var(--line))}
 .sl-tile .sl-znak{position:absolute;top:6px;left:9px;font-size:13px;line-height:1;letter-spacing:1px;color:var(--anj);transition:opacity .2s}
 .sl-tile.hovori .sl-znak{opacity:0}
@@ -120,9 +123,6 @@ button:focus-visible{outline:3px solid var(--anj);outline-offset:3px}
 .sl-vlny i{display:block;width:4px;border-radius:3px;background:var(--anj);animation:sl-vlna .7s ease-in-out infinite}
 .sl-vlny i:nth-child(1){height:9px}.sl-vlny i:nth-child(2){height:19px;animation-delay:.15s}.sl-vlny i:nth-child(3){height:12px;animation-delay:.3s}
 @keyframes sl-vlna{0%,100%{transform:scaleY(.45)}50%{transform:scaleY(1)}}
-.sl-slovo.ukaz{animation:sl-slovo .8s ease-out both}
-.sl-slovo.skry{opacity:0;transition:opacity .6s ease-in}
-@keyframes sl-slovo{from{opacity:0;transform:translateY(6px);filter:blur(3px)}to{opacity:1;transform:none;filter:none}}
 .sl-zaves{position:fixed;inset:0;background:var(--shade);display:grid;place-items:center;z-index:20;
   padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
 @keyframes sl-in{from{transform:scale(.94);opacity:.4}to{transform:none;opacity:1}}
@@ -156,13 +156,3 @@ button:focus-visible{outline:3px solid var(--anj);outline-offset:3px}
   .sl-tile .sl-pocul{top:6px;right:6px;width:10px;height:10px}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition:none!important}}
 @media (max-width:440px){.sl-prep small{display:none}.sl-volby{gap:8px}.sl-volby .sl-seg button{padding-inline:11px}}
-
-/* pruh s vetou (prepínač Vety): dole na obrazovke, ukáže sa až po vypočutí */
-.sl-vetabar{position:fixed;left:50%;bottom:max(16px,env(safe-area-inset-bottom));z-index:20;width:min(640px,calc(100% - 32px));
-  transform:translate(-50%,12px);opacity:0;pointer-events:none;transition:opacity .45s ease-in,transform .45s ease-in;
-  background:var(--card);border:2px solid var(--anj);border-radius:var(--r);box-shadow:0 8px 28px rgba(20,30,45,.22);
-  padding:14px 18px;text-align:center;font-family:var(--f-word);font-weight:700;font-size:clamp(20px,5.2vw,30px);line-height:1.3;color:var(--ink)}
-.sl-vetabar.hore{bottom:auto;top:max(16px,env(safe-area-inset-top));transform:translate(-50%,-12px)}
-.sl-vetabar.on{opacity:1;transform:translate(-50%,0);transition:opacity .5s ease-out,transform .5s ease-out}
-.sl-vetabar mark{background:var(--anj-soft);color:var(--anj);border-radius:8px;padding:0 5px}
-.sl-vetabar.sk{border-color:var(--sk);color:var(--sk);font-family:var(--f-body);font-weight:400}
