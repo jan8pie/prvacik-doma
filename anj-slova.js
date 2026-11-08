@@ -30,7 +30,7 @@ const LEKCIE = [
     {w:"rainbow",      obr:"🌈",          sk:"dúha", veta:"Look, a rainbow!", veta_sk:"Pozri, dúha!"},
     {w:"snow",         obr:"❄️",          sk:"sneh", uroven:2, veta:"I love snow!", veta_sk:"Ľúbim sneh!"},
     {w:"hot",          obr:"🥵",          sk:"horúco", uroven:3, veta:"It's hot today!", veta_sk:"Dnes je horúco!"},
-    {w:"cold",         obr:"🥶",          sk:"zima (je mi zima)", uroven:3, veta:"Brr, it's cold!", veta_sk:"Brr, je zima!"},
+    {w:"cold",         obr:"🥶",          sk:"zima (je mi zima)", uroven:3, veta:"I am cold.", veta_sk:"Je mi zima."},
     {w:"wind",         obr:"🌬️",          sk:"vietor", uroven:3, veta:"Wind and rain.", veta_sk:"Vietor a dážď."},
   ]},
   {id:"u1", cislo:"1", nazov:"Školské veci", en:"Let's learn!", ikona:"🎒", slova:[
@@ -53,7 +53,7 @@ const LEKCIE = [
     {w:"scissors", obr:"✂️", sk:"nožnice", uroven:2, veta:"Cut with scissors.", veta_sk:"Strihaj nožnicami."},
     {w:"school",     obr:"🏫", sk:"škola", uroven:3, veta:"Let's go to school!", veta_sk:"Poďme do školy!"},
     {w:"paintbrush", obr:"🖌️", sk:"štetec", uroven:3, veta:"Wash the paintbrush.", veta_sk:"Umy štetec."},
-    {w:"clock",      obr:"🕒", sk:"hodiny", uroven:3, veta:"Tick, tock, a clock!", veta_sk:"Tik-tak, hodiny!"},
+    {w:"clock",      obr:"🕒", sk:"hodiny", uroven:3, veta:"Look at the clock.", veta_sk:"Pozri sa na hodiny."},
   ]},
   {id:"u2", cislo:"2", nazov:"Farby", en:"Colours", ikona:"farba:#E0322B", slova:[
     {w:"red",    obr:"farba:#E0322B", sk:"červená", veta:"What colour is it? Red!", veta_sk:"Aká je to farba? Červená!"},
@@ -187,7 +187,7 @@ const LEKCIE = [
     {w:"twenty",   obr:"cislo:20", sk:"dvadsať", veta:"I can count to twenty!", veta_sk:"Viem počítať do dvadsať!"},
     {w:"present",  obr:"🎁", sk:"darček", uroven:2, veta:"A present for you!", veta_sk:"Darček pre teba!"},
     {w:"party",    obr:"🎉", sk:"oslava", uroven:2, veta:"Let's have a party!", veta_sk:"Poďme na oslavu!"},
-    {w:"baby",     obr:"👶", sk:"bábätko", uroven:3, veta:"Shh! The baby is sleeping.", veta_sk:"Pst! Bábätko spí."},
+    {w:"baby",     obr:"👶", sk:"bábätko", uroven:3, veta:"The baby is sleeping.", veta_sk:"Bábätko spí."},
     {w:"doctor",   obr:"🧑‍⚕️", sk:"lekár, lekárka", uroven:3, veta:"He's a doctor.", veta_sk:"On je lekár."},
     {w:"balloon",  obr:"🎈", sk:"balón", uroven:3, veta:"Balloons for the party!", veta_sk:"Balóny na oslavu!"},
   ]},
