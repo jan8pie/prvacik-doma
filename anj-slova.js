@@ -3,12 +3,15 @@
    Lekcie idú v poradí učebnice Beehive Starter (Lekcia = Unit v učebnici).
    Adresa lekcie: slovnik.html#u3 (len lekcia 3), slovnik.html#u3+ (od začiatku po lekciu 3)
 
-   w:     slovo, ktoré tablet povie po anglicky
-   sk:    krátky slovenský preklad (prepínač SK ho povie a na chvíľu ukáže; rodič ho vidí v paneli)
-   obr:   emoji · "farba:#hex" · "kocka:3" (1 – 6) · "ramik:12" (bodky v rámčekoch, 7 – 20)
-          · "svg:kluc" (vlastný obrázok v slovnik.js) · pole emoji = scénka
-          · {em:"🐭", m:.5} = emoji zmenšené (malé), {em:"🐘", m:1.2} = zväčšené
-   extra: true = rozširujúce slovo navyše (ukáže sa len so zapnutým Extra, cca 10 – 15 % slov)
+   w:      slovo, ktoré tablet povie po anglicky (musí byť v celom slovníku jedinečné)
+   sk:     krátky slovenský preklad (prepínač SK ho povie a na chvíľu ukáže; rodič ho vidí v paneli)
+   obr:    emoji · "farba:#hex" · "cislo:12" (veľká číslica) · "svg:kluc" (vlastný obrázok v slovnik.js)
+           · pole emoji = scénka · {em:"🐭", m:.5} = emoji zmenšené (malé), {em:"🐘", m:1.2} = zväčšené
+   uroven: bez neho = Základ (slovo z učebnice)
+           2 = Viac (slová navyše, spolu cca 12 – 15 % k základu)
+           3 = Najviac (ďalšie slová k téme, so slovami Viac spolu cca 30 – 40 % k základu)
+   veta:   (pripravené, zatiaľ nepoužité) krátka veta alebo spojenie so slovom, napr. veta:"a red apple"
+           veta_sk: jej slovenský preklad pre rodiča
    Zdroj zoznamu slov: prehlad/06_podklady/30_beehive_starter.md (len názvy slov, nič z učebnice)
    ===================================================================== */
 const LEKCIE = [
@@ -23,7 +26,10 @@ const LEKCIE = [
     {w:"rain",         obr:"🌧️",          sk:"dážď"},
     {w:"umbrella",     obr:"☂️",          sk:"dáždnik"},
     {w:"rainbow",      obr:"🌈",          sk:"dúha"},
-    {w:"snow",         obr:"❄️",          sk:"sneh", extra:true},
+    {w:"snow",         obr:"❄️",          sk:"sneh", uroven:2},
+    {w:"hot",          obr:"🥵",          sk:"horúco", uroven:3},
+    {w:"cold",         obr:"🥶",          sk:"zima (je mi zima)", uroven:3},
+    {w:"wind",         obr:"🌬️",          sk:"vietor", uroven:3},
   ]},
   {id:"u1", cislo:"1", nazov:"Školské veci", en:"Let's learn!", ikona:"🎒", slova:[
     {w:"pencil",   obr:"✏️", sk:"ceruzka"},
@@ -38,11 +44,14 @@ const LEKCIE = [
     {w:"board",    obr:"svg:board",     sk:"tabuľa"},
     {w:"bookcase", obr:"svg:bookcase",  sk:"knižnica"},
     {w:"teacher",  obr:"🧑‍🏫", sk:"učiteľ, učiteľka"},
-    {w:"one",      obr:"kocka:1", sk:"jeden"},
-    {w:"two",      obr:"kocka:2", sk:"dva"},
-    {w:"three",    obr:"kocka:3", sk:"tri"},
-    {w:"rubber",   obr:"svg:rubber", sk:"guma", extra:true},
-    {w:"scissors", obr:"✂️", sk:"nožnice", extra:true},
+    {w:"one",      obr:"cislo:1", sk:"jeden"},
+    {w:"two",      obr:"cislo:2", sk:"dva"},
+    {w:"three",    obr:"cislo:3", sk:"tri"},
+    {w:"rubber",   obr:"svg:rubber", sk:"guma", uroven:2},
+    {w:"scissors", obr:"✂️", sk:"nožnice", uroven:2},
+    {w:"school",     obr:"🏫", sk:"škola", uroven:3},
+    {w:"paintbrush", obr:"🖌️", sk:"štetec", uroven:3},
+    {w:"clock",      obr:"🕒", sk:"hodiny", uroven:3},
   ]},
   {id:"u2", cislo:"2", nazov:"Farby", en:"Colours", ikona:"farba:#E0322B", slova:[
     {w:"red",    obr:"farba:#E0322B", sk:"červená"},
@@ -55,10 +64,13 @@ const LEKCIE = [
     {w:"brown",  obr:"farba:#8B5A2B", sk:"hnedá"},
     {w:"black",  obr:"farba:#202020", sk:"čierna"},
     {w:"white",  obr:"farba:#FFFFFF", sk:"biela"},
-    {w:"four",   obr:"kocka:4", sk:"štyri"},
-    {w:"five",   obr:"kocka:5", sk:"päť"},
-    {w:"six",    obr:"kocka:6", sk:"šesť"},
-    {w:"grey",   obr:"farba:#8E969E", sk:"sivá", extra:true},
+    {w:"four",   obr:"cislo:4", sk:"štyri"},
+    {w:"five",   obr:"cislo:5", sk:"päť"},
+    {w:"six",    obr:"cislo:6", sk:"šesť"},
+    {w:"grey",   obr:"farba:#8E969E", sk:"sivá", uroven:2},
+    {w:"light blue", obr:"farba:#86CBF2", sk:"bledomodrá", uroven:3},
+    {w:"zero",   obr:"cislo:0", sk:"nula", uroven:3},
+    {w:"paint",  obr:"🎨", sk:"maľovať", uroven:3},
   ]},
   {id:"u3", cislo:"3", nazov:"Zvieratá na farme", en:"Farm animals", ikona:"🐄", slova:[
     {w:"horse",  obr:"🐴", sk:"kôň"},
@@ -71,11 +83,14 @@ const LEKCIE = [
     {w:"cat",    obr:"🐱", sk:"mačka"},
     {w:"rabbit", obr:"🐰", sk:"zajac"},
     {w:"bird",   obr:"🐦", sk:"vták"},
-    {w:"seven",  obr:"ramik:7", sk:"sedem"},
-    {w:"eight",  obr:"ramik:8", sk:"osem"},
-    {w:"nine",   obr:"ramik:9", sk:"deväť"},
-    {w:"pig",    obr:"🐷", sk:"prasiatko", extra:true},
-    {w:"parrot", obr:"🦜", sk:"papagáj", extra:true},
+    {w:"seven",  obr:"cislo:7", sk:"sedem"},
+    {w:"eight",  obr:"cislo:8", sk:"osem"},
+    {w:"nine",   obr:"cislo:9", sk:"deväť"},
+    {w:"pig",    obr:"🐷", sk:"prasiatko", uroven:2},
+    {w:"parrot", obr:"🦜", sk:"papagáj", uroven:2},
+    {w:"rooster", obr:"🐓", sk:"kohút", uroven:3},
+    {w:"chick",   obr:"🐤", sk:"kuriatko", uroven:3},
+    {w:"tractor", obr:"🚜", sk:"traktor", uroven:3},
   ]},
   {id:"u4", cislo:"4", nazov:"Jedlo a pitie", en:"Let's eat!", ikona:"🥕", slova:[
     {w:"cake",     obr:"🍰", sk:"koláč, torta"},
@@ -88,11 +103,14 @@ const LEKCIE = [
     {w:"yoghurt",  obr:"svg:yoghurt", sk:"jogurt"},
     {w:"milk",     obr:"🥛", sk:"mlieko"},
     {w:"water",    obr:"svg:water",   sk:"voda"},
-    {w:"ten",      obr:"ramik:10", sk:"desať"},
-    {w:"eleven",   obr:"ramik:11", sk:"jedenásť"},
-    {w:"twelve",   obr:"ramik:12", sk:"dvanásť"},
-    {w:"apple",    obr:"🍎", sk:"jablko", extra:true},
-    {w:"juice",    obr:"🧃", sk:"džús", extra:true},
+    {w:"ten",      obr:"cislo:10", sk:"desať"},
+    {w:"eleven",   obr:"cislo:11", sk:"jedenásť"},
+    {w:"twelve",   obr:"cislo:12", sk:"dvanásť"},
+    {w:"apple",    obr:"🍎", sk:"jablko", uroven:2},
+    {w:"juice",    obr:"🧃", sk:"džús", uroven:2},
+    {w:"banana",   obr:"🍌", sk:"banán", uroven:3},
+    {w:"bread",    obr:"🍞", sk:"chlieb", uroven:3},
+    {w:"cheese",   obr:"🧀", sk:"syr", uroven:3},
   ]},
   {id:"u5", cislo:"5", nazov:"Čo viem robiť", en:"Let's play!", ikona:"🏃", slova:[
     {w:"walk",  obr:"🚶", sk:"chodiť"},
@@ -105,10 +123,13 @@ const LEKCIE = [
     {w:"sing",  obr:["🎤","🎵"], sk:"spievať"},
     {w:"play the piano", obr:"🎹", sk:"hrať na klavíri"},
     {w:"play the drums", obr:"🥁", sk:"hrať na bubne"},
-    {w:"thirteen", obr:"ramik:13", sk:"trinásť"},
-    {w:"fourteen", obr:"ramik:14", sk:"štrnásť"},
-    {w:"swim",       obr:"🏊", sk:"plávať", extra:true},
-    {w:"ride a bike", obr:"🚴", sk:"bicyklovať sa", extra:true},
+    {w:"thirteen", obr:"cislo:13", sk:"trinásť"},
+    {w:"fourteen", obr:"cislo:14", sk:"štrnásť"},
+    {w:"swim",       obr:"🏊", sk:"plávať", uroven:2},
+    {w:"ride a bike", obr:"🚴", sk:"bicyklovať sa", uroven:2},
+    {w:"play football",   obr:"⚽", sk:"hrať futbal", uroven:3},
+    {w:"play the guitar", obr:"🎸", sk:"hrať na gitare", uroven:3},
+    {w:"ski",             obr:"⛷️", sk:"lyžovať sa", uroven:3},
   ]},
   {id:"u6", cislo:"6", nazov:"Morské zvieratá", en:"Sea animals", ikona:"🐬", slova:[
     {w:"dolphin",  obr:"🐬", sk:"delfín"},
@@ -121,10 +142,13 @@ const LEKCIE = [
     {w:"small",    obr:{em:"🐭", m:.42}, sk:"malý"},
     {w:"fast",     obr:"🐆", sk:"rýchly"},
     {w:"slow",     obr:"🐌", sk:"pomalý"},
-    {w:"fifteen",  obr:"ramik:15", sk:"pätnásť"},
-    {w:"sixteen",  obr:"ramik:16", sk:"šestnásť"},
-    {w:"octopus",  obr:"🐙", sk:"chobotnica", extra:true},
-    {w:"crab",     obr:"🦀", sk:"krab", extra:true},
+    {w:"fifteen",  obr:"cislo:15", sk:"pätnásť"},
+    {w:"sixteen",  obr:"cislo:16", sk:"šestnásť"},
+    {w:"octopus",  obr:"🐙", sk:"chobotnica", uroven:2},
+    {w:"crab",     obr:"🦀", sk:"krab", uroven:2},
+    {w:"whale",    obr:"🐳", sk:"veľryba", uroven:3},
+    {w:"shark",    obr:"🦈", sk:"žralok", uroven:3},
+    {w:"shell",    obr:"🐚", sk:"mušľa", uroven:3},
   ]},
   {id:"u7", cislo:"7", nazov:"Moje telo", en:"My body", ikona:"👃", slova:[
     {w:"eyes",    obr:"👀", sk:"oči"},
@@ -138,10 +162,13 @@ const LEKCIE = [
     {w:"feet",    obr:"🦶", sk:"chodidlá"},
     {w:"toes",    obr:"svg:toes", sk:"prsty na nohe"},
     {w:"monster", obr:"👾", sk:"príšerka"},
-    {w:"seventeen", obr:"ramik:17", sk:"sedemnásť"},
-    {w:"eighteen",  obr:"ramik:18", sk:"osemnásť"},
-    {w:"teeth",   obr:"🦷", sk:"zuby", extra:true},
-    {w:"hair",    obr:"💇", sk:"vlasy", extra:true},
+    {w:"seventeen", obr:"cislo:17", sk:"sedemnásť"},
+    {w:"eighteen",  obr:"cislo:18", sk:"osemnásť"},
+    {w:"teeth",   obr:"🦷", sk:"zuby", uroven:2},
+    {w:"hair",    obr:"💇", sk:"vlasy", uroven:2},
+    {w:"tongue",  obr:"👅", sk:"jazyk", uroven:3},
+    {w:"thumb",   obr:"👍", sk:"palec", uroven:3},
+    {w:"face",    obr:"🙂", sk:"tvár", uroven:3},
   ]},
   {id:"u8", cislo:"8", nazov:"Rodina a povolania", en:"Let's celebrate!", ikona:"🎁", slova:[
     {w:"mum",      obr:"👩‍👦", sk:"mama"},
@@ -154,10 +181,13 @@ const LEKCIE = [
     {w:"cook",     obr:"🧑‍🍳", sk:"kuchár"},
     {w:"firefighter", obr:"🧑‍🚒", sk:"hasič"},
     {w:"pilot",    obr:"🧑‍✈️", sk:"pilot"},
-    {w:"nineteen", obr:"ramik:19", sk:"devätnásť"},
-    {w:"twenty",   obr:"ramik:20", sk:"dvadsať"},
-    {w:"present",  obr:"🎁", sk:"darček", extra:true},
-    {w:"party",    obr:"🎉", sk:"oslava", extra:true},
+    {w:"nineteen", obr:"cislo:19", sk:"devätnásť"},
+    {w:"twenty",   obr:"cislo:20", sk:"dvadsať"},
+    {w:"present",  obr:"🎁", sk:"darček", uroven:2},
+    {w:"party",    obr:"🎉", sk:"oslava", uroven:2},
+    {w:"baby",     obr:"👶", sk:"bábätko", uroven:3},
+    {w:"doctor",   obr:"🧑‍⚕️", sk:"lekár, lekárka", uroven:3},
+    {w:"balloon",  obr:"🎈", sk:"balón", uroven:3},
   ]},
 ];
 /* staré adresy tém (prvá verzia slovníka) → lekcie */
