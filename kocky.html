@@ -6,8 +6,11 @@
 <title>Hra s kockami · Prváčik doma</title>
 <meta name="description" content="Hra pre prvákov: čísla do 100 ako kocky a desiatky, sčítanie s prechodom cez desiatku, stavby z kociek, s hlasom.">
 <meta name="claude:viewport-fit-sides" content="cover">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Lexend:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="pismo.css">
+<link rel="stylesheet" href="hlavicka.css">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="ikony/ikona.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="ikony/ikona-180.png">
 <link rel="stylesheet" href="kocky.css">
 <style>
 /* Rozloženie stránky: jeden stĺpec ako web Prváčik doma. Navrchu nastavenia pre rodiča, pod nimi hra.
@@ -75,10 +78,10 @@ label.chk{display:inline-flex;gap:8px;align-items:center;font-size:15px;color:va
 <body>
 
 <div class="wrap" id="stranka">
-  <header class="top">
-    <a class="spat" href="./">← Prváčik doma</a>
-    <h1>Hra s kockami</h1>
-    <p>Číslo vidno ako kocky v rámikoch po desať. Plný rámik je desiatka, takže aj pri 47 + 24 je vidieť, čo sa deje. Nastavte hru, vyskúšajte si ju a potom ťuknite na <b>Podať dieťaťu</b>. Hra nemusí sedieť s tým, čo sa práve preberá v škole, čísla si zvolíte sami.</p>
+  <header class="hl mat">
+    <a class="hl-spat" href="./">← Prváčik doma</a>
+    <div class="hl-r"><span class="hl-tag">Matematika</span><h1>Hra s kockami</h1></div>
+    <details class="hl-info"><summary>Ako to funguje</summary><p>Číslo vidno ako kocky v rámikoch po desať. Plný rámik je desiatka, takže aj pri 47 + 24 je vidieť, čo sa deje. Nastavte hru, vyskúšajte si ju a potom ťuknite na <b>Podať dieťaťu</b>. Hra nemusí sedieť s tým, čo sa práve preberá v škole, čísla si zvolíte sami.</p></details>
   </header>
 
   <section class="card" aria-labelledby="h-nast">

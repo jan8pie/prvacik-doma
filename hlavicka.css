@@ -1,0 +1,20 @@
+/* Spoločná hlavička troch hier (Hra s kockami, Písmenkové kocky, Obrázkový slovník):
+   odkaz späť, štítok predmetu, názov. Návod pre rodiča je zbalený, aby bola hra hneď hore. */
+.hl{display:flex;flex-direction:column;gap:10px;--hc:#2B62C9;--hc-ink:#FFFFFF}
+.hl.sjl{--hc:#C2423A}.hl.anj{--hc:#24865A}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .hl{--hc:#6E9BEF;--hc-ink:#0D1420}
+  :root:not([data-theme="light"]) .hl.sjl{--hc:#EE7A70}:root:not([data-theme="light"]) .hl.anj{--hc:#5BC48F}}
+:root[data-theme="dark"] .hl{--hc:#6E9BEF;--hc-ink:#0D1420}
+:root[data-theme="dark"] .hl.sjl{--hc:#EE7A70}:root[data-theme="dark"] .hl.anj{--hc:#5BC48F}
+.hl-spat{align-self:flex-start;display:inline-flex;align-items:center;min-height:32px;color:var(--muted);text-decoration:none;font-family:var(--f-body);font-weight:400;font-size:15px}
+.hl-spat:hover{color:var(--ink)}
+.hl-r{display:flex;align-items:center;gap:8px 12px;flex-wrap:wrap}
+.hl-tag{font-family:var(--f-head);font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase;background:var(--hc);color:var(--hc-ink);border-radius:8px;padding:3px 9px}
+.hl h1{font-size:clamp(22px,4vw,28px);margin:0}
+.hl-info{color:var(--muted);font-size:15px}
+.hl-info summary{cursor:pointer;display:inline-flex;align-items:center;gap:6px;min-height:36px;font-weight:700;color:var(--muted);list-style:none}
+.hl-info summary::-webkit-details-marker{display:none}
+.hl-info summary::after{content:"";width:8px;height:8px;border-right:2px solid;border-bottom:2px solid;transform:rotate(45deg);margin:-4px 0 0 4px}
+.hl-info[open] summary::after{transform:rotate(225deg);margin-top:4px}
+.hl-info summary:hover{color:var(--ink)}
+.hl-info p{margin:4px 0 0;max-width:62ch}
