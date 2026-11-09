@@ -41,6 +41,7 @@ window.KARTY = [
    TÝŽDEŇ 16. – 22. 11. 2026 (prvá sada podľa nového rytmu: 10 kariet,
    jeden list na predmet, opakovanie v piatok, rodinná karta na víkend).
    17. 11. je štátny sviatok, karty na utorok sú bez listu.
+   Jan 9. 11. potvrdil: číslo 7, písmeno O, odčítanie do 6 (neskôr do 7).
    ========================================================= */
 
 /* ---------- 21. 11. 2026 (sobota, víkendová rodinná karta) ---------- */
@@ -101,44 +102,42 @@ window.KARTY = [
   ]},
 
 /* ---------- 18. 11. 2026 (streda) ---------- */
-{ id:"sjl-vety-j", datum:"2026-11-18", predmet:"SJL", obr:"🙋", pismenka:"AMELIJ", kod:"SJL-RV-1",
-  nazov:"Čítame vety s J: Ema je malá. Ja jem",
-  uvod:"S písmenom J prišli dve malé a veľmi užitočné slová: ja a je. Z nich sa už dajú čítať vety, ktoré niečo hovoria: Ema je malá. Mama je milá. Dieťa číta samo nahlas a tablet ho skontroluje. K tomu list na celý týždeň.",
+{ id:"sjl-vety-j", datum:"2026-11-18", predmet:"SJL", obr:"🙋", pismenka:"AMELIJO", kod:"SJL-RV-1",
+  nazov:"Čítame vety s J a O: Moja mama je milá",
+  uvod:"S písmenami J a O prišli malé, ale užitočné slová: ja, je, moja. Z nich sa už dajú čítať vety, ktoré niečo hovoria: Moja mama je milá. Ema má jojo. Dieťa číta samo nahlas a tablet ho skontroluje. K tomu list na celý týždeň.",
   meta:["dieťa samo aj s rodičom","5 minút","tablet so zvukom"],
   stdn:"ŠVP SJL, Elementárne čítanie: „čítanie slabík, slov, viet a krátkych textov s postupne sa zvyšujúcou náročnosťou“",
   bloky:[
     {typ:"pocuvanie", citanie:true, jazyk:"sk-SK", text:"Najprv prečítaj nahlas. Potom ťukni na kartičku a skontroluj sa.",
-     slova:[["","ja"],["","je"],["","jem"],["","jama"],["","Ja jem."],["","Ema je malá."],["","Mama je milá."],["","Je máj."]]},
-    {typ:"tlac", urovne:3, text:"List na celý týždeň: slabiky a slová s J, vety so slovom je, sedí veta k obrázku a čo sa začína na O. Výzva: škriatok mení písmená, skladanie viet a veta o sebe.", subor:"sjl-vety-j.pdf"},
-    {typ:"spolu", text:"Hra „Kto je to?“: napíšte veľkými tlačenými písmenami na papieriky slová Ema, Emil, mama, je, malá, milá, a. Dieťa z nich skladá vety a číta ich nahlas, napríklad „Ema je milá.“ Potom ukážte na niekoho z rodiny alebo na plyšáka a dieťa o ňom povie vetu so slovom je."}
+     slova:[["","je"],["","moja"],["","jojo"],["","Ola"],["","Ja jem."],["","Ema má jojo."],["","Ola je malá."],["","Moja mama je milá."]]},
+    {typ:"tlac", urovne:3, text:"List na celý týždeň: písmená J a O, slabiky a slová, vety so slovom je, sedí veta k obrázku. Výzva: škriatok mení písmená, tajné slová a skladanie viet.", subor:"sjl-vety-j.pdf"},
+    {typ:"spolu", text:"Hra „Kto je to?“: napíšte veľkými tlačenými písmenami na papieriky slová Ema, Ola, moja, mama, je, malá, milá, a. Dieťa z nich skladá vety a číta ich nahlas, napríklad „Ema je milá.“ Potom ukážte na niekoho z rodiny alebo na plyšáka a dieťa o ňom povie vetu so slovom je."}
   ]},
 
-{ id:"mat-rozklad-7", datum:"2026-11-18", predmet:"MAT", obr:"🖐️", kod:"MAT-CO-4",
-  nazov:"Sedem prstov: rozklad čísla 7",
-  uvod:"Sedmička sa dá poskladať z dvoch častí: 6 a 1, 5 a 2, 4 a 3. Najprv veverička s vrecúškom na tablete, potom hra s prstami: ukážete pár prstov a dieťa doplní svojimi do sedem.",
-  meta:["dieťa samo aj s rodičom","6 minút","tablet, vlastné prsty"],
-  stdn:"ŠVP MAT, Čísla a operácie s číslami: „modelovanie a využívanie rôznych rozkladov čísel“",
+{ id:"mat-odcitame-6", datum:"2026-11-18", predmet:"MAT", obr:"🍓", kod:"MAT-CO-3",
+  nazov:"Ježko zjedol jahody: odčítame do 6",
+  uvod:"Odčítanie je uberanie: niečo bolo, časť zmizla, koľko ostalo? Na tablete ježko Bodliak zje pár jahôd z taniera a dieťa dopočíta zvyšok. Potom to isté s gombíkmi a s príkladom na papieri.",
+  meta:["dieťa samo aj s rodičom","7 minút","tablet, 6 gombíkov, papier"],
+  stdn:"ŠVP MAT, Čísla a operácie s číslami: „znalosť a používanie statických a dynamických modelov sčítania a odčítania“",
   bloky:[
-    {typ:"aktivita", text:"Veverička si schovala oriešky do vrecúška.",
-     hra:{druh:"rozklad", urovne:[["●","Ľahšie",6],["●●","Bežné",7],["●●●","Výzva",10]], predvolena:1, kol:3}},
-    {typ:"spolu", text:"Hra „Do sedem“: ukážte dieťaťu niekoľko prstov, napríklad štyri. Dieťa ukáže na svojich rukách toľko prstov, aby ich bolo spolu sedem, a povie to nahlas: „Štyri a tri je sedem.“ Po troch kolách sa vymeňte. Kto chce, môže ukázať aj nulu, teda zavretú päsť."},
-    {typ:"rozhovor", zacni:"„Mám 7 ceruziek a dva peračníky. Ako ich môžem rozdeliť?“",
-     otazky:["Do prvého peračníka dám 5 ceruziek. Koľko dám do druhého?","Nájdeš aj iný spôsob? A ešte iný?","Dá sa 7 ceruziek rozdeliť tak, aby bolo v oboch peračníkoch rovnako? Prečo?"],
-     preteba:"V škole sa tomu hovorí rozklad čísla. Sedem sa na dve rovnaké časti rozdeliť nedá, jedna ceruzka vždy ostane. Na to má dieťa prísť samo, napríklad s ozajstnými ceruzkami."}
+    {typ:"aktivita", text:"Koľko jahôd zostalo na tanieri? Hra je nastavená na odčítanie do 6, sčítanie je pri nižších úrovniach.",
+     hra:{druh:"sucet", urovne:[["●","Plus do 4"],["●●","Plus do 6"],["●●●","Mínus do 6"]], predvolena:2, kol:4}},
+    {typ:"spolu", text:"Hra „Zober a schovaj“: položte na stôl 6 gombíkov. Dieťa zavrie oči a vy zoberiete niekoľko gombíkov do dlane. Dieťa povie, koľko ste zobrali a koľko ostalo, a zapíše to ako príklad, napríklad 6 − 2 = 4. Potom sa vymeňte. Kto chce, skúsi to isté so siedmimi gombíkmi."},
+    {typ:"rozhovor", zacni:"„Mal som 6 keksov a 2 som zjedol. Ako zistíš, koľko mi ostalo?“",
+     otazky:["Mám 5 hrozienok a jedno zjem. Koľko mi ostane?","Mám 6 ceruziek a 4 požičiam. Koľko mi ostane? Ako si to zistil?","Vymysli príbeh k príkladu 6 − 3. Čo sa v ňom stane?"],
+     preteba:"V škole sa tomu hovorí odčítanie a znak mínus. Pomáha ukázať to naozaj: zobrať, zakryť, odjesť. Kto už vie, môže počítať od väčšieho čísla dozadu: šesť, päť, štyri. Počítanie na prstoch je v poriadku."}
   ]},
-
 /* ---------- 17. 11. 2026 (utorok, štátny sviatok) ---------- */
-{ id:"sjl-pismenka-j", datum:"2026-11-17", predmet:"SJL", obr:"🧩", pismenka:"AMELIJ:spoj", kod:"SJL-RV-1",
-  nazov:"Písmenkové kocky: skladáme slová s J",
-  uvod:"Voľný deň, tak dnes len hra. Tlačidlo v karte otvorí Písmenkové kocky nastavené na písmená A, M, E, L, I, J. Dieťa spája kocky so slabikami do slov a tri slová si potom zapíše na papier.",
+{ id:"sjl-pismenka-o", datum:"2026-11-17", predmet:"SJL", obr:"🧩", pismenka:"AMELIJO:spoj", kod:"SJL-RV-1",
+  nazov:"Písmenkové kocky: skladáme slová s O",
+  uvod:"Voľný deň, tak dnes len hra. Tlačidlo v karte otvorí Písmenkové kocky nastavené na písmená A, M, E, L, I, J a nové O. Dieťa spája kocky so slabikami do slov a tri slová si potom zapíše na papier.",
   meta:["dieťa samo","5 minút","tablet so zvukom, papier"],
   stdn:"ŠVP SJL, Elementárne čítanie: „čítanie slabík, slov, viet a krátkych textov s postupne sa zvyšujúcou náročnosťou“",
   bloky:[
     {typ:"pocuvanie", citanie:true, jazyk:"sk-SK", text:"Na rozcvičku prečítaj slabiky a slová nahlas. Potom ťukni a skontroluj sa.",
-     slova:[["","ja"],["","je"],["","já"],["","jej"],["","jama"],["","Maja"]]},
+     slova:[["","mo"],["","lo"],["","jo"],["","moja"],["","molo"],["","jojo"]]},
     {typ:"spolu", text:"Po hre dieťa napíše veľkými tlačenými písmenami na papier tri slová, ktoré v hre zložilo, a prečíta vám ich. Pri každom slove spolu vytlieskajte slabiky. Ak je spájanie slabík ešte pomalé, nevadí: stačí päť minút denne a ide to samo."}
   ]},
-
 { id:"anj-favourite-colour", datum:"2026-11-17", predmet:"ANJ", obr:"🌈", kod:"ANJ-IN-2", slovnik:"u2",
   nazov:"What's your favourite colour?",
   uvod:"Plyšák sa pýta po anglicky na obľúbenú farbu a dieťa odpovedá jedným slovom: „Blue!“ Vzorové vety si najprv vypočujete na tablete, potom sa plyšák pýta celej rodiny.",
@@ -153,18 +152,20 @@ window.KARTY = [
 
 /* ---------- 16. 11. 2026 (pondelok) ---------- */
 { id:"sjl-o-zaciatok", datum:"2026-11-16", predmet:"SJL", obr:"☁️", kod:"SJL-PP-2",
-  nazov:"Hláska O: oko, oblak, opica",
-  uvod:"Hra pre uši: ktoré slová sa začínajú na O? Dieťa ťuká na obrázky, háda dve hádanky a potom hľadá O doma. Nič sa tu nečíta, takže karta sedí, aj keď sa písmeno O v škole ešte len chystá.",
+  nazov:"Písmeno O: oko, oblak, opica",
+  uvod:"Nové písmeno týždňa. Najprv hra pre uši: ktoré slová sa začínajú na O? Potom prvé slabiky s O na čítanie, dve hádanky a hľadanie O doma.",
   meta:["dieťa samo aj s rodičom","5 minút","tablet so zvukom"],
   stdn:"ŠVP SJL, Elementárne čítanie: „sluchové identifikovanie a rozlišovanie zvukov, slov, slabík, hlások“",
   bloky:[
     {typ:"aktivita", text:"Ťukni na obrázky, ktoré sa začínajú na O. Keď ťukneš, obrázok sa ozve.",
      hra:{druh:"vyber", spravne:"O", polozky:[["👁️","oko"],["☁️","oblak"],["🚗","auto"],["🐒","opica"],["🦙","lama"],["🔥","oheň"],["🦔","ježko"],["🐑","ovca"]]}},
+    {typ:"pocuvanie", citanie:true, jazyk:"sk-SK", text:"Prečítaj slabiku nahlas. Potom na ňu ťukni a skontroluj sa.",
+     slova:[["","o"],["","mo"],["","lo"],["","jo"],["","om"],["","ol"]]},
     {typ:"hadanka", text:"Je zo skla a je v každej izbe. Cez deň ním ide dnu svetlo. Začína sa na O. Čo je to?", odpoved:"Okno"},
     {typ:"hadanka", text:"Je biely a mäkký ako vata a pláva po oblohe. Začína sa na O. Čo je to?", odpoved:"Oblak ☁️"},
     {typ:"rozhovor", zacni:"„Poviem slovo a ty mi povieš, či sa začína na O. Pozor, budem ťa chcieť nachytať.“",
      otazky:["Začína sa na O slovo oko? A slovo mama?","Povedz tri veci, ktoré sa začínajú na O. Môžeš sa poobzerať po izbe.","Kde počuješ O v slove lano: na začiatku, alebo na konci? A v slove oko?"],
-     preteba:"V škole sa tomu hovorí prvá hláska slova. Hlásku vyslovujte krátko a čisto „o“, nie „ó“. V slove oko je O na začiatku aj na konci, to je pekný objav pre šikovné uši."}
+     preteba:"V škole sa tomu hovorí prvá hláska slova. Hlásku vyslovujte krátko a čisto „o“, nie „ó“. V slove oko je O na začiatku aj na konci, to je pekný objav pre šikovné uši. Písmeno O sa píše ako krúžok, veľké aj malé vyzerá rovnako."}
   ]},
 
 { id:"mat-7", datum:"2026-11-16", predmet:"MAT", obr:"🌈", kod:"MAT-CO-1",
@@ -176,7 +177,7 @@ window.KARTY = [
     {typ:"aktivita", text:"Koľko kociek je v rámiku? Dieťa napíše číslo, žltý otáznik ukáže možnosti. Pri Výzve dieťa vidí číslo a kocky postaví samo.",
      hra:{druh:"kocky", rezim:"kolko", urovne:[["●","Ľahšie",{max:6}],["●●","Bežné",{max:7}],["●●●","Výzva",{max:7}]], predvolena:1, kol:4}},
     {typ:"spolu", text:"Lov na sedmičku: nájdite doma sedem rovnakých vecí (lyžičky, kocky, ponožky) a uložte ich do radu. Dieťa ich spočíta a potom ich rozdelí na dve kôpky. Povedzte spolu dni v týždni a pri každom vystrite jeden prst. Na konci má byť vystretých sedem prstov."},
-    {typ:"tlac", urovne:3, text:"List na celý týždeň: písanie sedmičky, koľko je, číselný rad, rozklad a počítanie do 7. Výzva: všetky rozklady sedmičky, myslené číslo a tri sčítance.", subor:"mat-7.pdf"},
+    {typ:"tlac", urovne:3, text:"List na celý týždeň: písanie sedmičky, koľko je, číselný rad, odčítanie do 6 a do 7, rozklad sedmičky. Výzva: všetky rozklady, myslené číslo a tri sčítance.", subor:"mat-7.pdf"},
     {typ:"rozhovor", zacni:"„Vieš, že týždeň má presne 7 dní? Skúsme ich spolu spočítať na prstoch.“",
      otazky:["Ukáž mi 7 prstov. Koľko ich je na jednej ruke a koľko na druhej?","Ktoré číslo je hneď pred sedmičkou a ktoré hneď za ňou?","Dnes je pondelok. Koľko dní ešte príde do konca týždňa?"],
      preteba:"Pri čísle 7 pomáha predstava „päť a dva“: celá ruka a dva prsty. Tretia otázka má odpoveď 6, lebo pondelok už beží. Nechajte dieťa, nech si dni vymenuje a počíta na prstoch."}

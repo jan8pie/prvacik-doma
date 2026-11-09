@@ -11,7 +11,7 @@ const KARTY = window.KARTY || [];
 const VSETKO = process.argv.includes("--vsetko");
 
 /* Kedy trieda prebrala ktoré písmeno (dopĺňaj podľa šlabikára a EduPage). Dlhá samohláska ide s krátkou. */
-const PISMENA = [["2026-10-08","aá"],["2026-10-13","m"],["2026-10-19","eé"],["2026-10-26","l"],["2026-11-02","ií"],["2026-11-10","j"]];
+const PISMENA = [["2026-10-08","aá"],["2026-10-13","m"],["2026-10-19","eé"],["2026-10-26","l"],["2026-11-02","ií"],["2026-11-10","j"],["2026-11-16","oó"]];
 const PREDMETY = ["SJL","MAT","ANJ","CAP"];
 const BLOKY = ["rozhovor","aktivita","pocuvanie","hadanka","spolu","tlac"];
 const HRY = ["vyber","rozklad","slabiky","poradie","sucet","porovnaj","kocky"];
