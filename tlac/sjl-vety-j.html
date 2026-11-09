@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="sk"><head><meta charset="utf-8"><title>Čítame s J a O – pracovný list na týždeň (3 úrovne)</title>
+<link rel="stylesheet" href="list.css">
+<style>
+  .naj{display:grid;grid-template-columns:repeat(8,1fr);gap:2mm}
+  .naj>div{display:flex;flex-direction:column;align-items:center;gap:1.5mm}
+  .naj .pic{width:16mm;height:16mm}
+  .iny{display:grid;grid-template-columns:1fr 1fr;gap:1.5mm 6mm;padding:2.5mm 3mm}
+  .iny>div{display:flex;gap:2.5mm;font-size:21px;font-weight:700;justify-content:center;align-items:center}
+  .iny span{padding:.8mm 2.2mm}
+  .kresby{display:grid;grid-template-columns:1fr 1fr;gap:6mm}
+  .kresby>div{display:flex;flex-direction:column;align-items:center;gap:2mm;font-size:27px;font-weight:700}
+  .kresby .kresli{width:100%;height:30mm}
+  .spoj{display:grid;grid-template-columns:1fr 1fr;gap:2mm 30mm;align-items:center}
+  .spoj>div{display:flex;align-items:center;gap:3mm;font-size:22px;font-weight:700}
+  .spoj>div.pr{flex-direction:row-reverse}
+  .spoj .bod{width:3.6mm;height:3.6mm;border-radius:50%;background:#111;flex:none}
+  .spoj .pic{width:13mm;height:13mm}
+  .spoj .pic.mala{width:9mm;height:9mm}
+  .zloz{display:flex;flex-direction:column;gap:3mm}
+  .zloz>div{display:flex;align-items:center;gap:2.5mm}
+  .zloz .slovo{padding:0 3mm;height:11mm;border:1.4px solid #111;border-radius:2.5mm;font-size:22px;font-weight:700;display:flex;align-items:center;background:#fff}
+  .pis{border-bottom:1.2px solid #111}
+  .zloz .pis{flex:1;min-width:30mm;height:10mm;margin-left:3mm}
+  .pravda{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:2.5mm 5mm}
+  .pravda>div{display:flex;align-items:center;gap:2mm;border:1px solid #bbb;border-radius:3mm;padding:1.5mm 2.5mm}
+  .pravda .sc{display:flex;align-items:center;width:23mm;justify-content:center;flex:none}
+  .pravda .sc .pic{width:11mm;height:11mm}
+  .pravda .sc .pic.mala{width:8mm;height:8mm}
+  .pravda .v{font-size:17px;font-weight:700;flex:1;line-height:1.15}
+  .pravda .an{display:flex;flex-direction:column;gap:1mm;font-size:13px;flex:none;text-align:center}
+  .pravda .an span{border:1.4px solid #111;border-radius:99px;padding:.2mm 3mm}
+  .zmen{display:grid;grid-template-columns:1fr 1fr;gap:3mm 8mm}
+  .zmen>div{display:flex;align-items:center;gap:2mm;font-size:23px;font-weight:700;min-width:0}
+  .zmen .sip{font-size:15px;font-weight:400;color:#444;white-space:nowrap}
+  .zmen .pis{flex:1;min-width:0;height:10mm}
+  .tajne{display:flex;flex-direction:column;gap:2.5mm}
+  .tajne>div{display:flex;align-items:center;gap:2.5mm}
+  .tajne .pic{width:14mm;height:14mm}
+  .tajne .sip{font-size:20px;margin:0 2mm}
+  .tajne .okno{width:10.5mm;height:11.5mm}
+  .slov{display:flex;gap:2.5mm;justify-content:center;flex-wrap:wrap;margin-bottom:2mm}
+  .slov span{padding:0 3mm;height:10.5mm;border:1.4px solid #111;border-radius:2.5mm;font-size:21px;font-weight:700;display:flex;align-items:center}
+  .dopln{display:grid;grid-template-columns:1fr 1fr;gap:3mm 10mm}
+  .dopln>div{display:flex;align-items:flex-end;gap:2mm;font-size:23px;font-weight:700}
+  .dopln .pis{min-width:16mm;width:16mm;height:9mm}
+  .dopln .moz{display:flex;gap:3mm;justify-content:center;font-size:21px;font-weight:700;grid-column:1/3}
+  .dopln .moz span{border:1.4px solid #111;border-radius:2.5mm;padding:0 3.5mm}
+  .vety .pis{display:block;width:100%;height:10.5mm;min-width:0}
+</style></head>
+<body>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 1 – ĽAHŠIE                                                     -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="1">
+  <header class="hlava" data-predmet="Slovenský jazyk">Slabiky a slová s J a O</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Obťahuj písmená J a O. Potom ich napíš sama alebo sám.</span></div>
+    <div class="plocha">
+      <div class="linka"><i obtiahni="J" w="64"></i><i obtiahni="J" w="64"></i><div class="prazdne"></div><i obtiahni="O" w="62"></i><i obtiahni="O" w="62"></i><div class="prazdne"></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Povedz nahlas, čo je na obrázku. Vyfarbi krúžok pod obrázkom, ktorý sa začína na J.</span></div>
+    <div class="plocha naj">
+      <div><i o="jahoda"></i><span class="kruzok"></span></div>
+      <div><i o="lama"></i><span class="kruzok"></span></div>
+      <div><i o="jablko"></i><span class="kruzok"></span></div>
+      <div><i o="mesiac"></i><span class="kruzok"></span></div>
+      <div><i o="jelen"></i><span class="kruzok"></span></div>
+      <div><i o="auto"></i><span class="kruzok"></span></div>
+      <div><i o="jezko"></i><span class="kruzok"></span></div>
+      <div><i o="ihla"></i><span class="kruzok"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Prečítaj nahlas. V každom riadku je jedno slovo iné. Zakrúžkuj ho.</span></div>
+    <div class="plocha iny">
+      <div><span>ja</span><span>ja</span><span>je</span><span>ja</span></div>
+      <div><span>mo</span><span>lo</span><span>mo</span><span>mo</span></div>
+      <div><span>jama</span><span>jama</span><span>jama</span><span>lama</span></div>
+      <div><span>moja</span><span>moja</span><span>moje</span><span>moja</span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Prečítaj a nakresli.</span></div>
+    <div class="plocha kresby">
+      <div><span class="kresli"></span>jojo</div>
+      <div><span class="kresli"></span>Ja jem.</div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> List patrí k celému týždňu, netreba ho urobiť naraz. Dieťa číta samo a nahlas, vy ho nepredbiehajte. V úlohe 2 sa nič nečíta, ide o to, čo dieťa počuje na začiatku slova. Hlásku vyslovujte krátko „j“, nie „jé“. Pri vete „Ja jem.“ môže dieťa nakresliť seba pri obľúbenom jedle.
+      <b>Riešenie:</b> 2 – jahoda, jablko, jeleň, ježko · 3 – je, lo, lama, moje.
+      <span class="std">SJL-RV-1 · ŠVP SJL, Elementárne čítanie: „čítanie slabík, slov, viet a krátkych textov s postupne sa zvyšujúcou náročnosťou“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 2 – BEŽNÉ                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="2">
+  <header class="hlava" data-predmet="Slovenský jazyk">Vety so slovom je</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Prečítaj vety. Spoj každú vetu s obrázkom.</span></div>
+    <div class="plocha spoj">
+      <div><span>Moja mama je milá.</span><span class="bod"></span></div><div class="pr"><i o="lama" class="mala"></i><span class="bod"></span></div>
+      <div><span>Ema má jojo.</span><span class="bod"></span></div><div class="pr"><i o="mama"></i><span class="bod"></span></div>
+      <div><span>Lama je malá.</span><span class="bod"></span></div><div class="pr"><span style="display:flex"><i o="dievca"></i><i o="jojo"></i></span><span class="bod"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Zlož z kartičiek vetu a napíš ju.<span class="pozn">Začni veľkým písmenom a na konci daj bodku.</span></span></div>
+    <div class="plocha zloz">
+      <div><span class="slovo">malá</span><span class="slovo">je</span><span class="slovo">Ola</span><span class="pis"></span></div>
+      <div><span class="slovo">jem</span><span class="slovo">Ja</span><span class="pis"></span></div>
+      <div><span class="slovo">milá</span><span class="slovo">mama</span><span class="slovo">je</span><span class="slovo">Moja</span><span class="pis"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Sedí veta k obrázku? Zakrúžkuj áno alebo nie.</span></div>
+    <div class="plocha pravda">
+      <div><span class="sc"><i o="chlapec"></i><i o="jojo" class="mala"></i></span><span class="v">Emil má jojo.</span><span class="an"><span>áno</span><span>nie</span></span></div>
+      <div><span class="sc"><i o="dievca"></i></span><span class="v">Ema je mama.</span><span class="an"><span>áno</span><span>nie</span></span></div>
+      <div><span class="sc"><i o="lama" class="mala"></i></span><span class="v">Lama je malá.</span><span class="an"><span>áno</span><span>nie</span></span></div>
+      <div><span class="sc"><i o="mama"></i></span><span class="v">Mama je lama.</span><span class="an"><span>áno</span><span>nie</span></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Hra pre uši: povedz nahlas, čo je na obrázku. Vyfarbi krúžok pod obrázkom, ktorý sa začína na O.</span></div>
+    <div class="plocha naj" style="grid-template-columns:repeat(7,1fr)">
+      <div><i o="oko"></i><span class="kruzok"></span></div>
+      <div><i o="jablko"></i><span class="kruzok"></span></div>
+      <div><i o="oblak"></i><span class="kruzok"></span></div>
+      <div><i o="mesiac"></i><span class="kruzok"></span></div>
+      <div><i o="okuliare"></i><span class="kruzok"></span></div>
+      <div><i o="lampa"></i><span class="kruzok"></span></div>
+      <div><i o="osa"></i><span class="kruzok"></span></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> List patrí k celému týždňu, stačí jedna alebo dve úlohy denne. Dieťa číta vety samo a nahlas. Ak sa pomýli, nechajte ho prečítať vetu ešte raz, bez opravovania. Úloha 4 je len na počúvanie: obrázky sú oko, jablko, oblak, mesiac, okuliare, lampa a osa. Nič sa pri nej nečíta.
+      <b>Riešenie:</b> 1 – Moja mama je milá: mama · Ema má jojo: dievča s jojom · Lama je malá: malá lama · 2 – Ola je malá. · Ja jem. · Moja mama je milá. · 3 – áno, nie, áno, nie · 4 – oko, oblak, okuliare, osa.
+      <span class="std">SJL-RV-1 · ŠVP SJL, Elementárne čítanie: „čítanie slabík, slov, viet a krátkych textov s postupne sa zvyšujúcou náročnosťou“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 3 – VÝZVA                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="3">
+  <header class="hlava" data-predmet="Slovenský jazyk">Škriatok a tajné slová</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Škriatok mení písmená. Zmeň písmeno a napíš slovo, ktoré vznikne.</span></div>
+    <div class="plocha zmen">
+      <div>lama <span class="sip">zmeň L na J →</span><span class="pis"></span></div>
+      <div>jem <span class="sip">zmeň M na J →</span><span class="pis"></span></div>
+      <div>moja <span class="sip">zmeň A na E →</span><span class="pis"></span></div>
+      <div><span class="sip">Vymysli vlastnú dvojicu:</span><span class="pis"></span><span>→</span><span class="pis"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Tajné slovo: napíš prvé písmeno každého obrázka. Potom slovo prečítaj.</span></div>
+    <div class="plocha tajne">
+      <div><i o="jahoda"></i><i o="auto"></i><i o="mesiac"></i><i o="ananas"></i><span class="sip">→</span><span class="okno"></span><span class="okno"></span><span class="okno"></span><span class="okno"></span></div>
+      <div><i o="mesiac"></i><i o="oko"></i><i o="lama"></i><i o="oblak"></i><span class="sip">→</span><span class="okno"></span><span class="okno"></span><span class="okno"></span><span class="okno"></span></div>
+      <div><i o="jahoda"></i><i o="okuliare"></i><i o="jablko"></i><i o="oko"></i><span class="sip">→</span><span class="okno"></span><span class="okno"></span><span class="okno"></span><span class="okno"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Nájdi všetky spôsoby: zlož zo slov čo najviac viet. Napíš aspoň tri.</span></div>
+    <div class="plocha vety">
+      <div class="slov"><span>Ema</span><span>Ola</span><span>moja</span><span>mama</span><span>je</span><span>malá</span><span>milá</span><span>a</span></div>
+      <span class="pis"></span><span class="pis"></span><span class="pis"></span>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Ktoré slovo patrí do vety? Dopíš je alebo a. Potom vety prečítaj.</span></div>
+    <div class="plocha dopln">
+      <div class="moz"><span>je</span><span>a</span></div>
+      <div>Ema <span class="pis"></span> malá.</div>
+      <div>Ola <span class="pis"></span> Ema.</div>
+      <div>Mama <span class="pis"></span> milá.</div>
+      <div>Emil <span class="pis"></span> Ela.</div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Výzva je pre deti, ktoré už čítajú slová plynulo. V úlohe 2 sú obrázky jahoda, auto, mesiac, ananás · mesiac, oko, lama, oblak · jahoda, okuliare, jablko, oko. V úlohe 3 je veľa správnych riešení, stačí veta, ktorá dáva zmysel a má na začiatku veľké písmeno a na konci bodku.
+      <b>Riešenie:</b> 1 – jama, jej, moje; vlastná dvojica napr. lej – jej · 2 – JAMA, MOLO, JOJO · 3 – napr. Ema je malá. Ola je milá. Moja mama je milá. Ema a Ola. Ola je malá a milá. · 4 – je, a, je, a.
+      <span class="std">SJL-RV-1 · ŠVP SJL, Elementárne čítanie: „čítanie slabík, slov, viet a krátkych textov s postupne sa zvyšujúcou náročnosťou“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<script src="obrazky.js"></script><script src="nastroje.js"></script>
+</body></html>
