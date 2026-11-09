@@ -4,14 +4,17 @@
 
    Nová karta = skopíruj jeden blok { ... }, zmeň texty a dátum.
    Poradie v súbore nie je dôležité, web zoradí karty podľa dátumu.
-   Týždne („Tento týždeň“, „Minulý týždeň“) a štítok NOVÉ sa počítajú samy.
-   Karta s budúcim dátumom sa ukáže až v ten deň (zásoba). Náhľad: adresa s ?nahlad
+   Týždne („Tento týždeň“, „Minulý týždeň“) a štítok DNES sa počítajú samy.
+   Karty na celý týždeň (po – ne) sa ukážu naraz, už v nedeľu o 18:00 pred ním. Neskoršie sú zásoba,
+   náhľad: adresa s ?nahlad. Staršie týždne sú na webe zbalené do jedného riadku.
+   Po úprave spusti kontrolu: node kontrola-kariet.js
    Každá sada má vždy kartu pre Slovenčinu, Matematiku aj Angličtinu.
    Angličtina zatiaľ bez pracovných listov na tlač, len aktivity so zvukom.
    Na tlač: {typ:"tlac", urovne:3, text:"…", subor:"id-karty.pdf"} = list v 3 úrovniach
    (●○○ Ľahšie, ●●○ Bežné, ●●● Výzva). Súbory tlac/pdf/id-karty-1.pdf … -3.pdf a .png vyrobí tlac/vyrob-pdf.js.
 
    predmet: SJL, MAT, ANJ, CAP
+   obr:     obrázok karty, jeden znak (emoji), ktorý vystihuje tému. Ak chýba, web si vezme prvý z obsahu karty.
    kod:     značka témy (predmet-komponent-číslo)
    stdn:    štandard ŠVP (citát)
    bloky:   rozhovor, aktivita, pocuvanie, hadanka, spolu, tlac
@@ -22,6 +25,8 @@
               anglický podpis pod obrázkom sa ukáže až po vypočutí
    slovnik:  (ANJ, pri karte) lekcia obrázkového slovníka, napr. slovnik:"u1" = Lekcia 1 Beehive,
              "start" = Úvod, "u2+" = od začiatku po lekciu 2; karta dostane tlačidlo do slovníka
+   pismenka: (SJL, pri karte) písmená, ktoré trieda už pozná, napr. pismenka:"AMELIJ" alebo "AMELIJ:obrazok"
+             (režim spoj | postav | obrazok); karta dostane tlačidlo do hry Písmenkové kocky už nastavenej
 
    Pravidlo pre text čítaný nahlas: veta, ktorá končí číslom, nemá bodku.
    ===================================================================== */
@@ -33,7 +38,7 @@ window.KARTY = [
    ========================================================= */
 
 /* ---------- 13. 11. 2026 (piatok) ---------- */
-{ id:"sjl-co-uz-viem", datum:"2026-11-13", predmet:"SJL", kod:"SJL-RV-1",
+{ id:"sjl-co-uz-viem", datum:"2026-11-13", predmet:"SJL", obr:"⭐", pismenka:"AMELIJ", kod:"SJL-RV-1",
   nazov:"Čo už viem? Slová, slabiky a hádanky",
   uvod:"Týždenné opakovanie: dieťa si prečíta pár starších slov a slabík, potom hádá, čo je to, podľa písmena, na ktoré sa slovo začína. Na konci samo povie, čo mu išlo najlepšie.",
   meta:["dieťa samo aj s rodičom","5 minút","tablet so zvukom"],
@@ -50,7 +55,7 @@ window.KARTY = [
      preteba:"Nejde o známku. Dieťa samo povie, čo mu ide. Ak povie „neviem“, pripomeňte jednu vec, ktorá sa mu tento týždeň podarila."}
   ]},
 
-{ id:"mat-rozklad-6", datum:"2026-11-13", predmet:"MAT", kod:"MAT-CO-4",
+{ id:"mat-rozklad-6", datum:"2026-11-13", predmet:"MAT", obr:"🌰", kod:"MAT-CO-4",
   nazov:"Šesť orieškov pod hrnčekom: rozklad čísla 6",
   uvod:"Šestka sa dá rozložiť na dve časti rôznymi spôsobmi: 1 a 5, 2 a 4, 3 a 3. Veverička schová časť orieškov do vrecúška a dieťa háda, koľko ich tam je. Potom si to skúsite s hrnčekom.",
   meta:["dieťa samo aj s rodičom","8 minút","tablet, hrnček, 6 gombíkov"],
@@ -65,7 +70,7 @@ window.KARTY = [
      preteba:"V škole sa tomu hovorí rozklad čísla. Obe časti spolu dajú vždy celé číslo a poradie častí nevadí."}
   ]},
 
-{ id:"anj-chant-colours", datum:"2026-11-13", predmet:"ANJ", kod:"ANJ-RE-3", slovnik:"u2",
+{ id:"anj-chant-colours", datum:"2026-11-13", predmet:"ANJ", obr:"🎨", kod:"ANJ-RE-3", slovnik:"u2",
   nazov:"Red, red, red: riekanka o farbách",
   uvod:"Krátka riekanka o farbách, ktorú sa dá tlieskať ako rytmus. Dieťa opakuje po tablete riadok po riadku a potom vymení jednu farbu za inú.",
   meta:["dieťa samo aj s rodičom","3 minúty","tablet so zvukom"],
@@ -77,7 +82,7 @@ window.KARTY = [
   ]},
 
 /* ---------- 12. 11. 2026 (štvrtok) ---------- */
-{ id:"sjl-vety-mama", datum:"2026-11-12", predmet:"SJL", kod:"SJL-RV-1",
+{ id:"sjl-vety-mama", datum:"2026-11-12", predmet:"SJL", obr:"👩", kod:"SJL-RV-1",
   nazov:"Čítame spojenia a vety: malá lama, Mama má Emila",
   uvod:"Z písmen M, A, E, L, I sa dajú čítať už aj spojenia a prvé krátke vety. Dieťa ich najprv prečíta samo nahlas, potom ťukne a tablet mu ich prečíta, aby sa skontrolovalo.",
   meta:["dieťa samo aj s rodičom","5 minút","tablet so zvukom"],
@@ -89,7 +94,7 @@ window.KARTY = [
     {typ:"spolu", text:"Lov slov: nájdite doma 5 vecí, ktoré sa začínajú na M alebo na L (napríklad mačka, lyžica, mydlo), a zapíšte ich čiarkami. Potom napíšte spolu veľkými tlačenými písmenami na papierik jedno spojenie, napríklad „malá lama“. Dieťa ho prečíta a nakreslí k nemu obrázok."}
   ]},
 
-{ id:"mat-ciarky", datum:"2026-11-12", predmet:"MAT", kod:"MAT-ZV-2",
+{ id:"mat-ciarky", datum:"2026-11-12", predmet:"MAT", obr:"📊", kod:"MAT-ZV-2",
   nazov:"Čiarky a tabuľka: čoho je najviac?",
   uvod:"Čiarky sú najstarší spôsob počítania: za každú vec jedna čiarka a piata sa napíše naprieč cez štyri. Dieťa zapisuje čiarkami, čo vidí z okna alebo doma, a potom zisťuje, čoho je najviac.",
   meta:["spolu s rodičom","10 minút","papier, ceruzka, okno"],
@@ -100,7 +105,7 @@ window.KARTY = [
     {typ:"tlac", urovne:3, text:"Spočítaj obrázky, zapíš ich čiarkami a vyfarbi stĺpce. Výzva: obrázky, ktoré znamenajú dva kusy, hod kockou a chyták s chybou v zápise.", subor:"mat-ciarky.pdf"}
   ]},
 
-{ id:"anj-hello-this", datum:"2026-11-12", predmet:"ANJ", kod:"ANJ-IN-2", slovnik:"u1",
+{ id:"anj-hello-this", datum:"2026-11-12", predmet:"ANJ", obr:"✏️", kod:"ANJ-IN-2", slovnik:"u1",
   nazov:"What's this? It's a pencil",
   uvod:"Rodič s plyšákom ukazuje na vec a pýta sa po anglicky: „What's this?“ Dieťa odpovedá aspoň jedným slovom. Vzorové vety si najprv vypočujete na tablete.",
   meta:["spolu s rodičom","5 minút","plyšák, školské veci"],
@@ -114,7 +119,7 @@ window.KARTY = [
   ]},
 
 /* ---------- 11. 11. 2026 (streda) ---------- */
-{ id:"sjl-slabiky-dlhe", datum:"2026-11-11", predmet:"SJL", kod:"SJL-PP-2",
+{ id:"sjl-slabiky-dlhe", datum:"2026-11-11", predmet:"SJL", obr:"🦙", kod:"SJL-PP-2",
   nazov:"Krátke a dlhé slabiky: ma – má, li – lí",
   uvod:"Hlas povie slabiku, napríklad „ma“ alebo „má“, a dieťa ťukne na tú správnu. Dlhá slabika trvá dlhšie a má dĺžeň. Slabiky môžete čítať aj vy sami (prepínač „Kto číta: Rodič“).",
   meta:["dieťa samo","2 minúty","tablet so zvukom"],
@@ -128,7 +133,7 @@ window.KARTY = [
      preteba:"Dĺžeň je čiarka nad samohláskou (á). Dlhú slabiku vyslovte natiahnuto („máá“). V šlabikári sú krátke a dlhé slabiky zvlášť."}
   ]},
 
-{ id:"mat-skaceme-6", datum:"2026-12-02", predmet:"MAT", kod:"MAT-CO-3",
+{ id:"mat-skaceme-6", datum:"2026-12-02", predmet:"MAT", obr:"🐰", kod:"MAT-CO-3",
   nazov:"Zajko skáče po číselnej osi do 6",
   uvod:"Sčítanie je skok doprava, odčítanie skok doľava. Dieťa najprv sčíta jahody na tablete a potom skáče po číslach 0 až 6 na zemi ako zajko po číselnej osi.",
   meta:["dieťa samo aj s rodičom","10 minút","tablet, papiere s číslami"],
@@ -140,7 +145,7 @@ window.KARTY = [
     {typ:"tlac", urovne:3, text:"Zajko skáče po číselnej osi: oblúky, nakresli skok a koľko skokov chýba. Výzva: dva skoky za sebou, všetky cesty z 0 na 6 a chyták o skoku dozadu.", subor:"mat-skaceme-6.pdf"}
   ]},
 
-{ id:"anj-teacher-says", datum:"2026-11-11", predmet:"ANJ", kod:"ANJ-RE-1",
+{ id:"anj-teacher-says", datum:"2026-11-11", predmet:"ANJ", obr:"🤸", kod:"ANJ-RE-1",
   nazov:"Teacher says: jump, turn around, touch your nose",
   uvod:"Nové anglické pokyny s pohybom. Dieťa ich najprv počuje na tablete a potom ich robí. Hra „Teacher says“ platí len vtedy, keď pred pokynom zaznie „Teacher says“.",
   meta:["spolu s rodičom","5 minút","tablet so zvukom"],
@@ -152,7 +157,7 @@ window.KARTY = [
   ]},
 
 /* ---------- 10. 11. 2026 (utorok) ---------- */
-{ id:"sjl-j-zaciatok", datum:"2026-11-10", predmet:"SJL", kod:"SJL-PP-2",
+{ id:"sjl-j-zaciatok", datum:"2026-11-10", predmet:"SJL", obr:"🍎", kod:"SJL-PP-2",
   nazov:"Čo sa začína na J? Jablko, jahoda, ježko",
   uvod:"Dieťa ťuká na obrázky, ktorých názov sa začína hláskou J. Každý obrázok sa po ťuknutí ozve, takže dieťa počuje, či má pravdu. Písmeno J zatiaľ len počúvame a rozoznávame, nečítame.",
   meta:["dieťa samo","2 minúty","tablet so zvukom"],
@@ -166,7 +171,7 @@ window.KARTY = [
      preteba:"J vyslovuj krátko, ako „j“ (jjj), nie „dže“. Tablet povie písmeno ako názov (jé), hlásku vyslovte vy. Čítať s J budete až podľa šlabikára."}
   ]},
 
-{ id:"mat-vzory", datum:"2026-11-10", predmet:"MAT", kod:"MAT-ZV-1",
+{ id:"mat-vzory", datum:"2026-11-10", predmet:"MAT", obr:"🔶", kod:"MAT-ZV-1",
   nazov:"Vzory: čo príde ďalej?",
   uvod:"Vzor je rad, ktorý sa stále opakuje: červený, modrý, červený, modrý… Dieťa z gombíkov skladá vzor, hľadá, čo príde ďalej, a nájde chybu, ktorú rodič schválne urobí.",
   meta:["spolu s rodičom","5 minút","gombíky alebo kocky"],
@@ -180,7 +185,7 @@ window.KARTY = [
      preteba:"V škole sa tomu hovorí vzor a jeho pravidlo. Rytmom (tlesk, dupot) sa to deti učia ľahšie ako z obrázkov."}
   ]},
 
-{ id:"anj-riddles-colours", datum:"2026-11-10", predmet:"ANJ", kod:"ANJ-RE-2", slovnik:"u2",
+{ id:"anj-riddles-colours", datum:"2026-11-10", predmet:"ANJ", obr:"🍓", kod:"ANJ-RE-2", slovnik:"u2",
   nazov:"What am I? Hádanky a I spy",
   uvod:"Tri krátke anglické hádanky o jahode, čísle a žabke. Potom si zahrajte „I spy“: rodič povie „I spy something blue“ a dieťa hľadá v izbe niečo modré.",
   meta:["spolu s rodičom","5 minút","tablet so zvukom"],
@@ -193,7 +198,7 @@ window.KARTY = [
   ]},
 
 /* ---------- 9. 11. 2026 (pondelok) ---------- */
-{ id:"sjl-kniha-tyzdna-1", datum:"2026-11-09", predmet:"SJL", kod:"SJL-RU-1",
+{ id:"sjl-kniha-tyzdna-1", datum:"2026-11-09", predmet:"SJL", obr:"📚", kod:"SJL-RU-1",
   nazov:"Kniha týždňa: o čom asi bude?",
   uvod:"Dieťa si samo vyberie akúkoľvek knihu z domu alebo z knižnice. Najprv podľa obalu spolu hádate, o čom bude. Potom čítate vy a občas sa zastavíte pri obrázku alebo pri otázke, čo bude ďalej. Rozprávať má hlavne dieťa.",
   meta:["spolu s rodičom","10 – 15 minút","akákoľvek kniha"],
@@ -205,7 +210,7 @@ window.KARTY = [
      preteba:"Nie je to skúšanie: keď dieťa nevie, povedzte odpoveď sami a čítajte ďalej. Tú istú knihu pokojne čítajte znova, vtedy nechajte rozprávať viac dieťa."}
   ]},
 
-{ id:"mat-pribehy-6", datum:"2026-11-09", predmet:"MAT", kod:"MAT-CO-5",
+{ id:"mat-pribehy-6", datum:"2026-11-09", predmet:"MAT", obr:"🐦", kod:"MAT-CO-5",
   nazov:"Príbehy s číslami do 6",
   uvod:"„Na strome sedeli 4 vtáčiky. Priletel ešte jeden. Koľko vtáčikov je na strome?“ Tri krátke príbehy na počítanie spamäti alebo na prstoch.",
   meta:["spolu s rodičom","5 minút","bez pomôcok"],
@@ -220,7 +225,7 @@ window.KARTY = [
     {typ:"spolu", text:"Teraz vymyslí príbeh dieťa a vy počítate. Raz sa schválne pomýľte o jeden. Dieťa vás opraví a ukáže na prstoch, ako to má byť."}
   ]},
 
-{ id:"anj-co-zmizlo", datum:"2026-11-09", predmet:"ANJ", kod:"ANJ-PR-1", slovnik:"u1",
+{ id:"anj-co-zmizlo", datum:"2026-11-09", predmet:"ANJ", obr:"🎒", kod:"ANJ-PR-1", slovnik:"u1",
   nazov:"What's missing? Čo zmizlo z tašky?",
   uvod:"Na stole sú štyri školské veci. Dieťa zavrie oči, vy jednu schováte a dieťa háda po anglicky, čo zmizlo: pencil, book, ruler alebo crayon?",
   meta:["spolu s rodičom","5 minút","školské veci"],
@@ -232,7 +237,7 @@ window.KARTY = [
   ]},
 
 /* ---------- 6. 11. 2026 (piatok) ---------- */
-{ id:"sjl-citame-slova", datum:"2026-11-06", predmet:"SJL", kod:"SJL-RV-1",
+{ id:"sjl-citame-slova", datum:"2026-11-06", predmet:"SJL", obr:"📖", kod:"SJL-RV-1",
   nazov:"Čítame prvé slová: mama, lama, Ema",
   uvod:"Slová sú len z písmen, ktoré už dieťa pozná (M, A, E, L, I). Dieťa najprv prečíta slovo samo nahlas a potom naň ťukne, aby si vypočulo, či ho prečítalo rovnako.",
   meta:["dieťa samo","3 minúty","tablet so zvukom"],
@@ -244,7 +249,7 @@ window.KARTY = [
     {typ:"spolu", text:"Napíšte spolu jedno z týchto slov veľkými tlačenými písmenami na papierik. Dieťa ho večer prečíta niekomu z rodiny ako prekvapenie."}
   ]},
 
-{ id:"mat-susedia", datum:"2026-11-06", predmet:"MAT", kod:"MAT-CO-2",
+{ id:"mat-susedia", datum:"2026-11-06", predmet:"MAT", obr:"🏠", kod:"MAT-CO-2",
   nazov:"Kto býva vedľa? Číslo pred a za",
   uvod:"Čísla 0 až 6 bývajú na ulici v rade. Dieťa hľadá susedov: ktoré číslo býva hneď pred štyrkou a ktoré hneď za ňou? V škole sa im hovorí predchodca a nasledovník.",
   meta:["spolu s rodičom","5 minút","papier, fixka"],
@@ -257,7 +262,7 @@ window.KARTY = [
      preteba:"Číslo hneď pred sa v škole volá predchodca, číslo hneď za nasledovník. Doma stačí „sused pred“ a „sused za“."}
   ]},
 
-{ id:"anj-bag", datum:"2026-11-06", predmet:"ANJ", kod:"ANJ-RE-2", slovnik:"u1",
+{ id:"anj-bag", datum:"2026-11-06", predmet:"ANJ", obr:"📏", kod:"ANJ-RE-2", slovnik:"u1",
   nazov:"What's in my bag? Hádanky o školských veciach",
   uvod:"„I am long and I have numbers. I help you draw straight lines. What am I?“",
   meta:["spolu s rodičom","3 minúty","školská taška"],
@@ -270,7 +275,7 @@ window.KARTY = [
   ]},
 
 /* ---------- 5. 11. 2026 (štvrtok) ---------- */
-{ id:"sjl-a-zaciatok", datum:"2026-11-05", predmet:"SJL", kod:"SJL-PP-2",
+{ id:"sjl-a-zaciatok", datum:"2026-11-05", predmet:"SJL", obr:"🚗", kod:"SJL-PP-2",
   nazov:"Čo sa začína na A? Auto, ananás, autobus",
   uvod:"Dieťa ťuká na obrázky, ktorých názov sa začína hláskou A. Každý obrázok sa po ťuknutí ozve, takže dieťa počuje, či má pravdu.",
   meta:["dieťa samo","2 minúty","tablet so zvukom"],
@@ -284,7 +289,7 @@ window.KARTY = [
      preteba:"Krátke a a dlhé á sú v šlabikári zvlášť. Pri hre nevadí, ak dieťa povie aj slovo s á."}
   ]},
 
-{ id:"mat-kocka", datum:"2026-11-05", predmet:"MAT", kod:"MAT-CO-3",
+{ id:"mat-kocka", datum:"2026-11-05", predmet:"MAT", obr:"🎲", kod:"MAT-CO-3",
   nazov:"Kocka a súčet do 6",
   uvod:"Každý hodí kockou dvakrát a dieťa spočíta bodky z oboch hodov. Ak je súčet viac ako 6, hádže sa znova, takže zostávate pri číslach, ktoré sa práve preberajú.",
   meta:["spolu s rodičom","5 minút","hracia kocka, fazuľky"],
@@ -299,7 +304,7 @@ window.KARTY = [
      preteba:"Výsledok sčítania sa v škole volá súčet. Bodky je dobré najprv spočítať; časom ich dieťa začne poznávať naraz."}
   ]},
 
-{ id:"anj-commands", datum:"2026-11-05", predmet:"ANJ", kod:"ANJ-RE-1",
+{ id:"anj-commands", datum:"2026-11-05", predmet:"ANJ", obr:"🙋", kod:"ANJ-RE-1",
   nazov:"Stand up, sit down! Pokyny po anglicky",
   uvod:"Krátke anglické pokyny, ktoré deti počujú v triede: stand up, sit down, clap your hands. Najprv si ich vypočujte na tablete, potom sa zahrajte na učiteľa.",
   meta:["spolu s rodičom","5 minút","tablet so zvukom"],
@@ -311,7 +316,7 @@ window.KARTY = [
   ]},
 
 /* ---------- 4. 11. 2026 (streda) ---------- */
-{ id:"sjl-spoj-slabiky", datum:"2026-11-04", predmet:"SJL", kod:"SJL-PP-2",
+{ id:"sjl-spoj-slabiky", datum:"2026-11-04", predmet:"SJL", obr:"🍉", kod:"SJL-PP-2",
   nazov:"Spoj slabiky a uhádni slovo",
   uvod:"„Ma – li – na. Čo vznikne, keď slabiky spojíš?“ Rodič hovorí slovo po slabikách s krátkymi pauzami a dieťa ho skladá dokopy.",
   meta:["spolu s rodičom","3 minúty","bez pomôcok"],
@@ -325,7 +330,7 @@ window.KARTY = [
     {typ:"spolu", text:"Vymeňte si úlohy: dieťa povie slovo po slabikách a vy hádate. Na každú slabiku môžete tlesknúť alebo poskočiť."}
   ]},
 
-{ id:"mat-porovnaj", datum:"2026-11-04", predmet:"MAT", kod:"MAT-CO-2",
+{ id:"mat-porovnaj", datum:"2026-11-04", predmet:"MAT", obr:"⚖️", kod:"MAT-CO-2",
   nazov:"Viac, menej, alebo rovnako? Znaky <, >, =",
   uvod:"Na dvoch tanieroch sú sušienky. Dieťa porovná, kde je viac, a vyberie správny znak. Na úrovni Výzva porovnáva už len čísla bez obrázkov.",
   meta:["dieťa samo","2 minúty","tablet so zvukom"],
@@ -339,7 +344,7 @@ window.KARTY = [
      preteba:"Pomôcka, ktorú deti poznajú: znak sa otvára ako hladné ústa k väčšiemu číslu. V škole hovoria „je väčší ako“, „je menší ako“, „rovná sa“."}
   ]},
 
-{ id:"anj-colours", datum:"2026-11-04", predmet:"ANJ", kod:"ANJ-RE-2", slovnik:"u2",
+{ id:"anj-colours", datum:"2026-11-04", predmet:"ANJ", obr:"🌈", kod:"ANJ-RE-2", slovnik:"u2",
   nazov:"Colours: red, blue, yellow, green",
   uvod:"Štyri farby po anglicky. Dieťa ťukne na farbu a vypočuje si ju, potom uhádne vec z krátkej anglickej hádanky. Na záver sa môžete zahrať „I spy“.",
   meta:["dieťa samo aj s rodičom","3 minúty","tablet so zvukom"],
@@ -352,7 +357,7 @@ window.KARTY = [
   ]},
 
 /* ---------- 3. 11. 2026 (utorok) ---------- */
-{ id:"sjl-m-zaciatok", datum:"2026-11-03", predmet:"SJL", kod:"SJL-PP-2",
+{ id:"sjl-m-zaciatok", datum:"2026-11-03", predmet:"SJL", obr:"🐭", kod:"SJL-PP-2",
   nazov:"Čo sa začína na M? Myš, melón, mesiac",
   uvod:"Dieťa ťuká na obrázky, ktorých názov sa začína hláskou M. Každý obrázok sa po ťuknutí ozve, takže dieťa počuje, či má pravdu.",
   meta:["dieťa samo","2 minúty","tablet so zvukom"],
@@ -366,7 +371,7 @@ window.KARTY = [
      preteba:"M vyslovuj ako dlhé „mmm“, nie „em“. Keď dieťa nájde M v strede slova, spýtaj sa, kde presne ho počuje."}
   ]},
 
-{ id:"mat-6-okolo", datum:"2026-11-03", predmet:"MAT", kod:"MAT-CO-1",
+{ id:"mat-6-okolo", datum:"2026-11-03", predmet:"MAT", obr:"🔍", kod:"MAT-CO-1",
   nazov:"Kde sa skrýva číslo 6?",
   uvod:"Šesť vajíčok v krabičke, šesť nôh má mravec, šesť bodiek na kocke. Skúste spolu nájsť doma alebo vonku čo najviac vecí, ktorých je presne šesť.",
   meta:["spolu s rodičom","10 minút","doma alebo vonku"],
@@ -381,7 +386,7 @@ window.KARTY = [
      preteba:"Nevadí, ak dieťa ráta po jednom. Pomáha, keď pri každom predmete ukáže prstom."}
   ]},
 
-{ id:"anj-numbers", datum:"2026-11-03", predmet:"ANJ", kod:"ANJ-RE-2", slovnik:"u2+",
+{ id:"anj-numbers", datum:"2026-11-03", predmet:"ANJ", obr:"🔢", kod:"ANJ-RE-2", slovnik:"u2+",
   nazov:"Numbers one to six",
   uvod:"Anglické čísla od one po six. Dieťa si ich vypočuje ťuknutím na kartičku a potom háda, ktoré číslo nasleduje po five. Hodí sa k matematike, kde sa práve preberá šestka.",
   meta:["dieťa samo","3 minúty","tablet so zvukom"],
@@ -394,7 +399,7 @@ window.KARTY = [
 
 
 /* ---------- 2. 11. 2026 ---------- */
-{ id:"sjl-slabiky-i", datum:"2026-11-02", predmet:"SJL", kod:"SJL-PP-2",
+{ id:"sjl-slabiky-i", datum:"2026-11-02", predmet:"SJL", obr:"🍭", kod:"SJL-PP-2",
   nazov:"Slabiky s novým písmenom I: mi, li, mí, lí",
   uvod:"Hlas povie slabiku, napríklad „mi“ alebo „lá“, a dieťa ťukne na správnu kartičku. Slabiky môžete čítať aj vy sami (prepínač „Kto číta: Rodič“) a tablet ich len zopakuje.",
   meta:["dieťa samo","2 minúty","tablet so zvukom"],
@@ -408,7 +413,7 @@ window.KARTY = [
      preteba:"Slabiky čítaj ťahavo a spolu („mmmi“), nie po písmenách („em-í“). Dlhé í sa v škole volá í s dĺžňom."}
   ]},
 
-{ id:"mat-poradie", datum:"2026-11-02", predmet:"MAT", kod:"MAT-CO-2",
+{ id:"mat-poradie", datum:"2026-11-02", predmet:"MAT", obr:"🐻", kod:"MAT-CO-2",
   nazov:"Kto je v rade tretí? Poradie do 6",
   uvod:"Zvieratká stoja v rade na zmrzlinu. Dieťa počúva, ktoré je prvé, tretie alebo posledné, a ťukne naň. Precvičuje slová, ktorými sa v škole označuje poradie.",
   meta:["dieťa samo","2 minúty","tablet so zvukom"],
@@ -422,7 +427,7 @@ window.KARTY = [
      preteba:"V škole sa tomu hovorí poradie. Zapisuje sa číslom s bodkou (3. = tretí). Ukážte si vždy, odkiaľ rad začína."}
   ]},
 
-{ id:"mat-sucet-6", datum:"2026-11-02", predmet:"MAT", kod:"MAT-CO-3",
+{ id:"mat-sucet-6", datum:"2026-11-02", predmet:"MAT", obr:"🍓", kod:"MAT-CO-3",
   nazov:"Koľko je spolu? Súčet do 6",
   uvod:"Na dvoch tanieroch sú jahody a dieťa zisťuje, koľko ich je spolu. Výsledok sčítania sa v škole volá súčet. Na úrovni Výzva ježko jahody zjedá a počíta sa, koľko zostalo.",
   meta:["dieťa samo","2 – 3 minúty","tablet alebo skutočné ovocie"],
@@ -438,7 +443,7 @@ window.KARTY = [
   ]},
 
 /* ---------- 27. – 31. 10. 2026 ---------- */
-{ id:"sjl-l", datum:"2026-10-31", predmet:"SJL", kod:"SJL-PP-2",
+{ id:"sjl-l", datum:"2026-10-31", predmet:"SJL", obr:"🦁", kod:"SJL-PP-2",
   nazov:"Písmeno L: lev, lopta, list",
   uvod:"Dieťa hľadá veci, ktorých názov sa začína na hlásku L, napríklad lev alebo lopta. Hodí sa na pár minút pri tablete aj na hru „vidím niečo na L“ cestou zo školy.",
   meta:["dieťa samo aj s rodičom","5 minút","tablet aj papier"],
@@ -452,7 +457,7 @@ window.KARTY = [
     {typ:"tlac", urovne:3, text:"Obťahovanie L, čo sa začína na lll, malá a veľká lama, L alebo M. Výzva: otočené slabiky la – al, slová s viacerými riešeniami a rýchločítanie.", subor:"sjl-l.pdf"}
   ]},
 
-{ id:"mat-6", datum:"2026-10-29", predmet:"MAT", kod:"MAT-CO-4",
+{ id:"mat-6", datum:"2026-10-29", predmet:"MAT", obr:"🐿️", kod:"MAT-CO-4",
   nazov:"Koľko orieškov má veverička vo vrecúšku? Rozklad čísla 6",
   uvod:"Veverička schovala časť orieškov do vrecúška. Dieťa zisťuje, koľko chýba do celku, a tak si precvičuje rozklad čísla. Obťažnosť zvolíte podľa toho, ako sa darí.",
   meta:["dieťa samo","3 – 5 minút","tablet alebo skutočné oriešky"],
@@ -466,7 +471,7 @@ window.KARTY = [
     {typ:"tlac", urovne:3, text:"Koľko chýba do šiestich: vrecúško s orieškami, veže zo 6 kociek, zajace a mrkvy a hra pre dvoch Schovávačka. Výzva: dve vrecúška, tajný kód so zvieratkami a úloha, ktorú zadá dieťa.", subor:"mat-6.pdf"}
   ]},
 
-{ id:"anj-school", datum:"2026-10-27", predmet:"ANJ", kod:"ANJ-RE-2", slovnik:"u1",
+{ id:"anj-school", datum:"2026-10-27", predmet:"ANJ", obr:"🏫", kod:"ANJ-RE-2", slovnik:"u1",
   nazov:"School things: pencil, book, bag",
   uvod:"Päť anglických slov o školských veciach: pencil, book, bag, ruler, crayon. Dieťa si ich vypočuje a potom uhádne vec z krátkej anglickej hádanky.",
   meta:["dieťa samo","3 minúty","tablet so zvukom"],
@@ -478,7 +483,7 @@ window.KARTY = [
   ]},
 
 /* ---------- 20. – 26. 10. 2026 ---------- */
-{ id:"cap-mlaka", datum:"2026-10-24", predmet:"CAP", kod:"CAP-ZE-2",
+{ id:"cap-mlaka", datum:"2026-10-24", predmet:"CAP", obr:"💧", kod:"CAP-ZE-2",
   nazov:"Kam zmizne mláka?",
   uvod:"Po daždi sa mláky pomaly zmenšujú. Kam sa podela voda? Porozprávajte sa o tom a vyskúšajte spolu, ako rýchlo sa kocka ľadu zmení na vodu.",
   meta:["10 minút + čakanie","kocka ľadu, tanierik"],
@@ -499,7 +504,7 @@ window.KARTY = [
    ========================================================= */
 
 /* ---------- 19. – 23. 10. 2026 ---------- */
-{ id:"sjl-e", datum:"2026-10-21", predmet:"SJL", kod:"SJL-RV-1",
+{ id:"sjl-e", datum:"2026-10-21", predmet:"SJL", obr:"🚋", kod:"SJL-RV-1",
   nazov:"Písmeno E: Ema a mama",
   uvod:"S písmenami M, A a E sa už dajú čítať prvé slová a vety: Ema, mama, Ema má. Dieťa prečíta slabiku alebo slovo nahlas a ťuknutím si skontroluje, či ho prečítalo dobre.",
   meta:["dieťa samo","3 minúty","tablet so zvukom"],
@@ -514,7 +519,7 @@ window.KARTY = [
     {typ:"tlac", urovne:3, text:"Obťahovanie E, kde počuješ e, veľké a malé písmená, húsenica slabík a prvé vety o Eme a mame. Výzva: tajný kód a čítanie odzadu.", subor:"sjl-e.pdf"}
   ]},
 
-{ id:"mat-nula", datum:"2026-11-11", predmet:"MAT", kod:"MAT-CO-1",
+{ id:"mat-nula", datum:"2026-11-11", predmet:"MAT", obr:"🍽️", kod:"MAT-CO-1",
   nazov:"Nula: keď nie je nič",
   uvod:"Na tanieri boli tri piškóty, zjedli sme ich a teraz je tam nula. Nula je číslo pre „nič“. Hľadajte spolu, čoho je doma práve nula.",
   meta:["spolu s rodičom","5 minút","tanier, drobnosti"],
@@ -529,7 +534,7 @@ window.KARTY = [
     {typ:"tlac", urovne:3, text:"Písanie nuly, prázdny tanier a číselný rad od nuly. Počítanie s nulou, porovnávanie a odpočítavanie rakety. Výzva: pravda alebo nie, hádanky na myslené číslo a všetky príklady s výsledkom 0.", subor:"mat-nula.pdf"}
   ]},
 
-{ id:"anj-autumn", datum:"2026-10-21", predmet:"ANJ", kod:"ANJ-RE-2",
+{ id:"anj-autumn", datum:"2026-10-21", predmet:"ANJ", obr:"🍂", kod:"ANJ-RE-2",
   nazov:"Autumn: leaf, apple, tree, pumpkin",
   uvod:"Jesenné slová po anglicky: leaf, apple, tree, pumpkin, rain. Dieťa si ich vypočuje a na prechádzke ich potom hľadá a pomenúva.",
   meta:["dieťa samo aj s rodičom","3 minúty","tablet so zvukom"],
@@ -542,7 +547,7 @@ window.KARTY = [
   ]},
 
 /* ---------- 12. – 16. 10. 2026 ---------- */
-{ id:"sjl-m-hadanky", datum:"2026-10-14", predmet:"SJL", kod:"SJL-PP-2",
+{ id:"sjl-m-hadanky", datum:"2026-10-14", predmet:"SJL", obr:"🌙", kod:"SJL-PP-2",
   nazov:"Hádanky na písmeno M",
   uvod:"„Svieti v noci na oblohe, raz je okrúhly a raz ako rožok. Čo je to?“",
   meta:["spolu s rodičom","2 minúty","bez pomôcok"],
@@ -557,7 +562,7 @@ window.KARTY = [
     {typ:"tlac", urovne:3, text:"Hádanky na M, jedlo na mmm, hľadanie slova mama a obťahovanie M. Slabika ma v oblúčikoch a prvé vety. Výzva: detektívne hádanky a slovná pyramída.", subor:"sjl-m-hadanky.pdf"}
   ]},
 
-{ id:"mat-rozklad-5", datum:"2026-10-28", predmet:"MAT", kod:"MAT-CO-4",
+{ id:"mat-rozklad-5", datum:"2026-10-28", predmet:"MAT", obr:"🖐️", kod:"MAT-CO-4",
   nazov:"Päť prstov, päť orieškov: rozklad čísla 5",
   uvod:"Päť sa dá rozdeliť rôzne: 4 a 1, 3 a 2, 5 a 0. Veverička schová časť orieškov do vrecúška a dieťa háda, koľko ich tam je. Stačí si pomôcť prstami jednej ruky.",
   meta:["dieťa samo","3 minúty","tablet alebo prsty"],
@@ -572,7 +577,7 @@ window.KARTY = [
     {typ:"tlac", urovne:3, text:"Päť na dve časti: vrecúško s orieškami, veže z kociek, domček čísla 5 a pravda alebo nepravda. Výzva: všetky náramky po poradí, bludisko súčtov a prečo sa 5 nedá rozdeliť napoly.", subor:"mat-rozklad-5.pdf"}
   ]},
 
-{ id:"anj-classroom", datum:"2026-10-14", predmet:"ANJ", kod:"ANJ-RE-1", slovnik:"u1",
+{ id:"anj-classroom", datum:"2026-10-14", predmet:"ANJ", obr:"🚪", kod:"ANJ-RE-1", slovnik:"u1",
   nazov:"Touch the door! Slová v triede",
   uvod:"Door, window, chair, table, board. Dieťa si slová vypočuje a potom ich hľadá doma: rodič povie „Touch the door!“ a dieťa beží a dotkne sa dverí.",
   meta:["spolu s rodičom","5 minút","tablet so zvukom"],
@@ -584,7 +589,7 @@ window.KARTY = [
   ]},
 
 /* ---------- 5. – 9. 10. 2026 ---------- */
-{ id:"sjl-a-ma", datum:"2026-10-07", predmet:"SJL", kod:"SJL-RV-1",
+{ id:"sjl-a-ma", datum:"2026-10-07", predmet:"SJL", obr:"👩‍👧", kod:"SJL-RV-1",
   nazov:"Písmeno A a prvé slabiky: ma, má, mama",
   uvod:"Keď sa M a A spoja, vznikne slabika ma, a z dvoch slabík prvé slovo: mama. Dieťa prečíta slabiku nahlas a ťuknutím si skontroluje, či ju prečítalo dobre.",
   meta:["dieťa samo","2 minúty","tablet so zvukom"],
@@ -599,7 +604,7 @@ window.KARTY = [
     {typ:"tlac", urovne:3, text:"Mmm a aaa je ma: obťahovanie slabík, čo sa začína na ma, prečítaj a nakresli MAMA a MÁM. Výzva: škriatok poplietol písmená, koľko písmen a koľko slabík.", subor:"sjl-a-ma.pdf"}
   ]},
 
-{ id:"mat-uberame", datum:"2026-10-21", predmet:"MAT", kod:"MAT-CO-3",
+{ id:"mat-uberame", datum:"2026-10-21", predmet:"MAT", obr:"➖", kod:"MAT-CO-3",
   nazov:"Uberáme: koľko zostalo?",
   uvod:"Na stole sú štyri sušienky a dve zjeme. Koľko zostalo? Pri uberaní dieťa najprv počíta, čo bolo, potom čo zmizlo, a nakoniec to, čo zostalo.",
   meta:["spolu s rodičom","5 minút","fazuľky, hrnček"],
@@ -612,7 +617,7 @@ window.KARTY = [
     {typ:"tlac", urovne:3, text:"Uberanie: prečiarkni, čo zjedol ježko, vtáčiky odleteli, kocky a pravda alebo nepravda. Výzva: čo zmizlo, plus alebo mínus, chytáky a vláčik počítania.", subor:"mat-uberame.pdf"}
   ]},
 
-{ id:"anj-please", datum:"2026-10-07", predmet:"ANJ", kod:"ANJ-IN-2", slovnik:"start",
+{ id:"anj-please", datum:"2026-10-07", predmet:"ANJ", obr:"🙏", kod:"ANJ-IN-2", slovnik:"start",
   nazov:"Please, thank you! Hra na obchod",
   uvod:"„An apple, please.“ – „Here you are.“ – „Thank you!“ Zahrajte sa na obchod, v ktorom sa nakupuje len po anglicky a slušne.",
   meta:["spolu s rodičom","5 minút","ovocie alebo hračky"],
@@ -624,7 +629,7 @@ window.KARTY = [
   ]},
 
 /* ---------- 28. 9. – 2. 10. 2026 ---------- */
-{ id:"sjl-tlieskame", datum:"2026-09-30", predmet:"SJL", kod:"SJL-PP-2",
+{ id:"sjl-tlieskame", datum:"2026-09-30", predmet:"SJL", obr:"👏", kod:"SJL-PP-2",
   nazov:"Vytlieskaj slovo: ma-ma, lo-pta, ba-na-na",
   uvod:"„Ba – na – na: tlesk, tlesk, tlesk. Koľko tlesknutí má slovo banán?“ Dieťa delí slová na slabiky tlieskaním a zisťuje, ktoré slovo je dlhšie.",
   meta:["spolu s rodičom","3 minúty","bez pomôcok"],
@@ -637,7 +642,7 @@ window.KARTY = [
     {typ:"tlac", urovne:3, text:"Oblúčiky pod obrázky, hra na robota, triedenie podľa počtu slabík a pokusné čítanie MA-MA, SO-VA. Výzva: slabikové schody a prečo má malá rybička dlhšie slovo.", subor:"sjl-tlieskame.pdf"}
   ]},
 
-{ id:"mat-pridavame", datum:"2026-10-14", predmet:"MAT", kod:"MAT-CO-3",
+{ id:"mat-pridavame", datum:"2026-10-14", predmet:"MAT", obr:"➕", kod:"MAT-CO-3",
   nazov:"Pridávame: koľko je spolu?",
   uvod:"Na jednom tanieri sú dve jahody, na druhom jedna. Koľko je spolu? Dieťa počíta jahody na tablete na úrovni Ľahšie, kde súčet nepresiahne štyri.",
   meta:["dieťa samo","2 minúty","tablet so zvukom"],
@@ -651,7 +656,7 @@ window.KARTY = [
     {typ:"tlac", urovne:3, text:"Pridávanie do 4: obťahovanie 1, 2, 3 a plus, jahody na tanieroch, veže z kociek a príbehy. Výzva: koľko treba pridať, domino so 4 bodkami a objav, že 1 + 3 je to isté ako 3 + 1.", subor:"mat-pridavame.pdf"}
   ]},
 
-{ id:"anj-feelings", datum:"2026-09-30", predmet:"ANJ", kod:"ANJ-PR-2",
+{ id:"anj-feelings", datum:"2026-09-30", predmet:"ANJ", obr:"😀", kod:"ANJ-PR-2",
   nazov:"How are you? I'm happy!",
   uvod:"„How are you?“ – „I'm happy!“ Dieťa sa naučí povedať, ako sa cíti: happy, sad, tired, hungry. Ťuknutím si slová vypočuje a potom ich ukazuje tvárou.",
   meta:["dieťa samo aj s rodičom","3 minúty","tablet so zvukom"],
@@ -663,7 +668,7 @@ window.KARTY = [
   ]},
 
 /* ---------- 21. – 25. 9. 2026 ---------- */
-{ id:"sjl-rymy", datum:"2026-09-23", predmet:"SJL", kod:"SJL-PP-2",
+{ id:"sjl-rymy", datum:"2026-09-23", predmet:"SJL", obr:"🐱", kod:"SJL-PP-2",
   nazov:"Rýmy: mačka – kačka, myš – ...?",
   uvod:"„Mačka a kačka znejú na konci rovnako. Čo sa rýmuje so slovom les?“ Pri rýmoch sa dieťa učí počúvať koniec slova.",
   meta:["spolu s rodičom","3 minúty","bez pomôcok"],
@@ -678,7 +683,7 @@ window.KARTY = [
     {typ:"tlac", urovne:3, text:"Spoj dvojice, ktoré sa rýmujú, čo sa nerýmuje, básničky bez posledného slova a hra na robota. Výzva: všetky rýmy na mak a čarovanie s prvou hláskou.", subor:"sjl-rymy.pdf"}
   ]},
 
-{ id:"mat-4-5", datum:"2026-09-23", predmet:"MAT", kod:"MAT-CO-1",
+{ id:"mat-4-5", datum:"2026-09-23", predmet:"MAT", obr:"✋", kod:"MAT-CO-1",
   nazov:"Čísla 4 a 5: kolesá a prsty",
   uvod:"Auto má štyri kolesá, ruka päť prstov. Dieťa hľadá veci, ktorých je štyri alebo päť, a počíta ich po jednej s ukazovaním prstom.",
   meta:["spolu s rodičom","5 minút","doma alebo vonku"],
@@ -691,7 +696,7 @@ window.KARTY = [
     {typ:"tlac", urovne:3, text:"Štyri a päť: kocka, prsty, obkreslená ruka, veža z kociek a zvieratká so štyrmi nohami. Výzva: chyták s piatimi, prečo vidíme len dve kolesá a náramky s piatimi korálkami.", subor:"mat-4-5.pdf"}
   ]},
 
-{ id:"anj-yes-no", datum:"2026-09-23", predmet:"ANJ", kod:"ANJ-IN-2",
+{ id:"anj-yes-no", datum:"2026-09-23", predmet:"ANJ", obr:"👍", kod:"ANJ-IN-2",
   nazov:"Yes or no? Is it a ball?",
   uvod:"Rodič ukáže vec a spýta sa po anglicky, napríklad „Is it a ball?“. Dieťa odpovie „Yes!“ alebo „No!“ a kývne alebo pokrúti hlavou.",
   meta:["spolu s rodičom","3 minúty","hračky"],
@@ -704,7 +709,7 @@ window.KARTY = [
   ]},
 
 /* ---------- 14. – 18. 9. 2026 ---------- */
-{ id:"sjl-s-zaciatok", datum:"2026-09-16", predmet:"SJL", kod:"SJL-PP-2",
+{ id:"sjl-s-zaciatok", datum:"2026-09-16", predmet:"SJL", obr:"☀️", kod:"SJL-PP-2",
   nazov:"Prvá hláska: čo sa začína na S? Sss ako had",
   uvod:"Dieťa ťuká na obrázky, ktorých názov sa začína hláskou S, napríklad slon alebo sova. Každý obrázok sa po ťuknutí ozve, takže dieťa počuje, či má pravdu.",
   meta:["dieťa samo","2 minúty","tablet so zvukom"],
@@ -718,7 +723,7 @@ window.KARTY = [
     {typ:"tlac", urovne:3, text:"Čo sa začína na sss, hadík a ulita na obťahovanie, hľadanie písmena S, sss alebo mmm. Výzva: sss na začiatku či na konci a hadia minúta.", subor:"sjl-s-zaciatok.pdf"}
   ]},
 
-{ id:"mat-1-2-3", datum:"2026-09-16", predmet:"MAT", kod:"MAT-CO-1",
+{ id:"mat-1-2-3", datum:"2026-09-16", predmet:"MAT", obr:"🐥", kod:"MAT-CO-1",
   nazov:"Jeden, dva, tri: koľko ich je?",
   uvod:"Jeden nos, dve oči, tri kolieska na trojkolke. Dieťa počíta malé skupinky vecí a ukazuje počet na prstoch. Pri malých počtoch sa časom naučí vidieť ich naraz.",
   meta:["spolu s rodičom","5 minút","drobnosti, lyžičky"],
@@ -731,7 +736,7 @@ window.KARTY = [
     {typ:"tlac", urovne:3, text:"Jeden, dva, tri: kocky, vyfarbovanie, čiarky a dvojice. Výzva: presne tri v rôznych podobách, uši a nohy, tvar s tromi rohmi a čo nepatrí.", subor:"mat-1-2-3.pdf"}
   ]},
 
-{ id:"anj-toys", datum:"2026-09-16", predmet:"ANJ", kod:"ANJ-RE-2",
+{ id:"anj-toys", datum:"2026-09-16", predmet:"ANJ", obr:"🧸", kod:"ANJ-RE-2",
   nazov:"Toys: ball, doll, car, teddy",
   uvod:"Štyri hračky po anglicky: ball, doll, car, teddy. Dieťa si ich vypočuje a potom podáva hračky, ktoré rodič pomenuje po anglicky.",
   meta:["dieťa samo aj s rodičom","3 minúty","tablet so zvukom, hračky"],
@@ -743,7 +748,7 @@ window.KARTY = [
   ]},
 
 /* ---------- 7. – 11. 9. 2026 ---------- */
-{ id:"sjl-i", datum:"2026-09-09", predmet:"SJL", kod:"SJL-PP-2",
+{ id:"sjl-i", datum:"2026-09-09", predmet:"SJL", obr:"🔤", kod:"SJL-PP-2",
   nazov:"Hádanky na hlásku I",
   uvod:"„Je tenká a ostrá, má očko, ale nevidí. Čo je to?“",
   meta:["spolu s rodičom","2 minúty","bez pomôcok"],
@@ -758,7 +763,7 @@ window.KARTY = [
     {typ:"tlac", urovne:3, text:"Hádanky, čo patrí k sebe, cestičky na uvoľnenie ruky, prvá hláska a koľko slov má veta. Výzva: i na konci slova a slovný vláčik.", subor:"sjl-i.pdf"}
   ]},
 
-{ id:"mat-najvacsi", datum:"2026-09-09", predmet:"MAT", kod:"MAT-CO-2",
+{ id:"mat-najvacsi", datum:"2026-09-09", predmet:"MAT", obr:"☕", kod:"MAT-CO-2",
   nazov:"Najväčší a najmenší: zoraď hrnčeky",
   uvod:"Dieťa zoradí hrnčeky, topánky alebo plyšáky od najmenšieho po najväčší. Pritom používa slová väčší, menší, najväčší a najmenší.",
   meta:["spolu s rodičom","5 minút","hrnčeky, topánky, hračky"],
@@ -771,7 +776,7 @@ window.KARTY = [
     {typ:"tlac", urovne:3, text:"Najväčší a najmenší: lopty, domy, misky pre tri macky, pastelky a snehuliak. Výzva: pastelky, ktoré nezačínajú na jednom mieste, a prečo je macko raz veľký a raz malý.", subor:"mat-najvacsi.pdf"}
   ]},
 
-{ id:"anj-name", datum:"2026-09-09", predmet:"ANJ", kod:"ANJ-IN-1", slovnik:"start",
+{ id:"anj-name", datum:"2026-09-09", predmet:"ANJ", obr:"🏷️", kod:"ANJ-IN-1", slovnik:"start",
   nazov:"What's your name? My name is…",
   uvod:"„Hello! What's your name?“ – „My name is Bobo.“ Plyšák sa predstaví po anglicky a pýta sa dieťaťa na meno. Potom sa predstavia všetky hračky.",
   meta:["spolu s rodičom","3 minúty","plyšák alebo bábka"],
@@ -783,7 +788,7 @@ window.KARTY = [
   ]},
 
 /* ---------- 2. – 4. 9. 2026 (začiatok školského roka) ---------- */
-{ id:"sjl-zvuky", datum:"2026-09-02", predmet:"SJL", kod:"SJL-PP-2",
+{ id:"sjl-zvuky", datum:"2026-09-02", predmet:"SJL", obr:"👂", kod:"SJL-PP-2",
   nazov:"Čo to šuchoce? Hra na zvuky",
   uvod:"Dieťa zavrie oči a háda, čo počuje: zvonenie kľúčov, šuchot papiera, kvapkanie vody. Na začiatku prvej triedy sa deti učia pozorne počúvať, z toho neskôr vyrastie počúvanie hlások.",
   meta:["spolu s rodičom","5 minút","kľúče, papier, lyžička, pohár"],
@@ -796,7 +801,7 @@ window.KARTY = [
     {typ:"tlac", urovne:3, text:"Zvieratká a ich zvuky, čo je hlasnejšie, rovnaký obrázok, tlieskanie a rozdiely. Výzva: zvuková pamäť a od najtichšieho po najhlasnejšie.", subor:"sjl-zvuky.pdf"}
   ]},
 
-{ id:"mat-viac-menej", datum:"2026-09-02", predmet:"MAT", kod:"MAT-CO-2",
+{ id:"mat-viac-menej", datum:"2026-09-02", predmet:"MAT", obr:"🍪", kod:"MAT-CO-2",
   nazov:"Kde je viac? Porovnávame sušienky",
   uvod:"Na dvoch tanieroch sú sušienky. Dieťa porovná, kde je viac, a vyberie znak. Ak znaky ešte nepozná, stačí, keď povie viac, menej alebo rovnako, a znak mu ukážete vy.",
   meta:["dieťa samo","2 minúty","tablet so zvukom"],
@@ -808,7 +813,7 @@ window.KARTY = [
     {typ:"tlac", urovne:3, text:"Kde je viac, menej a rovnako, bez počítania: priraďovanie zajkov a mrkiev, prestieranie, hore a dole. Výzva: chyták s veľkými a malými balónmi a tretí spôsob, ako urobiť rovnako.", subor:"mat-viac-menej.pdf"}
   ]},
 
-{ id:"anj-hello", datum:"2026-09-02", predmet:"ANJ", kod:"ANJ-IN-1", slovnik:"start",
+{ id:"anj-hello", datum:"2026-09-02", predmet:"ANJ", obr:"👋", kod:"ANJ-IN-1", slovnik:"start",
   nazov:"Hello! Goodbye! Prvé anglické slová",
   uvod:"Hello, goodbye, good morning, good night. Dieťa si pozdravy vypočuje a celý deň ich môže používať: ráno „Good morning!“, večer „Good night!“.",
   meta:["dieťa samo aj s rodičom","2 minúty","tablet so zvukom"],

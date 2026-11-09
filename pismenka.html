@@ -6,8 +6,11 @@
 <title>Písmenkové kocky · Prváčik doma</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Hra pre prvákov: písmeno je kocka, spojené kocky sú slabika, slabiky za sebou sú slovo. Spájanie slabík do slova, s hlasom.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Andika:wght@400;700&family=Atkinson+Hyperlegible:wght@400;700&family=Lexend:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="pismo.css">
+<link rel="stylesheet" href="hlavicka.css">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="ikony/ikona.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="ikony/ikona-180.png">
 <style>
 /* Rozloženie: jeden stĺpec ako Hra s kockami. Navrchu nastavenia pre rodiča, pod nimi hra, „Podať dieťaťu“ ju dá na celú obrazovku.
    Písmeno = kocka (písmo Andika, jednoduché „a“ ako v škole). Samohláska jedna farba, spoluhláska druhá, dlhá samohláska je širšia kocka. */
@@ -202,10 +205,10 @@ button.pk-g.ok{outline:3px solid var(--ok);outline-offset:3px;cursor:default}
 <body>
 
 <div class="wrap" id="stranka">
-  <header class="top">
-    <a class="spat" href="./">← Prváčik doma</a>
-    <h1>Písmenkové kocky</h1>
-    <p>Písmeno je kocka. Spojené kocky sú slabika a každá slabika v slove má svoju farbu, ako v šlabikári. Dlhá samohláska je dlhšia kocka. Vyberte písmená, ktoré dieťa už pozná, vyskúšajte si hru a potom ťuknite na <b>Podať dieťaťu</b>.</p>
+  <header class="hl sjl">
+    <a class="hl-spat" href="./">← Prváčik doma</a>
+    <div class="hl-r"><span class="hl-tag">Slovenčina</span><h1>Písmenkové kocky</h1></div>
+    <details class="hl-info"><summary>Ako to funguje</summary><p>Písmeno je kocka. Spojené kocky sú slabika a každá slabika v slove má svoju farbu, ako v šlabikári. Dlhá samohláska je dlhšia kocka. Vyberte písmená, ktoré dieťa už pozná, vyskúšajte si hru a potom ťuknite na <b>Podať dieťaťu</b>.</p></details>
   </header>
 
   <section class="card" aria-labelledby="h-nast">
@@ -1007,6 +1010,13 @@ const POPIS = {
 let cfg = {rezim:"spoj", u:1, pismena:SKOLA.slice(), velke:false, farby:true};
 try{ const s=JSON.parse(localStorage.getItem("pismenka-nastavenie")||"null"); if(s) cfg=Object.assign(cfg,s); }catch(e){}
 const uloz = () => { try{ localStorage.setItem("pismenka-nastavenie", JSON.stringify(cfg)); }catch(e){} };
+/* Odkaz z karty otvorí hru už nastavenú: pismenka.html#p=AMELIJ&r=obrazok&u=1
+   (p = písmená, r = spoj | postav | obrazok, u = 0 Ľahšie, 1 Bežné, 2 Výzva). Uložené nastavenie rodiča sa neprepíše. */
+try{ const h=new URLSearchParams(location.hash.slice(1));
+  if(h.get("p")){ const chce=[...h.get("p").toUpperCase()]; const pis=PORADIE.filter(x=>chce.includes(x)); if(pis.length>=2) cfg.pismena=pis; }
+  if(POPIS[h.get("r")]) cfg.rezim=h.get("r");
+  if(/^[012]$/.test(h.get("u")||"")) cfg.u=+h.get("u");
+}catch(e){}
 
 /* hlas (rovnako ako v Hre s kockami: rozohriatie, pauza, nikdy neuseknúť) */
 const PAUZA_MS = 500;
