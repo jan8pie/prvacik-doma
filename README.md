@@ -9,6 +9,8 @@ Web: https://jan8pie.github.io/prvacik-doma/
 - `index.html` – vzhľad a správanie stránky (šablóna). Bežne ho netreba meniť.
 - `karty.js` – **obsah kariet**. Novú kartu pridáš tak, že skopíruješ jeden blok `{ ... }`, zmeníš texty a dátum. Karty na celý týždeň sa ukážu naraz v nedeľu o 18:00, týždne a štítok DNES sa počítajú samy.
 - `kontrola-kariet.js` – kontrola kariet pred zverejnením: `node kontrola-kariet.js` (dátumy, súbory na tlač, prebrané písmená, striedanie hier).
+- `stav.js` – čo trieda už preberala (písmená, čísla). Jediné miesto, kde sa to zapisuje; na webe sa nenačíta.
+- `sada.js` – prehľad pred výrobou novej sady kariet: `node sada.js` (stav triedy, karty z minulých týždňov, čo opakovať), `node sada.js --karta id` vypíše jednu kartu ako vzor.
 - `kocky.html`, `pismenka.html`, `slovnik.html` – tri hry; spoločná hlavička je v `hlavicka.css`.
 - `pismo.css`, `pismo/` – písma uložené v repe (stránka nič nesťahuje od tretích strán).
 - `manifest.webmanifest`, `sw.js`, `ikony/` – ikona na plochu a práca bez internetu.
