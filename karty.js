@@ -19,7 +19,8 @@
    stdn:    štandard ŠVP (citát)
    bloky:   rozhovor, aktivita, pocuvanie, hadanka, spolu, tlac
    hry (aktivita): vyber, rozklad, slabiky, poradie, sucet, porovnaj, kocky
-   kocky:   rezim "kolko" (Koľko je?, Výzva = postav číslo) alebo "spoj" (+, Výzva = najprv odhad);
+   kocky:   rezim "kolko" (Koľko je?, Výzva = postav číslo), "spoj" (+, Výzva = najprv odhad)
+            alebo "uber" (−, kocky odskočia nabok, Výzva = najprv odhad);
             pri úrovni {max:6} = čísla najviac do 6 (podľa témy), {max:20} alebo {max:100} = väčšie čísla
    pocuvanie: jazyk:"sk-SK" pre slovenčinu (inak angličtina), citanie:true = veľké slová bez obrázkov;
               anglický podpis pod obrázkom sa ukáže až po vypočutí

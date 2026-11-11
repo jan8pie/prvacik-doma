@@ -7,11 +7,16 @@
      const h = Kocky.hra(prvok, {say, kol:5, priKonci});
      h.spusti({rezim:"spoj", rozsah:10, u:1, max:6}, {automaticky:true});
 
-   rezim    "kolko" (Koľko je?, pri u:2 dieťa číslo postaví), "spoj" (+) alebo
+   rezim    "kolko" (Koľko je?, pri u:2 dieťa číslo postaví), "spoj" (+), "uber" (−) alebo
             "stavby" (obrázky z kociek: u:0 spočítaj, u:1 kde je viac, u:2 koľko chýba)
+            Pri "spoj" a "uber" sa číslo hýbe ako celý blok (nie po jednej kocke): druhé číslo
+            priskočí k prvému, pri odčítaní blok odskočí nabok a ostanú po ňom prázdne miesta.
+            u:0 a u:1 dieťa operáciu najprv vidí, u:2 najprv odhadne a kocky to potvrdia.
    rozsah   10, 20 alebo 100
    u        0 Ľahšie, 1 Bežné, 2 Výzva
    max      (nepovinné) najväčšie číslo pri rozsahu 10, napr. 6 podľa témy v škole
+   tempo    (nepovinné) rýchlosť pohybu kociek: "pomaly" (predvolené), "stredne", "rychlo" alebo "bez"
+            (bez pohybu). Vypnuté animácie v zariadení pohyb kociek nevypnú, len ozdoby.
    say      funkcia, ktorá prečíta text nahlas a vráti sľub (Promise)
    priKonci (nepovinné) zavolá sa po poslednom kole; ak vráti true, koniec rieši stránka
    ===================================================================== */
@@ -28,34 +33,151 @@ const kock = n => n===1?"jedna kocka":n===2?"dve kocky":n<5?`${n} kocky`:`${n} k
 const des = n => n===1?"jedna desiatka":n===2?"dve desiatky":n<5?`${n} desiatky`:`${n} desiatok`;
 const popis = n => { const t=Math.floor(n/10), o=n%10; return t===0?kock(o):o===0?des(t):`${des(t)} a ${kock(o)}`; };
 
-/* ===== animácie: všetky pohyby sú len tu, aby sa dali neskôr vymeniť ===== */
+/* Tempo pohybov v milisekundách pri najpomalšom nastavení (na jednom mieste, aby sa dalo ľahko doladiť).
+   Skok bloku: napred = blok sa najprv len zvýrazní, let = plynulý oblúk na nové miesto, dosun = scéna sa
+   vystredí. Rodič si rýchlosť volí (cfg.tempo), TEMPO časy násobí. */
+const CASY = {napred:450, let:2700, dosun:900, poSkoku:450, pad:950, zabal:900, rozbal:850, pocitaj:800, presun:1200};
+const TEMPA = {pomaly:1, stredne:.65, rychlo:.4, bez:.4};
+let TEMPO = 1;
+const cas = k => Math.round(CASY[k]*TEMPO);
+const pauza = ms => pockaj(ms*TEMPO);
+
+/* ===== animácie: všetky pohyby sú len tu, aby sa dali neskôr vymeniť =====
+   Zásada: číslo sa hýbe ako celok. Blok kociek padá, skáče a odchádza naraz, aby dieťa videlo
+   „štyri a tri“, nie sedem jednotlivých kociek, ktoré treba spočítať. */
 const ANIM = {
-  ticho: matchMedia("(prefers-reduced-motion: reduce)").matches,
-  fotka(scene){ const m=new Map(); scene.querySelectorAll(".kk-k").forEach(el=>m.set(el, el.getBoundingClientRect())); return m; },
-  /* kocky, ktoré boli na scéne, sa presunú z pôvodného miesta; nové „vyskočia“ */
-  presun(scene, pred, {trvanie=650, oneskorenie=18}={}){
+  /* ticho = rodič zvolil „Bez pohybu“: všetko sa ukáže hneď.
+     jemne = zariadenie má vypnuté animácie (prefers-reduced-motion). Presun kociek sa ukáže aj tak, lebo je
+     obsahom hry (bez neho kocky len preskočia a nevidno, čo sa stalo); vynechajú sa len ozdoby
+     (hviezdičky, vlnenie, pruženie rámika). */
+  ticho: false,
+  jemne: matchMedia("(prefers-reduced-motion: reduce)").matches,
+  /* poloha kociek pred zmenou; rozbehnuté pohyby sa najprv dokončia, aby meranie sedelo */
+  fotka(scene){ const m=new Map(); scene.querySelectorAll(".kk-k").forEach(el=>{ el.getAnimations().forEach(a=>{ try{ a.finish(); }catch(e){} }); m.set(el, el.getBoundingClientRect()); }); return m; },
+  /* kocky, ktoré boli na scéne, sa presunú z pôvodného miesta; nové „vyskočia“ (stavby, Postav číslo) */
+  presun(scene, pred, {trvanie=cas("presun"), oneskorenie=18}={}){
     if(this.ticho) return Promise.resolve();
     let max=0, i=0;
     scene.querySelectorAll(".kk-k").forEach(el=>{
       const o=pred&&pred.get(el), n=el.getBoundingClientRect(), d=i++*oneskorenie;
       if(o){ const dx=o.left-n.left, dy=o.top-n.top; if(!dx&&!dy) return;
-        el.animate([{transform:`translate(${dx}px,${dy}px)`},{transform:"none"}],{duration:trvanie,delay:d,easing:"cubic-bezier(.3,.75,.25,1)",fill:"backwards"}); }
+        el.animate([{transform:`translate(${dx}px,${dy}px)`},{transform:"none"}],{duration:trvanie,delay:d,easing:"ease-in-out",fill:"backwards"}); }
       else el.animate([{transform:"scale(0)",opacity:0},{transform:"scale(1.12)",opacity:1,offset:.7},{transform:"none"}],{duration:320,delay:d,easing:"ease-out",fill:"backwards"});
       max=Math.max(max,d+(o?trvanie:320));
     });
     return pockaj(max);
   },
+  /* číslo príde na scénu: desiatka spadne ako jeden kus, kocky navyše ako päťka a zvyšok */
+  pad(scene){
+    if(this.ticho) return Promise.resolve();
+    let d=0, max=0;
+    scene.querySelectorAll(".kk-col").forEach(col=>{
+      const ks=[...col.querySelectorAll(".kk-k:not(.kk-duch)")]; if(!ks.length) return;
+      const k=ks[0].offsetHeight||28, rod=col.classList.contains("rod");
+      (rod ? [ks] : [ks.slice(0,5), ks.slice(5)]).forEach(cast=>{
+        if(!cast.length) return;
+        cast.forEach(el=>el.animate([
+          {transform:`translateY(${-k*3.2}px)`,opacity:0,easing:"cubic-bezier(.3,0,.4,1)"},
+          {transform:`translateY(${-k*2.2}px)`,opacity:1,offset:.25,easing:"cubic-bezier(.3,0,.3,1)"},
+          {transform:"none",offset:.8,easing:"ease-in-out"},
+          {transform:`translateY(${-k*.12}px)`,offset:.9,easing:"ease-in-out"},
+          {transform:"none"}],{duration:cas("pad"),delay:d,fill:"backwards"}));
+        max=d+cas("pad"); d+=Math.round((rod?140:420)*TEMPO);
+      });
+    });
+    return pockaj(max);
+  },
+  /* Krok operácie: kocky zo zoznamu „skace“ sa presunú ako jeden blok jedným plynulým oblúkom.
+     Aby pohyb stihlo sledovať šesťročné dieťa: blok sa najprv len zvýrazní žltým obrysom (vidno, čo pôjde),
+     potom sa pomaly rozbehne, preletí a pomaly dosadne (rýchlosť sa mení plynulo, nikde sa nezasekne).
+     Ostatné kocky zatiaľ stoja. Ak sa tým zmenilo rozloženie (scéna sa vystredí), celá scéna sa počas letu
+     drží na pôvodnom mieste a až potom sa zošupne. kotva = kocka z bloku, ku ktorému sa skáče.
+     stopa = na pôvodnom mieste ostanú počas letu čiarkované obrysy (pri odčítaní netreba, tam ostávajú
+     prázdne miesta). */
+  skok(scene, pred, skace, {kotva=null, vyska=1.5, stopa=false}={}){
+    if(this.ticho) return Promise.resolve();
+    const S=new Set(skace), k=parseFloat(getComputedStyle(scene).getPropertyValue("--k"))||28;
+    const delta = el => { const o=pred.get(el); if(!o) return null; const n=el.getBoundingClientRect(); return [o.left-n.left, o.top-n.top]; };
+    const hybeSa = x => Math.abs(x[0])>.5 || Math.abs(x[1])>.5;
+    const dk = (kotva && delta(kotva)) || [0,0], dosun=hybeSa(dk);
+    const Tn=cas("napred"), T1=Tn+cas("let"), T=T1+(dosun?cas("dosun"):0), oN=Tn/T, p=T1/T, h=k*vyska;
+    const tr=(x,y)=>`translate(${x.toFixed(2)}px,${y.toFixed(2)}px)`;
+    scene.querySelectorAll(".kk-k").forEach(el=>{
+      const x=delta(el); if(!x) return;
+      const rx=x[0]-dk[0], ry=x[1]-dk[1];   /* poloha voči scéne, ktorá sa drží pri kotve */
+      if(S.has(el)){
+        /* dráha je navzorkovaná nahusto; e ide od 0 po 1 pomaly – rýchlejšie – pomaly (sínus) */
+        const kf=[{transform:tr(rx,ry),offset:0},{transform:tr(rx,ry),offset:oN}], N=54;
+        for(let i=1;i<=N;i++){ const t=i/N, e=(1-Math.cos(Math.PI*t))/2;
+          kf.push({transform:tr(rx*(1-e), ry*(1-e) - h*Math.sin(Math.PI*e)), offset:Math.min(1,oN+(p-oN)*t)}); }
+        if(dosun) kf.push({transform:"none",offset:1});
+        el.classList.add("kk-leti");
+        el.animate(kf,{duration:T,fill:"backwards"});
+        setTimeout(()=>el.classList.remove("kk-leti"), T1+150);
+        if(stopa){ const o=pred.get(el), st=document.createElement("i"); st.className="kk-stopa";
+          st.style.cssText=`left:${o.left}px;top:${o.top}px;width:${o.width}px;height:${o.height}px`; scene.append(st);
+          st.animate([{opacity:0},{opacity:1,offset:.25},{opacity:1,offset:.8},{opacity:0}],{duration:T1}).onfinish=()=>st.remove(); }
+      } else if(hybeSa([rx,ry])){
+        el.animate([{transform:tr(rx,ry)},{transform:tr(rx,ry),offset:p,easing:"ease-in-out"},{transform:"none"}],{duration:T,fill:"backwards"});
+      }
+    });
+    /* číslo nad kockami, ktoré odišli, sa ukáže až pri dopade */
+    new Set(skace.map(el=>el.closest(".kk-prec") && el.parentElement.previousElementSibling)).forEach(n=>n&&n.animate([{opacity:0},{opacity:0,offset:.92},{opacity:1}],{duration:T1,fill:"backwards"}));
+    if(dosun) [...scene.children].forEach(el=>el.classList.contains("kk-stopa")||el.animate(
+      [{transform:tr(dk[0],dk[1])},{transform:tr(dk[0],dk[1]),offset:p,easing:"ease-in-out"},{transform:"none"}],{duration:T,fill:"backwards"}));
+    /* dopad: rámiky, do ktorých blok dosadol, jemne zapružia */
+    if(!this.jemne) setTimeout(()=>{ new Set(skace.map(el=>el.parentElement)).forEach(col=>col&&col.animate(
+      [{transform:"none"},{transform:"scale(1.03,.97)"},{transform:"none"}],{duration:380,easing:"ease-in-out"})); }, T1-60);
+    return pockaj(T+cas("poSkoku"));
+  },
   /* stĺpec kociek sa zabalí do desiatky */
   zabal(col){
     if(this.ticho||!col) return Promise.resolve();
-    col.animate([{transform:"none"},{transform:"scale(1.08,1.03)"},{transform:"none"}],{duration:420,easing:"ease-in-out"});
-    return pockaj(450);
+    col.classList.add("kk-zabal");
+    if(!this.jemne) col.animate([{transform:"none"},{transform:"scale(1.12,1.04)"},{transform:"scale(.97,1)"},{transform:"none"}],{duration:cas("zabal"),easing:"ease-in-out"});
+    this.pukni(col.previousElementSibling);
+    return pockaj(cas("zabal")+60);
+  },
+  /* desiatka sa rozbalí na desať kociek (pri odčítaní) */
+  rozbal(col){
+    if(this.ticho||!col) return Promise.resolve();
+    if(!this.jemne) col.animate([{transform:"none"},{transform:"rotate(-3deg)"},{transform:"rotate(3deg)"},{transform:"rotate(-1.5deg)"},{transform:"none"}],{duration:cas("rozbal"),easing:"ease-in-out"});
+    return pockaj(cas("rozbal")+50);
+  },
+  /* číslo alebo kocka na chvíľu „pukne“ (zväčší sa), aby si ho dieťa všimlo */
+  pukni(el, {oneskorenie=0}={}){
+    if(this.ticho||!el) return;
+    el.animate([{transform:"none"},{transform:"scale(1.55)"},{transform:"none"}],{duration:600,delay:oneskorenie,easing:"ease-in-out"});
   },
   /* prázdne miesta sa postupne zaplnia kockami */
   objav(els, {oneskorenie=110}={}){
     if(this.ticho||!els.length) return Promise.resolve();
     els.forEach((el,i)=>el.animate([{transform:"scale(0)",opacity:0},{transform:"scale(1.15)",opacity:1,offset:.7},{transform:"none"}],{duration:320,delay:i*oneskorenie,easing:"ease-out",fill:"backwards"}));
     return pockaj((els.length-1)*oneskorenie+340);
+  },
+  /* správna odpoveď: kocky sa zavlnia zdola nahor */
+  radost(scene){
+    if(this.ticho||this.jemne||!scene) return;
+    const k=parseFloat(getComputedStyle(scene).getPropertyValue("--k"))||28;
+    scene.querySelectorAll(".kk-col, .kk-stavba").forEach((col,ci)=>{
+      if(col.closest(".kk-prec")) return;
+      col.querySelectorAll(".kk-k:not(.kk-duch)").forEach((el,i)=>el.animate(
+        [{transform:"none"},{transform:`translateY(${-k*.38}px)`},{transform:"none"}],{duration:300,delay:Math.min(ci*40+i*32,900),easing:"ease-out"}));
+    });
+  },
+  /* správna odpoveď: z výsledku vyletí pár hviezdičiek */
+  iskry(pri){
+    if(this.ticho||this.jemne||!pri) return;
+    const r=pri.getBoundingClientRect();
+    for(let i=0;i<8;i++){
+      const s=document.createElement("i"); s.className="kk-iskra"; s.textContent="★"; s.setAttribute("aria-hidden","true");
+      s.style.left=(r.left+r.width/2)+"px"; s.style.top=(r.top+r.height/2)+"px"; document.body.append(s);
+      const u=i/8*Math.PI*2+Math.random()*.6, d=46+Math.random()*34, x=Math.cos(u)*d, y=Math.sin(u)*d;
+      s.animate([{transform:"translate(-50%,-50%) scale(.2)",opacity:1},
+        {transform:`translate(calc(-50% + ${x.toFixed(0)}px),calc(-50% + ${y.toFixed(0)}px)) scale(1) rotate(${(x*2).toFixed(0)}deg)`,opacity:1,offset:.6},
+        {transform:`translate(calc(-50% + ${(x*1.25).toFixed(0)}px),calc(-50% + ${(y*1.25+14).toFixed(0)}px)) scale(.5) rotate(${(x*3).toFixed(0)}deg)`,opacity:0}],
+        {duration:750,easing:"ease-out"}).onfinish=()=>s.remove();
+    }
   },
   tras(el){ if(!el) return; el.classList.remove("kk-tras"); void el.offsetWidth; el.classList.add("kk-tras"); }
 };
@@ -81,23 +203,37 @@ function velkost(scene, pocetStlpcov, skupin){
   scene.style.setProperty("--k", k+"px");
   scene.style.setProperty("--g", Math.max(2, Math.round(k*.12))+"px");
 }
-/* rámiky jednej skupiny; číslo nad rámikom počíta len kocky (nie prázdne miesta) */
+/* Číslo nad rámikom počíta len kocky (nie prázdne miesta). Keď sú v neúplnom rámiku kocky dvoch farieb,
+   ukáže časti (4+3), aby bolo vidno, z čoho je celok; súčet sa ukáže až po odpovedi (st.spolu).
+   st.znak číslo prepíše: "" ho skryje (po odčítaní, kým dieťa neodpovie). */
+function znakStlpca(st){
+  if(st.znak!=null) return String(st.znak);
+  const plne=st.kusy.filter(k=>!k.classList.contains("kk-duch"));
+  if(!plne.length) return "";
+  if(!st.rod && !st.spolu){
+    const casti=[];
+    plne.forEach(k=>{ const f=(k.className.match(/kk-f(\d)/)||[])[1], p=casti[casti.length-1]; if(p&&p[0]===f) p[1]++; else casti.push([f,1]); });
+    if(casti.length>1) return casti.map(([f,n])=>`<span class="kk-t${f}">${n}</span>`).join("+");
+  }
+  return String(plne.length);
+}
+/* rámiky jednej skupiny; st.el je rámik a st.num číslo nad ním (pre animácie) */
 function stlpce(g){
-  const c=document.createElement("div"); c.className="kk-cols";
+  const c=document.createElement("div"); c.className="kk-cols"+(g.trieda?" "+g.trieda:"");
   g.stlpce.forEach(st=>{
     const w=document.createElement("div"); w.className="kk-colw";
-    const plne=st.kusy.filter(k=>!k.classList.contains("kk-duch")).length;
-    const n=document.createElement("div"); n.className="kk-cnum"; n.textContent = plne ? plne : "";
+    const n=document.createElement("div"); n.className="kk-cnum"; n.innerHTML = znakStlpca(st);
     const s=document.createElement("div"); s.className="kk-col "+(st.rod?"rod":"ones");
     st.kusy.forEach((k,j)=>{ k.classList.toggle("h", j>=5); k.style.gridArea=""; });   /* 1 – 5 tmavší odtieň, 6 – 10 svetlejší */
-    s.append(...st.kusy); w.append(n,s); c.append(w);
+    s.append(...st.kusy); w.append(n,s); c.append(w); st.el=s; st.num=n;
   });
   return c;
 }
+/* znamienko: true = „+“ medzi skupinami, alebo vlastný znak (napr. „−“) */
 function vykresli(scene, skupiny, {znamienko=false}={}){
   scene.replaceChildren();
   skupiny.forEach((g,i)=>{
-    if(i>0 && znamienko){ const p=document.createElement("div"); p.className="kk-plus"; p.textContent="+"; scene.append(p); }
+    if(i>0 && znamienko){ const p=document.createElement("div"); p.className="kk-plus"; p.textContent=znamienko===true?"+":znamienko; scene.append(p); }
     scene.append(stlpce(g));
   });
 }
@@ -130,6 +266,16 @@ function prikladSpoj(cfg){
   else { if(u===0){ do{ a=nah(11,68); b=nah(10,99-a); }while(a%10+b%10>9 || b%10===0 && a%10===0); }
          else { do{ a=nah(15,69); b=nah(5,99-a); }while(a%10+b%10<10 || a%10===0 || b%10===0); } }
   return [a,b];
+}
+
+/* odčítanie: Ľahšie bez prechodu cez desiatku, Bežné a Výzva s prechodom (pri číslach nad 10) */
+function prikladUber(cfg){
+  const R=cfg.rozsah, u=cfg.u, M=strop(cfg); let a,c;
+  if(R===10){ a=u===0?nah(2,Math.min(6,M)):nah(Math.min(M,Math.max(3,M-5)),M); c=nah(1,a-1); }
+  else if(R===20){ if(u===0){ a=nah(12,19); c=nah(1,a%10); } else { a=nah(11,18); c=nah(a%10+1,9); } }
+  else { if(u===0){ do{ a=nah(25,99); c=nah(11,a-10); }while(c%10>a%10 || c%10===0 && a%10===0); }
+         else { do{ a=nah(21,98); c=nah(5,a-5); }while(c%10<=a%10); } }
+  return [a,c];
 }
 
 /* ===== Stavby z kociek: obrázky a stavby, ktoré sa dajú upratať do rámikov =====
@@ -243,7 +389,8 @@ function hra(el, o={}){
   el.classList.add("kk");
   const farby = () => PARY[(kolo + beh) % PARY.length];
 
-  /* odpoveď: rad číslic 0 – 9, tlačidlo ? ukáže možnosti */
+  /* odpoveď: rad číslic 0 – 9. Tlačidlo ? ukáže možnosti; ak napoveda() vráti true, pomohla sama
+     (pri sčítaní a odčítaní ukáže postup na kockách, aby dieťa nehádalo z možností). */
   function vstup(box, {spravne, moznosti:m, slot, ok, zle, napoveda}){
     box.innerHTML = `<div class="kk-klav">${[0,1,2,3,4,5,6,7,8,9].map(d=>`<button class="kk-num" type="button" data-d="${d}">${d}</button>`).join("")}</div>
       <div class="kk-pomoc"><button class="btn" type="button" data-zmaz aria-label="Zmazať">⌫</button></div>
@@ -255,7 +402,7 @@ function hra(el, o={}){
     nap.setAttribute("aria-label","Nápoveda: ukáž možnosti"); nap.hidden=box.hidden; slot.after(nap); box._nap=nap;
     const ukaz = () => { slot.textContent = pis || " "; };
     ukaz();
-    const vypni = () => { hotovo=true; nap.hidden=true; box.querySelectorAll("button").forEach(b=>b.disabled=true); slot.classList.add("ok"); slot.textContent=spravne; };
+    const vypni = () => { hotovo=true; nap.hidden=true; box.querySelectorAll("button").forEach(b=>b.disabled=true); slot.classList.add("ok"); slot.textContent=spravne; ANIM.pukni(slot); ANIM.iskry(slot); };
     box.querySelectorAll("[data-d]").forEach(b=>b.onclick=()=>{
       if(hotovo||zamok) return;
       pis += b.dataset.d; ukaz();
@@ -265,9 +412,11 @@ function hra(el, o={}){
     });
     box.querySelector("[data-zmaz]").onclick=()=>{ if(hotovo) return; pis=pis.slice(0,-1); ukaz(); };
     nap.onclick=()=>{
-      if(hotovo) return; nap.hidden=true;
+      if(hotovo) return;
+      if(napoveda && napoveda()===true){ pis=""; ukaz(); return; }
+      nap.hidden=true;
       box.querySelector(".kk-klav").hidden=true; box.querySelector(".kk-pomoc").hidden=true; box.querySelector(".kk-tiles").hidden=false;
-      pis=""; ukaz(); napoveda&&napoveda(); say("Vyber jedno číslo");
+      pis=""; ukaz(); say("Vyber jedno číslo");
     };
     box.querySelectorAll(".kk-tile").forEach(t=>t.onclick=()=>{
       if(hotovo||zamok||t.disabled) return;
@@ -281,18 +430,21 @@ function hra(el, o={}){
     <button class="btn" type="button" data-zopakuj style="min-height:40px;padding:6px 12px">${IK_HLAS}Vypočuj</button></div>`;
   }
   function novyBeh(){ beh++; kolo=0; posledne.clear(); zamok=false; noveKolo(); }
+  const nastavTempo = () => { TEMPO = TEMPA[cfg.tempo] || 1; ANIM.ticho = cfg.tempo==="bez"; };
   function noveKolo(){
     if(kolo>=KOL) return koniec();
+    nastavTempo();
     const b=beh;
     if(cfg.rezim==="stavby") return koloStavby(b);
     if(cfg.rezim==="kolko" && cfg.u===2) return koloPostav(b);
     if(cfg.rezim==="kolko") return koloKolko(b);
+    if(cfg.rezim==="uber") return koloUber(b);
     return koloSpoj(b);
   }
   function unikat(f){ let x, i=0; do{ x=f(cfg); i++; }while(posledne.has(String(x)) && i<30); posledne.add(String(x)); return x; }
   function zadaj(t){ zadanieHlas=t; if(automaticky) say(t); }
   function dalsie(b, text){
-    zamok=true; automaticky=true;
+    zamok=true; automaticky=true; ANIM.radost(el.querySelector(".kk-scene"));
     return say(text).then(()=>pockaj(PO_HLASE_MS)).then(()=>{ if(b!==beh) return; kolo++; zamok=false; noveKolo(); });
   }
   function rada(st, text){ st.className="kk-status"; st.textContent=text; say(text); }
@@ -303,12 +455,12 @@ function hra(el, o={}){
     el.innerHTML = `${hlavicka()}<p class="kk-zadanie">Koľko je tu kociek?</p><div class="kk-scene kk-bez-cisel"></div>
       <p class="kk-rovnica"><span class="kk-vys">?</span></p><div class="kk-vstup"></div><p class="kk-status" role="status"></p>`;
     const sc=el.querySelector(".kk-scene"), g=skupina(n,f), st=el.querySelector(".kk-status");
-    velkost(sc, g.stlpce.length, 1); vykresli(sc,[g]); ANIM.presun(sc,null,{oneskorenie:n>20?6:25});
+    velkost(sc, g.stlpce.length, 1); vykresli(sc,[g]); ANIM.pad(sc);
     zadaj("Koľko je tu kociek?");
     vstup(el.querySelector(".kk-vstup"), {spravne:n, moznosti:moznosti(n,cfg.u,cfg), slot:el.querySelector(".kk-vys"),
       napoveda:()=>sc.classList.remove("kk-bez-cisel"),
       ok:()=>{ sc.classList.remove("kk-bez-cisel"); st.className="kk-status ok"; st.textContent=`Áno! ${n}`; dalsie(b, n>10?`Áno! ${popis(n)}, spolu ${n}`:`Áno! ${n}`); },
-      zle:()=>rada(st, n>10 ? "Skús ešte raz. Najprv spočítaj plné rámiky: 10, 20, 30… a potom pridaj kocky navyše" : "Skús ešte raz. Ukáž prstom na každú kocku")
+      zle:()=>rada(st, n>10 ? "Skús ešte raz. Najprv spočítaj plné rámiky: 10, 20, 30… a potom pridaj kocky navyše" : n>5 ? "Skús ešte raz. Tmavých kociek je päť. Počítaj ďalej tie svetlé" : "Skús ešte raz. Ukáž prstom na každú kocku")
     });
   }
 
@@ -349,7 +501,9 @@ function hra(el, o={}){
     };
   }
 
-  /* Spoj kocky: prvý blok ostane pokope, druhý sa k nemu priloží */
+  /* Spoj kocky (+): prvý blok ostane pokope a druhý k nemu priskočí ako celok.
+     Poradie po spojení (Jan, 5. 11.): desiatky prvého čísla, jeho kocky navyše doplnené do desiatky,
+     desiatky druhého čísla, zvyšné kocky. Farby ostávajú, takže v celku stále vidno obe časti. */
   function koloSpoj(b){
     const [a,c]=unikat(prikladSpoj), s=a+c, odhad=cfg.u===2, [fa,fb]=farby();
     el.innerHTML = `${hlavicka()}<div class="kk-scene"></div>
@@ -357,52 +511,157 @@ function hra(el, o={}){
       <div class="kk-row"><button class="btn primary" type="button" data-spoj ${odhad?"hidden":""}>Spoj</button></div>
       <div class="kk-vstup" ${odhad?"":"hidden"}></div><p class="kk-status" role="status"></p>`;
     const sc=el.querySelector(".kk-scene"), ga=skupina(a,fa), gb=skupina(c,fb), st=el.querySelector(".kk-status"), box=el.querySelector(".kk-vstup");
-    /* Spojenie: kocky navyše druhého čísla najprv doplnia rámik prvého do desiatky,
-       potom sa priložia desiatky druhého čísla a nakoniec zvyšné kocky. Farby idú za sebou bez prerušenia. */
+    const tensA=ga.stlpce.filter(x=>x.rod), tensB=gb.stlpce.filter(x=>x.rod);
     const onesA=ga.stlpce[ga.stlpce.length-1].kusy, onesB=gb.stlpce[gb.stlpce.length-1].kusy;
-    const doplnok=onesB.slice(0, 10-onesA.length), zvysok=onesB.slice(10-onesA.length), stred=[...onesA, ...doplnok];
-    const stredSt={rod:false, kusy:stred};
-    const spolu={stlpce:[
-      ...ga.stlpce.filter(x=>x.rod), ...(stred.length?[stredSt]:[]), ...gb.stlpce.filter(x=>x.rod),
-      ...(zvysok.length||!stred.length?[{rod:false,kusy:zvysok}]:[])
-    ]};
+    /* doplnok = vrchné kocky druhého čísla, ktoré doplnia rámik prvého (najviac do desiatky) */
+    const kolko=Math.min(onesB.length, 10-onesA.length);
+    const doplnok=onesB.slice(onesB.length-kolko), zvysok=onesB.slice(0, onesB.length-kolko);
+    const stredSt={rod:false, kusy:[...onesA, ...doplnok]}, stred=stredSt.kusy, zvysSt={rod:false, kusy:zvysok};
+    const spolu={stlpce:[...tensA, ...(stred.length?[stredSt]:[]), ...tensB, ...(zvysok.length||!stred.length?[zvysSt]:[])]};
+    const kotva=(tensA[0]||{kusy:onesA}).kusy[0];
     velkost(sc, Math.max(ga.stlpce.length+gb.stlpce.length+1, spolu.stlpce.length), 2);
-    vykresli(sc,[ga,gb],{znamienko:true}); ANIM.presun(sc,null,{oneskorenie:s>20?5:20});
+    vykresli(sc,[ga,gb],{znamienko:true}); ANIM.pad(sc);
     zadaj(odhad?`Koľko je ${a} a ${c}?`:"Koľko kociek bude spolu? Ťukni na Spoj");
-    let spojene=false, chyby=0;
+    let spojene=false, stupen=0;
     const spoj = async () => {
-      if(spojene) return; spojene=true;
-      const pred=ANIM.fotka(sc); vykresli(sc,[spolu]); await ANIM.presun(sc,pred,{trvanie:800,oneskorenie:12});
-      if(stred.length===10 && onesA.length && doplnok.length){
-        await pockaj(250); say("Desať kociek je jedna desiatka");
-        stredSt.rod=true; const p2=ANIM.fotka(sc); vykresli(sc,[spolu]);
-        await ANIM.presun(sc,p2,{trvanie:300,oneskorenie:0}); await ANIM.zabal(sc.querySelectorAll(".kk-col")[spolu.stlpce.indexOf(stredSt)]);
-        await pockaj(400);
+      if(spojene) return; spojene=true; stupen=0;
+      const zvysB = tensB.length>0 || zvysok.length>0;
+      /* 1. kocky navyše druhého čísla priskočia k prvému */
+      if(doplnok.length){
+        const pred=ANIM.fotka(sc);
+        if(zvysB) vykresli(sc,[{stlpce:[...tensA, stredSt]},{stlpce:[...tensB, zvysSt]}],{znamienko:true}); else vykresli(sc,[spolu]);
+        await ANIM.skok(sc,pred,doplnok,{kotva, stopa:true});
+        if(stred.length===10 && onesA.length){
+          await pauza(300); say("Desať kociek je jedna desiatka");
+          stredSt.rod=true; stredSt.el.className="kk-col rod"; stredSt.num.innerHTML=znakStlpca(stredSt);
+          await ANIM.zabal(stredSt.el); await pauza(700);
+        } else if(zvysB) await pauza(400);
+      }
+      /* 2. zvyšok druhého čísla (desiatky a kocky navyše) sa priloží ako jeden blok */
+      if(zvysB){
+        const pred=ANIM.fotka(sc); vykresli(sc,[spolu]);
+        await ANIM.skok(sc,pred,[...tensB.flatMap(x=>x.kusy), ...zvysok],{kotva, vyska:.8, stopa:true});
       }
       /* Bez prechodu cez desiatku a s desiatkami druhého čísla za sebou: neúplný rámik by bol v strede.
-         Z poslednej desiatky sa presunie toľko kociek, aby bol rámik plný; neúplný ostane posledný. */
+         Z poslednej desiatky preskočí toľko kociek, aby bol rámik plný; neúplný ostane posledný. */
       const posl=spolu.stlpce[spolu.stlpce.length-1];
       if(stred.length>0 && stred.length<10 && posl!==stredSt && posl.rod){
-        await pockaj(500);
-        const treba=10-stred.length, p3=ANIM.fotka(sc);
-        stred.push(...posl.kusy.splice(posl.kusy.length-treba, treba)); stredSt.rod=true; posl.rod=false;
-        vykresli(sc,[spolu]); await ANIM.presun(sc,p3,{trvanie:600,oneskorenie:60});
-        await ANIM.zabal(sc.querySelectorAll(".kk-col")[spolu.stlpce.indexOf(stredSt)]); await pockaj(300);
+        await pauza(600);
+        const treba=10-stred.length, p3=ANIM.fotka(sc), idu=posl.kusy.splice(posl.kusy.length-treba, treba);
+        stred.push(...idu); stredSt.rod=true; posl.rod=false;
+        vykresli(sc,[spolu]); await ANIM.skok(sc,p3,idu,{stopa:true});
+        await ANIM.zabal(stredSt.el); await pockaj(300);
       }
+    };
+    /* Pomoc ukazuje postup na kockách. Počítaj ďalej: posledná kocka prvého čísla dostane jeho číslo
+       a kocky druhého čísla sa očíslujú ďalej (4 … 5, 6, 7). Dieťa nezačína od jednotky. */
+    const poradie = () => spolu.stlpce.flatMap(x=>x.kusy);
+    const zmazCisla = () => poradie().forEach(k=>{ delete k.dataset.zn; k.textContent=""; });
+    let ukazka=false, vyriesene=false;
+    const pocitajDalej = async () => {
+      rada(st, `Počítaj ďalej od ${a}`);
+      if(ukazka) return; ukazka=true;
+      const k=poradie();
+      for(let i=a-1;i<s;i++){ k[i].dataset.zn=i+1; k[i].textContent=i+1; ANIM.pukni(k[i]); await pockaj(cas("pocitaj")+(i===a-1?400:0)); if(b!==beh||vyriesene) return; }
+    };
+    /* veľké čísla: nad plnými rámikmi sa ukáže počítanie po desiatkach 10, 20, 30… */
+    const poDesiatkach = () => {
+      let n=0; spolu.stlpce.forEach(x=>{ if(x.rod){ n+=10; x.znak=n; } });
+      vykresli(sc,[spolu]); spolu.stlpce.filter(x=>x.rod).forEach((x,i)=>ANIM.pukni(x.num,{oneskorenie:i*450}));
+      rada(st, "Počítaj po desiatkach: 10, 20, 30… a potom pridaj kocky navyše");
+    };
+    const pomoc = () => {
+      stupen++;
+      if(!spojene){
+        if(stupen>=2){ spBtn.hidden=false; spBtn.disabled=false; return rada(st,"Skús ešte raz. Ťukni na Spoj a pozri sa"); }
+        return rada(st, s<=10 ? `Skús ešte raz. Začni pri ${a} a počítaj ďalej` : (a%10&&c%10 ? `Skús ešte raz. Najprv spoj kocky navyše: ${a%10} a ${c%10}` : "Skús ešte raz. Najprv spoj desiatky"));
+      }
+      if(stupen>=2) return s<=20 ? pocitajDalej() : poDesiatkach();
+      rada(st, s<=10 ? `Skús ešte raz. Je tu ${a} a ešte ${c}. Začni pri ${a} a počítaj ďalej` : "Skús ešte raz. Spočítaj plné rámiky a potom kocky navyše");
     };
     const spBtn=el.querySelector("[data-spoj]");
     spBtn.onclick=async()=>{
       if(zamok) return; zamok=true; spBtn.disabled=true; await spoj(); spBtn.hidden=true; zamok=false;
       if(!odhad){ box.hidden=false; box._nap.hidden=false; zadanieHlas="Koľko je to spolu?"; say(zadanieHlas); }
     };
-    vstup(box, {spravne:s, moznosti:moznosti(s, cfg.u===0?0:1, cfg), slot:el.querySelector(".kk-vys"),
-      ok:async()=>{ st.className="kk-status ok"; st.textContent=`Áno! ${a} + ${c} = ${s}`;
+    vstup(box, {spravne:s, moznosti:[s], slot:el.querySelector(".kk-vys"),
+      napoveda:()=>{ if(!zamok) pomoc(); return true; }, zle:pomoc,
+      ok:async()=>{ vyriesene=true; st.className="kk-status ok"; st.textContent=`Áno! ${a} + ${c} = ${s}`;
         if(odhad && !spojene){ zamok=true; spBtn.hidden=true; await spoj(); zamok=false; }
-        dalsie(b, `Áno! ${a} a ${c} je ${s}`); },
-      zle:()=>{ chyby++;
-        if(odhad && chyby>=2 && !spojene){ spBtn.hidden=false; spBtn.disabled=false; rada(st,"Skús ešte raz. Ťukni na Spoj a pozri sa"); return; }
-        rada(st, odhad ? "Skús ešte raz. Najprv spoj kocky navyše: "+(a%10)+" a "+(c%10)
-          : (s>10?"Skús ešte raz. Spočítaj plné rámiky a potom kocky navyše":"Skús ešte raz. Spočítaj všetky kocky")); }
+        if(b!==beh) return;
+        zmazCisla(); spolu.stlpce.forEach(x=>{ x.spolu=true; delete x.znak; }); vykresli(sc,[spolu]);
+        spolu.stlpce.forEach(x=>ANIM.pukni(x.num));
+        dalsie(b, `Áno! ${a} a ${c} je ${s}`); }
+    });
+  }
+
+  /* Uber kocky (−): blok kociek odskočí nabok a ostanú po ňom prázdne miesta, takže stále vidno celok,
+     časť, ktorá odišla, aj časť, ktorá ostala. Postup ako pri počítaní spamäti: najprv odídu celé desiatky,
+     potom kocky navyše, a keď nestačia, rozbalí sa desiatka. */
+  function koloUber(b){
+    const [a,c]=unikat(prikladUber), r=a-c, odhad=cfg.u===2, [fa]=farby();
+    el.innerHTML = `${hlavicka()}<div class="kk-scene"></div>
+      <p class="kk-rovnica"><span class="kk-t${fa}">${a}</span> − <span class="kk-prec-t">${c}</span> = <span class="kk-vys">?</span></p>
+      <div class="kk-row"><button class="btn primary" type="button" data-uber ${odhad?"hidden":""}>Uber</button></div>
+      <div class="kk-vstup" ${odhad?"":"hidden"}></div><p class="kk-status" role="status"></p>`;
+    const sc=el.querySelector(".kk-scene"), st=el.querySelector(".kk-status"), box=el.querySelector(".kk-vstup");
+    const g=skupina(a,fa), tc=Math.floor(c/10), oc=c%10;
+    /* miesto pre kocky, ktoré odídu, je pripravené od začiatku, aby sa veža pri uberaní nehýbala */
+    const prec={trieda:"kk-prec", stlpce:[...Array.from({length:tc},()=>({rod:true,kusy:[]})), ...(oc?[{rod:false,kusy:[]}]:[])]};
+    const precOnes=prec.stlpce[prec.stlpce.length-1];
+    velkost(sc, g.stlpce.length+prec.stlpce.length+1, 2);
+    const kresli = () => vykresli(sc,[g,prec],{znamienko:"−"});
+    kresli(); ANIM.pad(sc);
+    zadaj(odhad?`Koľko je ${a} mínus ${c}?`:"Koľko kociek ostane? Ťukni na Uber");
+    /* vrchných n kociek rámika odíde, na ich mieste ostanú prázdne miesta */
+    const vezmi = (x,n) => { const idu=[];
+      for(let i=x.kusy.length-1;i>=0&&idu.length<n;i--){ const k=x.kusy[i]; if(k.classList.contains("kk-duch")) continue;
+        idu.unshift(k); const d=kocka(fa); d.classList.add("kk-duch"); x.kusy[i]=d; }
+      x.znak=""; return idu; };
+    let ubrane=false, stupen=0;
+    const uber = async () => {
+      if(ubrane) return; ubrane=true; stupen=0;
+      const ones=g.stlpce[g.stlpce.length-1], rods=g.stlpce.filter(x=>x.rod);
+      /* 1. celé desiatky */
+      if(tc){
+        const pred=ANIM.fotka(sc), idu=[];
+        rods.slice(rods.length-tc).forEach((x,i)=>{ const k=vezmi(x,10); x.rod=false; prec.stlpce[i].kusy.push(...k); idu.push(...k); });
+        kresli(); await ANIM.skok(sc,pred,idu,{vyska:.8}); await pauza(400);
+      }
+      /* 2. kocky navyše */
+      const n1=Math.min(oc, ones.kusy.length);
+      if(n1){ const pred=ANIM.fotka(sc), idu=vezmi(ones,n1); precOnes.kusy.push(...idu); kresli(); await ANIM.skok(sc,pred,idu); }
+      /* 3. nestačili: rozbalí sa posledná desiatka a odíde z nej zvyšok */
+      if(oc>n1){
+        const x=rods[rods.length-tc-1];
+        await pauza(400); say("Rozbalíme desiatku");
+        x.rod=false; x.znak=""; kresli(); await ANIM.rozbal(x.el); await pauza(700);
+        const pred=ANIM.fotka(sc), idu=vezmi(x,oc-n1); precOnes.kusy.push(...idu); kresli(); await ANIM.skok(sc,pred,idu);
+      }
+    };
+    /* čísla nad rámikmi, z ktorých sa uberalo, sa ukážu až po odpovedi alebo ako posledná pomoc */
+    const ukazCisla = () => { g.stlpce.forEach(x=>delete x.znak); kresli(); g.stlpce.forEach(x=>ANIM.pukni(x.num)); };
+    const pomoc = () => {
+      stupen++;
+      if(!ubrane){
+        if(stupen>=2){ ubBtn.hidden=false; ubBtn.disabled=false; return rada(st,"Skús ešte raz. Ťukni na Uber a pozri sa"); }
+        return rada(st, a<=10 ? `Skús ešte raz. Predstav si ${kock(a)}. ${c===1?"Jedna odíde":c<5?`${c} odídu`:`${c} odíde`}` : (tc ? "Skús ešte raz. Najprv uber celé desiatky" : a%10 ? `Skús ešte raz. Najprv uber kocky navyše, potom ešte ${oc-a%10}` : "Skús ešte raz. Predstav si, že sa jedna desiatka rozbalí"));
+      }
+      if(stupen>=2){ ukazCisla(); return rada(st, "Pozri na čísla nad kockami"); }
+      rada(st, r<=10 ? "Skús ešte raz. Spočítaj kocky, ktoré ostali" : "Skús ešte raz. Spočítaj plné rámiky a potom kocky navyše");
+    };
+    const ubBtn=el.querySelector("[data-uber]");
+    ubBtn.onclick=async()=>{
+      if(zamok) return; zamok=true; ubBtn.disabled=true; await uber(); ubBtn.hidden=true; zamok=false;
+      if(!odhad){ box.hidden=false; box._nap.hidden=false; zadanieHlas="Koľko kociek ostalo?"; say(zadanieHlas); }
+    };
+    vstup(box, {spravne:r, moznosti:[r], slot:el.querySelector(".kk-vys"),
+      napoveda:()=>{ if(!zamok) pomoc(); return true; }, zle:pomoc,
+      ok:async()=>{ st.className="kk-status ok"; st.textContent=`Áno! ${a} − ${c} = ${r}`;
+        if(odhad && !ubrane){ zamok=true; ubBtn.hidden=true; await uber(); zamok=false; }
+        if(b!==beh) return;
+        ukazCisla();
+        dalsie(b, `Áno! ${a} mínus ${c} je ${r}`); }
     });
   }
 
@@ -447,7 +706,7 @@ function hra(el, o={}){
     const uprac = async () => {
       if(upratane) return; upratane=true; upBtn.hidden=true; zrus();
       const pred=ANIM.fotka(sc); g=doRamikov(zoradene()); vykresli(sc,[g]);
-      await ANIM.presun(sc,pred,{trvanie:750, oneskorenie:t>20?10:35});
+      await ANIM.presun(sc,pred,{oneskorenie:t>20?14:55});
     };
     upBtn.onclick=async()=>{ if(zamok) return; zamok=true; await uprac(); zamok=false;
       if(t>10) say(dopln?"Koľko prázdnych miest je v rámikoch?":"Spočítaj plné rámiky: 10, 20, 30… a potom kocky navyše"); };
@@ -493,7 +752,7 @@ function hra(el, o={}){
       if(upratane) return; upratane=true; upBtn.hidden=true;
       const pred=ANIM.fotka(sc);
       boxA.replaceChildren(stlpce(doRamikov(zdola(bA).map(x=>x.el)))); boxB.replaceChildren(stlpce(doRamikov(zdola(bB).map(x=>x.el))));
-      await ANIM.presun(sc,pred,{trvanie:750, oneskorenie:nA+nB>30?8:28});
+      await ANIM.presun(sc,pred,{oneskorenie:nA+nB>30?12:45});
     };
     upBtn.onclick=async()=>{ if(zamok) return; zamok=true; await uprac(); zamok=false; };
     const zvol = async v => {
