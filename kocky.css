@@ -56,13 +56,17 @@
 .kk-f3{--c1:var(--p3a);--c2:var(--p3b)}.kk-f4{--c1:var(--p4a);--c2:var(--p4b)}.kk-f5{--c1:var(--p5a);--c2:var(--p5b)}
 .kk-plus{font-family:var(--f-head);font-weight:700;font-size:30px;color:var(--muted);align-self:center}
 .kk-k.h{color:#1C2633}   /* číslo na svetlej kocke */
-.kk-leti{position:relative;z-index:3}   /* blok v skoku je nad ostatnými kockami */
+/* blok v skoku je nad ostatnými kockami a má žltý obrys, aby ho dieťa nestratilo z očí */
+.kk-k.kk-leti{position:relative;z-index:3;box-shadow:inset 0 calc(var(--k)*-.1) 0 rgba(0,0,0,.2), inset 0 2px 0 rgba(255,255,255,.3), 0 0 0 3px var(--hint)}
+/* stopa: čiarkovaný obrys na mieste, odkiaľ blok odišiel (počas letu) */
+.kk-stopa{position:fixed;z-index:2;pointer-events:none;box-sizing:border-box;border:2px dashed var(--duch);border-radius:5px}
 /* desiatka sa zabalila: rámik na chvíľu zažiari */
 @keyframes kk-zabal{0%{box-shadow:0 0 0 0 var(--hint)}100%{box-shadow:0 0 0 14px transparent}}
 .kk-col.kk-zabal{animation:kk-zabal .7s ease-out}
 /* Uber kocky: kocky, ktoré odišli, stoja bokom vyblednuté a bez rámika */
 .kk-prec .kk-col{border-color:transparent;background:none;height:auto;min-height:calc(var(--k) + 10px)}
-.kk-prec .kk-k{opacity:.42}
+.kk-prec .kk-k{opacity:.42;transition:opacity .5s}
+.kk-prec .kk-k.kk-leti{opacity:1;transition:none}
 .kk-prec-t{color:var(--muted)}
 .kk-iskra{position:fixed;z-index:1000;pointer-events:none;font-style:normal;font-size:22px;line-height:1;color:var(--hint);text-shadow:0 1px 0 rgba(0,0,0,.15)}
 
