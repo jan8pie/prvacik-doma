@@ -102,6 +102,12 @@ label.chk{display:inline-flex;gap:8px;align-items:center;font-size:15px;color:va
     <div class="set"><span class="set-l" id="l-uroven">Obťažnosť (vidí ju aj dieťa)</span>
       <div class="seg levelseg" role="group" aria-labelledby="l-uroven" id="seg-uroven"></div>
       <p class="levelnote" id="levelnote"></p></div>
+    <div class="set"><span class="set-l" id="l-tempo">Pohyb kociek</span>
+      <div class="seg" role="group" aria-labelledby="l-tempo" id="seg-tempo">
+        <button class="segbtn" data-tempo="pomaly">Pomaly</button>
+        <button class="segbtn" data-tempo="stredne">Stredne</button>
+        <button class="segbtn" data-tempo="rychlo">Rýchlo</button>
+      </div></div>
     <label class="chk"><input type="checkbox" id="hlas-zap" checked> Tablet číta nahlas</label>
   </section>
 
@@ -122,6 +128,7 @@ label.chk{display:inline-flex;gap:8px;align-items:center;font-size:15px;color:va
       <li><b>Keď sa dieťa pomýli</b> pri sčítaní alebo odčítaní, hra nedá hádať z možností. Najprv poradí a potom ukáže postup na kockách: počíta ďalej od prvého čísla (4 … 5, 6, 7), nie odznova od jednotky. To isté spraví žltý otáznik.</li>
       <li><b>Stavby z kociek:</b> kocky sú poskladané do obrázka, nie do rámikov. Tlačidlo <i>Uprac do rámikov</i> ich zoradí po desať, takže dieťa zažije, prečo sa oplatí počítať po desiatkach. Pri porovnávaní tvar klame (dlhý had verzus malý dom), rámiky povedia pravdu.</li>
       <li><b>Odpoveď</b> dieťa napíše radom číslic (dvojciferné číslo zľava). Pri <i>Koľko je?</i> a pri stavbách žltý otáznik vedľa odpovede ukáže možnosti na výber.</li>
+      <li><b>Pohyb kociek</b> je na začiatok pomalý, aby dieťa stihlo sledovať, čo sa odkiaľ kam presúva. Keď už hru pozná, prepnite na <i>Stredne</i> alebo <i>Rýchlo</i>.</li>
       <li>Päť kôl trvá pár minút. K vám sa vrátite podržaním tlačidla <i>Späť k rodičovi</i>.</li>
     </ul>
     <p class="small">Stránka nič neukladá ani neposiela, len si v tomto zariadení zapamätá posledné nastavenie. Čítanie nahlas používa hlas zabudovaný v zariadení.</p>
@@ -139,7 +146,7 @@ const POPIS = {
   spoj:["Dieťa ťukne Spoj, druhé číslo priskočí k prvému a dieťa povie, koľko je spolu. Bez prechodu cez desiatku.","Väčšie čísla. Nad 10 s prechodom cez desiatku: najprv priskočí toľko kociek, koľko chýba do plného rámika.","Najprv odhadni výsledok, až potom sa kocky spoja a ukážu, či to sedí."],
   uber:["Dieťa ťukne Uber, kocky odskočia nabok a ostanú po nich prázdne miesta. Koľko ostalo? Bez prechodu cez desiatku.","Väčšie čísla. Nad 10 s prechodom cez desiatku: najprv odídu kocky navyše, potom sa rozbalí desiatka.","Najprv odhadni výsledok, až potom kocky odídu a ukážu, či to sedí."]
 };
-let cfg = {rezim:"kolko", rozsah:10, u:1};
+let cfg = {rezim:"kolko", rozsah:10, u:1, tempo:"pomaly"};
 try{ const s = JSON.parse(localStorage.getItem("kocky-nastavenie")||"null"); if(s) cfg = Object.assign(cfg, s); }catch(e){}
 const uloz = () => { try{ localStorage.setItem("kocky-nastavenie", JSON.stringify(cfg)); }catch(e){} };
 
@@ -171,14 +178,15 @@ function kresliNastavenia(){
   document.querySelectorAll("[data-rezim]").forEach(x=>x.setAttribute("aria-pressed", x.dataset.rezim===cfg.rezim));
   document.querySelectorAll("[data-rozsah]").forEach(x=>x.setAttribute("aria-pressed", +x.dataset.rozsah===cfg.rozsah));
   document.querySelectorAll("[data-u]").forEach(x=>x.setAttribute("aria-pressed", +x.dataset.u===cfg.u));
+  document.querySelectorAll("[data-tempo]").forEach(x=>x.setAttribute("aria-pressed", x.dataset.tempo===cfg.tempo));
   document.getElementById("levelnote").textContent = POPIS[cfg.rezim][cfg.u];
 }
 const urovneHTML = () => UROVNE.map(([d,n],i)=>`<button class="segbtn" data-u="${i}"><span class="d" aria-hidden="true">${d}</span>${n}</button>`).join("");
 document.getElementById("seg-uroven").innerHTML = urovneHTML();
 document.addEventListener("click", e=>{
-  const r=e.target.closest("[data-rezim]"), z=e.target.closest("[data-rozsah]"), u=e.target.closest("[data-u]");
-  if(!r&&!z&&!u) return;
-  if(r) cfg.rezim=r.dataset.rezim; if(z) cfg.rozsah=+z.dataset.rozsah; if(u) cfg.u=+u.dataset.u;
+  const r=e.target.closest("[data-rezim]"), z=e.target.closest("[data-rozsah]"), u=e.target.closest("[data-u]"), t=e.target.closest("[data-tempo]");
+  if(!r&&!z&&!u&&!t) return;
+  if(r) cfg.rezim=r.dataset.rezim; if(z) cfg.rozsah=+z.dataset.rozsah; if(u) cfg.u=+u.dataset.u; if(t) cfg.tempo=t.dataset.tempo;
   uloz(); kresliNastavenia(); spusti(jeKid());
 });
 
