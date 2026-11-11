@@ -400,7 +400,7 @@ function hra(el, o={}){
     });
     box.querySelector("[data-zmaz]").onclick=()=>{ if(hotovo) return; pis=pis.slice(0,-1); ukaz(); };
     nap.onclick=()=>{
-      if(hotovo||zamok) return;
+      if(hotovo) return;
       if(napoveda && napoveda()===true){ pis=""; ukaz(); return; }
       nap.hidden=true;
       box.querySelector(".kk-klav").hidden=true; box.querySelector(".kk-pomoc").hidden=true; box.querySelector(".kk-tiles").hidden=false;
@@ -571,7 +571,7 @@ function hra(el, o={}){
       if(!odhad){ box.hidden=false; box._nap.hidden=false; zadanieHlas="Koľko je to spolu?"; say(zadanieHlas); }
     };
     vstup(box, {spravne:s, moznosti:[s], slot:el.querySelector(".kk-vys"),
-      napoveda:()=>{ pomoc(); return true; }, zle:pomoc,
+      napoveda:()=>{ if(!zamok) pomoc(); return true; }, zle:pomoc,
       ok:async()=>{ vyriesene=true; st.className="kk-status ok"; st.textContent=`Áno! ${a} + ${c} = ${s}`;
         if(odhad && !spojene){ zamok=true; spBtn.hidden=true; await spoj(); zamok=false; }
         if(b!==beh) return;
@@ -642,7 +642,7 @@ function hra(el, o={}){
       if(!odhad){ box.hidden=false; box._nap.hidden=false; zadanieHlas="Koľko kociek ostalo?"; say(zadanieHlas); }
     };
     vstup(box, {spravne:r, moznosti:[r], slot:el.querySelector(".kk-vys"),
-      napoveda:()=>{ pomoc(); return true; }, zle:pomoc,
+      napoveda:()=>{ if(!zamok) pomoc(); return true; }, zle:pomoc,
       ok:async()=>{ st.className="kk-status ok"; st.textContent=`Áno! ${a} − ${c} = ${r}`;
         if(odhad && !ubrane){ zamok=true; ubBtn.hidden=true; await uber(); zamok=false; }
         if(b!==beh) return;
