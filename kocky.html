@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Hra s kockami · Prváčik doma</title>
-<meta name="description" content="Hra pre prvákov: čísla do 100 ako kocky a desiatky, sčítanie s prechodom cez desiatku, stavby z kociek, s hlasom.">
+<meta name="description" content="Hra pre prvákov: čísla do 100 ako kocky a desiatky, sčítanie a odčítanie s prechodom cez desiatku, stavby z kociek, s hlasom.">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="pismo.css">
 <link rel="stylesheet" href="hlavicka.css">
@@ -90,7 +90,8 @@ label.chk{display:inline-flex;gap:8px;align-items:center;font-size:15px;color:va
       <div class="seg" role="group" aria-labelledby="l-rezim" id="seg-rezim">
         <button class="segbtn" data-rezim="kolko">Koľko je?</button>
         <button class="segbtn" data-rezim="spoj">Spoj kocky (+)</button>
-        <button class="segbtn" data-rezim="stavby">Stavby z kociek <small>nové</small></button>
+        <button class="segbtn" data-rezim="uber">Uber kocky (−) <small>nové</small></button>
+        <button class="segbtn" data-rezim="stavby">Stavby z kociek</button>
       </div></div>
     <div class="set"><span class="set-l" id="l-rozsah">Čísla</span>
       <div class="seg" role="group" aria-labelledby="l-rozsah" id="seg-rozsah">
@@ -116,9 +117,11 @@ label.chk{display:inline-flex;gap:8px;align-items:center;font-size:15px;color:va
     <h2 id="h-tip">Pre rodiča</h2>
     <ul class="tips">
       <li><b>Plný rámik je desiatka.</b> Kocky v čiarkovanom rámiku sú navyše. Kocky 1 – 5 majú tmavší odtieň, 6 – 10 svetlejší, aby sa dalo rýchlo vidieť, koľko chýba do desiatky.</li>
-      <li><b>Spoj kocky:</b> druhé číslo najprv doplní prvé do plného rámika. Tak dieťa vidí, čo znamená prechod cez desiatku (napríklad 47 + 24).</li>
+      <li><b>Spoj kocky:</b> druhé číslo priskočí k prvému ako celý blok a obe farby ostanú, takže v celku stále vidno obe časti (nad rámikom je napríklad 4+3). Pri prechode cez desiatku najprv priskočí toľko kociek, koľko chýba do plného rámika, až potom zvyšok (napríklad 47 + 24).</li>
+      <li><b>Uber kocky:</b> blok kociek odskočí nabok a ostanú po ňom prázdne miesta. Dieťa tak naraz vidí, koľko bolo, koľko odišlo a koľko ostalo. Najprv odídu celé desiatky, potom kocky navyše, a keď nestačia, rozbalí sa desiatka (napríklad 52 − 17).</li>
+      <li><b>Keď sa dieťa pomýli</b> pri sčítaní alebo odčítaní, hra nedá hádať z možností. Najprv poradí a potom ukáže postup na kockách: počíta ďalej od prvého čísla (4 … 5, 6, 7), nie odznova od jednotky. To isté spraví žltý otáznik.</li>
       <li><b>Stavby z kociek:</b> kocky sú poskladané do obrázka, nie do rámikov. Tlačidlo <i>Uprac do rámikov</i> ich zoradí po desať, takže dieťa zažije, prečo sa oplatí počítať po desiatkach. Pri porovnávaní tvar klame (dlhý had verzus malý dom), rámiky povedia pravdu.</li>
-      <li><b>Odpoveď</b> dieťa napíše radom číslic (dvojciferné číslo zľava). Žltý otáznik vedľa odpovede ukáže možnosti na výber.</li>
+      <li><b>Odpoveď</b> dieťa napíše radom číslic (dvojciferné číslo zľava). Pri <i>Koľko je?</i> a pri stavbách žltý otáznik vedľa odpovede ukáže možnosti na výber.</li>
       <li>Päť kôl trvá pár minút. K vám sa vrátite podržaním tlačidla <i>Späť k rodičovi</i>.</li>
     </ul>
     <p class="small">Stránka nič neukladá ani neposiela, len si v tomto zariadení zapamätá posledné nastavenie. Čítanie nahlas používa hlas zabudovaný v zariadení.</p>
@@ -133,7 +136,8 @@ const UROVNE = [["●","Ľahšie"],["●●","Bežné"],["●●●","Výzva"]];
 const POPIS = {
   kolko:["Kocky sú pekne v rámikoch, dieťa napíše číslo. Pod ? sú 3 možnosti.","Väčšie čísla. Pod ? sú 4 možnosti s chytákmi (napr. 47 a 74).","Dieťa vidí číslicu a kocky postaví samo (pridá desiatku alebo kocku)."],
   stavby:["Obrázok z kociek (dom, raketa, pes…). Dieťa kocky spočíta, ťuknutím si ich môže očíslovať. Uprac do rámikov ich zoradí po desať.","Dve stavby: kde je viac (alebo menej) kociek? Tvar klame, dlhý had môže mať menej kociek ako malý dom. Pravdu povedia rámiky.","Stavba nie je dostavaná: koľko kociek chýba? Do 10 je to doplnenie do desiatky (6 + ? = 10)."],
-  spoj:["Dieťa ťukne Spoj a spočíta, koľko je spolu. Bez prechodu cez desiatku.","Spoj s prechodom cez desiatku: druhé číslo doplní prvé do plného rámika.","Najprv odhadni výsledok, až potom sa kocky spoja a ukážu, či to sedí."]
+  spoj:["Dieťa ťukne Spoj, druhé číslo priskočí k prvému a dieťa povie, koľko je spolu. Bez prechodu cez desiatku.","Väčšie čísla. Nad 10 s prechodom cez desiatku: najprv priskočí toľko kociek, koľko chýba do plného rámika.","Najprv odhadni výsledok, až potom sa kocky spoja a ukážu, či to sedí."],
+  uber:["Dieťa ťukne Uber, kocky odskočia nabok a ostanú po nich prázdne miesta. Koľko ostalo? Bez prechodu cez desiatku.","Väčšie čísla. Nad 10 s prechodom cez desiatku: najprv odídu kocky navyše, potom sa rozbalí desiatka.","Najprv odhadni výsledok, až potom kocky odídu a ukážu, či to sedí."]
 };
 let cfg = {rezim:"kolko", rozsah:10, u:1};
 try{ const s = JSON.parse(localStorage.getItem("kocky-nastavenie")||"null"); if(s) cfg = Object.assign(cfg, s); }catch(e){}
