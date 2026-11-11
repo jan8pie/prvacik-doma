@@ -15,7 +15,8 @@
    rozsah   10, 20 alebo 100
    u        0 Ľahšie, 1 Bežné, 2 Výzva
    max      (nepovinné) najväčšie číslo pri rozsahu 10, napr. 6 podľa témy v škole
-   tempo    (nepovinné) rýchlosť pohybu kociek: "pomaly" (predvolené), "stredne" alebo "rychlo"
+   tempo    (nepovinné) rýchlosť pohybu kociek: "pomaly" (predvolené), "stredne", "rychlo" alebo "bez"
+            (bez pohybu). Vypnuté animácie v zariadení pohyb kociek nevypnú, len ozdoby.
    say      funkcia, ktorá prečíta text nahlas a vráti sľub (Promise)
    priKonci (nepovinné) zavolá sa po poslednom kole; ak vráti true, koniec rieši stránka
    ===================================================================== */
@@ -36,7 +37,7 @@ const popis = n => { const t=Math.floor(n/10), o=n%10; return t===0?kock(o):o===
    Skok bloku: napred = blok sa najprv len zvýrazní, let = plynulý oblúk na nové miesto, dosun = scéna sa
    vystredí. Rodič si rýchlosť volí (cfg.tempo), TEMPO časy násobí. */
 const CASY = {napred:450, let:2700, dosun:900, poSkoku:450, pad:950, zabal:900, rozbal:850, pocitaj:800, presun:1200};
-const TEMPA = {pomaly:1, stredne:.65, rychlo:.4};
+const TEMPA = {pomaly:1, stredne:.65, rychlo:.4, bez:.4};
 let TEMPO = 1;
 const cas = k => Math.round(CASY[k]*TEMPO);
 const pauza = ms => pockaj(ms*TEMPO);
@@ -45,7 +46,12 @@ const pauza = ms => pockaj(ms*TEMPO);
    Zásada: číslo sa hýbe ako celok. Blok kociek padá, skáče a odchádza naraz, aby dieťa videlo
    „štyri a tri“, nie sedem jednotlivých kociek, ktoré treba spočítať. */
 const ANIM = {
-  ticho: matchMedia("(prefers-reduced-motion: reduce)").matches,
+  /* ticho = rodič zvolil „Bez pohybu“: všetko sa ukáže hneď.
+     jemne = zariadenie má vypnuté animácie (prefers-reduced-motion). Presun kociek sa ukáže aj tak, lebo je
+     obsahom hry (bez neho kocky len preskočia a nevidno, čo sa stalo); vynechajú sa len ozdoby
+     (hviezdičky, vlnenie, pruženie rámika). */
+  ticho: false,
+  jemne: matchMedia("(prefers-reduced-motion: reduce)").matches,
   /* poloha kociek pred zmenou; rozbehnuté pohyby sa najprv dokončia, aby meranie sedelo */
   fotka(scene){ const m=new Map(); scene.querySelectorAll(".kk-k").forEach(el=>{ el.getAnimations().forEach(a=>{ try{ a.finish(); }catch(e){} }); m.set(el, el.getBoundingClientRect()); }); return m; },
   /* kocky, ktoré boli na scéne, sa presunú z pôvodného miesta; nové „vyskočia“ (stavby, Postav číslo) */
@@ -103,7 +109,7 @@ const ANIM = {
         /* dráha je navzorkovaná nahusto; e ide od 0 po 1 pomaly – rýchlejšie – pomaly (sínus) */
         const kf=[{transform:tr(rx,ry),offset:0},{transform:tr(rx,ry),offset:oN}], N=54;
         for(let i=1;i<=N;i++){ const t=i/N, e=(1-Math.cos(Math.PI*t))/2;
-          kf.push({transform:tr(rx*(1-e), ry*(1-e) - h*Math.sin(Math.PI*e)), offset:oN+(p-oN)*t}); }
+          kf.push({transform:tr(rx*(1-e), ry*(1-e) - h*Math.sin(Math.PI*e)), offset:Math.min(1,oN+(p-oN)*t)}); }
         if(dosun) kf.push({transform:"none",offset:1});
         el.classList.add("kk-leti");
         el.animate(kf,{duration:T,fill:"backwards"});
@@ -120,7 +126,7 @@ const ANIM = {
     if(dosun) [...scene.children].forEach(el=>el.classList.contains("kk-stopa")||el.animate(
       [{transform:tr(dk[0],dk[1])},{transform:tr(dk[0],dk[1]),offset:p,easing:"ease-in-out"},{transform:"none"}],{duration:T,fill:"backwards"}));
     /* dopad: rámiky, do ktorých blok dosadol, jemne zapružia */
-    setTimeout(()=>{ new Set(skace.map(el=>el.parentElement)).forEach(col=>col&&col.animate(
+    if(!this.jemne) setTimeout(()=>{ new Set(skace.map(el=>el.parentElement)).forEach(col=>col&&col.animate(
       [{transform:"none"},{transform:"scale(1.03,.97)"},{transform:"none"}],{duration:380,easing:"ease-in-out"})); }, T1-60);
     return pockaj(T+cas("poSkoku"));
   },
@@ -128,14 +134,14 @@ const ANIM = {
   zabal(col){
     if(this.ticho||!col) return Promise.resolve();
     col.classList.add("kk-zabal");
-    col.animate([{transform:"none"},{transform:"scale(1.12,1.04)"},{transform:"scale(.97,1)"},{transform:"none"}],{duration:cas("zabal"),easing:"ease-in-out"});
+    if(!this.jemne) col.animate([{transform:"none"},{transform:"scale(1.12,1.04)"},{transform:"scale(.97,1)"},{transform:"none"}],{duration:cas("zabal"),easing:"ease-in-out"});
     this.pukni(col.previousElementSibling);
     return pockaj(cas("zabal")+60);
   },
   /* desiatka sa rozbalí na desať kociek (pri odčítaní) */
   rozbal(col){
     if(this.ticho||!col) return Promise.resolve();
-    col.animate([{transform:"none"},{transform:"rotate(-3deg)"},{transform:"rotate(3deg)"},{transform:"rotate(-1.5deg)"},{transform:"none"}],{duration:cas("rozbal"),easing:"ease-in-out"});
+    if(!this.jemne) col.animate([{transform:"none"},{transform:"rotate(-3deg)"},{transform:"rotate(3deg)"},{transform:"rotate(-1.5deg)"},{transform:"none"}],{duration:cas("rozbal"),easing:"ease-in-out"});
     return pockaj(cas("rozbal")+50);
   },
   /* číslo alebo kocka na chvíľu „pukne“ (zväčší sa), aby si ho dieťa všimlo */
@@ -151,7 +157,7 @@ const ANIM = {
   },
   /* správna odpoveď: kocky sa zavlnia zdola nahor */
   radost(scene){
-    if(this.ticho||!scene) return;
+    if(this.ticho||this.jemne||!scene) return;
     const k=parseFloat(getComputedStyle(scene).getPropertyValue("--k"))||28;
     scene.querySelectorAll(".kk-col, .kk-stavba").forEach((col,ci)=>{
       if(col.closest(".kk-prec")) return;
@@ -161,7 +167,7 @@ const ANIM = {
   },
   /* správna odpoveď: z výsledku vyletí pár hviezdičiek */
   iskry(pri){
-    if(this.ticho||!pri) return;
+    if(this.ticho||this.jemne||!pri) return;
     const r=pri.getBoundingClientRect();
     for(let i=0;i<8;i++){
       const s=document.createElement("i"); s.className="kk-iskra"; s.textContent="★"; s.setAttribute("aria-hidden","true");
@@ -424,7 +430,7 @@ function hra(el, o={}){
     <button class="btn" type="button" data-zopakuj style="min-height:40px;padding:6px 12px">${IK_HLAS}Vypočuj</button></div>`;
   }
   function novyBeh(){ beh++; kolo=0; posledne.clear(); zamok=false; noveKolo(); }
-  const nastavTempo = () => { TEMPO = TEMPA[cfg.tempo] || 1; };
+  const nastavTempo = () => { TEMPO = TEMPA[cfg.tempo] || 1; ANIM.ticho = cfg.tempo==="bez"; };
   function noveKolo(){
     if(kolo>=KOL) return koniec();
     nastavTempo();

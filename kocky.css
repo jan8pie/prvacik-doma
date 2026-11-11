@@ -114,4 +114,4 @@
 
 @keyframes kk-tras{0%,100%{transform:none}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
 .kk-tras{animation:kk-tras .3s 2}
-@media (prefers-reduced-motion:reduce){.kk-tras,.kk-col.kk-zabal{animation:none}}
+@media (prefers-reduced-motion:reduce){.kk-tras{animation:none}}
