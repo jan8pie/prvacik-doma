@@ -892,7 +892,7 @@ function hra(el, o={}){
 
   /* ●● Kde je viac (menej) kociek? Tvar klame, rámiky povedia pravdu. */
   function koloPorovnaj(b){
-    const R=cfg.rozsah, M=strop(cfg), [fa,fb]=farby();
+    const R=cfg.rozsah, M=strop(cfg);
     const [lo,hi] = R===10?[Math.min(2,M),M]:R===20?[8,20]:[20,45], dmax = R===10?2:R===20?3:5;
     const [nA,nB] = unikatK(()=>{ let x,y; do{ x=nah(lo,hi); y = Math.random()<.2 ? x : x+nah(1,dmax)*(Math.random()<.5?1:-1); }while(y<Math.max(1,lo-1)||y>hi); return [x,y]; }, p=>"p"+p);
     const viac = Math.random()<.65;
@@ -900,37 +900,60 @@ function hra(el, o={}){
     const klam = nA!==nB && Math.random()<.5;
     const typ = n => klam ? (n===Math.min(nA,nB)?"had":"kompakt") : null;
     const sA=tvar(nA, typ(nA)), sB=tvar(nB, typ(nB));
-    const bA=sA.bunky.map(([x,y])=>({x,y,el:kocka(fa)})), bB=sB.bunky.map(([x,y])=>({x,y,el:kocka(fb)}));
+    /* obe stavby sú rozdelené na farebné tvary (bloky) ako pri ●; strany odlišuje rámček okolo stavby */
+    const stred=g=>g.reduce((s,c)=>s+c.x+c.y*.01,0)/g.length;
+    const priprav = sx => {
+      const bunky=sx.bunky.map(([x,y])=>({x,y})), gr=rozdelNaTvary(sx.bunky, VELKOSTI[R]||VELKOSTI[10]), fg=zafarbi(sx.bunky, gr);
+      const tvary=gr.map(g=>g.map(i=>bunky[i]));
+      tvary.forEach((g,gi)=>g.forEach(c=>{ c.el=kocka(fg[gi]); c.el.dataset.sk=gi; c.el.classList.add("kk-sk"); }));
+      const zorad=[...tvary].sort((p,q)=>stred(p)-stred(q));
+      return {bunky, zorad, casti:zorad.map(castStavby), doRadu:doDesiatok(tvary)};
+    };
+    const A=priprav(sA), B=priprav(sB), bA=A.bunky, bB=B.bunky;
+    const poRozlozeni=new Map(), poRamikoch=new Map();
+    [A,B].forEach(X=>{ X.zorad.forEach((g,i)=>g.forEach(c=>poRozlozeni.set(c.el,i))); X.doRadu.forEach((g,i)=>g.forEach(c=>poRamikoch.set(c.el,i))); });
     const spravne = nA===nB ? "=" : (nA>nB)===viac ? "0" : "1";
     el.innerHTML = `${hlavicka()}<p class="kk-zadanie">Kde je <b>${viac?"viac":"menej"}</b> kociek?</p>
       <div class="kk-scene kk-dve kk-bez-cisel"><div class="kk-box" role="button" tabindex="0" data-volba="0" aria-label="Ľavá stavba"></div><div class="kk-box" role="button" tabindex="0" data-volba="1" aria-label="Pravá stavba"></div></div>
       <p class="kk-rovnica" hidden></p>
-      <div class="kk-row"><button class="btn" type="button" data-uprac>${IK_UPRAC}Uprac do rámikov</button><button class="btn" type="button" data-volba="=">Rovnako</button></div>
+      <div class="kk-row"><button class="btn" type="button" data-uprac></button><button class="btn" type="button" data-volba="=">Rovnako</button></div>
       <p class="kk-status" role="status"></p>`;
     const sc=el.querySelector(".kk-scene"), st=el.querySelector(".kk-status"), upBtn=el.querySelector("[data-uprac]"), [boxA,boxB]=sc.querySelectorAll(".kk-box");
-    velkostStavby(sc, [{w:sA.w,h:sA.h,stlpcov:Math.floor(nA/10)+1},{w:sB.w,h:sB.h,stlpcov:Math.floor(nB/10)+1}]);
-    boxA.append(mriezka({...sA,bunky:bA})); boxB.append(mriezka({...sB,bunky:bB})); ANIM.presun(sc,null,{oneskorenie:nA+nB>30?6:20});
+    const rozmer=p=>[p.w,p.h];
+    velkostStavby(sc, [{w:sA.w,h:sA.h,stlpcov:Math.floor(nA/10)+1,rady:[A.casti.map(rozmer)]},{w:sB.w,h:sB.h,stlpcov:Math.floor(nB/10)+1,rady:[B.casti.map(rozmer)]}]);
+    boxA.append(mriezka({...sA,bunky:bA})); boxB.append(mriezka({...sB,bunky:bB}));
+    ANIM.presun(sc,null,{oneskorenie:Math.round(110*TEMPO), poradie:el=>poRozlozeni.get(el)??0});
     zadaj(`Kde je ${viac?"viac":"menej"} kociek? Ťukni na stavbu, alebo na Rovnako`);
-    let upratane=false, hotovo=false;
-    const uprac = async () => {
-      if(upratane) return; upratane=true; upBtn.hidden=true;
+    /* stav: 0 stavby, 1 rozložené tvary, 2 v rámikoch (tlačidlo ide po krokoch ako pri ●) */
+    let stav=0, hotovo=false;
+    const tlacidlo = () => { upBtn.hidden = stav>=2; if(stav<2) upBtn.innerHTML = stav===0 ? IK_ROZLOZ+"Rozlož na tvary" : IK_UPRAC+"Uprac do rámikov"; };
+    tlacidlo();
+    const rozlozene = X => { const w=document.createElement("div"); w.className="kk-tvary"; const r=document.createElement("div"); r.className="kk-tvary-rad";
+      X.casti.forEach(p=>r.append(mriezka(p))); w.append(r); return w; };
+    const krok = async () => {
+      if(stav>=2) return;
       const pred=ANIM.fotka(sc);
-      boxA.replaceChildren(stlpce(doRamikov(zdola(bA).map(x=>x.el)))); boxB.replaceChildren(stlpce(doRamikov(zdola(bB).map(x=>x.el))));
-      await ANIM.presun(sc,pred,{oneskorenie:nA+nB>30?12:45});
+      if(stav===0){ boxA.replaceChildren(rozlozene(A)); boxB.replaceChildren(rozlozene(B)); stav=1; tlacidlo();
+        await ANIM.presun(sc,pred,{oneskorenie:Math.round(160*TEMPO), poradie:el=>poRozlozeni.get(el)??0}); }
+      else { const ram = X => stlpce(doRamikov(X.doRadu.flatMap(g=>zdola(g).map(c=>c.el))));
+        boxA.replaceChildren(ram(A)); boxB.replaceChildren(ram(B)); stav=2; tlacidlo();
+        await ANIM.presun(sc,pred,{oneskorenie:Math.round(220*TEMPO), poradie:el=>poRamikoch.get(el)??0}); }
     };
-    upBtn.onclick=async()=>{ if(zamok) return; zamok=true; await uprac(); zamok=false; };
+    upBtn.onclick=async()=>{ if(zamok) return; zamok=true; await krok(); zamok=false; };
     const zvol = async v => {
       if(zamok||hotovo) return;
       const ciel = v==="="?el.querySelector('.kk-row [data-volba="="]'):v==="0"?boxA:boxB;
       if(ciel.classList.contains("no")) return;
       if(v!==spravne){ ciel.classList.add("no"); ANIM.tras(ciel);
-        rada(st, upratane ? (R===10?"Skús ešte raz. Porovnaj, kde je vyšší stĺpec":"Skús ešte raz. Porovnaj plné rámiky a potom kocky navyše") : "Skús ešte raz. Ťukni na Uprac do rámikov a porovnaj");
+        rada(st, stav===2 ? (R===10?"Skús ešte raz. Porovnaj, kde je vyšší stĺpec":"Skús ešte raz. Porovnaj plné rámiky a potom kocky navyše")
+          : stav===1 ? "Skús ešte raz. Spočítaj tvary na každej strane, alebo ťukni na Uprac do rámikov" : "Skús ešte raz. Nepočítaj po jednej, spočítaj farebné tvary. Alebo ťukni na Rozlož na tvary");
         return; }
       hotovo=true; zamok=true; ciel.classList.add("ok"); upBtn.hidden=true;
-      if(!upratane){ await pockaj(300); await uprac(); }
+      if(stav===0){ await pockaj(300); await krok(); await pauza(800); }
+      if(stav===1){ await pockaj(300); await krok(); }
       sc.classList.remove("kk-bez-cisel");
       const zn = nA===nB?"=":nA>nB?">":"<", rov=el.querySelector(".kk-rovnica");
-      rov.innerHTML=`<span class="kk-t${fa}">${nA}</span> ${zn} <span class="kk-t${fb}">${nB}</span>`; rov.hidden=false;
+      rov.innerHTML=`<span>${nA}</span> ${zn} <span>${nB}</span>`; rov.hidden=false;
       const vac=Math.max(nA,nB), men=Math.min(nA,nB);
       st.className="kk-status ok"; st.textContent=`Áno! ${nA} ${zn} ${nB}`;
       dalsie(b, nA===nB ? `Áno! Na oboch stranách je ${kock(nA)}` : viac ? `Áno! ${vac} je viac ako ${men}` : `Áno! ${men} je menej ako ${vac}`);
