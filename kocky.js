@@ -55,11 +55,12 @@ const ANIM = {
   /* poloha kociek pred zmenou; rozbehnuté pohyby sa najprv dokončia, aby meranie sedelo */
   fotka(scene){ const m=new Map(); scene.querySelectorAll(".kk-k").forEach(el=>{ el.getAnimations().forEach(a=>{ try{ a.finish(); }catch(e){} }); m.set(el, el.getBoundingClientRect()); }); return m; },
   /* kocky, ktoré boli na scéne, sa presunú z pôvodného miesta; nové „vyskočia“ (stavby, Postav číslo) */
-  presun(scene, pred, {trvanie=cas("presun"), oneskorenie=18}={}){
+  /* poradie(el) = číslo skupiny: kocky jednej skupiny (farebný tvar) idú naraz ako jeden kus */
+  presun(scene, pred, {trvanie=cas("presun"), oneskorenie=18, poradie=null}={}){
     if(this.ticho) return Promise.resolve();
     let max=0, i=0;
     scene.querySelectorAll(".kk-k").forEach(el=>{
-      const o=pred&&pred.get(el), n=el.getBoundingClientRect(), d=i++*oneskorenie;
+      const o=pred&&pred.get(el), n=el.getBoundingClientRect(), d=(poradie?poradie(el):i++)*oneskorenie;
       if(o){ const dx=o.left-n.left, dy=o.top-n.top; if(!dx&&!dy) return;
         el.animate([{transform:`translate(${dx}px,${dy}px)`},{transform:"none"}],{duration:trvanie,delay:d,easing:"ease-in-out",fill:"backwards"}); }
       else el.animate([{transform:"scale(0)",opacity:0},{transform:"scale(1.12)",opacity:1,offset:.7},{transform:"none"}],{duration:320,delay:d,easing:"ease-out",fill:"backwards"});
@@ -212,7 +213,8 @@ function znakStlpca(st){
   if(!plne.length) return "";
   if(!st.rod && !st.spolu){
     const casti=[];
-    plne.forEach(k=>{ const f=(k.className.match(/kk-f(\d)/)||[])[1], p=casti[casti.length-1]; if(p&&p[0]===f) p[1]++; else casti.push([f,1]); });
+    /* časť = súvislý rad kociek jednej farby; pri stavbách jeden farebný tvar (dataset.sk) */
+    plne.forEach(k=>{ const f=(k.className.match(/kk-f(\d)/)||[])[1], kl=k.dataset.sk!=null?"s"+k.dataset.sk:f, p=casti[casti.length-1]; if(p&&p[2]===kl) p[1]++; else casti.push([f,1,kl]); });
     if(casti.length>1) return casti.map(([f,n])=>`<span class="kk-t${f}">${n}</span>`).join("+");
   }
   return String(plne.length);
@@ -355,7 +357,8 @@ function velkostStavby(scene, boxy){
   const H = Math.min(window.innerHeight*(vKid?.44:.40), 420);
   const Wb = boxy.length>1 ? (W-16)/2 - 20 : W;
   let k=40;
-  boxy.forEach(b=>{ k=Math.min(k, Math.floor(Wb/(b.w*1.12)), Math.floor((H-24)/(b.h*1.12)), Math.floor(Wb/b.stlpcov - 18)); });
+  boxy.forEach(b=>{ k=Math.min(k, Math.floor(Wb/(b.w*1.12)), Math.floor((H-24)/(b.h*1.12)), Math.floor(Wb/b.stlpcov - 18));
+    if(b.rady) k=Math.min(k, kRozlozenia(b.rady, Wb-8, H-24)); });
   k = Math.min(k, Math.floor((H-40)/11.3));
   k = Math.max(10,k);
   scene.style.setProperty("--k", k+"px");
@@ -375,6 +378,122 @@ function doRamikov(kusy){
   for(let i=0;i+10<=kusy.length;i+=10) st.push({rod:true, kusy:kusy.slice(i,i+10)});
   st.push({rod:false, kusy:kusy.slice(Math.floor(kusy.length/10)*10)});
   return {stlpce:st};
+}
+
+/* ===== Farebné tvary: stavba je rozdelená na malé skupiny, ktoré oko spozná naraz =====
+   Dieťa sa tak učí sčítať tvary (3 a 4 a 3), nie počítať kocky po jednej. Tvary sú čo najpravidelnejšie
+   (rad, štvorec 2×2, obdĺžnik 2×3), lebo také sa dajú poznať bez počítania. Veľkosti podľa čísel:
+   do 10 po 2, 3 a 4 kockách, do 20 po 3 až 6, do 100 po 3 až 10 (aj osmička 2×4 a desiatka 2×5).
+   Tvar rastie len kým ostáva pravidelný; keď by sa pokazil, zastaví sa skôr (pri dovolenej veľkosti).
+   bloky = 1 (Jan 15. 11.): tvary hrubé dve kocky (štvorec 2×2, kváder 2×3) namiesto radov, tie sa poznajú
+   ľahšie; bloky = 0 dovolí aj rady (stĺpce) kociek.
+   Čísla sú váhy: ako často sa daná veľkosť skúsi. */
+const VELKOSTI = {10:{2:2,3:3,4:3}, 20:{3:1,4:2,5:3,6:3}, 100:{3:1,4:2,5:2,6:3,8:2,10:2}};
+const SUS4 = [[1,0],[-1,0],[0,1],[0,-1]];
+/* bunky = [[x,y],…]; vráti skupiny ako zoznamy indexov do buniek */
+function rozdelNaTvary(bunky, vahy, bloky=1){
+  const n=bunky.length; if(!n) return [];
+  const id=new Map(bunky.map(([x,y],i)=>[x+","+y,i]));
+  const sus=bunky.map(([x,y])=>SUS4.map(([dx,dy])=>id.get((x+dx)+","+(y+dy))).filter(j=>j!=null));
+  /* bloky: párne veľkosti (2×2, 2×3, 2×4, 2×5) sa skúšajú dvakrát častejšie */
+  if(bloky) vahy=Object.fromEntries(Object.entries(vahy).map(([v,w])=>[v, v%2?w:w*2]));
+  const dov=Object.keys(vahy).map(Number), minV=Math.min(...dov), maxV=Math.max(...dov), vSpolu=dov.reduce((s,v)=>s+vahy[v],0);
+  const priemer=dov.reduce((s,v)=>s+v*vahy[v],0)/vSpolu;   /* tvary okolo tejto veľkosti sú najlepšie */
+  const zreb=()=>{ let r=Math.random()*vSpolu; for(const v of dov){ r-=vahy[v]; if(r<0) return v; } return maxV; };
+  /* koľko voľných buniek je spojených s bunkou i (bez tých, čo už majú tvar) */
+  const oblast=(i,sk)=>{ const vid=new Set([i]), q=[i]; while(q.length){ const a=q.pop(); sus[a].forEach(j=>{ if(sk[j]<0&&!vid.has(j)){ vid.add(j); q.push(j); } }); } return vid.size; };
+  /* ako ťažko sa tvar pozná: prázdne miesta v obdĺžniku okolo neho (0 = rad alebo obdĺžnik, to oko spozná
+     najľahšie; pri 5 a viac kockách už musí byť tvar pravidelný) a rad dlhší ako 5 (ten sa už musí počítať) */
+  const trest=g=>{ let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9; g.forEach(i=>{ const[x,y]=bunky[i]; x0=Math.min(x0,x); x1=Math.max(x1,x); y0=Math.min(y0,y); y1=Math.max(y1,y); });
+    const w=x1-x0+1, h=y1-y0+1; return (w*h-g.length)*(g.length>=(bloky?4:5)?3:1.3) + Math.max(0,Math.max(w,h)-5)*4
+      + (bloky && g.length>=3 && Math.min(w,h)===1 ? 3.5*bloky : 0); };
+  const celeOblasti=new Map(); const kOb=i=>{ if(!celeOblasti.has(i)) celeOblasti.set(i, oblast(i, Array(n).fill(-1))); return celeOblasti.get(i); };
+  let naj=null, najS=1e9;
+  for(let pokus=0; pokus<400; pokus++){
+    const sk=Array(n).fill(-1), gr=[];
+    const volne=i=>sus[i].reduce((s,j)=>s+(sk[j]<0),0);
+    for(;;){
+      /* začína sa v kúte (bunka s najmenej voľnými susedmi), aby neostali osamotené kocky */
+      let sem=-1, m=1e9;
+      for(let i=0;i<n;i++) if(sk[i]<0){ const v=volne(i)+Math.random()*.9; if(v<m){ m=v; sem=i; } }
+      if(sem<0) break;
+      const R=oblast(sem,sk);
+      let ciel=zreb();
+      if(R<=maxV && vahy[R] && Math.random()<.5) ciel=R;
+      if(R-ciel>0 && R-ciel<minV) ciel = R<=maxV ? R : Math.max(minV, R-minV);
+      ciel=Math.min(ciel,R);
+      const g=[sem]; sk[sem]=gr.length;
+      while(g.length<ciel){
+        let kand=-1, km=1e9, kt=0;
+        g.forEach(i=>sus[i].forEach(j=>{ if(sk[j]>=0) return;
+          const tr=trest([...g,j]), c=tr + volne(j)*.25 + Math.random()*.8; if(c<km){ km=c; kand=j; kt=tr; } }));
+        if(kand<0 || vahy[g.length] && kt>trest(g)+.01 && Math.random()<.85) break;
+        sk[kand]=gr.length; g.push(kand);
+      }
+      gr.push(g);
+    }
+    /* osamotená kocka sa pridá k susednému najmenšiemu tvaru */
+    for(let opak=0; opak<4; opak++) gr.forEach((g,gi)=>{
+      if(g.length!==1 || kOb(g[0])===1) return;
+      const vedla=new Set(); g.forEach(i=>sus[i].forEach(j=>{ if(sk[j]!==gi) vedla.add(sk[j]); }));
+      const kam=[...vedla].sort((p,q)=>gr[p].length-gr[q].length)[0];
+      if(kam==null) return; g.forEach(i=>{ sk[i]=kam; gr[kam].push(i); }); g.length=0;
+    });
+    const hot=gr.filter(g=>g.length);
+    let s=0;
+    hot.forEach(g=>{ const v=g.length; if(!vahy[v]) s += v===1 && kOb(g[0])>1 ? 40 : v<minV && v===kOb(g[0]) ? 0 : v>1 && v<maxV ? 2.5 : 6; s += trest(g) + Math.abs(v-priemer)*.5; });
+    s += Math.random()*.6;
+    if(s<najS){ najS=s; naj=hot; }
+  }
+  return naj;
+}
+/* farba pre každý tvar: susedné tvary (aj šikmo) majú rôzne a dobre odlíšiteľné farby. Vedľa seba nikdy
+   zelená (2) s tyrkysovou (5) ani s červenou (4), ani oranžová (1) s červenou. bez = farby, ktoré sa nepoužijú */
+const PODOBNE = new Set(["2-5","5-2","2-4","4-2","1-4","4-1"]);
+function zafarbi(bunky, gr, bez=[]){
+  const kto=new Map(); gr.forEach((g,gi)=>g.forEach(i=>kto.set(bunky[i][0]+","+bunky[i][1], gi)));
+  const susG=gr.map(()=>new Set());
+  gr.forEach((g,gi)=>g.forEach(i=>{ const[x,y]=bunky[i];
+    for(let dx=-1;dx<=1;dx++) for(let dy=-1;dy<=1;dy++){ const o=kto.get((x+dx)+","+(y+dy)); if(o!=null&&o!==gi) susG[gi].add(o); } }));
+  const zle=(a,b)=>a===b||PODOBNE.has(a+"-"+b);
+  const vsetky=[0,1,2,3,4,5].filter(c=>!bez.includes(c)), f=Array(gr.length).fill(-1), poc=Array(6).fill(0);
+  gr.map((_,i)=>i).sort((a,b)=>susG[b].size-susG[a].size).forEach(gi=>{
+    let mozne=vsetky.filter(c=>![...susG[gi]].some(o=>f[o]>=0&&zle(c,f[o])));
+    if(!mozne.length) mozne=vsetky.filter(c=>![...susG[gi]].some(o=>f[o]===c));
+    if(!mozne.length) mozne=vsetky;
+    const mn=Math.min(...mozne.map(c=>poc[c])), z=mozne.filter(c=>poc[c]===mn), c=z[nah(0,z.length-1)];
+    f[gi]=c; poc[c]++;
+  });
+  return f;
+}
+/* poradie tvarov do rámikov: kde sa dá, tvary presne naplnia desiatku (3 + 3 + 4), zvyšok od najväčšieho */
+function doDesiatok(tvary){
+  let zvys=[...tvary]; const von=[];
+  while(zvys.reduce((s,g)=>s+g.length,0)>=10 && zvys.length<=16){
+    const N=zvys.length; let naj=0, najC=99;
+    for(let m=1;m<(1<<N);m++){ let s=0,c=0; for(let i=0;i<N&&s<=10;i++) if(m>>i&1){ s+=zvys[i].length; c++; } if(s===10&&c<najC){ najC=c; naj=m; } }
+    if(!naj) break;
+    von.push(...zvys.filter((_,i)=>naj>>i&1).sort((p,q)=>q.length-p.length)); zvys=zvys.filter((_,i)=>!(naj>>i&1));
+  }
+  return [...von, ...zvys.sort((p,q)=>q.length-p.length)];
+}
+/* tvar ako samostatná mriežka (bunky posunuté k ľavému hornému rohu) */
+function castStavby(zoz){
+  const x0=Math.min(...zoz.map(c=>c.x)), y0=Math.min(...zoz.map(c=>c.y));
+  return {w:Math.max(...zoz.map(c=>c.x))-x0+1, h:Math.max(...zoz.map(c=>c.y))-y0+1, bunky:zoz.map(c=>({x:c.x-x0, y:c.y-y0, el:c.el}))};
+}
+/* najväčšia kocka, pri ktorej sa rozložené tvary zmestia (rady = [[[w,h],…],…], rad pod radom, v rade sa zalamujú) */
+function kRozlozenia(rady, W, H){
+  for(let k=40;k>10;k--){
+    const g=Math.max(2,Math.round(k*.12)), med=Math.round(k*.7);
+    let vys=0, ok=true;
+    rady.forEach((rad,ri)=>{ let sir=0, vr=0;
+      rad.forEach(([w,h])=>{ const pw=w*k+(w-1)*g, ph=h*k+(h-1)*g; if(pw>W) ok=false;
+        if(sir>0 && sir+med+pw>W){ vys+=vr+med; sir=0; vr=0; } sir+=(sir?med:0)+pw; vr=Math.max(vr,ph); });
+      vys+=vr+(ri?med:0); });
+    if(ok && vys<=H) return k;
+  }
+  return 10;
 }
 
 const IK_HLAS = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/></svg>';
@@ -681,48 +800,93 @@ function hra(el, o={}){
   const IK_UPRAC = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="6" height="18" rx="1.5"/><rect x="14" y="11" width="6" height="10" rx="1.5" stroke-dasharray="2.5 2"/></svg>';
   const velke = t => t.charAt(0).toUpperCase()+t.slice(1);
 
-  /* ● Koľko kociek má stavba?   ●●● Koľko kociek chýba? */
+  const IK_ROZLOZ = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="13" width="8" height="8" rx="1.5"/><rect x="13.5" y="13" width="8" height="8" rx="1.5"/><rect x="8" y="2.5" width="8" height="7" rx="1.5"/></svg>';
+
+  /* ● Koľko kociek má stavba?   ●●● Koľko kociek chýba?
+     Stavba je rozdelená na farebné tvary (pri ●●● prázdne miesta). Tlačidlo (aj žltý ?) ide po krokoch:
+     1. Rozlož na tvary: tvary sa od seba oddelia a dajú sa spočítať po jednom.
+     2. Uprac do rámikov: tvary sa uložia do rámikov po 10 (desiatky, päťky a kocky navyše).
+     3. (len ?) čísla nad rámikmi a možnosti na výber. */
   function koloStavby(b){
     if(cfg.u===1) return koloPorovnaj(b);
-    const dopln=cfg.u===2, [fa,fb]=farby(), [lo,hi]=rozpatieStavby(cfg);
+    const dopln=cfg.u===2, [fa]=farby(), [lo,hi]=rozpatieStavby(cfg);
     const s=unikatK(()=> dopln && cfg.rozsah===10 ? tvar(hi) : tvarVRozsahu(lo,hi), x=>x.meno+x.bunky.length);
     const t=s.bunky.length;
     const m = !dopln ? 0 : cfg.rozsah===10 ? nah(Math.min(2,t-1), Math.max(1,t-2)) : cfg.rozsah===20 ? nah(2, Math.min(9,t-3)) : nah(3, Math.min(15,t-6));
     const a=t-m;
     /* chýbajú horné kocky: stavba ešte nie je dostavaná */
-    const bunky=[...s.bunky].sort((p,q)=>p[1]-q[1] || p[0]-q[0]).map(([x,y],i)=>{ const el=kocka(i<m?fb:fa); if(i<m) el.classList.add("kk-duch"); return {x,y,el,chyba:i<m}; });
-    el.innerHTML = `${hlavicka()}<p class="kk-zadanie">${dopln?"Koľko kociek chýba?":`Koľko kociek má ${s.meno}?`}</p><div class="kk-scene kk-bez-cisel"></div>
-      <div class="kk-row"><button class="btn" type="button" data-uprac>${IK_UPRAC}Uprac do rámikov</button></div>
+    const bunky=[...s.bunky].sort((p,q)=>p[1]-q[1] || p[0]-q[0]).map(([x,y],i)=>({x,y,chyba:i<m}));
+    /* farebné tvary: pri ●●● sa delia len prázdne miesta (na tie sa pýtame), stavba má jednu farbu */
+    const delit=bunky.filter(x=>!dopln||x.chyba), suradnice=delit.map(x=>[x.x,x.y]);
+    /* prázdnych miest je najviac 15, preto pri nich stačia tvary ako do 20 */
+    const gr=rozdelNaTvary(suradnice, VELKOSTI[dopln&&cfg.rozsah===100?20:cfg.rozsah]||VELKOSTI[10]);
+    const fg=zafarbi(suradnice, gr, dopln?[fa, ...[0,1,2,3,4,5].filter(c=>PODOBNE.has(fa+"-"+c))]:[]);
+    const tvary=gr.map(g=>g.map(i=>delit[i]));
+    tvary.forEach((g,gi)=>g.forEach(c=>{ c.el=kocka(fg[gi]); c.el.dataset.sk=gi; c.el.classList.add("kk-sk"); if(c.chyba) c.el.classList.add("kk-duch"); c.f=fg[gi]; }));
+    const zvysok=bunky.filter(x=>!x.el); zvysok.forEach(c=>c.el=kocka(fa));
+    /* rozložené tvary: zľava doprava ako v stavbe; pri ●●● prázdne tvary hore a stavba pod nimi */
+    const stred=g=>g.reduce((s,c)=>s+c.x+c.y*.01,0)/g.length;
+    const zorad=[...tvary].sort((p,q)=>stred(p)-stred(q));
+    const casti=zorad.map(castStavby), zvysokCast=zvysok.length?castStavby(zvysok):null;
+    const rady=[casti, ...(zvysokCast?[[zvysokCast]]:[])];
+    /* do rámikov: pri Koľko má tvary tak, aby presne plnili desiatky; pri Koľko chýba najprv stavba, potom prázdne tvary */
+    const doRadu = dopln ? [zvysok, ...zorad] : doDesiatok(tvary);
+    const poRamikoch=new Map(); doRadu.forEach((g,i)=>g.forEach(c=>poRamikoch.set(c.el,i)));
+    const poRozlozeni=new Map(); zorad.forEach((g,i)=>g.forEach(c=>poRozlozeni.set(c.el,i)));
+
+    el.innerHTML = `${hlavicka()}<p class="kk-zadanie">${dopln?"Koľko kociek chýba?":`Koľko kociek má ${s.meno}?`}</p><div class="kk-scene kk-bez-cisel kk-po-tvaroch"></div>
+      <div class="kk-row"><button class="btn" type="button" data-uprac></button></div>
       <p class="kk-rovnica">${dopln?`<span class="kk-t${fa}">${a}</span> + <span class="kk-vys">?</span> = <span>${t}</span>`:`<span class="kk-vys">?</span>`}</p>
       <div class="kk-vstup"></div><p class="kk-status" role="status"></p>`;
     const sc=el.querySelector(".kk-scene"), st=el.querySelector(".kk-status"), upBtn=el.querySelector("[data-uprac]");
-    velkostStavby(sc, [{w:s.w, h:s.h, stlpcov:Math.floor(t/10)+1}]);
-    sc.append(mriezka({...s, bunky})); ANIM.presun(sc,null,{oneskorenie:t>20?8:30});
+    const rozmer=p=>[p.w,p.h];
+    velkostStavby(sc, [{w:s.w, h:s.h, stlpcov:Math.floor(t/10)+1, rady:rady.map(r=>r.map(rozmer))}]);
+    sc.append(mriezka({...s, bunky})); ANIM.presun(sc,null,{oneskorenie:Math.round(130*TEMPO), poradie:el=>(poRozlozeni.get(el)??-1)+1});
     const zrus=cislovanie(sc);
-    zadaj(dopln?"Koľko kociek chýba? Ťukni na prázdne miesta a počítaj":`Koľko kociek má ${s.meno}?`);
-    /* najprv kocky stavby, potom chýbajúce (aj keď sú už doplnené), aby farby išli za sebou */
-    const zoradene = () => [...zdola(bunky.filter(x=>!x.chyba)), ...zdola(bunky.filter(x=>x.chyba))].map(x=>x.el);
-    let upratane=false, g=null;
-    const uprac = async () => {
-      if(upratane) return; upratane=true; upBtn.hidden=true; zrus();
-      const pred=ANIM.fotka(sc); g=doRamikov(zoradene()); vykresli(sc,[g]);
-      await ANIM.presun(sc,pred,{oneskorenie:t>20?14:55});
+    zadaj(dopln?"Koľko kociek chýba? Spočítaj prázdne miesta po farebných tvaroch":`Koľko kociek má ${s.meno}? Počítaj po farebných tvaroch`);
+
+    /* stav: 0 stavba, 1 rozložené tvary, 2 v rámikoch */
+    let stav=0, g=null;
+    const tlacidlo = () => { upBtn.hidden = stav>=2; if(stav<2) upBtn.innerHTML = stav===0 ? IK_ROZLOZ+"Rozlož na tvary" : IK_UPRAC+"Uprac do rámikov"; };
+    tlacidlo();
+    const krok = async () => {
+      if(stav>=2) return;
+      const pred=ANIM.fotka(sc);
+      if(stav===0){
+        const w=document.createElement("div"); w.className="kk-tvary";
+        rady.forEach(r=>{ const rad=document.createElement("div"); rad.className="kk-tvary-rad"; r.forEach(p=>rad.append(mriezka(p))); w.append(rad); });
+        sc.replaceChildren(w); stav=1; tlacidlo();
+        await ANIM.presun(sc,pred,{oneskorenie:Math.round(160*TEMPO), poradie:el=>poRozlozeni.get(el)??0});
+      } else {
+        zrus(); g=doRamikov(doRadu.flatMap(x=>zdola(x).map(c=>c.el))); vykresli(sc,[g]); stav=2; tlacidlo();
+        await ANIM.presun(sc,pred,{oneskorenie:Math.round(220*TEMPO), poradie:el=>poRamikoch.get(el)??0});
+      }
     };
-    upBtn.onclick=async()=>{ if(zamok) return; zamok=true; await uprac(); zamok=false;
-      if(t>10) say(dopln?"Koľko prázdnych miest je v rámikoch?":"Spočítaj plné rámiky: 10, 20, 30… a potom kocky navyše"); };
+    upBtn.onclick=async()=>{ if(zamok) return; zamok=true; await krok(); zamok=false;
+      if(stav===1) say(dopln?"Koľko prázdnych miest má každý tvar?":"Koľko kociek má každý tvar? Potom ich sčítaj");
+      else if(t>10) say(dopln?"Koľko prázdnych miest je v rámikoch?":"Spočítaj plné rámiky: 10, 20, 30… a potom kocky navyše"); };
+    /* výsledok po tvaroch farebne, napr. 3 + 4 + 2 = 9 */
+    const sucet = () => doRadu.filter(x=>x.length&&x[0].f!=null).map(x=>`<span class="kk-t${x[0].f}">${x.length}</span>`).join(" + ");
     vstup(el.querySelector(".kk-vstup"), {spravne:dopln?m:t, moznosti:moznosti(dopln?m:t, 1, cfg), slot:el.querySelector(".kk-vys"),
-      napoveda:()=>sc.classList.remove("kk-bez-cisel"),
+      /* ? ide po tých istých krokoch ako tlačidlo, až potom ukáže čísla a možnosti */
+      napoveda:()=>{ if(zamok) return true; if(stav<2){ upBtn.click(); return true; } sc.classList.remove("kk-bez-cisel"); },
       ok:async()=>{
         zamok=true; upBtn.hidden=true; zrus();
-        st.className="kk-status ok"; st.textContent = dopln?`Áno! ${a} + ${m} = ${t}`:`Áno! ${t}`;
-        if(dopln){ const d=[...sc.querySelectorAll(".kk-duch")]; d.forEach(x=>x.classList.remove("kk-duch")); await ANIM.objav(d,{oneskorenie:t>20?60:110}); if(upratane) vykresli(sc,[g]); }
-        if(!upratane){ await pockaj(350); await uprac(); }
+        const casti = tvary.length>1 ? sucet() : "";
+        st.className="kk-status ok";
+        st.innerHTML = dopln ? `Áno! ${a} + ${m} = ${t}${casti?`<br>${casti} = ${m}`:""}` : `Áno! ${casti?`${casti} = `:""}${t}`;
+        if(dopln){ const d=[...sc.querySelectorAll(".kk-duch")]; d.forEach(x=>x.classList.remove("kk-duch")); await ANIM.objav(d,{oneskorenie:t>20?60:110}); if(stav===2) vykresli(sc,[g]); }
+        /* po správnej odpovedi sa stavba ešte raz ukáže po tvaroch a potom v rámikoch */
+        if(stav===0){ await pockaj(350); await krok(); await pauza(800); }
+        if(stav===1){ await pockaj(350); await krok(); }
         sc.classList.remove("kk-bez-cisel");
         dalsie(b, dopln?`Áno! ${a} a ${m} je ${t}`:`Áno! ${velke(s.meno)} má ${kock(t)}${t>10?`. To sú ${popis(t)}`:""}`);
       },
       zle:()=>rada(st, dopln
-        ? (upratane?"Skús ešte raz. Spočítaj prázdne miesta":"Skús ešte raz. Ťukni na každé prázdne miesto a počítaj")
-        : (t<=10?"Skús ešte raz. Ťukni na každú kocku a počítaj":upratane?"Skús ešte raz. Spočítaj plné rámiky: 10, 20, 30… a potom kocky navyše":"Skús ešte raz. Ťukni na Uprac do rámikov"))
+        ? (stav===0?"Skús ešte raz. Spočítaj prázdne miesta v každom farebnom tvare":stav===1?"Skús ešte raz. Koľko miest má každý tvar? Sčítaj ich":"Skús ešte raz. Spočítaj prázdne miesta")
+        : (stav===0?"Skús ešte raz. Nepočítaj po jednej. Koľko kociek má každý farebný tvar?"
+          :stav===1?(t>10?"Skús ešte raz. Ťukni na Uprac do rámikov":"Skús ešte raz. Koľko kociek má každý tvar? Sčítaj ich")
+          :t>10?"Skús ešte raz. Spočítaj plné rámiky: 10, 20, 30… a potom kocky navyše":t>5?"Skús ešte raz. Tmavých kociek je päť. Počítaj ďalej tie svetlé":"Skús ešte raz. Ťukni na každú kocku a počítaj"))
     });
   }
 
