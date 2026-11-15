@@ -45,6 +45,8 @@ const pauza = ms => pockaj(ms*TEMPO);
 /* ===== animácie: všetky pohyby sú len tu, aby sa dali neskôr vymeniť =====
    Zásada: číslo sa hýbe ako celok. Blok kociek padá, skáče a odchádza naraz, aby dieťa videlo
    „štyri a tri“, nie sedem jednotlivých kociek, ktoré treba spočítať. */
+const ISKRA_HVIEZDA = '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 1.5C12.9 7.1 15.4 10.1 22.5 12 15.4 13.9 12.9 16.9 12 22.5 11.1 16.9 8.6 13.9 1.5 12 8.6 10.1 11.1 7.1 12 1.5z"/></svg>';
+const ISKRA_BOD = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="6" fill="currentColor"/></svg>';
 const ANIM = {
   /* ticho = rodič zvolil „Bez pohybu“: všetko sa ukáže hneď.
      jemne = zariadenie má vypnuté animácie (prefers-reduced-motion). Presun kociek sa ukáže aj tak, lebo je
@@ -156,28 +158,47 @@ const ANIM = {
     els.forEach((el,i)=>el.animate([{transform:"scale(0)",opacity:0},{transform:"scale(1.15)",opacity:1,offset:.7},{transform:"none"}],{duration:320,delay:i*oneskorenie,easing:"ease-out",fill:"backwards"}));
     return pockaj((els.length-1)*oneskorenie+340);
   },
-  /* správna odpoveď: kocky sa zavlnia zdola nahor */
+  /* správna odpoveď: celá stavba krátko poskočí ako jeden kus (prikrčí sa, vyskočí, dopadne a zapruží)
+     a z jej okrajov vyletia iskričky. Kocky, ktoré odišli nabok (Uber kocky), stoja. */
   radost(scene){
     if(this.ticho||this.jemne||!scene) return;
     const k=parseFloat(getComputedStyle(scene).getPropertyValue("--k"))||28;
-    scene.querySelectorAll(".kk-col, .kk-stavba").forEach((col,ci)=>{
-      if(col.closest(".kk-prec")) return;
-      col.querySelectorAll(".kk-k:not(.kk-duch)").forEach((el,i)=>el.animate(
-        [{transform:"none"},{transform:`translateY(${-k*.38}px)`},{transform:"none"}],{duration:300,delay:Math.min(ci*40+i*32,900),easing:"ease-out"}));
+    const kusy=[...scene.querySelectorAll(".kk-colw, .kk-stavba, .kk-tvary-rad > *")].filter(x=>!x.closest(".kk-prec") && !(x.parentElement.closest(".kk-colw, .kk-stavba")) && x.querySelector(".kk-k:not(.kk-duch)"));
+    kusy.forEach((x,i)=>{
+      x.style.transformOrigin="50% 100%";
+      x.animate([
+        {transform:"none",easing:"ease-out"},
+        {transform:"scale(1.05,.93)",offset:.16,easing:"cubic-bezier(.2,.7,.4,1)"},
+        {transform:`translateY(${-k*.75}px) scale(.97,1.05)`,offset:.48,easing:"cubic-bezier(.6,0,.8,.4)"},
+        {transform:"scale(1.04,.95)",offset:.76,easing:"ease-out"},
+        {transform:`translateY(${-k*.1}px)`,offset:.88,easing:"ease-in"},
+        {transform:"none"}],{duration:560,delay:Math.min(i*30,120)});
     });
+    const kocky=[...scene.querySelectorAll(".kk-k:not(.kk-duch)")].filter(x=>!x.closest(".kk-prec"));
+    if(!kocky.length) return;
+    let l=1e9,t=1e9,r=-1e9,b=-1e9;
+    kocky.forEach(x=>{ const o=x.getBoundingClientRect(); l=Math.min(l,o.left); t=Math.min(t,o.top); r=Math.max(r,o.right); b=Math.max(b,o.bottom); });
+    const farby=[...new Set(kocky.map(x=>getComputedStyle(x).getPropertyValue("--c1").trim()).filter(Boolean))].slice(0,4);
+    setTimeout(()=>this.iskry({left:l,top:t,width:r-l,height:b-t},{pocet:12,farby,okraj:true,sila:Math.max(64,k*2.4)}), 250);
   },
-  /* správna odpoveď: z výsledku vyletí pár hviezdičiek */
-  iskry(pri){
+  /* iskričky: hviezdičky a guľôčky vyletia do strán, trochu padnú a zhasnú. pri = prvok alebo obdĺžnik;
+     okraj = štartujú po obvode (okolo stavby), inak zo stredu (z výsledku). Vždy len pár kusov a len
+     transform a opacity, aby to zvládol aj starší tablet. */
+  iskry(pri, {pocet=8, farby=[], okraj=false, sila=70}={}){
     if(this.ticho||this.jemne||!pri) return;
-    const r=pri.getBoundingClientRect();
-    for(let i=0;i<8;i++){
-      const s=document.createElement("i"); s.className="kk-iskra"; s.textContent="★"; s.setAttribute("aria-hidden","true");
-      s.style.left=(r.left+r.width/2)+"px"; s.style.top=(r.top+r.height/2)+"px"; document.body.append(s);
-      const u=i/8*Math.PI*2+Math.random()*.6, d=46+Math.random()*34, x=Math.cos(u)*d, y=Math.sin(u)*d;
-      s.animate([{transform:"translate(-50%,-50%) scale(.2)",opacity:1},
-        {transform:`translate(calc(-50% + ${x.toFixed(0)}px),calc(-50% + ${y.toFixed(0)}px)) scale(1) rotate(${(x*2).toFixed(0)}deg)`,opacity:1,offset:.6},
-        {transform:`translate(calc(-50% + ${(x*1.25).toFixed(0)}px),calc(-50% + ${(y*1.25+14).toFixed(0)}px)) scale(.5) rotate(${(x*3).toFixed(0)}deg)`,opacity:0}],
-        {duration:750,easing:"ease-out"}).onfinish=()=>s.remove();
+    const r=pri.getBoundingClientRect ? pri.getBoundingClientRect() : pri, cx=r.left+r.width/2, cy=r.top+r.height/2;
+    const F=["var(--hint)", ...farby];
+    for(let i=0;i<pocet;i++){
+      const s=document.createElement("i"); s.className="kk-iskra"; s.setAttribute("aria-hidden","true");
+      const u=i/pocet*Math.PI*2+Math.random()*.5, d=sila*(.6+Math.random()*.5), x=Math.cos(u)*d, y=Math.sin(u)*d-(okraj?sila*.25:0);
+      const x0=okraj?Math.cos(u)*r.width*.5:0, y0=okraj?Math.sin(u)*r.height*.5:0, v=14+Math.random()*12, o=(x>0?1:-1)*(120+Math.random()*160);
+      s.innerHTML = i%3===2 ? ISKRA_BOD : ISKRA_HVIEZDA;
+      s.style.cssText=`left:${(cx+x0).toFixed(0)}px;top:${(cy+y0).toFixed(0)}px;width:${v.toFixed(0)}px;height:${v.toFixed(0)}px;margin:${(-v/2).toFixed(0)}px 0 0 ${(-v/2).toFixed(0)}px;color:${i%2?F[(i>>1)%F.length]:F[0]}`;
+      document.body.append(s);
+      s.animate([{transform:"scale(.2)",opacity:0},
+        {transform:`translate(${(x*.8).toFixed(0)}px,${(y*.8).toFixed(0)}px) scale(1.15) rotate(${(o*.6).toFixed(0)}deg)`,opacity:1,offset:.45},
+        {transform:`translate(${x.toFixed(0)}px,${(y+sila*.35).toFixed(0)}px) scale(.4) rotate(${o.toFixed(0)}deg)`,opacity:0}],
+        {duration:780+Math.random()*240,delay:Math.random()*90,easing:"cubic-bezier(.2,.7,.4,1)",fill:"backwards"}).onfinish=()=>s.remove();
     }
   },
   tras(el){ if(!el) return; el.classList.remove("kk-tras"); void el.offsetWidth; el.classList.add("kk-tras"); }
