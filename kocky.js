@@ -15,7 +15,6 @@
    rozsah   10, 20 alebo 100
    u        0 Ľahšie, 1 Bežné, 2 Výzva
    max      (nepovinné) najväčšie číslo pri rozsahu 10, napr. 6 podľa témy v škole
-   tvary    (nepovinné, len Stavby) farebné tvary: "bloky" (predvolené, 2×2 a 2×3), "rady" (aj stĺpce) alebo "mix"
    tempo    (nepovinné) rýchlosť pohybu kociek: "pomaly" (predvolené), "stredne", "rychlo" alebo "bez"
             (bez pohybu). Vypnuté animácie v zariadení pohyb kociek nevypnú, len ozdoby.
    say      funkcia, ktorá prečíta text nahlas a vráti sľub (Promise)
@@ -386,8 +385,8 @@ function doRamikov(kusy){
    (rad, štvorec 2×2, obdĺžnik 2×3), lebo také sa dajú poznať bez počítania. Veľkosti podľa čísel:
    do 10 po 2, 3 a 4 kockách, do 20 po 3 až 6, do 100 po 3 až 10 (aj osmička 2×4 a desiatka 2×5).
    Tvar rastie len kým ostáva pravidelný; keď by sa pokazil, zastaví sa skôr (pri dovolenej veľkosti).
-   bloky = 1: tvary hrubé dve kocky (štvorec 2×2, kváder 2×3) namiesto radov, tie sa poznajú ľahšie;
-   bloky = 0: aj rady (stĺpce) kociek.
+   bloky = 1 (Jan 15. 11.): tvary hrubé dve kocky (štvorec 2×2, kváder 2×3) namiesto radov, tie sa poznajú
+   ľahšie; bloky = 0 dovolí aj rady (stĺpce) kociek.
    Čísla sú váhy: ako často sa daná veľkosť skúsi. */
 const VELKOSTI = {10:{2:2,3:3,4:3}, 20:{3:1,4:2,5:3,6:3}, 100:{3:1,4:2,5:2,6:3,8:2,10:2}};
 const SUS4 = [[1,0],[-1,0],[0,1],[0,-1]];
@@ -820,9 +819,7 @@ function hra(el, o={}){
     /* farebné tvary: pri ●●● sa delia len prázdne miesta (na tie sa pýtame), stavba má jednu farbu */
     const delit=bunky.filter(x=>!dopln||x.chyba), suradnice=delit.map(x=>[x.x,x.y]);
     /* prázdnych miest je najviac 15, preto pri nich stačia tvary ako do 20 */
-    /* cfg.tvary: "bloky" (predvolené, 2×2 a 2×3), "rady" (aj stĺpce) alebo "mix" (v každom kole náhodne jedno) */
-    const bloky = cfg.tvary==="rady" ? 0 : cfg.tvary==="mix" ? +(Math.random()<.5) : 1;
-    const gr=rozdelNaTvary(suradnice, VELKOSTI[dopln&&cfg.rozsah===100?20:cfg.rozsah]||VELKOSTI[10], bloky);
+    const gr=rozdelNaTvary(suradnice, VELKOSTI[dopln&&cfg.rozsah===100?20:cfg.rozsah]||VELKOSTI[10]);
     const fg=zafarbi(suradnice, gr, dopln?[fa, ...[0,1,2,3,4,5].filter(c=>PODOBNE.has(fa+"-"+c))]:[]);
     const tvary=gr.map(g=>g.map(i=>delit[i]));
     tvary.forEach((g,gi)=>g.forEach(c=>{ c.el=kocka(fg[gi]); c.el.dataset.sk=gi; c.el.classList.add("kk-sk"); if(c.chyba) c.el.classList.add("kk-duch"); c.f=fg[gi]; }));
