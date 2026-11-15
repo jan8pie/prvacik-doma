@@ -270,6 +270,7 @@ button.pk-g.ok{outline:3px solid var(--ok);outline-offset:3px;cursor:default}
   </section>
 </div>
 
+<script src="sprievodca.js"></script>
 <script>
 const OBR = {
   mama:"<path class=\"w\" d=\"M36 36 C34 20 40 8 50 8 C60 8 66 20 64 36 Z\"/><circle class=\"w\" cx=\"50\" cy=\"5\" r=\"5\"/><path class=\"w\" d=\"M50 36 L28 92 H72 Z\"/><path d=\"M40 50 L28 66 M60 50 L72 66\"/><path d=\"M42 92 V98 M58 92 V98\"/><circle class=\"w\" cx=\"50\" cy=\"24\" r=\"11\"/><path d=\"M39 22 C42 14 54 12 61 22\" /><circle class=\"f\" cx=\"46\" cy=\"25\" r=\"1.6\"/><circle class=\"f\" cx=\"54\" cy=\"25\" r=\"1.6\"/><path d=\"M46 29 C48 31 52 31 54 29\" style=\"stroke-width:1.6\"/>",
@@ -979,7 +980,7 @@ function hra(el, o={}){
 
   function koniec(){
     if(o.priKonci && o.priKonci()) return;
-    el.innerHTML = `<div class="pk-koniec">${IK_HVIEZDA}
+    el.innerHTML = `<div class="pk-koniec">${window.SPRIEVODCA?SPRIEVODCA.svg("oriesok"):IK_HVIEZDA}
       <p>Hotovo, výborne!</p><p class="pk-small">${jeKid()?"Podaj tablet späť.":"Všetky kolá sú za vami."}</p><button class="btn primary" type="button" data-znova>Ešte raz</button></div>`;
     ZVUK.ok(); say(jeKid()?"Hotovo, výborne! Podaj tablet späť":"Hotovo, výborne!");
   }

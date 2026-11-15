@@ -964,7 +964,7 @@ function hra(el, o={}){
 
   function koniec(){
     if(o.priKonci && o.priKonci()) return;
-    el.innerHTML = `<div class="kk-koniec">${IK_HVIEZDA}
+    el.innerHTML = `<div class="kk-koniec">${window.SPRIEVODCA?SPRIEVODCA.svg("oriesok"):IK_HVIEZDA}
       <p>Hotovo, výborne!</p><p class="kk-small">${jeKid()?"Podaj tablet späť.":"Všetky kolá sú za vami."}</p><button class="btn primary" type="button" data-znova>Ešte raz</button></div>`;
     say(jeKid()?"Hotovo, výborne! Podaj tablet späť":"Hotovo, výborne!");
   }
