@@ -3,7 +3,7 @@
    Písma, obrázky a PDF: najprv uložená verzia, čerstvá sa stiahne na pozadí. Nič sa nikam neposiela. */
 const CACHE = "prvacik-v1";
 const ZAKLAD = ["./", "index.html", "karty.js", "kresby.js", "kocky.js", "kocky.css", "pismo.css", "kocky.html", "pismenka.html",
-  "slovnik.html", "slovnik.js", "slovnik.css", "anj-slova.js", "hlavicka.css", "manifest.webmanifest", "ikony/ikona.svg",
+  "slovnik.html", "slovnik.js", "slovnik.css", "anj-slova.js", "hlavicka.css", "sprievodca.js", "manifest.webmanifest", "ikony/ikona.svg",
   "pismo/ah-400.woff2", "pismo/ah-400-ext.woff2", "pismo/ah-700.woff2", "pismo/ah-700-ext.woff2", "pismo/lexend.woff2", "pismo/lexend-ext.woff2"];
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(CACHE).then(c => Promise.allSettled(ZAKLAD.map(u => c.add(u)))).then(() => self.skipWaiting()));
