@@ -2,7 +2,7 @@
    Stránky, karty a skripty: najprv sieť (aby nové karty prišli hneď), bez siete posledná uložená verzia.
    Písma, obrázky a PDF: najprv uložená verzia, čerstvá sa stiahne na pozadí. Nič sa nikam neposiela. */
 const CACHE = "prvacik-v1";
-const ZAKLAD = ["./", "index.html", "karty.js", "kocky.js", "kocky.css", "pismo.css", "kocky.html", "pismenka.html",
+const ZAKLAD = ["./", "index.html", "karty.js", "kresby.js", "kocky.js", "kocky.css", "pismo.css", "kocky.html", "pismenka.html",
   "slovnik.html", "slovnik.js", "slovnik.css", "anj-slova.js", "hlavicka.css", "manifest.webmanifest", "ikony/ikona.svg",
   "pismo/ah-400.woff2", "pismo/ah-400-ext.woff2", "pismo/ah-700.woff2", "pismo/ah-700-ext.woff2", "pismo/lexend.woff2", "pismo/lexend-ext.woff2"];
 self.addEventListener("install", e => {

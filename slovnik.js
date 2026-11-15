@@ -4,7 +4,7 @@
    napísané slovo sa ukáže až potom, len na chvíľu, a zmizne.
    Voľby: Len táto lekcia / Od začiatku, úroveň Základ / Viac / Najviac (koľko slov), Vety (po slove krátka veta s ním), SK (aj slovenský preklad).
    =====================================================================
-   OBRÁZKY (vlastné SVG tam, kde emoji chýba alebo je nejasné)
+   OBRÁZKY: kresby slov sú v kresby.js (jeden štýl pre celý web); tu ostali staršie vlastné SVG, farby a číslice
    ===================================================================== */
 const TIEN = (cx,cy,rx) => `<ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="4" fill="#000" opacity=".12"/>`;
 const FAZULA = (x,y,u) => `<g transform="translate(${x} ${y}) rotate(${u})"><path d="M0 -6 C8 -8 13 -3 12 3 C11 8 4 8 1 5 C-2 3 -5 6 -9 5 C-14 3 -13 -4 -8 -6 C-5 -7 -3 -5 0 -6Z" fill="#9C3B2A" stroke="#5E2016" stroke-width="1.5"/><path d="M-6 -3 C-2 -4 2 -4 6 -4" stroke="#fff" stroke-width="1.6" stroke-linecap="round" opacity=".45" fill="none"/></g>`;
@@ -92,7 +92,11 @@ function skvrna(hex){
 }
 /* Čísla: veľká napísaná číslica (deti ju poznajú rýchlejšie, ako spočítajú bodky) */
 const cislica = n => `<span class="cis">${ESC(n)}</span>`;
-function obrazok(obr){
+/* w = slovo: ak má vlastnú kresbu v kresby.js (meno = slovo, medzery ako _), má prednosť pred emoji */
+function obrazok(obr, w){
+  const kr = w && window.KRESBY ? KRESBY.svg(w.replace(/ /g,"_")) : "";
+  if(kr) return `<div class="sl-obr">${kr}</div>`;
+  if(typeof obr==="string" && window.KRESBY && KRESBY.zEmoji(obr)) return `<div class="sl-obr">${KRESBY.zEmoji(obr)}</div>`;
   if(Array.isArray(obr)) return `<div class="sl-obr scena">${obr.map(e=>`<span class="em">${e}</span>`).join("")}</div>`;
   if(typeof obr==="object") return `<div class="sl-obr"><span class="em" style="--m:${obr.m||1}">${obr.em}</span></div>`;
   if(obr.startsWith("farba:")) return `<div class="sl-obr">${skvrna(obr.slice(6))}</div>`;
@@ -102,7 +106,7 @@ function obrazok(obr){
 }
 function ikonka(obr){
   if(obr.startsWith("farba:")) return skvrna(obr.slice(6));
-  return obr;
+  return (window.KRESBY && KRESBY.zEmoji(obr)) || obr;
 }
 const slov = n => n===1 ? "slovo" : n>=2 && n<=4 ? "slová" : "slov";
 
@@ -254,7 +258,7 @@ function vykresliMriezku(){
     `<section class="sl-skupina">${NAST.spolu ? `<h2 class="sl-skup-h"><span class="ik" aria-hidden="true">${ikonka(l.ikona)}</span>${ESC(menoLekcie(l))} · ${ESC(l.nazov)}</h2>` : ""}
      <div class="sl-grid">${l.slova.map((s,i) => urovenSlova(s) <= NAST.uroven ?
       `<button class="sl-tile${urovenSlova(s) > 1 ? " navyse u" + urovenSlova(s) : ""}" type="button" data-k="${l.id}:${i}" aria-label="Obrázok${urovenSlova(s) > 1 ? ", úroveň " + MENO_UROVNE[urovenSlova(s)] : ""}">
-         ${obrazok(s.obr)}
+         ${obrazok(s.obr, s.w)}
          ${urovenSlova(s) > 1 ? `<span class="sl-znak" aria-hidden="true">${"★".repeat(urovenSlova(s)-1)}</span>` : ""}
          <span class="sl-vlny" aria-hidden="true"><i></i><i></i><i></i></span>
          <span class="sl-slovo" aria-live="polite"></span>
