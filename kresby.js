@@ -437,7 +437,7 @@ K.legs = `${T(50,94,30)}<path d="M38 40 V82 M62 40 V82" stroke="${KOZA_O}" strok
   <g fill="#E0322B" stroke="#9E1F1A" stroke-width="2.8"><path d="M28 82 H47 V92 H22 C22 86 24 83 28 82Z"/><path d="M72 82 H53 V92 H78 C78 86 76 83 72 82Z"/></g>`;
 const CHODIDLO = `<path d="M50 94 C34 94 30 80 32 66 C34 52 36 42 46 40 C58 38 69 44 69 58 C69 72 66 94 50 94Z" fill="${KOZA}" stroke="${KOZA_O}" stroke-width="4"/>
   <g fill="${KOZA}" stroke="${KOZA_O}" stroke-width="4"><circle cx="40" cy="31" r="8"/><circle cx="52.5" cy="27" r="6"/><circle cx="62" cy="29" r="5.2"/><circle cx="69.5" cy="33.5" r="4.6"/><circle cx="74.5" cy="40.5" r="4"/></g>`;
-K.feet = `<g transform="translate(-8 10) scale(.8)">${CHODIDLO}</g><g transform="translate(108 10) scale(-.8 .8)">${CHODIDLO}</g>`;
+K.feet = `<g transform="translate(-13 10) scale(.8)">${CHODIDLO}</g><g transform="translate(113 10) scale(-.8 .8)">${CHODIDLO}</g>`;
 K.monster = `${T(50,94,28)}<path d="M30 14 L22 2 L38 8Z M70 14 L78 2 L62 8Z" fill="#F6CB2F" stroke="#B58A12" stroke-width="2.6"/>
   <path d="M20 60 C8 58 6 70 12 76 M80 60 C92 58 94 70 88 76" fill="none" stroke="#5E3190" stroke-width="9"/><path d="M20 60 C8 58 6 70 12 76 M80 60 C92 58 94 70 88 76" fill="none" stroke="#8A4FC4" stroke-width="4.5"/>
   <path d="M50 8 C28 8 18 24 18 46 V78 C18 86 24 92 30 92 C34 92 36 88 40 88 C44 88 46 92 50 92 C54 92 56 88 60 88 C64 88 66 92 70 92 C76 92 82 86 82 78 V46 C82 24 72 8 50 8Z" fill="#8A4FC4" stroke="#5E3190" stroke-width="3"/>
@@ -479,7 +479,130 @@ K.party = `<g transform="translate(8 18) scale(.5)">${K.balloon.replace(/#E0322B
   <g fill="#3AA655"><rect x="8" y="12" width="6" height="6" rx="1" transform="rotate(20 11 15)"/><rect x="86" y="62" width="6" height="6" rx="1" transform="rotate(40 89 65)"/></g><g fill="#F28B24"><circle cx="40" cy="10" r="3"/><circle cx="90" cy="88" r="3"/></g><path d="M80 44 q4 -4 8 0 t8 0" stroke="#E0322B" stroke-width="2.6" fill="none"/>`;
 
 K.ball = LOPTA(50,50,36);
-/*__DALSIE__*/
+/* =================== KARTY: obrázky, ktoré nie sú v slovníku =================== */
+const BODKA = (f, s) => `<circle cx="50" cy="50" r="36" fill="${f}" stroke="${s}" stroke-width="3"/>${LESK("M24 44 C26 32 34 24 44 22",5,.4)}`;
+K.dot_red = BODKA("#E0322B","#9E1F1A"); K.dot_green = BODKA("#3AA655","#27703A"); K.dot_blue = BODKA("#2F6FDE","#1E4AA0"); K.dot_yellow = BODKA("#F6CB2F","#B58A12");
+K.diamond = `<path d="M50 8 L90 50 L50 92 L10 50Z" fill="#F28B24" stroke="#B85F12" stroke-width="3"/>${LESK("M26 46 L48 22",5,.4)}`;
+K.star = `<path d="M50 6 L62.5 34 L93 37.5 L70 58 L76.5 88 L50 73 L23.5 88 L30 58 L7 37.5 L37.5 34Z" fill="#F6CB2F" stroke="#C99A12" stroke-width="3.5"/>${OCI(42,58,48,2.8)}${USMEV(50,55,5.5,4.5)}${LICKA(35,65,56,3.6)}`;
+K.plus = `<circle cx="50" cy="50" r="40" fill="#3AA655" stroke="#27703A" stroke-width="3"/><path d="M50 28 V72 M28 50 H72" stroke="#fff" stroke-width="11" fill="none"/>`;
+K.minus = `<circle cx="50" cy="50" r="40" fill="#E0322B" stroke="#9E1F1A" stroke-width="3"/><path d="M28 50 H72" stroke="#fff" stroke-width="11" fill="none"/>`;
+K.question = `<circle cx="50" cy="50" r="40" fill="#8A4FC4" stroke="#5E3190" stroke-width="3"/><path d="M36 40 C36 26 64 26 64 40 C64 50 50 50 50 60" stroke="#fff" stroke-width="9" fill="none"/><circle cx="50" cy="74" r="5.5" fill="#fff"/>`;
+K.drop = `<path d="M50 8 C50 8 22 44 22 62 a28 28 0 0 0 56 0 C78 44 50 8 50 8Z" fill="#4FA3E8" stroke="#2F6FDE" stroke-width="3"/>${LESK("M34 62 C34 52 38 44 42 38",5,.5)}`;
+K.car = `${T(50,90,40)}<path d="M8 76 V58 C8 52 12 50 18 49 L28 30 C30 26 33 24 38 24 H62 C67 24 70 26 72 30 L82 49 C88 50 92 52 92 58 V76 a4 4 0 0 1 -4 4 H12 a4 4 0 0 1 -4 -4Z" fill="#E0322B" stroke="#9E1F1A" stroke-width="3"/>
+  <path d="M26 49 L34 33 C35 31 36 30 39 30 H48 V49Z M52 30 H61 C64 30 65 31 66 33 L74 49 H52Z" fill="#BFE3FA" stroke="#4F8FB8" stroke-width="2.4"/>
+  <rect x="80" y="56" width="10" height="7" rx="3" fill="#F6CB2F"/><rect x="10" y="56" width="8" height="7" rx="3" fill="#FBE3D6"/><path d="M46 60 h8" stroke="#9E1F1A" stroke-width="3"/>
+  <g fill="#3A4656" stroke="${INK}" stroke-width="3"><circle cx="28" cy="78" r="11"/><circle cx="72" cy="78" r="11"/></g><circle cx="28" cy="78" r="4.5" fill="#D3DAE2"/><circle cx="72" cy="78" r="4.5" fill="#D3DAE2"/>`;
+K.bus = `${T(50,91,42)}<rect x="6" y="20" width="88" height="60" rx="10" fill="#F6CB2F" stroke="#B58A12" stroke-width="3"/><path d="M7.5 56 H92.5" stroke="#B58A12" stroke-width="2.4"/>
+  <g fill="#BFE3FA" stroke="#4F8FB8" stroke-width="2.4"><rect x="13" y="28" width="16" height="20" rx="3"/><rect x="33" y="28" width="16" height="20" rx="3"/><rect x="53" y="28" width="16" height="20" rx="3"/><rect x="73" y="28" width="15" height="30" rx="3"/></g>
+  <rect x="84" y="64" width="8" height="6" rx="2" fill="#fff"/><g fill="#3A4656" stroke="${INK}" stroke-width="3"><circle cx="28" cy="80" r="10"/><circle cx="70" cy="80" r="10"/></g><circle cx="28" cy="80" r="4" fill="#D3DAE2"/><circle cx="70" cy="80" r="4" fill="#D3DAE2"/>`;
+K.tram = `<path d="M30 12 L50 4 L70 12 M50 4 V18" fill="none" stroke="#55606E" stroke-width="3"/><path d="M4 92 H96" stroke="#6B7785" stroke-width="4"/>
+  <rect x="10" y="18" width="80" height="64" rx="12" fill="#E0322B" stroke="#9E1F1A" stroke-width="3"/><path d="M11.5 58 H88.5" stroke="#FBE3A0" stroke-width="5"/>
+  <g fill="#BFE3FA" stroke="#4F8FB8" stroke-width="2.4"><rect x="18" y="28" width="18" height="22" rx="3"/><rect x="41" y="28" width="18" height="22" rx="3"/><rect x="64" y="28" width="18" height="22" rx="3"/></g>
+  <circle cx="22" cy="70" r="4" fill="#F6CB2F"/><circle cx="78" cy="70" r="4" fill="#F6CB2F"/><g fill="#3A4656"><circle cx="28" cy="86" r="6.5"/><circle cx="72" cy="86" r="6.5"/></g>`;
+K.train = `${T(50,92,42)}<path d="M62 30 V14 H76 V30" fill="#3A4656" stroke="${INK}" stroke-width="3"/><g fill="#E9EEF3"><circle cx="70" cy="6" r="5"/><circle cx="80" cy="2" r="3.5"/></g>
+  <rect x="8" y="16" width="36" height="58" rx="6" fill="#2F6FDE" stroke="#1E4AA0" stroke-width="3"/><rect x="15" y="24" width="22" height="18" rx="3" fill="#BFE3FA" stroke="#4F8FB8" stroke-width="2.4"/>
+  <rect x="40" y="34" width="50" height="40" rx="12" fill="#E0322B" stroke="#9E1F1A" stroke-width="3"/><path d="M90 66 L98 78 H84Z" fill="#F6CB2F" stroke="#B58A12" stroke-width="2.4"/>
+  <g fill="#3A4656" stroke="${INK}" stroke-width="3"><circle cx="24" cy="78" r="12"/><circle cx="54" cy="80" r="9"/><circle cx="78" cy="80" r="9"/></g><circle cx="24" cy="78" r="4.5" fill="#F6CB2F"/><circle cx="54" cy="80" r="3.5" fill="#F6CB2F"/><circle cx="78" cy="80" r="3.5" fill="#F6CB2F"/>`;
+K.rocket = `<path d="M40 76 C38 86 44 92 50 98 C56 92 62 86 60 76Z" fill="#F28B24" stroke="#B85F12" stroke-width="2.6"/><path d="M32 54 L16 72 L18 82 L36 74Z M68 54 L84 72 L82 82 L64 74Z" fill="#E0322B" stroke="#9E1F1A" stroke-width="3"/>
+  <path d="M50 4 C34 18 30 40 34 76 H66 C70 40 66 18 50 4Z" fill="#F1F4F7" stroke="#8FA3B8" stroke-width="3"/><path d="M39 21 C43 13 47 8 50 4 C53 8 57 13 61 21Z" fill="#E0322B" stroke="#9E1F1A" stroke-width="3"/>
+  <circle cx="50" cy="42" r="9.5" fill="#BFE3FA" stroke="#2F6FDE" stroke-width="3"/><path d="M36 66 H64" stroke="#8FA3B8" stroke-width="2.4"/>`;
+K.house = `${T(50,93,38)}<rect x="62" y="14" width="10" height="20" fill="#B5713A" stroke="#6E4520" stroke-width="3"/><rect x="18" y="46" width="64" height="46" rx="3" fill="#FBE3A0" stroke="#B58A3A" stroke-width="3"/>
+  <path d="M8 50 L50 12 L92 50Z" fill="#E0322B" stroke="#9E1F1A" stroke-width="3"/><rect x="42" y="64" width="16" height="28" rx="2" fill="#B5713A" stroke="#6E4520" stroke-width="3"/><circle cx="54" cy="79" r="1.8" fill="#F6CB2F"/>
+  <g fill="#BFE3FA" stroke="#4F8FB8" stroke-width="2.4"><rect x="24" y="58" width="13" height="13" rx="2"/><rect x="63" y="58" width="13" height="13" rx="2"/></g>`;
+K.castle = `${T(50,93,40)}<g fill="#C9D5E2" stroke="#6B7785" stroke-width="3"><path d="M10 92 V30 H16 V24 H22 V30 H28 V24 H34 V30 V92Z"/><path d="M66 92 V30 H72 V24 H78 V30 H84 V24 H90 V92Z"/><path d="M30 92 V48 H38 V42 H46 V48 H54 V42 H62 V48 H70 V92Z"/></g>
+  <path d="M42 92 V72 a8 8 0 0 1 16 0 V92Z" fill="#8B5A2B" stroke="#5A3418" stroke-width="3"/><g fill="#3A4656"><rect x="18" y="44" width="7" height="12" rx="3.5"/><rect x="75" y="44" width="7" height="12" rx="3.5"/></g>
+  <path d="M22 24 V8 M78 24 V8" stroke="#6B7785" stroke-width="2.6"/><path d="M22 8 H34 L30 12 L34 16 H22Z M78 8 H90 L86 12 L90 16 H78Z" fill="#E0322B" stroke="#9E1F1A" stroke-width="1.8"/>`;
+K.tree = `${T(50,93,26)}<path d="M44 92 V62 H56 V92Z" fill="#8B5A2B" stroke="#5A3418" stroke-width="3"/>${U(`<circle cx="32" cy="50" r="19"/><circle cx="50" cy="32" r="23"/><circle cx="68" cy="50" r="19"/><circle cx="50" cy="56" r="16"/>`, "#3AA655", "#27703A")}${LESK("M34 28 C38 20 46 16 52 16",4,.35)}`;
+K.leaf = `<path d="M50 96 C50 80 50 70 50 60" stroke="#8B5A2B" stroke-width="4" fill="none"/><path d="M50 8 C22 22 14 52 50 78 C86 52 78 22 50 8Z" fill="#F28B24" stroke="#B85F12" stroke-width="3"/>
+  <path d="M50 16 V74 M50 34 L36 26 M50 34 L64 26 M50 50 L32 40 M50 50 L68 40 M50 64 L38 58 M50 64 L62 58" fill="none" stroke="#B85F12" stroke-width="2.4"/>`;
+K.herb = K.leaf.replace(/#F28B24/g,"#3AA655").replace(/#B85F12/g,"#27703A");
+K.sunflower = `<path d="M50 60 V96" stroke="#27703A" stroke-width="5"/><path d="M50 82 C40 72 30 74 26 78 C32 86 42 88 50 82Z" fill="#3AA655" stroke="#27703A" stroke-width="2.4"/>
+  <g fill="#F6CB2F" stroke="#C99A12" stroke-width="2.4">${[0,36,72,108,144,180,216,252,288,324].map(a=>`<ellipse cx="50" cy="16" rx="8" ry="13" transform="rotate(${a} 50 42)"/>`).join("")}</g><circle cx="50" cy="42" r="15" fill="#8B5A2B" stroke="#5A3418" stroke-width="3"/>${OCI(45,55,40,2)}${USMEV(50,45,4,3)}`;
+K.mushroom = `${T(50,93,26)}<path d="M38 52 C36 70 34 82 36 88 C40 92 60 92 64 88 C66 82 64 70 62 52Z" fill="#FFF6EA" stroke="#B9A68A" stroke-width="3"/>
+  <path d="M8 54 C8 26 28 10 50 10 C72 10 92 26 92 54 C92 60 8 60 8 54Z" fill="#E0322B" stroke="#9E1F1A" stroke-width="3"/><g fill="#fff"><circle cx="30" cy="34" r="7"/><circle cx="54" cy="24" r="6"/><circle cx="72" cy="40" r="7"/><circle cx="48" cy="46" r="5"/></g>${OCI(44,56,68,2.2)}${USMEV(50,74,4,3)}`;
+K.strawberry = `<path d="M50 24 C30 14 10 28 14 50 C18 72 38 90 50 94 C62 90 82 72 86 50 C90 28 70 14 50 24Z" fill="#E0322B" stroke="#9E1F1A" stroke-width="3"/>
+  <g fill="#FBE08A"><ellipse cx="32" cy="42" rx="2" ry="3"/><ellipse cx="50" cy="46" rx="2" ry="3"/><ellipse cx="68" cy="42" rx="2" ry="3"/><ellipse cx="40" cy="60" rx="2" ry="3"/><ellipse cx="60" cy="60" rx="2" ry="3"/><ellipse cx="50" cy="76" rx="2" ry="3"/></g>
+  <path d="M50 22 L34 28 L26 18 L42 14 L50 4 L58 14 L74 18 L66 28Z" fill="#3AA655" stroke="#27703A" stroke-width="2.8"/>`;
+K.watermelon = `${T(50,90,38)}<path d="M6 36 H94 C94 66 74 86 50 86 C26 86 6 66 6 36Z" fill="#3AA655" stroke="#27703A" stroke-width="3"/><path d="M13 37.5 H87 C87 62 70 78 50 78 C30 78 13 62 13 37.500Z" fill="#FFF6EA"/>
+  <path d="M17 37.5 H83 C83 60 68 74 50 74 C32 74 17 60 17 37.500Z" fill="#EE4B55"/><g fill="${INK}"><ellipse cx="34" cy="48" rx="2" ry="3.2"/><ellipse cx="50" cy="52" rx="2" ry="3.2"/><ellipse cx="66" cy="48" rx="2" ry="3.2"/><ellipse cx="42" cy="62" rx="2" ry="3.2"/><ellipse cx="58" cy="62" rx="2" ry="3.2"/></g>`;
+K.lollipop = `<path d="M50 56 V96" stroke="#D3DAE2" stroke-width="6"/><path d="M50 56 V96" stroke="#8FA3B8" stroke-width="1.5"/><circle cx="50" cy="38" r="30" fill="#F27DB3" stroke="#B8437A" stroke-width="3"/>
+  <path d="M50 38 m0 -20 a20 20 0 1 1 -20 20 a13 13 0 1 1 13 13 a7 7 0 1 1 7 -7" fill="none" stroke="#fff" stroke-width="5"/>`;
+K.ice_cream = `<path d="M30 48 L50 96 L70 48Z" fill="#E7B36A" stroke="#9A6A2A" stroke-width="3"/><path d="M36 56 L60 72 M44 78 L66 60 M40 66 L56 82" stroke="#9A6A2A" stroke-width="1.8"/>
+  ${U(`<circle cx="36" cy="40" r="15"/><circle cx="64" cy="40" r="15"/><circle cx="50" cy="24" r="17"/>`, "#F7A8C4", "#C4577F")}<circle cx="50" cy="6" r="5.5" fill="#E0322B" stroke="#9E1F1A" stroke-width="2"/>${LESK("M38 22 C40 16 44 13 48 12",3.5,.5)}`;
+K.pumpkin = `${T(50,92,34)}<path d="M50 24 C50 14 54 10 60 8" stroke="#27703A" stroke-width="6" fill="none"/>${U(`<ellipse cx="26" cy="58" rx="19" ry="28"/><ellipse cx="74" cy="58" rx="19" ry="28"/><ellipse cx="50" cy="58" rx="24" ry="32"/>`, "#F28B24", "#B85F12")}
+  <path d="M36 30 C28 46 28 70 36 86 M64 30 C72 46 72 70 64 86" fill="none" stroke="#B85F12" stroke-width="2.4"/>${OCI(40,60,54,3)}${USMEV(50,64,7,6)}${LICKA(32,68,64,4)}`;
+K.nut = `${T(50,91,28)}<path d="M50 12 C38 20 12 34 12 58 C12 78 30 88 50 88 C70 88 88 78 88 58 C88 34 62 20 50 12Z" fill="#8B4A22" stroke="#55290E" stroke-width="3"/>
+  <path d="M20 70 C28 62 72 62 80 70 C74 82 62 86.5 50 86.5 C38 86.500 26 82 20 70Z" fill="#E7C08A"/>${LESK("M26 50 C28 38 36 30 44 25",4.5,.4)}`;
+K.plate = `${T(50,90,36)}<circle cx="50" cy="52" r="30" fill="#fff" stroke="#8FA3B8" stroke-width="3"/><circle cx="50" cy="52" r="19" fill="#F1F4F7" stroke="#C9D5E2" stroke-width="2.4"/>
+  <path d="M10 18 V84 M4 18 V34 C4 40 16 40 16 34 V18" fill="none" stroke="#8FA3B8" stroke-width="4"/><path d="M92 84 V18 C84 24 84 44 92 50" fill="none" stroke="#8FA3B8" stroke-width="4"/>`;
+K.magnifier = `<path d="M62 62 L88 88" stroke="#6E4520" stroke-width="11"/><circle cx="42" cy="42" r="30" fill="#DCEFFB" stroke="#3A4656" stroke-width="6"/>${LESK("M24 40 C24 30 32 24 40 23",5,.8)}`;
+K.books = `${T(50,92,36)}<rect x="14" y="66" width="72" height="22" rx="4" fill="#2F6FDE" stroke="#1E4AA0" stroke-width="3"/><rect x="20" y="44" width="64" height="22" rx="4" fill="#F6CB2F" stroke="#B58A12" stroke-width="3"/><rect x="12" y="22" width="66" height="22" rx="4" fill="#E0322B" stroke="#9E1F1A" stroke-width="3"/>
+  <path d="M68 71 H80 V83 H68 M72 49 H78 V61 H72 M62 27 H72 V39 H62" fill="#fff" stroke="none"/><path d="M22 77 H40 M28 55 H44 M20 33 H36" stroke="#fff" stroke-width="3" opacity=".7"/>`;
+K.open_book = `${T(50,90,40)}<path d="M6 26 C22 20 38 22 50 30 C62 22 78 20 94 26 V80 C78 74 62 76 50 84 C38 76 22 74 6 80Z" fill="#fff" stroke="#2F6FDE" stroke-width="3.5"/><path d="M50 30 V84" stroke="#2F6FDE" stroke-width="3"/>
+  <path d="M16 38 C26 36 34 38 42 42 M16 50 C26 48 34 50 42 54 M16 62 C26 60 34 62 42 66 M58 42 C66 38 74 36 84 38 M58 54 C66 50 74 48 84 50 M58 66 C66 62 74 60 84 62" fill="none" stroke="#9FB3C8" stroke-width="2.6"/>`;
+K.numbers = `<rect x="8" y="8" width="84" height="84" rx="16" fill="#2F6FDE" stroke="#1E4AA0" stroke-width="3"/><g fill="#fff" font-family="Lexend,Arial,sans-serif" font-weight="700" font-size="34" text-anchor="middle"><text x="31" y="46">1</text><text x="67" y="46">2</text><text x="49" y="82">3</text></g>`;
+K.letters = `<rect x="8" y="8" width="84" height="84" rx="16" fill="#E0322B" stroke="#9E1F1A" stroke-width="3"/><g fill="#fff" font-family="Lexend,Arial,sans-serif" font-weight="700" font-size="34" text-anchor="middle"><text x="31" y="46">A</text><text x="68" y="46">M</text><text x="49" y="82">O</text></g>`;
+K.speech = `<path d="M14 12 H86 a8 8 0 0 1 8 8 V60 a8 8 0 0 1 -8 8 H46 L26 88 V68 H14 a8 8 0 0 1 -8 -8 V20 a8 8 0 0 1 8 -8Z" fill="#3AA655" stroke="#27703A" stroke-width="3"/><g fill="#fff"><circle cx="30" cy="40" r="5.5"/><circle cx="50" cy="40" r="5.5"/><circle cx="70" cy="40" r="5.5"/></g>`;
+K.dice = `${T(50,93,30)}<rect x="12" y="12" width="76" height="76" rx="16" fill="#fff" stroke="#8FA3B8" stroke-width="3"/><g fill="#E0322B"><circle cx="32" cy="32" r="7"/><circle cx="68" cy="32" r="7"/><circle cx="50" cy="50" r="7"/><circle cx="32" cy="68" r="7"/><circle cx="68" cy="68" r="7"/></g>`;
+K.puzzle = `<path d="M14 30 H38 C34 20 38 12 46 12 C54 12 58 20 54 30 H78 V52 C88 48 96 52 96 60 C96 68 88 72 78 68 V90 H14 V68 C24 72 32 68 32 60 C32 52 24 48 14 52Z" fill="#3AA655" stroke="#27703A" stroke-width="3"/>${LESK("M20 44 V36 H32",4,.4)}`;
+K.eye = `<g transform="translate(-25 -26) scale(1.5)">${OKO_V(50)}</g>`;
+K.fire = `<path d="M50 6 C54 26 78 36 78 62 C78 80 66 92 50 92 C34 92 22 80 22 62 C22 50 28 42 32 34 C36 42 40 44 42 38 C44 28 44 16 50 6Z" fill="#F28B24" stroke="#B8430F" stroke-width="3"/><path d="M50 46 C52 56 64 62 64 74 C64 84 58 88 50 88 C42 88 36 84 36 74 C36 66 42 62 44 54 C46 56 48 54 50 46Z" fill="#F6CB2F"/>`;
+K.chart = `<path d="M10 8 V90 H94" fill="none" stroke="#55606E" stroke-width="4"/><rect x="20" y="52" width="16" height="36" rx="3" fill="#E0322B" stroke="#9E1F1A" stroke-width="2.6"/><rect x="44" y="28" width="16" height="60" rx="3" fill="#2F6FDE" stroke="#1E4AA0" stroke-width="2.6"/><rect x="68" y="42" width="16" height="46" rx="3" fill="#3AA655" stroke="#27703A" stroke-width="2.6"/>`;
+K.thumb_down = `<g transform="rotate(180 50 50)">${K.thumb.replace(/<path d="M82 20[^>]*>/, "")}</g>`;
+K.raise_hand = `<path d="M70 62 L78 26" stroke="${KOZA_O}" stroke-width="13"/><path d="M70 62 L78 26" stroke="${KOZA}" stroke-width="8.5"/><g transform="translate(58 -6) scale(.4)">${RUKA}</g>
+  <g transform="translate(-4 6)">${PLECIA("#2F6FDE","#1E4AA0")}</g><g transform="translate(-4 0)">${HLAVA(50,46,21,"dlhe","#6B4423")}</g>`;
+K.clap = `<g transform="translate(6 22) scale(.6) rotate(24 50 60)">${RUKA}</g><g transform="translate(96 22) scale(-.6 .6) rotate(24 50 60)">${RUKA}</g><path d="M50 16 V4 M34 20 L28 10 M66 20 L72 10" stroke="#F28B24" stroke-width="4" fill="none"/>`;
+K.please = `<g transform="translate(2 16) scale(.62) rotate(14 50 60)">${RUKA}</g><g transform="translate(98 16) scale(-.62 .62) rotate(14 50 60)">${RUKA}</g><path d="M50 14 C46 8 40 12 42 17 C43 21 50 25 50 25 C50 25 57 21 58 17 C60 12 54 8 50 14Z" fill="#F27DB3" stroke="#B8437A" stroke-width="2"/>`;
+const SMAJLIK = (tvar) => `<circle cx="50" cy="50" r="40" fill="#F6CB2F" stroke="#C99A12" stroke-width="3"/>${tvar}`;
+K.sad = SMAJLIK(`${OCI(36,64,44,3.4)}<path d="M36 68 Q50 56 64 68" fill="none" stroke="${INK}" stroke-width="3"/><path d="M28 32 L42 36 M72 32 L58 36" stroke="#8B6A12" stroke-width="3"/><path d="M68 52 C68 52 63 59 63 62.5 a5 5 0 0 0 10 0 C73 59 68 52 68 52Z" fill="#4FA3E8" stroke="#2F6FDE" stroke-width="1.4"/>`);
+K.sleepy = SMAJLIK(`<path d="M28 46 q8 6 16 0 M56 46 q8 6 16 0" fill="none" stroke="${INK}" stroke-width="3"/><ellipse cx="50" cy="66" rx="5" ry="6" fill="#7A1F2E"/>`) + `<path d="M70 8 h12 l-12 13 h12 M86 26 h8 l-8 9 h8" stroke="#2F6FDE" stroke-width="3" fill="none"/>`;
+K.yummy = SMAJLIK(`<path d="M28 44 q8 -8 16 0 M56 44 q8 -8 16 0" fill="none" stroke="${INK}" stroke-width="3"/><path d="M30 58 Q50 78 70 58" fill="none" stroke="${INK}" stroke-width="3"/><path d="M52 66 C52 76 58 80 64 76 C68 72 66 66 62 62Z" fill="#F27DB3" stroke="#B8437A" stroke-width="2"/>${LICKA(26,74,56,4.5)}`);
+/* hlava zvieratka spredu */
+const ZVER = (f, s, usi, tvar, r=31) => `${usi}<circle cx="50" cy="54" r="${r}" fill="${f}" stroke="${s}" stroke-width="3"/>${tvar}`;
+const NOS2 = (y, f=INK) => `<ellipse cx="50" cy="${y}" rx="5" ry="3.6" fill="${f}"/><path d="M50 ${y+3} V${y+7} M50 ${y+7} q-4 4 -8 1 M50 ${y+7} q4 4 8 1" fill="none" stroke="${INK}" stroke-width="2"/>`;
+K.bear = ZVER("#B5713A", "#7A4520", `<g fill="#B5713A" stroke="#7A4520" stroke-width="3"><circle cx="24" cy="28" r="12"/><circle cx="76" cy="28" r="12"/></g><circle cx="24" cy="28" r="6" fill="#E7B98A"/><circle cx="76" cy="28" r="6" fill="#E7B98A"/>`,
+  `<ellipse cx="50" cy="64" rx="15" ry="12" fill="#F2D6B0"/>${OCI(37,63,48,3.2)}${NOS2(58)}${LICKA(28,72,60,4)}`);
+K.teddy = `${T(50,94,26)}<g fill="#C98A4A" stroke="#8B5A2B" stroke-width="3"><ellipse cx="24" cy="66" rx="9" ry="12" transform="rotate(30 24 66)"/><ellipse cx="76" cy="66" rx="9" ry="12" transform="rotate(-30 76 66)"/><ellipse cx="36" cy="90" rx="11" ry="7"/><ellipse cx="64" cy="90" rx="11" ry="7"/><ellipse cx="50" cy="72" rx="23" ry="20"/></g><ellipse cx="50" cy="74" rx="12" ry="11" fill="#F2D6B0"/>
+  <g transform="translate(14 -8) scale(.72)">${ZVER("#C98A4A", "#8B5A2B", `<g fill="#C98A4A" stroke="#8B5A2B" stroke-width="4"><circle cx="24" cy="28" r="12"/><circle cx="76" cy="28" r="12"/></g><circle cx="24" cy="28" r="6" fill="#F2D6B0"/><circle cx="76" cy="28" r="6" fill="#F2D6B0"/>`,
+  `<ellipse cx="50" cy="64" rx="15" ry="12" fill="#F2D6B0"/>${OCI(37,63,48,3.6)}${NOS2(58)}`)}</g><path d="M40 53 L50 57 L60 53 L60 61 L50 57 L40 61Z" fill="#E0322B" stroke="#9E1F1A" stroke-width="1.8"/>`;
+K.lion = ZVER("#F2B544", "#A8700F", `<g fill="#C9772B" stroke="#8B4513" stroke-width="3">${[0,30,60,90,120,150,180,210,240,270,300,330].map(a=>`<circle cx="50" cy="14" r="11" transform="rotate(${a} 50 54)"/>`).join("")}</g><circle cx="50" cy="54" r="38" fill="#C9772B"/>`,
+  `<g fill="#F2B544" stroke="#A8700F" stroke-width="2.4"><circle cx="29" cy="33" r="6"/><circle cx="71" cy="33" r="6"/></g><ellipse cx="50" cy="64" rx="13" ry="10" fill="#FFF3D6"/>${OCI(39,61,50,3)}${NOS2(59,"#8B4513")}`, 27);
+K.monkey = ZVER("#8B5A2B", "#5A3418", `<g fill="#E7B98A" stroke="#5A3418" stroke-width="3"><circle cx="16" cy="52" r="11"/><circle cx="84" cy="52" r="11"/></g>`,
+  `<path d="M50 36 C40 28 26 34 28 48 C29 54 32 56 32 60 C32 74 40 80 50 80 C60 80 68 74 68 60 C68 56 71 54 72 48 C74 34 60 28 50 36Z" fill="#F2D6B0"/>${OCI(40,60,48,3.2)}<path d="M46 58 h1 M53 58 h1" stroke="${INK}" stroke-width="2.4"/>${USMEV(50,66,8,6)}${LICKA(33,67,60,3.6)}`);
+K.fox = ZVER("#F28B24", "#B85F12", `<g fill="#F28B24" stroke="#B85F12" stroke-width="3"><path d="M22 44 L16 10 L44 28Z"/><path d="M78 44 L84 10 L56 28Z"/></g><path d="M23 30 L21 18 L33 26Z M77 30 L79 18 L67 26Z" fill="${INK}"/>`,
+  `<path d="M20 60 C30 58 40 62 50 74 C60 62 70 58 80 60 C76 76 64 85 50 85 C36 85 24 76 20 60Z" fill="#fff"/>${OCI(37,63,50,3.2)}<ellipse cx="50" cy="72" rx="5" ry="3.8" fill="${INK}"/>${LICKA(28,72,66,3.6)}`);
+K.frog = `<g fill="#5DBB63" stroke="#27703A" stroke-width="3"><circle cx="30" cy="30" r="15"/><circle cx="70" cy="30" r="15"/><ellipse cx="50" cy="60" rx="38" ry="28"/></g><ellipse cx="50" cy="58" rx="36" ry="24" fill="#5DBB63"/>
+  <circle cx="30" cy="30" r="9" fill="#fff"/><circle cx="70" cy="30" r="9" fill="#fff"/>${OCI(31,69,31,4.5)}<path d="M26 62 Q50 82 74 62" fill="none" stroke="${INK}" stroke-width="3"/>${LICKA(22,78,58,4.5)}`;
+K.owl = `<path d="M18 28 L20 8 L38 20Z M82 28 L80 8 L62 20Z" fill="#8B5A2B" stroke="#5A3418" stroke-width="3"/><path d="M50 12 C26 12 14 30 14 54 C14 78 28 92 50 92 C72 92 86 78 86 54 C86 30 74 12 50 12Z" fill="#8B5A2B" stroke="#5A3418" stroke-width="3"/>
+  <ellipse cx="50" cy="68" rx="20" ry="20" fill="#E7C08A"/><path d="M40 62 q5 4 10 0 q5 4 10 0 M40 72 q5 4 10 0 q5 4 10 0" fill="none" stroke="#8B5A2B" stroke-width="2"/>
+  <g fill="#fff" stroke="#5A3418" stroke-width="2.4"><circle cx="35" cy="40" r="13"/><circle cx="65" cy="40" r="13"/></g>${OCI(36,64,41,5)}<path d="M44 48 H56 L50 58Z" fill="#F28B24" stroke="#B85F12" stroke-width="2.2"/>`;
+K.hedgehog = `${T(50,90,36)}<path d="M12 74 L6 58 L16 60 L12 44 L24 50 L24 32 L36 42 L42 24 L50 40 L60 24 L64 42 L78 34 L74 52 L88 50 L80 66 L84 78Z" fill="#8B5A2B" stroke="#5A3418" stroke-width="3"/>
+  <path d="M46 86 C30 86 22 76 26 66 C30 54 46 52 58 56 C70 60 84 68 94 76 C88 84 72 86 46 86Z" fill="#F2D6B0" stroke="#B58A5A" stroke-width="3"/><circle cx="93" cy="76" r="4" fill="${INK}"/>${OKO(72,68,2.8)}${LICKA(66,66,76,3.4)}
+  <g fill="#F2D6B0" stroke="#B58A5A" stroke-width="2.4"><ellipse cx="40" cy="88" rx="7" ry="3.5"/><ellipse cx="62" cy="88" rx="7" ry="3.5"/></g>`;
+K.squirrel = `${T(46,92,30)}<path d="M30 84 C6 80 2 48 20 34 C34 24 46 36 40 48 C36 56 30 60 34 72Z" fill="#C9772B" stroke="#8B4513" stroke-width="3"/>
+  ${U(`<ellipse cx="52" cy="70" rx="18" ry="20"/><circle cx="62" cy="38" r="18"/>`, "#D9772B", "#8B4513")}<path d="M52 24 L50 8 L62 18Z M68 22 L74 8 L78 22Z" fill="#D9772B" stroke="#8B4513" stroke-width="2.6"/>
+  <ellipse cx="56" cy="74" rx="9" ry="12" fill="#FBE3C0"/><ellipse cx="72" cy="46" rx="8" ry="6" fill="#FBE3C0"/><circle cx="79" cy="43" r="2.4" fill="${INK}"/>${OKO(66,35,3)}
+  <g fill="#D9772B" stroke="#8B4513" stroke-width="2.4"><ellipse cx="44" cy="90" rx="9" ry="4"/><ellipse cx="64" cy="90" rx="9" ry="4"/></g><circle cx="74" cy="64" r="7" fill="#8B5A2B" stroke="#5A3418" stroke-width="2.4"/>`;
+K.llama = `${T(48,93,30)}${NOHY([24,32,50,58], 66, "#FFF6EA", "#B9A68A", "#8B6332", 7, 90)}${U(`<rect x="16" y="46" width="54" height="28" rx="14"/><rect x="54" y="18" width="18" height="44" rx="9"/><ellipse cx="70" cy="22" rx="14" ry="11"/>`, "#FFF6EA", "#B9A68A")}
+  <path d="M58 12 L56 0 L66 8Z M72 10 L76 0 L80 12Z" fill="#FFF6EA" stroke="#B9A68A" stroke-width="2.4"/><ellipse cx="78" cy="26" rx="7" ry="5.5" fill="#F2D6B0"/><path d="M76 25 h4 l-2 2.500Z" fill="${INK}"/>${OKO(68,19,2.4)}
+  <path d="M54 44 H72" stroke="#E0322B" stroke-width="4"/><rect x="30" y="46" width="24" height="12" rx="3" fill="#2F6FDE" stroke="#1E4AA0" stroke-width="2"/><path d="M34 52 l4 -3 4 3 4 -3 4 3" stroke="#F6CB2F" stroke-width="2" fill="none"/>`;
+K.giraffe = `<path d="M40 26 V12 M60 26 V12" stroke="#A8700F" stroke-width="4"/><circle cx="40" cy="10" r="4.5" fill="#8B5A2B"/><circle cx="60" cy="10" r="4.5" fill="#8B5A2B"/>
+  <g fill="#F6CB2F" stroke="#A8700F" stroke-width="3"><ellipse cx="20" cy="36" rx="10" ry="6" transform="rotate(-20 20 36)"/><ellipse cx="80" cy="36" rx="10" ry="6" transform="rotate(20 80 36)"/><path d="M50 18 C34 18 26 30 28 46 C29 56 32 62 32 70 C32 84 40 92 50 92 C60 92 68 84 68 70 C68 62 71 56 72 46 C74 30 66 18 50 18Z"/></g>
+  <ellipse cx="50" cy="76" rx="16" ry="13" fill="#FBE3A0"/><g fill="#C9772B"><circle cx="38" cy="30" r="4"/><circle cx="58" cy="28" r="3.5"/><circle cx="64" cy="40" r="3"/></g>${OCI(39,61,48,3.2)}<path d="M44 74 v3 M56 74 v3" stroke="#8B5A2B" stroke-width="2.6"/>${USMEV(50,82,5,3.5)}`;
+K.unicorn = `<path d="M50 24 L44 2 L58 20Z" fill="#F6CB2F" stroke="#B58A12" stroke-width="2.6"/><path d="M30 26 L26 10 L42 20Z M70 26 L74 10 L58 20Z" fill="#fff" stroke="#9FB3C8" stroke-width="3"/>
+  <path d="M26 30 C10 36 8 56 14 70 C18 60 22 52 30 46Z" fill="#F27DB3" stroke="#B8437A" stroke-width="2.6"/><path d="M34 22 C22 22 16 32 18 44 C22 36 30 32 40 30Z" fill="#8A4FC4" stroke="#5E3190" stroke-width="2.6"/>
+  <path d="M50 20 C32 20 26 34 28 48 C29 58 32 62 32 70 C32 84 40 92 50 92 C60 92 68 84 68 70 C68 62 71 58 72 48 C74 34 68 20 50 20Z" fill="#fff" stroke="#9FB3C8" stroke-width="3"/>
+  <ellipse cx="50" cy="78" rx="15" ry="12" fill="#FBD9E8"/>${OCI(39,61,50,3.2)}<path d="M44 76 v3 M56 76 v3" stroke="#B8437A" stroke-width="2.6"/>${USMEV(50,83,5,3.5)}${LICKA(32,68,60,3.6)}`;
+K.bee = `<g fill="#DCEFFB" stroke="#7FA8CF" stroke-width="2.6"><ellipse cx="40" cy="26" rx="12" ry="18" transform="rotate(-24 40 26)"/><ellipse cx="62" cy="26" rx="12" ry="18" transform="rotate(24 62 26)"/></g>
+  <path d="M10 60 L2 56 L10 52Z" fill="${INK}"/><ellipse cx="46" cy="58" rx="36" ry="26" fill="#F6CB2F" stroke="#3A2A10" stroke-width="3"/><path d="M34 34 C40 48 40 68 34 82 M50 32 C56 48 56 68 50 84" fill="none" stroke="#3A2A10" stroke-width="8"/>
+  <path d="M70 34 Q76 22 84 22 M76 38 Q84 28 92 30" fill="none" stroke="#3A2A10" stroke-width="2.6"/>${OKO(68,52,3.4)}${USMEV(72,62,4.5,3.5)}${LICKA(62,62,62,3.6)}`;
+K.ladybug = `${T(50,90,34)}<circle cx="50" cy="26" r="16" fill="${INK}"/><path d="M42 12 Q38 4 32 4 M58 12 Q62 4 68 4" fill="none" stroke="${INK}" stroke-width="2.6"/><circle cx="44" cy="22" r="3.4" fill="#fff"/><circle cx="56" cy="22" r="3.4" fill="#fff"/><circle cx="44.5" cy="22.5" r="1.6" fill="${INK}"/><circle cx="56.5" cy="22.5" r="1.6" fill="${INK}"/>
+  <path d="M14 58 C14 38 30 28 50 28 C70 28 86 38 86 58 C86 76 70 88 50 88 C30 88 14 76 14 58Z" fill="#E0322B" stroke="#9E1F1A" stroke-width="3"/><path d="M50 28 V88" stroke="${INK}" stroke-width="3"/>
+  <g fill="${INK}"><circle cx="32" cy="48" r="6"/><circle cx="68" cy="48" r="6"/><circle cx="30" cy="70" r="5"/><circle cx="70" cy="70" r="5"/><circle cx="50" cy="60" r="5"/></g>${LESK("M24 46 C28 38 34 34 40 33",3.5,.4)}`;
+K.butterfly = `<g stroke-width="3"><path d="M48 46 C40 18 10 10 8 30 C6 46 26 54 48 52Z M52 46 C60 18 90 10 92 30 C94 46 74 54 52 52Z" fill="#8A4FC4" stroke="#5E3190"/><path d="M48 54 C30 54 14 64 20 80 C26 92 44 80 48 60Z M52 54 C70 54 86 64 80 80 C74 92 56 80 52 60Z" fill="#F27DB3" stroke="#B8437A"/></g>
+  <g fill="#F6CB2F"><circle cx="26" cy="32" r="6"/><circle cx="74" cy="32" r="6"/><circle cx="32" cy="70" r="4.5"/><circle cx="68" cy="70" r="4.5"/></g>
+  <path d="M46 26 Q40 12 34 12 M54 26 Q60 12 66 12" fill="none" stroke="${INK}" stroke-width="2.6"/><rect x="45" y="24" width="10" height="56" rx="5" fill="#3A4656" stroke="${INK}" stroke-width="2.4"/>`;
+
 
 /* ---------- ktoré emoji ktorá kresba nahrádza (karty a slovník) ---------- */
 const EMOJI = {
@@ -491,7 +614,11 @@ const EMOJI = {
   "🐬":"dolphin","🐟":"fish","🦭":"seal","🐧":"penguin","🐢":"turtle","🐘":"elephant","🐭":"mouse","🐆":"fast","🐌":"slow","🐙":"octopus","🦀":"crab","🐳":"whale","🦈":"shark","🐚":"shell",
   "👀":"eyes","👂":"ears","👃":"nose","👄":"mouth","👐":"hands","🖐️":"fingers","✋":"fingers","👾":"monster","🦷":"teeth","👅":"tongue","👍":"thumb","🙂":"face","😊":"face","😀":"face",
   "👵":"grandma","👴":"grandpa","👧":"sister","👦":"brother","👩":"mum","👷":"builder","🧑‍🍳":"cook","🧑‍🚒":"firefighter","🧑‍✈️":"pilot","🧑‍⚕️":"doctor","👶":"baby","🎈":"balloon","🎉":"party",
-  /*__EMOJI__*/
+  "🔴":"dot_red","🟢":"dot_green","🔵":"dot_blue","🟡":"dot_yellow","🔶":"diamond","⭐":"star","🌟":"star","➕":"plus","➖":"minus","❓":"question","💧":"drop",
+  "🚗":"car","🚌":"bus","🚋":"tram","🚂":"train","🚀":"rocket","🏠":"house","🏰":"castle","🌳":"tree","🍂":"leaf","🍃":"herb","🌿":"herb","🌻":"sunflower","🍄":"mushroom",
+  "🍓":"strawberry","🍉":"watermelon","🍭":"lollipop","🍦":"ice_cream","🎃":"pumpkin","🌰":"nut","🍽️":"plate","🔎":"magnifier","🔍":"magnifier","📚":"books","📖":"open_book","🔢":"numbers","🔤":"letters","💬":"speech","🎲":"dice","🧩":"puzzle",
+  "👁️":"eye","🔥":"fire","📊":"chart","👎":"thumb_down","🙋":"raise_hand","👏":"clap","🙏":"please","😔":"sad","😢":"sad","😴":"sleepy","😋":"yummy","👩‍👧":"mum","👩‍👦":"mum","👨‍👦":"dad",
+  "🐻":"bear","🧸":"teddy","🦁":"lion","🐒":"monkey","🦊":"fox","🐸":"frog","🦉":"owl","🦔":"hedgehog","🐿️":"squirrel","🦙":"llama","🦒":"giraffe","🦄":"unicorn","🐝":"bee","🐞":"ladybug","🦋":"butterfly",
 };
 const obal = (v, trieda) => `<svg${trieda ? ` class="${trieda}"` : ""} viewBox="0 0 100 100" aria-hidden="true" stroke-linejoin="round" stroke-linecap="round">${v}</svg>`;
 const svg = (meno, trieda) => K[meno] ? obal(K[meno], trieda) : "";
