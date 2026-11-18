@@ -391,10 +391,10 @@ function blokHTML(b, kid, i){
      <div class="btns"><a class="btn primary" href="tlac/pdf/${esc(b.subor)}" download target="_blank" rel="noopener">${svg("tlac")}Stiahnuť všetky 3 (PDF)</a></div>
      <span class="note">Ťuknite na list a otvorí sa len ten jeden. Ľahšie = na rozbeh, Bežné = podľa osnov, Výzva = pre šikovných. A4, čiernobiele, riešenie je dole na liste.</span></div>`;
   }
-  if(b.typ==="tlac") return `<div class="blk">${h("Na tlač")}
+  if(b.typ==="tlac") return `<div class="blk">${h(esc(b.nadpis||"Na tlač"))}
      <div class="print"><a class="sheet img" href="tlac/pdf/${esc(b.subor)}" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="tlac/pdf/${esc(b.subor.replace(/\.pdf$/,".png"))}" alt="" loading="lazy"></a>
      <div class="print-txt"><p>${esc(b.text)}</p><div class="btns"><a class="btn primary" href="tlac/pdf/${esc(b.subor)}" download target="_blank" rel="noopener">${svg("tlac")}Stiahnuť PDF</a></div>
-     <span class="note">A4, čiernobiele. Riešenie je dole na liste pre rodiča.</span></div></div></div>`;
+     <span class="note">${esc(b.poznamka||"A4, čiernobiele. Riešenie je dole na liste pre rodiča.")}</span></div></div></div>`;
   if(b.typ==="spolu") return `<div class="blk">${h("Spolu s rodičom")}<p>${esc(b.text)}</p></div>`;
   if(b.typ==="hadanka") return `<div class="blk">${h("Hádanka")}
      <p style="font-size:19px">${esc(b.text)}</p>${b.napoveda?`<p class="note">Po slovensky: ${esc(b.napoveda)}</p>`:""}
