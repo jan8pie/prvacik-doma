@@ -315,6 +315,7 @@ window.KARTY = [
     {typ:"aktivita", text:"Ťukni na obrázky, ktoré sa začínajú na J. Keď ťukneš, obrázok sa ozve.",
      hra:{druh:"vyber", spravne:"J", polozky:[["🍎","jablko"],["🍓","jahoda"],["🦔","ježko"],["🦌","jeleň"],["🦙","lama"],["🐭","myš"],["🚗","auto"],["🍉","melón"]]}},
     {typ:"tlac", urovne:3, text:"Písmeno J: obtiahni, nájdi J medzi podobnými písmenami, zakrúžkuj obrázky na J a odhaľ skrytý obrázok. Výzva: slovný vláčik, hádanka s nápovedami a vzory.", subor:"sjl-j-zaciatok.pdf"},
+    {typ:"tlac", nadpis:"Píšeme", text:"Písané j a J na jednej strane. Najprv obťahovanie sivých písmen podľa šípky, potom bodky, potom samo. Na konci slabiky ja, je, ji a slová jeme, jama, máj, jej. Stačí kúsok denne.", poznamka:"A4, čiernobiele. Zhora nadol je pomoc čoraz menšia. Píšte mäkkou ceruzkou.", subor:"sjl-pisanie-j.pdf"},
     {typ:"rozhovor", zacni:"„Jjj… ako jablko. Uhádneš, čo ešte začína na jjj?“",
      otazky:["Čo v kuchyni sa začína na J?","Čím sa začína jablko a čím jahoda? Čo majú rovnaké na začiatku?","Vymysli zvieratko, ktoré sa začína na J. Koľko slabík má jeho meno?"],
      preteba:"J vyslovuj krátko, ako „j“ (jjj), nie „dže“. Tablet povie písmeno ako názov (jé), hlásku vyslovte vy. Čítať s J budete až podľa šlabikára."}
@@ -433,6 +434,7 @@ window.KARTY = [
     {typ:"aktivita", text:"Ťukni na obrázky, ktoré sa začínajú na A. Keď ťukneš, obrázok sa ozve.",
      hra:{druh:"vyber", spravne:"A", polozky:[["🚗","auto"],["🍍","ananás"],["🍎","jablko"],["🚌","autobus"],["🐒","opica"],["🥑","avokádo"],["⚓","kotva"],["✈️","lietadlo"]]}},
     {typ:"tlac", urovne:3, text:"Čo patrí do aktovky, tajné auto z písmen, kde počuješ A, krátke a a dlhé á, čítanie po schodoch. Výzva: tajné zvieratká a objav pravidlo.", subor:"sjl-a-zaciatok.pdf"},
+    {typ:"tlac", nadpis:"Píšeme", text:"Písané a a A na jednej strane. Najprv obťahovanie sivých písmen podľa šípky, potom bodky, potom samo. Na konci aj dlhé á a spojenia Aa, Aá. Stačí kúsok denne.", poznamka:"A4, čiernobiele. Zhora nadol je pomoc čoraz menšia. Píšte mäkkou ceruzkou.", subor:"sjl-pisanie-a.pdf"},
     {typ:"rozhovor", zacni:"„Ááá, zívam. Ááá… a na A sa začína aj auto! Čo ešte?“",
      otazky:["Čo okolo nás sa začína na A?","Je v slove mama tiež A? Koľkokrát?","Nájdeš slovo, ktoré sa na A končí?"],
      preteba:"Krátke a a dlhé á sú v šlabikári zvlášť. Pri hre nevadí, ak dieťa povie aj slovo s á."}
@@ -515,6 +517,7 @@ window.KARTY = [
     {typ:"aktivita", text:"Ťukni na obrázky, ktoré sa začínajú na M. Keď ťukneš, obrázok sa ozve.",
      hra:{druh:"vyber", spravne:"M", polozky:[["🐭","myš"],["🍉","melón"],["🚲","bicykel"],["🌙","mesiac"],["🐝","včela"],["🥛","mlieko"],["🍋","citrón"],["🐻","medveď"]]}},
     {typ:"tlac", urovne:3, text:"Balóny s obrázkami na M, bludisko z písmen, kde počuješ M (začiatok, stred, koniec). Výzva: tajné slová, počítanie hlások a čarovanie mama – lama.", subor:"sjl-m-zaciatok.pdf"},
+    {typ:"tlac", nadpis:"Píšeme", text:"Písané m a M na jednej strane. Najprv obťahovanie sivých písmen podľa šípky, potom bodky, potom samo. Na konci slabiky ma, am a slová mama, mám. Stačí kúsok denne.", poznamka:"A4, čiernobiele. Zhora nadol je pomoc čoraz menšia. Píšte mäkkou ceruzkou.", subor:"sjl-pisanie-m.pdf"},
     {typ:"rozhovor", zacni:"„Mňam, mám chuť na niečo, čo sa začína na Mmm… Uhádneš, na čo?“",
      otazky:["Čo v kuchyni sa začína na M?","Počuješ M na začiatku alebo na konci slova dom?","Vymysli slovo, v ktorom je M dvakrát."],
      preteba:"M vyslovuj ako dlhé „mmm“, nie „em“. Keď dieťa nájde M v strede slova, spýtaj sa, kde presne ho počuje."}
@@ -557,6 +560,7 @@ window.KARTY = [
     {typ:"aktivita", text:"Počúvaj a ťukni na slabiku, ktorú počuješ.",
      hra:{druh:"slabiky", urovne:[["●","Ľahšie"],["●●","Bežné"],["●●●","Výzva"]], predvolena:0, kol:5, rodic:true}},
     {typ:"tlac", urovne:3, text:"Slabiky mi, li, mí, lí: húsenica, bludisko zo slabík, krátke i a dlhé í. Výzva: tajný obrázok len z dlhých í a skladanie slov.", subor:"sjl-slabiky-i.pdf"},
+    {typ:"tlac", nadpis:"Píšeme", text:"Písané i a I na jednej strane. Najprv obťahovanie sivých písmen podľa šípky, potom bodky, potom samo. Na konci slabiky mi, mí, li a slová milá, mali, lial, milé. Stačí kúsok denne.", poznamka:"A4, čiernobiele. Zhora nadol je pomoc čoraz menšia. Píšte mäkkou ceruzkou.", subor:"sjl-pisanie-i.pdf"},
     {typ:"rozhovor", zacni:"„Viem slovo, ktoré sa začína na mi: mi-mi-no. Vymyslíš iné?“",
      otazky:["Čo v kuchyni sa začína na ma alebo me?","Počuješ v slove lístok krátke i alebo dlhé í? A v slove list?","Povedz mi slovo po slabikách a ja budem hádať, čo to je."],
      preteba:"Slabiky čítaj ťahavo a spolu („mmmi“), nie po písmenách („em-í“). Dlhé í sa v škole volá í s dĺžňom."}
@@ -603,7 +607,8 @@ window.KARTY = [
     {typ:"rozhovor", zacni:"„Vidím niečo, čo sa začína na Lll… Uhádneš?“",
      otazky:["Čo ešte okolo nás sa začína na L?","Počuješ L na začiatku alebo na konci slova stôl?","Vymysli ty slovo na L a ja budem hádať."],
      preteba:"Hovor „hláska“, keď ide o zvuk, a „písmeno“, keď ide o to, čo píšeme. L vyslovuj krátko: „lll“, nie „el“."},
-    {typ:"tlac", urovne:3, text:"Obťahovanie L, čo sa začína na lll, malá a veľká lama, L alebo M. Výzva: otočené slabiky la – al, slová s viacerými riešeniami a rýchločítanie.", subor:"sjl-l.pdf"}
+    {typ:"tlac", urovne:3, text:"Obťahovanie L, čo sa začína na lll, malá a veľká lama, L alebo M. Výzva: otočené slabiky la – al, slová s viacerými riešeniami a rýchločítanie.", subor:"sjl-l.pdf"},
+    {typ:"tlac", nadpis:"Píšeme", text:"Písané l a L na jednej strane. Najprv obťahovanie sivých písmen podľa šípky, potom bodky, potom samo. Na konci slabiky la, le, al a slová lama, mala, mele, malé. Stačí kúsok denne.", poznamka:"A4, čiernobiele. Zhora nadol je pomoc čoraz menšia. Píšte mäkkou ceruzkou.", subor:"sjl-pisanie-l.pdf"}
   ]},
 
 { id:"mat-6", datum:"2026-10-29", predmet:"MAT", obr:"🐿️", kod:"MAT-CO-4",
@@ -665,7 +670,8 @@ window.KARTY = [
     {typ:"rozhovor", zacni:"„Eee… keď rozmýšľam, hovorím eee. Počuješ, ako znie hláska E?“",
      otazky:["Poznáš meno, ktoré sa začína na E?","Počuješ E v slove mesto? Kde?","Je E na konci slova Ema, alebo na začiatku?"],
      preteba:"Krátke e a dlhé é sú v šlabikári zvlášť. Dieťa číta slabiku naraz („me“), nie po písmenách („em-e“)."},
-    {typ:"tlac", urovne:3, text:"Obťahovanie E, kde počuješ e, veľké a malé písmená, húsenica slabík a prvé vety o Eme a mame. Výzva: tajný kód a čítanie odzadu.", subor:"sjl-e.pdf"}
+    {typ:"tlac", urovne:3, text:"Obťahovanie E, kde počuješ e, veľké a malé písmená, húsenica slabík a prvé vety o Eme a mame. Výzva: tajný kód a čítanie odzadu.", subor:"sjl-e.pdf"},
+    {typ:"tlac", nadpis:"Píšeme", text:"Písané e a E na jednej strane. Najprv obťahovanie sivých písmen podľa šípky, potom bodky, potom samo. Na konci slabiky me, em, mé a slová máme, mama, mám. Stačí kúsok denne.", poznamka:"A4, čiernobiele. Zhora nadol je pomoc čoraz menšia. Píšte mäkkou ceruzkou.", subor:"sjl-pisanie-e.pdf"}
   ]},
 
 { id:"mat-nula", datum:"2026-11-11", predmet:"MAT", obr:"🍽️", kod:"MAT-CO-1",
