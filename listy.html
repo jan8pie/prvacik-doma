@@ -76,6 +76,8 @@ button{font:inherit;color:inherit}
 .skok a.pis{min-width:52px;font-size:17px;padding:0 10px}
 .skok a:hover{border-color:var(--c, var(--accent))}
 .skok a.teraz{border:2px solid var(--sjl);color:var(--sjl)}
+/* Myšou sa vodorovne posúvať nedá pohodlne: na počítači (a pri širšej obrazovke) sa pás zalomí do riadkov */
+@media (min-width:600px), (pointer:fine){.skok{flex-wrap:wrap;overflow:visible}}
 .stav{margin:0;color:var(--muted);font-size:15px}.stav:empty{display:none}
 
 /* Kapitola */
