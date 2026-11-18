@@ -1,7 +1,7 @@
 /* =====================================================================
    STAV TRIEDY – jediné miesto, kde je zapísané, čo trieda už preberala.
    Čítajú ho skripty sada.js (prehľad pred výrobou sady) a kontrola-kariet.js (kontrola kariet).
-   Na webe sa nenačíta.
+   Na webe ho číta len knižnica listov (listy.html): z poradia písmen skladá kapitoly Slovenčiny.
 
    KEDY UPRAVIŤ: hneď, keď Jan potvrdí nové písmeno, číslo alebo lekciu angličtiny.
    Do „pismena“ a „cisla“ patrí len to, čo je potvrdené (fotka, EduPage alebo Janova správa).
