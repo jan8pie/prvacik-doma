@@ -10,26 +10,27 @@
      Ostatné listy spred prvého písmena sú v kapitole „Skôr než písmená“.
    - Matematika: kapitoly podľa témy z mapy učiva (kod karty, napr. MAT-CO-4 = Rozklad čísla),
      v poradí, v akom sa téma prvý raz objavila. Vnútri kapitoly podľa dátumu.
+   Pás kapitol: na počítači sa zalamuje do riadkov, na dotykovom mobile sa posúva prstom.
    Hľadanie: bez diakritiky; jedno písmeno hľadá kapitolu písmena, číslica celé číslo.
    ===================================================================== */
 (() => {
 const TRIEDA = window.STAV_TRIEDY || {pismena:[], cisla:[]};
 const PREDMETY = {SJL:{n:"Slovenčina",c:"sjl"}, MAT:{n:"Matematika",c:"mat"}, ANJ:{n:"Angličtina",c:"anj"}, CAP:{n:"Človek a príroda",c:"cap"}};
 const TEMY_MAT = {
-  "MAT-CO-1":{t:"Čísla a počítanie", z:"1 2 3", p:"koľko je, písanie číslic"},
-  "MAT-CO-2":{t:"Porovnávame a poradie", z:"&lt; &gt;", p:"viac, menej, kto je prvý, číselný rad"},
-  "MAT-CO-3":{t:"Sčítanie a odčítanie", z:"+ −", p:"pridávame, uberáme, koľko je spolu"},
-  "MAT-CO-4":{t:"Rozklad čísla", z:"2|4", p:"číslo na dve časti"},
-  "MAT-CO-5":{t:"Príbehy s číslami", z:"?", p:"slovné úlohy, príklad k obrázku"},
-  "MAT-CO-6":{t:"Triedime a hľadáme", z:"✓", p:"patrí, nepatrí, pravda a nepravda"},
-  "MAT-ZV-1":{t:"Vzory", z:"◆●◆", p:"čo príde ďalej"},
-  "MAT-ZV-2":{t:"Čiarky a tabuľky", z:"||||", p:"zapisujeme a porovnávame údaje"},
-  "MAT-ZV-3":{t:"Čas a dni", z:"po ut", p:"dnes, včera, zajtra, dni v týždni"},
-  "MAT-GE-1":{t:"Tvary", z:"△○", p:"kruh, štvorec, trojuholník"},
-  "MAT-GE-2":{t:"Telesá", z:"▢", p:"kocka, guľa, valec"},
-  "MAT-GE-3":{t:"Hore, dole, vľavo, vpravo", z:"↔", p:"orientácia v priestore"},
-  "MAT-GE-4":{t:"Čiary a cesty", z:"〰", p:"rovná a krivá čiara"},
-  "MAT-GE-5":{t:"Skladáme tvary", z:"◧", p:"obrázky z tvarov"}
+  "MAT-CO-1":{k:"Čísla", t:"Čísla a počítanie", z:"1 2 3", p:"koľko je, písanie číslic"},
+  "MAT-CO-2":{k:"Porovnávame", t:"Porovnávame a poradie", z:"&lt; &gt;", p:"viac, menej, kto je prvý, číselný rad"},
+  "MAT-CO-3":{k:"Sčítanie a odčítanie", t:"Sčítanie a odčítanie", z:"+ −", p:"pridávame, uberáme, koľko je spolu"},
+  "MAT-CO-4":{k:"Rozklad", t:"Rozklad čísla", z:"2|4", p:"číslo na dve časti"},
+  "MAT-CO-5":{k:"Príbehy", t:"Príbehy s číslami", z:"?", p:"slovné úlohy, príklad k obrázku"},
+  "MAT-CO-6":{k:"Triedime", t:"Triedime a hľadáme", z:"✓", p:"patrí, nepatrí, pravda a nepravda"},
+  "MAT-ZV-1":{k:"Vzory", t:"Vzory", z:"◆●◆", p:"čo príde ďalej"},
+  "MAT-ZV-2":{k:"Tabuľky", t:"Čiarky a tabuľky", z:"||||", p:"zapisujeme a porovnávame údaje"},
+  "MAT-ZV-3":{k:"Čas", t:"Čas a dni", z:"po ut", p:"dnes, včera, zajtra, dni v týždni"},
+  "MAT-GE-1":{k:"Tvary", t:"Tvary", z:"△○", p:"kruh, štvorec, trojuholník"},
+  "MAT-GE-2":{k:"Telesá", t:"Telesá", z:"▢", p:"kocka, guľa, valec"},
+  "MAT-GE-3":{k:"Vľavo, vpravo", t:"Hore, dole, vľavo, vpravo", z:"↔", p:"orientácia v priestore"},
+  "MAT-GE-4":{k:"Čiary", t:"Čiary a cesty", z:"〰", p:"rovná a krivá čiara"},
+  "MAT-GE-5":{k:"Skladáme", t:"Skladáme tvary", z:"◧", p:"obrázky z tvarov"}
 };
 const UROVNE = [["●","Ľahšie"],["●●","Bežné"],["●●●","Výzva"]];
 
@@ -93,7 +94,7 @@ function kapitoly(predmet, listy){
     l.sort((a,b) => a.datum < b.datum ? -1 : a.datum > b.datum ? 1 : 0);
     let info;
     if(predmet === "SJL" && PISMENA.length) info = kapitolaSJLInfo(id);
-    else if(TEMY_MAT[id]) info = {nazov:TEMY_MAT[id].t, znak:TEMY_MAT[id].z, popis:TEMY_MAT[id].p};
+    else if(TEMY_MAT[id]) info = {nazov:TEMY_MAT[id].t, kratko:TEMY_MAT[id].k, znak:TEMY_MAT[id].z, popis:TEMY_MAT[id].p};
     else info = {nazov: predmet==="MAT" ? "Ďalšie listy" : "Všetky listy", znak:"", popis:""};
     const poradie = predmet === "SJL" && PISMENA.length ? (id==="sjl-pred" ? -1 : PISMENA.findIndex(p => "sjl-"+p.l === id)) : l[0].datum;
     return {id, listy:l, poradie, predmet, ...info};
@@ -201,7 +202,7 @@ function kresli(){
     $("stav").textContent = "";
     html = kap.map(kapitolaHtml).join("");
     $("skok").innerHTML = kap.map(k => `<a href="#k-${esc(k.id)}" class="${k.teraz?"teraz":""}${k.pismeno?" pis":""}" title="${esc(k.nazov)}">${
-      k.pismeno ? k.znak : k.ucho ? "Pred písmenami" : esc(k.nazov)}</a>`).join("");
+      k.pismeno ? k.znak : k.ucho ? "Pred písmenami" : esc(k.kratko || k.nazov)}</a>`).join("");
   }
   $("obsah").innerHTML = html;
 }
