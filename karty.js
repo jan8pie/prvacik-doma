@@ -12,6 +12,7 @@
    Angličtina zatiaľ bez pracovných listov na tlač, len aktivity so zvukom.
    Na tlač: {typ:"tlac", urovne:3, text:"…", subor:"id-karty.pdf"} = list v 3 úrovniach
    (●○○ Ľahšie, ●●○ Bežné, ●●● Výzva). Súbory tlac/pdf/id-karty-1.pdf … -3.pdf a .png vyrobí tlac/vyrob-pdf.js.
+   Píšeme (list na písané písmo, 1 strana): {typ:"tlac", nadpis:"Píšeme", text:"…", poznamka:"…", subor:"sjl-pisanie-o.pdf"}
 
    predmet: SJL, MAT, ANJ, CAP
    obr:     obrázok karty, jeden znak (emoji), ktorý vystihuje tému. Ak chýba, web si vezme prvý z obsahu karty.
@@ -164,6 +165,7 @@ window.KARTY = [
      slova:[["","o"],["","mo"],["","lo"],["","jo"],["","om"],["","ol"]]},
     {typ:"hadanka", text:"Je zo skla a je v každej izbe. Cez deň ním ide dnu svetlo. Začína sa na O. Čo je to?", odpoved:"Okno"},
     {typ:"hadanka", text:"Je biely a mäkký ako vata a pláva po oblohe. Začína sa na O. Čo je to?", odpoved:"Oblak ☁️"},
+    {typ:"tlac", nadpis:"Píšeme", text:"Písané o a O na jednej strane. Najprv obťahovanie sivých písmen podľa šípky, potom bodky, potom samo. Na konci slabiky mo, lo a slová molo, malo, lom, olej. Stačí kúsok denne.", poznamka:"A4, čiernobiele. Zhora nadol je pomoc čoraz menšia. Píšte mäkkou ceruzkou.", subor:"sjl-pisanie-o.pdf"},
     {typ:"rozhovor", zacni:"„Poviem slovo a ty mi povieš, či sa začína na O. Pozor, budem ťa chcieť nachytať.“",
      otazky:["Začína sa na O slovo oko? A slovo mama?","Povedz tri veci, ktoré sa začínajú na O. Môžeš sa poobzerať po izbe.","Kde počuješ O v slove lano: na začiatku, alebo na konci? A v slove oko?"],
      preteba:"V škole sa tomu hovorí prvá hláska slova. Hlásku vyslovujte krátko a čisto „o“, nie „ó“. V slove oko je O na začiatku aj na konci, to je pekný objav pre šikovné uši. Písmeno O sa píše ako krúžok, veľké aj malé vyzerá rovnako."}
