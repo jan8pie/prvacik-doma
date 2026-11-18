@@ -355,6 +355,9 @@ const OBR = {
   pierko:"<path class=\"w\" d=\"M80 12 C52 16 28 40 24 80 C44 74 72 56 80 12 Z\"/><path d=\"M16 90 L72 24\"/><path d=\"M40 62 L30 58 M48 52 L36 44 M56 42 L46 32 M50 58 L60 60 M58 48 L68 48 M64 38 L72 36\" style=\"stroke-width:1.6\"/>"
 };
 </script>
+<script>var module = {exports:{}};</script>
+<script src="stav.js"></script>
+<script>window.STAV_TRIEDY = module.exports;</script>
 <script>
 /* =====================================================================
    PÍSMENKOVÉ KOCKY (stránka pismenka.html, odkaz v hlavičke webu)
@@ -380,14 +383,18 @@ const jeDlha = ch => ch.toLowerCase() in DLHA;
 const KRATKE = ["a","e","i","o","u","y"];
 /* poradie podľa šlabikára (A, M, E, L, I sú prebraté), potom ostatné */
 const PORADIE = "A M E L I J O S U V N Y P T K Z R D B H C G Š Č Ž Ň Ť Ľ".split(" ");
-const SKOLA = ["A","M","E","L","I"];
+/* písmená prebrané v škole sa čítajú zo stav.js (jedno miesto pre celý web); keď sa nenačíta, platí záloha */
+const SKOLA = (()=>{ try{ const dnes=new Date().toISOString().slice(0,10), t=(window.STAV_TRIEDY||{}).pismena||[];
+  const z=new Set(t.filter(x=>x[0]<=dnes).flatMap(x=>[...x[1].toUpperCase()]).map(c=>DLHA[c.toLowerCase()]?DLHA[c.toLowerCase()].toUpperCase():c));
+  const r=PORADIE.filter(x=>z.has(x)); if(r.length>=2) return r; }catch(e){}
+  return ["A","M","E","L","I"]; })();
 const MAKKE = new Set(["š","ž","č","c","j"]);
 const BEZ_SLABIK = new Set(["ň","ť","ľ","ď"]);
 
 /* slová na čítanie: slabiky oddelené pomlčkou, obrázok, 1 = meno */
 const SLOVA = [
   ["ma-ma","mama"],["la-ma","lama"],["E-ma","dievca",1],["E-la","dievca",1],["Li-li","dievca",1],["Mi-la","dievca",1],
-  ["E-mil","chlapec",1],["ma-lá",""],["Ma-ja","dievca",1],["Sa-mo","chlapec",1],["Mi-lo","chlapec",1],["Ju-lo","chlapec",1],
+  ["E-mil","chlapec",1],["ma-lá",""],["mo-je",""],["a-le",""],["ma-lé",""],["o-lej",""],["Je-la","dievca",1],["E-li","dievca",1],["Le-a","dievca",1],["Mi-a","dievca",1],["Ma-ja","dievca",1],["Sa-mo","chlapec",1],["Mi-lo","chlapec",1],["Ju-lo","chlapec",1],
   ["mi-sa","misa"],["ja-ma","jama"],["o-sa","osa"],["jo-jo","jojo"],["so-va","sova"],["o-ko","oko"],["pí-la","pila"],["ru-ka","ruka"],["ry-ba","ryba"],
   ["vá-za","vaza"],["au-to","auto"],["ko-ru-na","koruna"],["ma-li-na","malina"],["mi-mi-no","mimino"],["la-vi-ca","lavica"],
   ["me-lón","melon"],["ma-mut","mamut"],["lam-pa","lampa"],["lop-ta","lopta"],["kot-va","kotva"],["je-leň","jelen"],
