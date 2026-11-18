@@ -148,7 +148,7 @@ function dlazdica(x){
         `<a href="${pdf}-${j+1}.pdf" data-img="${pdf}-${j+1}.png" target="_blank" rel="noopener" aria-label="Úroveň ${t} (PDF)"><b>${d}</b><small>${t}</small></a>`).join("")}</div>` : ""}
       <div class="akcie">
         <a class="btn primary" href="${pdf}.pdf" download target="_blank" rel="noopener">${IKONA.tlac}${tri ? "Stiahnuť všetky 3" : "Stiahnuť PDF"}</a>
-        <a class="btn ghost" href="./#${esc(x.k.id)}" aria-label="Otvoriť kartu ${esc(x.k.nazov)}">${IKONA.karta}Karta</a>
+        <a class="btn ghost" href="./#${esc(x.k.id)}" title="Otvoriť kartu" aria-label="Otvoriť kartu ${esc(x.k.nazov)}">${IKONA.karta}Karta</a>
       </div>
     </div>
   </article>`;
