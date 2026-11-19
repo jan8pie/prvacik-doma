@@ -1,0 +1,82 @@
+/* Ťukaj a povedz (ANJ) – vzhľad (triedy tk-). Farby a písma ako slovník, zelená = angličtina.
+   Rozloženie: hlavička, pod ňou celá scéna izby na šírku (SVG 1200 × 700), pod ňou krátky pokyn. */
+:root{
+  --bg:#EDF1F5; --card:#FFFFFF; --ink:#1C2633; --muted:#5A6676; --line:#D8DFE7;
+  --anj:#24865A; --anj-soft:#DDF0E5; --anj-ink:#FFFFFF; --warn:#9A5B0C; --warn-soft:#FCEFD9;
+  --f-head:"Lexend","Trebuchet MS",system-ui,sans-serif;
+  --f-body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
+  --f-word:"Andika","Comic Sans MS","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12171E; --card:#1B222C; --ink:#E7ECF2; --muted:#9AA6B5; --line:#2D3745;
+  --anj:#5BC48F; --anj-soft:#1E3A2C; --anj-ink:#0D1A13; --warn:#E8B25E; --warn-soft:#3A2D18; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12171E; --card:#1B222C; --ink:#E7ECF2; --muted:#9AA6B5; --line:#2D3745;
+  --anj:#5BC48F; --anj-soft:#1E3A2C; --anj-ink:#0D1A13; --warn:#E8B25E; --warn-soft:#3A2D18; color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5}
+h1{font-family:var(--f-head);font-weight:700}
+.tk-wrap{max-width:1100px;margin:0 auto;padding-block:12px 28px;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));display:flex;flex-direction:column;gap:12px}
+.tk-oznam{background:var(--warn-soft);color:var(--warn);border-radius:12px;padding:10px 14px;font-size:15px}
+.tk-nast{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin-top:10px}
+.tk-seg{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.tk-seg span{font-weight:700;color:var(--muted);margin-right:2px}
+.tk-seg button,.tk-zmen{font:inherit;font-size:15px;min-height:36px;padding:4px 12px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.tk-seg button[aria-pressed="true"]{background:var(--anj);border-color:var(--anj);color:var(--anj-ink);font-weight:700}
+.tk-seg button:focus-visible,.tk-zmen:focus-visible,.tk-volba button:focus-visible{outline:3px solid var(--anj);outline-offset:2px}
+
+.tk-scena{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#E6F0FB}
+.tk-scena svg{display:block;width:100%;height:auto;max-height:calc(100vh - 150px);user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent}
+.tk-pokyn{margin:0;color:var(--muted);text-align:center}
+
+/* veci a postavy */
+.vec,.bot,.postava{cursor:pointer}
+.vec .tvar{transition:transform .25s ease}
+.vec:hover .tvar{transform:scale(1.04)}
+.vec.zvyrazni .tvar{animation:tk-pulz .7s ease 2}
+@keyframes tk-pulz{50%{transform:scale(1.18)}}
+.vec .pohyb{transform-box:fill-box;transform-origin:center;transition:transform .8s cubic-bezier(.4,.1,.3,1)}
+.vec .farba{transition:fill .35s ease}
+.postava .telo{transition:transform .2s}
+.postava.hovori .telo{animation:tk-hop .5s ease-in-out infinite alternate}
+@keyframes tk-hop{to{transform:translateY(-6px)}}
+.usta-o{display:none}
+.vec:focus,.bot:focus{outline:none}
+.vec:focus-visible .tvar,.bot:focus-visible .telo-bot{outline:4px solid #24865A;outline-offset:4px}
+.postava.hovori .usta-o{display:block;animation:tk-usta .28s steps(2) infinite}
+.postava.hovori .usta-z{display:none}
+@keyframes tk-usta{50%{opacity:0}}
+.ruka{transform-box:fill-box;transform-origin:50% 6%;transition:transform .35s ease}
+.postava.p-ukazuje .ruka-in{transform:rotate(var(--uk))}
+.postava.p-pyta .ruka-in{transform:rotate(var(--py))}
+.postava.p-podava .ruka-in{transform:rotate(var(--po))}
+.postava.p-mava .ruka-von{animation:tk-mav .4s ease-in-out 3 alternate}
+@keyframes tk-mav{from{transform:rotate(var(--mv1))}to{transform:rotate(var(--mv2))}}
+.oci{transform-box:fill-box;transform-origin:center;animation:tk-zmurk 5s infinite}
+@keyframes tk-zmurk{0%,94%,100%{transform:scaleY(1)}96%{transform:scaleY(.1)}}
+.postava.tvoj-rad .kruh{display:block}
+.kruh{display:none;transform-box:fill-box;transform-origin:center;animation:tk-kruh 1s ease-in-out infinite}
+@keyframes tk-kruh{50%{transform:scale(1.12);opacity:.55}}
+.bot.hovori .bot-oci{animation:tk-usta .3s steps(2) infinite}
+.bot.hovori .anten{fill:#7CF29B}
+.bot.tanec .telo-bot,.postava.tanec .telo{animation:tk-hop .38s ease-in-out infinite alternate}
+
+/* bubliny */
+.bub{pointer-events:none;transition:opacity .25s}
+.bub.skryta{opacity:0}
+.bub rect{fill:#FFFFFF;stroke:#1F2433;stroke-width:4}
+.bub path{fill:#FFFFFF;stroke:#1F2433;stroke-width:4;stroke-linejoin:round}
+.bub text{font-family:var(--f-word);font-size:38px;font-weight:700;fill:#1F2433}
+
+/* štart */
+[hidden]{display:none !important}
+.tk-start{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:rgba(230,240,251,.86);padding:16px}
+.tk-otazka{font-family:var(--f-head);font-weight:700;font-size:clamp(20px,3.6vw,30px);margin:0;color:#1C2633}
+.tk-volba{display:flex;gap:clamp(12px,4vw,40px)}
+.tk-volba button{display:flex;flex-direction:column;align-items:center;gap:2px;background:#FFFFFF;border:3px solid #1F2433;border-radius:20px;padding:10px 14px 8px;cursor:pointer;font-family:var(--f-head);font-weight:700;font-size:clamp(18px,3vw,24px);color:#1C2633}
+.tk-volba button:hover{border-color:#24865A}
+.tk-volba svg{width:clamp(80px,14vw,130px);height:auto}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation:none !important;transition:none !important}
+}
