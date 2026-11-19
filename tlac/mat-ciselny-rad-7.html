@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="sk"><head><meta charset="utf-8"><title>Číselný rad do 7 – pracovný list na týždeň (3 úrovne)</title>
+<link rel="stylesheet" href="list.css">
+<style>
+  .rady{display:grid;grid-template-columns:repeat(3,1fr);gap:3mm}
+  .rady>div{display:flex;gap:1.2mm;justify-content:center}
+  .rady span{width:11mm;height:11mm;border:1.4px solid #111;border-radius:2mm;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700}
+  .rady span.p{border-style:dashed}
+  .spolu{display:flex;flex-direction:column;gap:2.5mm}
+  .spolu>div{display:flex;align-items:center;gap:2mm;font-size:24px;font-weight:700}
+  .spolu .pic{width:10mm;height:10mm;stroke-width:5}
+  .spolu .sk{display:flex;gap:.6mm}
+  .spolu .eq{margin-left:auto;display:flex;align-items:center;gap:1.5mm;white-space:nowrap}
+  .spolu .okno{width:10.5mm;height:10.5mm}
+  .kocky-rad{display:flex;justify-content:space-around}
+  .kocky-rad>div{display:flex;flex-direction:column;align-items:center;gap:2mm;font-size:23px;font-weight:700}
+  .kocky-rad .eq{display:flex;align-items:center;gap:1.2mm;white-space:nowrap}
+  .kocky-rad .okno{width:10mm;height:10mm}
+  .priklady{display:grid;grid-template-columns:1fr 1fr 1fr;gap:4mm 6mm}
+  .priklady>div{display:flex;align-items:center;gap:1.5mm;font-size:25px;font-weight:700;white-space:nowrap}
+  .priklady .okno{width:11mm;height:11mm}
+  .hadanky{display:flex;flex-direction:column;gap:1.6mm}
+  .hadanky>div{display:flex;align-items:center;gap:4mm;font-size:18px;font-weight:700;border-bottom:1px dotted #bbb;padding-bottom:1.2mm}
+  .hadanky>div:last-child{border:none;padding-bottom:0}
+  .hadanky .tx{flex:1}
+  .trojica{display:flex;align-items:center;gap:8mm}
+  .trojica .priklady{flex:1;grid-template-columns:1fr 1fr;gap:3mm 5mm}
+  .trojica .priklady>div{font-size:22px}
+  .trojica .priklady .okno{width:10mm;height:10mm}
+  .bus{display:flex;align-items:center;gap:6mm}
+  .bus .eq{margin-left:auto;display:flex;align-items:center;gap:1.5mm;font-size:24px;font-weight:700}
+  .bus .eq .okno{width:10.5mm;height:10.5mm}
+  .pyr-rad{display:flex;justify-content:space-around}
+  .pyr{display:flex;flex-direction:column;align-items:center;gap:1mm}
+  .pyr>div{display:flex;gap:1mm}
+  .pyr span{width:13mm;height:10mm;border:1.4px solid #111;display:flex;align-items:center;justify-content:center;font-size:21px;font-weight:700}
+  .pyr span.p{border-style:dashed}
+  .znak .okno{width:9mm;height:9mm}
+  .chyba{display:flex;flex-direction:column;gap:2mm}
+  .chyba>div{display:flex;gap:2.5mm;font-size:24px;font-weight:700;justify-content:center}
+</style></head>
+<body>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 1 – ĽAHŠIE                                                     -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="1">
+  <header class="hlava" data-predmet="Matematika">Číselný rad od 0 do 7</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Dopíš čísla, ktoré chýbajú.</span></div>
+    <div class="plocha"><i os="0 7" skry="1 4 6"></i></div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Susedia: napíš číslo, ktoré stojí pred, a číslo, ktoré stojí za.</span></div>
+    <div class="plocha rady">
+      <div><span class="p"></span><span>3</span><span class="p"></span></div>
+      <div><span class="p"></span><span>6</span><span class="p"></span></div>
+      <div><span class="p"></span><span>1</span><span class="p"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Koľko je spolu? Dopíš.</span></div>
+    <div class="plocha spolu">
+      <div><span class="sk"><i o="jahoda" n="3"></i></span>+<span class="sk"><i o="jahoda" n="2"></i></span><span class="eq">3 + 2 = <span class="okno"></span></span></div>
+      <div><span class="sk"><i o="jablko" n="4"></i></span>+<span class="sk"><i o="jablko" n="3"></i></span><span class="eq">4 + 3 = <span class="okno"></span></span></div>
+      <div><span class="sk"><i o="oriesok" n="1"></i></span>+<span class="sk"><i o="oriesok" n="5"></i></span><span class="eq">1 + 5 = <span class="okno"></span></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Prečiarknuté bodky sme zobrali. Koľko bodiek ostalo? Dopíš.</span></div>
+    <div class="plocha kocky-rad">
+      <div><i kocka="6" x="6"></i><span class="eq">6 − 6 = <span class="okno"></span></span></div>
+      <div><i kocka="5" x="3"></i><span class="eq">5 − 3 = <span class="okno"></span></span></div>
+      <div><i kocka="4" x="2"></i><span class="eq">4 − 2 = <span class="okno"></span></span></div>
+      <div><i kocka="6" x="1"></i><span class="eq">6 − 1 = <span class="okno"></span></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">5</span><span>Porovnaj. Napíš znak &lt;, &gt; alebo =.</span></div>
+    <div class="plocha priklady">
+      <div>7 <span class="okno"></span> 5</div>
+      <div>0 <span class="okno"></span> 3</div>
+      <div>6 <span class="okno"></span> 6</div>
+      <div>2 <span class="okno"></span> 7</div>
+      <div>4 <span class="okno"></span> 1</div>
+      <div>0 <span class="okno"></span> 0</div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> List patrí k celému týždňu, netreba ho urobiť naraz. Pri susedoch pomáha povedať rad nahlas od nuly. V úlohe 4 dieťa počíta bodky, ktoré nie sú prečiarknuté. Keď sú prečiarknuté všetky, ostane nula.
+      <b>Riešenie:</b> 1 – 1, 4, 6 · 2 – 2 a 4, 5 a 7, 0 a 2 · 3 – 5, 7, 6 · 4 – 0, 2, 2, 5 · 5 – &gt;, &lt;, =, &lt;, &gt;, =.
+      <span class="std">MAT-CO-2 · ŠVP MAT, Čísla a operácie s číslami: „porozumenie a modelovanie čísel ako počtu prvkov množiny, ako poradie, ako predchodcu alebo nasledovníka“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 2 – BEŽNÉ                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="2">
+  <header class="hlava" data-predmet="Matematika">Plus a mínus do 7</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Žabka skáče po číselnom rade. Kde skončí? Napíš číslo.</span></div>
+    <div class="plocha" style="display:flex;flex-direction:column;gap:2mm">
+      <i os="0 7"></i>
+      <div class="hadanky">
+        <div><span class="tx">Sedí na 2 a skočí o 3 dopredu.</span><span class="okno m"></span></div>
+        <div><span class="tx">Sedí na 7 a skočí o 4 dozadu.</span><span class="okno m"></span></div>
+        <div><span class="tx">Sedí na 4 a skočí o 3 dopredu.</span><span class="okno m"></span></div>
+        <div><span class="tx">Sedí na 6 a skočí o 6 dozadu.</span><span class="okno m"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Vypočítaj.</span></div>
+    <div class="plocha priklady">
+      <div>4 + 2 = <span class="okno"></span></div>
+      <div>7 − 2 = <span class="okno"></span></div>
+      <div>3 + 4 = <span class="okno"></span></div>
+      <div>7 − 6 = <span class="okno"></span></div>
+      <div>5 + 1 = <span class="okno"></span></div>
+      <div>6 − 3 = <span class="okno"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>K jednému dominu patria štyri príklady. Dopíš ich.</span></div>
+    <div class="plocha trojica">
+      <i domino="2 5"></i>
+      <div class="priklady">
+        <div><span class="okno"></span> + <span class="okno"></span> = <span class="okno"></span></div>
+        <div><span class="okno"></span> + <span class="okno"></span> = <span class="okno"></span></div>
+        <div><span class="okno"></span> − <span class="okno"></span> = <span class="okno"></span></div>
+        <div><span class="okno"></span> − <span class="okno"></span> = <span class="okno"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>V autobuse sedia 3 deti. Na zastávke pristúpia ešte 4 deti. Koľko detí je teraz v autobuse? Napíš príklad.</span></div>
+    <div class="plocha bus">
+      <i o="autobus" class="l"></i>
+      <span class="eq"><span class="okno"></span> + <span class="okno"></span> = <span class="okno"></span></span>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> List patrí k celému týždňu, stačia jedna alebo dve úlohy denne. V úlohe 1 môže dieťa skákať prstom po rade a počítať skoky. Úloha 3 ukazuje, že plus a mínus patria k sebe: dve časti dajú spolu celok, a keď časť zoberieme, ostane druhá.
+      <b>Riešenie:</b> 1 – 5, 3, 7, 0 · 2 – 6, 5, 7, 1, 6, 3 · 3 – 2 + 5 = 7, 5 + 2 = 7, 7 − 2 = 5, 7 − 5 = 2 · 4 – 3 + 4 = 7.
+      <span class="std">MAT-CO-3 · ŠVP MAT, Čísla a operácie s číslami: „znalosť a používanie statických a dynamických modelov sčítania a odčítania“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 3 – VÝZVA                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="3">
+  <header class="hlava" data-predmet="Matematika">Číselný detektív</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Pyramída: v každej tehle je súčet dvoch tehiel pod ňou. Dopíš prázdne tehly.</span></div>
+    <div class="plocha pyr-rad">
+      <div class="pyr">
+        <div><span class="p"></span></div>
+        <div><span class="p"></span><span class="p"></span></div>
+        <div><span>1</span><span>2</span><span>3</span></div>
+      </div>
+      <div class="pyr">
+        <div><span>7</span></div>
+        <div><span>4</span><span class="p"></span></div>
+        <div><span>3</span><span class="p"></span><span>2</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Tajné znamienko: napíš + alebo −.<span class="pozn">Pozor, v jednom príklade platia obe znamienka.</span></span></div>
+    <div class="plocha priklady znak">
+      <div>5 <span class="okno"></span> 2 = 7</div>
+      <div>7 <span class="okno"></span> 2 = 5</div>
+      <div>4 <span class="okno"></span> 4 = 0</div>
+      <div>3 <span class="okno"></span> 4 = 7</div>
+      <div>8 <span class="okno"></span> 1 = 7</div>
+      <div>6 <span class="okno"></span> 0 = 6</div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>V každom rade sa skrýva chyba. Nájdi číslo, ktoré tam nepatrí, a prečiarkni ho.</span></div>
+    <div class="plocha chyba">
+      <div><span>0</span><span>1</span><span>2</span><span>2</span><span>3</span><span>4</span></div>
+      <div><span>7</span><span>6</span><span>5</span><span>1</span><span>3</span><span>2</span></div>
+      <div><span>3</span><span>4</span><span>5</span><span>8</span><span>7</span><span>8</span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Pravda alebo nie? Ak to platí, nakresli ✓. Ak nie, nakresli ✗.</span></div>
+    <div class="plocha hadanky">
+      <div><span class="tx">7 − 0 = 0</span><span class="okno m"></span></div>
+      <div><span class="tx">3 + 4 = 4 + 3</span><span class="okno m"></span></div>
+      <div><span class="tx">Za číslom 7 stojí v rade číslo 8.</span><span class="okno m"></span></div>
+      <div><span class="tx">6 + 1 je menej ako 7.</span><span class="okno m"></span></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Výzva skúša, či dieťa rozmýšľa, nielen počíta. Zadania mu prečítajte. Pri pyramíde vpravo treba myslieť dozadu: koľko chýba do 4 a do 7. Pri tajnom znamienku pomáha otázka: výsledok je väčší, alebo menší? Nechajte dieťa vysvetliť, ako na odpoveď prišlo.
+      <b>Riešenie:</b> 1 – vľavo 3, 5 a hore 8; vpravo 1 dole a 3 v strede · 2 – +, −, −, +, −, + aj − · 3 – navyše je druhá 2; 1 (má tam byť 4); prvá 8 (má tam byť 6) · 4 – ✗, ✓, ✓, ✗.
+      <span class="std">MAT-CO-3 · ŠVP MAT, Čísla a operácie s číslami: „znalosť a používanie statických a dynamických modelov sčítania a odčítania“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<script src="obrazky.js"></script><script src="nastroje.js"></script>
+</body></html>
