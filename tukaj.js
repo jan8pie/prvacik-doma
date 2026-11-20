@@ -24,8 +24,9 @@ const MUZSKE = /\bmale|george|david|mark|ryan|guy|daniel|arthur|oliver|thomas|al
 const jeZensky = v => ZENSKE.test(v.name) && !/\bmale/i.test(v.name.replace(/female/i,""));
 const jeMuzsky = v => MUZSKE.test(v.name) && !/female/i.test(v.name);
 function hlasPodla(en, test){
-  /* hlasy z Androidu (mená ako en-us-x-sfg#female_1-local) často nie sú stiahnuté a mlčia; tie nechávame na predvolený hlas */
-  const vhodne = en.filter(v => !/#|-x-/.test(v.name)).filter(test);
+  /* len hlasy počítača (Windows, Chrome, Edge). Na telefóne a tablete zostáva jeden predvolený hlas ako v slovníku,
+     postavy sa tam líšia len výškou hlasu (hlasy Androidu a iPhonu s menom často nie sú stiahnuté a mlčia). */
+  const vhodne = en.filter(v => /^(Microsoft|Google)\s/.test(v.name)).filter(test);
   return najlepsi(vhodne.filter(v=>jazyk(v)==="en-gb")) || najlepsi(vhodne.filter(v=>jazyk(v)==="en-us")) || najlepsi(vhodne) || null;
 }
 const kvalita = v => (/google|natural|neural|online|premium|enhanced/i.test(v.name) ? 2 : 0) + (v.localService ? 1 : 0)
