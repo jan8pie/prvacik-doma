@@ -16,6 +16,7 @@ const ulozNast = () => { try{ localStorage.setItem("tukaj-nast", JSON.stringify(
 /* ---------------- hlas (rovnaký výber ako v slovníku) ---------------- */
 const MA_REC = "speechSynthesis" in window;
 let HLAS = null, HLAS_SK = null, hlasyHotove = false;
+let zlyhania = 0, zaseknutyOznam = false;   /* počítadlo viet, ktoré sa nerozbehli (pozri zapisVysledok) */
 /* Hlas pre každú postavu zvlášť: Ema ženský, Ben a Bot mužský, ak ich zariadenie má.
    Firefox vo Windows nemení výšku hlasu (pitch), preto bez tohto výberu hovorila Ema mužským hlasom. */
 let HLAS_P = {};
@@ -54,11 +55,22 @@ function ukazOznam(){
   const el = $("oznam");
   if(!MA_REC){ el.innerHTML = "<b>Tento prehliadač nevie čítať nahlas.</b> Otvor stránku v Chrome, Safari alebo Edge. Vety sa zatiaľ len ukážu v bublinách."; el.hidden = false; return; }
   if(!HLAS && hlasyHotove){ el.innerHTML = "<b>Na tomto zariadení chýba anglický hlas.</b> Pridaj ho rovnako ako pri Obrázkovom slovníku (Nastavenia → hlasy → English, United Kingdom) a stránku obnov."; el.hidden = false; return; }
-  el.hidden = true;
+  if(!zaseknutyOznam) el.hidden = true;
 }
 /* Výška hlasu odlišuje postavy. Bot je hlbší a pomalší. */
 const HLASY = { ema:{pitch:1.25, rate:1}, ben:{pitch:0.95, rate:1}, bot:{pitch:0.55, rate:0.9}, sk:{pitch:1, rate:1} };
 let hovorId = 0;
+/* Hlas v telefóne sa niekedy zasekne (mlčí aj slovník, hudba hrá). Keď sa veta dvakrát po sebe nerozbehne,
+   povieme rodičovi, nech prehliadač zavrie a otvorí znova. Zrušené vety (ťuk počas reči) sa nepočítajú. */
+function zapisVysledok(zacal){
+  const el = $("oznam");
+  if(zacal){ zlyhania = 0; if(zaseknutyOznam){ zaseknutyOznam = false; el.hidden = true; } return; }
+  if(++zlyhania >= 2 && !zaseknutyOznam && el.hidden){
+    zaseknutyOznam = true;
+    el.innerHTML = "<b>Hlas sa nespustil.</b> Zatvor prehliadač (aj z prehľadu otvorených aplikácií) a otvor stránku znova. Ak hrá hudba, ale hlas nie, zasekol sa hlas v zariadení.";
+    el.hidden = false;
+  }
+}
 function povedz(text, kto){
   const id = ++hovorId, sk = kto==="sk";
   try{
@@ -76,6 +88,7 @@ function povedz(text, kto){
         if(hotovo) return; hotovo = true; clearTimeout(poistka);
         /* hlas postavy nezačal hovoriť: odteraz pre ňu predvolený hlas a vetu skúsime znova */
         if(!v && !zacal && !sk && hlas !== HLAS && HLAS && id===hovorId){ HLAS_P[kto] = HLAS; res(povedz(text, kto)); return; }
+        if(id===hovorId) zapisVysledok(zacal);
         res(v && id===hovorId);
       };
       const kontrola = () => { if(ss.speaking && Date.now()-od < 12000) poistka = setTimeout(kontrola, 250); else koniec(zacal); };
