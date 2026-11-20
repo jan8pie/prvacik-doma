@@ -243,7 +243,7 @@ const BUB_POS = {ema:POZICIE.ema.bub, ben:POZICIE.ben.bub, bot:[690,470]};
 const gBub = {};
 for(const kto of ["ema","ben","bot"]){
   const g = el("g", {class:"bub skryta"});
-  g.appendChild(el("path")); g.appendChild(el("rect", {rx:"22"})); g.appendChild(el("text", {"text-anchor":"middle", "dominant-baseline":"central"}));
+  g.appendChild(el("path")); g.appendChild(el("rect", {rx:"22"})); g.appendChild(el("text", {"text-anchor":"middle"}));
   svg.appendChild(g); gBub[kto] = g;
 }
 let bubTimer = {};
@@ -262,7 +262,7 @@ function ukazBublinu(kto, text, s, nadlho){
   let w = 120;
   try{ w = Math.max(90, t.getComputedTextLength() + 56); }catch(e){}
   const x = Math.max(8, Math.min(1192 - w, cx - w/2)), h = 68;
-  t.setAttribute("x", x + w/2); t.setAttribute("y", cy);
+  t.setAttribute("x", x + w/2); t.setAttribute("y", cy + 13);   /* bežná základná čiara: dominant-baseline Firefox nededí do farebných slov (tspan) */
   const r = g.querySelector("rect"); r.setAttribute("x", x); r.setAttribute("y", cy - h/2); r.setAttribute("width", w); r.setAttribute("height", h);
   const chvost = kto==="bot" ? cx : Math.max(x+30, Math.min(x+w-30, cx));
   g.querySelector("path").setAttribute("d", `M${chvost-14} ${cy+h/2-4} L${chvost} ${cy+h/2+22} L${chvost+14} ${cy+h/2-4} Z`);
