@@ -9,7 +9,7 @@ const $ = id => document.getElementById(id);
 const svg = $("svg");
 
 /* ---------------- nastavenia ---------------- */
-const NAST = {tempo:0.7, opakuj:true, kamarat:null};
+const NAST = {tempo:0.7, rola:true, kamarat:null};
 try{ Object.assign(NAST, JSON.parse(localStorage.getItem("tukaj-nast")||"{}")); }catch(e){}
 const ulozNast = () => { try{ localStorage.setItem("tukaj-nast", JSON.stringify(NAST)); }catch(e){} };
 
@@ -261,12 +261,16 @@ const clen = slovo => /^[aeiou]/i.test(slovo) ? "an" : "a";
 function vyplnText(en, s){
   if(!s) return en;
   return en.replace("{a_vec}", clen(s.vec.en)+" "+s.vec.en)
+           .replace("{a_farba}", clen(s.farba.en)+" "+s.farba.en)
            .replace("{A_farba}", (clen(s.farba.en)==="an"?"An":"A")+" "+s.farba.en)
            .replace(/\{farba\}/g, s.farba.en).replace(/\{vec\}/g, s.vec.en);
 }
 
 /* ---------------- prehrávanie ---------------- */
 let beh = 0;
+/* kým postavy hovoria, ďalšie ťuky nič nerobia (netrpezlivé ťukanie by hlas usekávalo) */
+let zaneprazdnene = false;
+function nastavZaneprazdnene(v){ zaneprazdnene = v; svg.classList.toggle("caka", v); }
 const kto2 = r => r.kto==="hlavny" ? NAST.kamarat : r.kto==="druhy" ? (NAST.kamarat==="ema"?"ben":"ema") : r.kto;
 function poza(kto, p){
   const g = gPostava[kto]; if(!g || kto==="bot") return;
@@ -274,7 +278,7 @@ function poza(kto, p){
   if(p) g.classList.add("p-"+p);
 }
 function stichni(){
-  beh++; hovorId++;
+  beh++; hovorId++; nastavZaneprazdnene(false);
   try{ speechSynthesis.cancel(); }catch(e){}
   for(const k in gPostava) gPostava[k].classList.remove("hovori","tvoj-rad","tanec","p-ukazuje","p-pyta","p-podava","p-mava");
   for(const id in STAV){ STAV[id].pohyb.style.transform = ""; STAV[id].g.classList.remove("zvyrazni"); }
@@ -299,6 +303,11 @@ function akcia(a, s, kto){
   if(a==="vrat") setTimeout(()=>{ s.pohyb.style.transform = ""; }, 1300);
 }
 async function prehraj(riadky, s, id){
+  nastavZaneprazdnene(true);
+  try{ await prehrajRiadky(riadky, s, id); }
+  finally{ if(id === beh) nastavZaneprazdnene(false); }
+}
+async function prehrajRiadky(riadky, s, id){
   for(const r of riadky){
     if(id !== beh) return;
     const kto = kto2(r);
@@ -307,7 +316,7 @@ async function prehraj(riadky, s, id){
     poza(kto, r.poza);
     if(r.akcia==="podaj") akcia("podaj", s, kto);
     /* prevzatie roly: od 3. kola kamarát odpoveď najprv nepovie */
-    if(r.rola && s && s.kola >= 2 && NAST.opakuj){
+    if(r.rola && s && s.kola >= 2 && NAST.rola){
       gPostava[kto].classList.add("tvoj-rad");
       ukazBublinu(kto, "?", null, pauzaNa(text) + 400);
       await pockaj(pauzaNa(text));
@@ -316,7 +325,7 @@ async function prehraj(riadky, s, id){
     }
     if(!await hovor(kto, text, s, id)) return;
     if(r.akcia && r.akcia!=="podaj") akcia(r.akcia, s, kto);
-    if(r.opakuj && NAST.opakuj){
+    if(r.opakuj){
       /* pauza na zopakovanie, potom to isté ešte raz ako vzor */
       gPostava[kto].classList.add("tvoj-rad");
       await pockaj(pauzaNa(text));
@@ -332,7 +341,7 @@ async function prehraj(riadky, s, id){
   }
 }
 function tukVec(idVeci){
-  if(!NAST.kamarat) return;
+  if(!NAST.kamarat || zaneprazdnene) return;
   const s = STAV[idVeci];
   stichni(); skryBubliny();
   const id = beh;
@@ -344,7 +353,7 @@ function tukVec(idVeci){
 }
 let botKrok = 0;
 function tukBot(){
-  if(!NAST.kamarat) return;
+  if(!NAST.kamarat || zaneprazdnene) return;
   stichni(); skryBubliny();
   const id = beh, riadky = SCENA.bot[botKrok];
   botKrok = (botKrok + 1) % SCENA.bot.length;
@@ -376,6 +385,7 @@ function zacni(kto){
   const id = beh;
   const veta = "Ťukaj na veci a opakuj " + SKLON[kto] + ".";
   $("pokyn").textContent = veta;
+  nastavZaneprazdnene(true);
   povedz(veta, "sk").then(async ()=>{
     if(id!==beh) return;
     await pockaj(300);
@@ -387,10 +397,10 @@ $("btnZmen").addEventListener("click", () => { stichni(); skryBubliny(); $("star
 /* ---------------- nastavenia pre rodiča ---------------- */
 function obnovTlacidla(){
   document.querySelectorAll("[data-tempo]").forEach(b=>b.setAttribute("aria-pressed", String(+b.dataset.tempo===NAST.tempo)));
-  document.querySelectorAll("[data-opakuj]").forEach(b=>b.setAttribute("aria-pressed", String((b.dataset.opakuj==="1")===NAST.opakuj)));
+  document.querySelectorAll("[data-rola]").forEach(b=>b.setAttribute("aria-pressed", String((b.dataset.rola==="1")===NAST.rola)));
 }
 document.querySelectorAll("[data-tempo]").forEach(b=>b.addEventListener("click", ()=>{ NAST.tempo = +b.dataset.tempo; ulozNast(); obnovTlacidla(); }));
-document.querySelectorAll("[data-opakuj]").forEach(b=>b.addEventListener("click", ()=>{ NAST.opakuj = b.dataset.opakuj==="1"; ulozNast(); obnovTlacidla(); }));
+document.querySelectorAll("[data-rola]").forEach(b=>b.addEventListener("click", ()=>{ NAST.rola = b.dataset.rola==="1"; ulozNast(); obnovTlacidla(); }));
 obnovTlacidla();
 /* štart sa ukáže vždy (prvý ťuk zároveň odomkne hlas na iPade) */
 NAST.kamarat = null;

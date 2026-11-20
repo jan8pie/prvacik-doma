@@ -1,8 +1,8 @@
 /* Ťukaj a povedz (ANJ) – dáta scén. Nová scéna = nový záznam tu, kód sa nemení.
    Pravidlá viet: vlastné vety (nie text učebnice), bez citosloviec (hlas ich hláskuje), krátke a použiteľné doma.
-   V texte: {vec} = anglický názov veci, {a_vec} = s členom (a ball), {farba}, {A_farba} = „A red“ / „An orange“.
+   V texte: {vec} = anglický názov veci, {a_vec} = s členom (a ball), {farba}, {A_farba} = „A red“ / „An orange“, {a_farba} = „a red“ / „an orange“.
    kto: "hlavny" = kamarát, ktorého si dieťa vybralo (s ním opakuje), "druhy" = druhá postava, "bot" = robotík.
-   opakuj: po vete pauza na zopakovanie a postava ju povie ešte raz.
+   opakuj: (nepoužité od 20. 11., Jan) po vete pauza a veta ešte raz; dieťa si vetu vypočuje znova ťukom.
    rola: od 3. kola na tej istej veci veta najprv stíchne (bublina s otáznikom), dieťa ju skúsi povedať samo.
    poza: ukazuje / pyta / podava / mava; akcia: zvyrazni / podaj / vrat. */
 window.ANJ_SCENY = {
@@ -26,23 +26,24 @@ window.ANJ_SCENY = {
       {id:"pencil", en:"pencil", kresba:"ceruzka",  x:690, y:372, s:0.92},
       {id:"crayon", en:"crayon", kresba:"pastelka", x:812, y:362, s:0.95}
     ],
-    /* Ťuky na tú istú vec idú vždy v tomto poradí, potom znova od 1 (a vec zmení farbu). */
+    /* Ťuky na tú istú vec idú vždy v tomto poradí, potom znova od 1 (a vec zmení farbu).
+       Krok 2 stavia na kroku 1: It's a book. → It's a blue book. (pribudne len farba). */
     kroky: [
-      [ {kto:"hlavny", en:"It's {a_vec}.", poza:"ukazuje", opakuj:true} ],
-      [ {kto:"hlavny", en:"It's {farba}.", poza:"ukazuje", akcia:"zvyrazni", opakuj:true} ],
+      [ {kto:"hlavny", en:"It's {a_vec}.", poza:"ukazuje"} ],
+      [ {kto:"hlavny", en:"It's {a_farba} {vec}.", poza:"ukazuje", akcia:"zvyrazni"} ],
       [ {kto:"druhy",  en:"What colour is it?", poza:"pyta"},
-        {kto:"hlavny", en:"It's {farba}.", poza:"ukazuje", akcia:"zvyrazni", opakuj:true, rola:true} ],
+        {kto:"hlavny", en:"It's {farba}.", poza:"ukazuje", akcia:"zvyrazni", rola:true} ],
       [ {kto:"druhy",  en:"{A_farba} {vec}, please.", poza:"pyta"},
-        {kto:"hlavny", en:"Here you are.", poza:"podava", akcia:"podaj", opakuj:true},
+        {kto:"hlavny", en:"Here you are.", poza:"podava", akcia:"podaj"},
         {kto:"druhy",  en:"Thanks!", poza:"mava", akcia:"vrat"} ]
     ],
     /* Robotík Bot: 1. ťuk predstavenie, 2. ťuk krátka riekanka v rytme (kniha pri nej mení farbu). */
     bot: [
       [ {kto:"bot",    en:"Hello! I'm Bot. I'm a robot."},
-        {kto:"hlavny", en:"Hello, Bot!", poza:"mava", opakuj:true} ],
+        {kto:"hlavny", en:"Hello, Bot!", poza:"mava"} ],
       [ {kto:"bot",    en:"Look, look, a {farba} book!", riekanka:"book"},
         {kto:"bot",    en:"Look, look, a {farba} book!", riekanka:"book"},
-        {kto:"hlavny", en:"Look, look, a {farba} book!", riekanka:"book", opakuj:true} ]
+        {kto:"hlavny", en:"Look, look, a {farba} book!", riekanka:"book"} ]
     ]
   }
 };

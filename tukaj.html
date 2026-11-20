@@ -11,7 +11,7 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="ikony/ikona.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="ikony/ikona-180.png">
-<link rel="stylesheet" href="tukaj.css?v=1">
+<link rel="stylesheet" href="tukaj.css?v=2">
 </head>
 <body>
 <div class="tk-wrap">
@@ -19,17 +19,17 @@
     <a class="hl-spat" href="./">← Prváčik doma</a>
     <div class="hl-r"><span class="hl-tag">Angličtina</span><h1>Ťukaj a povedz</h1></div>
     <details class="hl-info" id="info"><summary>Pre rodiča</summary>
-      <p>Dieťa ťuká na veci v izbe. Kamarát (Ema alebo Ben) o veci povie krátku vetu, chvíľu počká, aby ju dieťa zopakovalo nahlas, a potom ju povie ešte raz. Ťuky na tú istú vec idú vždy v rovnakom poradí: čo to je, akú to má farbu, otázka a odpoveď, podanie veci. Vec potom zmení farbu. Od tretieho kola kamarát odpoveď najprv nepovie a nechá ju na dieťa. Ťuk na robotíka Bota: predstavenie a krátka riekanka. Nič sa nenahráva ani neposiela, nič sa nehodnotí.</p>
+      <p>Dieťa ťuká na veci v izbe a opakuje vety po kamarátovi (Ema alebo Ben). Kým postava hovorí, ďalšie ťuky čakajú. Ťuky na tú istú vec idú vždy v rovnakom poradí: <i>It's a book.</i> → <i>It's a blue book.</i> → otázka na farbu a odpoveď → podanie veci. Vec potom zmení farbu. Vetu si dieťa vypočuje znova ďalším ťukom alebo ju počuje pri inej veci. Od tretieho kola kamarát odpoveď na farbu najprv nepovie a nechá ju na dieťa. Ťuk na robotíka Bota: predstavenie a krátka riekanka. Nič sa nenahráva ani neposiela, nič sa nehodnotí.</p>
       <div class="tk-nast">
         <div class="tk-seg" role="group" aria-label="Tempo hlasu">
           <span>Tempo</span>
           <button type="button" data-tempo="0.7" aria-pressed="true">Pomaly</button>
           <button type="button" data-tempo="0.85" aria-pressed="false">Bežne</button>
         </div>
-        <div class="tk-seg" role="group" aria-label="Pauza na opakovanie">
-          <span>Pauza na opakovanie</span>
-          <button type="button" data-opakuj="1" aria-pressed="true">Áno</button>
-          <button type="button" data-opakuj="0" aria-pressed="false">Nie</button>
+        <div class="tk-seg" role="group" aria-label="Odpoveď najprv nechať na dieťa">
+          <span>Odpoveď najprv nechať na dieťa</span>
+          <button type="button" data-rola="1" aria-pressed="true">Áno</button>
+          <button type="button" data-rola="0" aria-pressed="false">Nie</button>
         </div>
         <button type="button" class="tk-zmen" id="btnZmen">Vybrať iného kamaráta</button>
       </div>
@@ -48,7 +48,7 @@
   </main>
   <p class="tk-pokyn" id="pokyn">Ťukni na vec v izbe alebo na robotíka.</p>
 </div>
-<script src="anj-sceny.js?v=1"></script>
-<script src="tukaj.js?v=1"></script>
+<script src="anj-sceny.js?v=2"></script>
+<script src="tukaj.js?v=2"></script>
 </body>
 </html>

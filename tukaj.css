@@ -31,6 +31,7 @@ h1{font-family:var(--f-head);font-weight:700}
 
 /* veci a postavy */
 .vec,.bot,.postava{cursor:pointer}
+svg.caka .vec,svg.caka .bot{cursor:wait}
 .vec .tvar{transition:transform .25s ease}
 .vec:hover .tvar{transform:scale(1.04)}
 .vec.zvyrazni .tvar{animation:tk-pulz .7s ease 2}
