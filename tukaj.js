@@ -24,7 +24,8 @@ const MUZSKE = /\bmale|george|david|mark|ryan|guy|daniel|arthur|oliver|thomas|al
 const jeZensky = v => ZENSKE.test(v.name) && !/\bmale/i.test(v.name.replace(/female/i,""));
 const jeMuzsky = v => MUZSKE.test(v.name) && !/female/i.test(v.name);
 function hlasPodla(en, test){
-  const vhodne = en.filter(test);
+  /* hlasy z Androidu (mená ako en-us-x-sfg#female_1-local) často nie sú stiahnuté a mlčia; tie nechávame na predvolený hlas */
+  const vhodne = en.filter(v => !/#|-x-/.test(v.name)).filter(test);
   return najlepsi(vhodne.filter(v=>jazyk(v)==="en-gb")) || najlepsi(vhodne.filter(v=>jazyk(v)==="en-us")) || najlepsi(vhodne) || null;
 }
 const kvalita = v => (/google|natural|neural|online|premium|enhanced/i.test(v.name) ? 2 : 0) + (v.localService ? 1 : 0)
@@ -70,7 +71,12 @@ function povedz(text, kto){
     ss.speak(warm); ss.speak(u);
     return new Promise(res=>{
       const od = Date.now(); let poistka, hotovo = false, zacal = false;
-      const koniec = v => { if(hotovo) return; hotovo = true; clearTimeout(poistka); res(v && id===hovorId); };
+      const koniec = v => {
+        if(hotovo) return; hotovo = true; clearTimeout(poistka);
+        /* hlas postavy nezačal hovoriť: odteraz pre ňu predvolený hlas a vetu skúsime znova */
+        if(!v && !zacal && !sk && hlas !== HLAS && HLAS && id===hovorId){ HLAS_P[kto] = HLAS; res(povedz(text, kto)); return; }
+        res(v && id===hovorId);
+      };
       const kontrola = () => { if(ss.speaking && Date.now()-od < 12000) poistka = setTimeout(kontrola, 250); else koniec(zacal); };
       u.onstart = () => { zacal = true; };
       poistka = setTimeout(kontrola, 1500 + String(text).length*160/rychlost);
