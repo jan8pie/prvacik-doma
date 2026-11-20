@@ -18,7 +18,6 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);fo
 h1{font-family:var(--f-head);font-weight:700}
 .tk-wrap{max-width:1100px;margin:0 auto;padding-block:12px 28px;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));display:flex;flex-direction:column;gap:12px}
 .tk-oznam{background:var(--warn-soft);color:var(--warn);border-radius:12px;padding:10px 14px;font-size:15px}
-.tk-vysl{margin-top:8px}.tk-vysl span{font-weight:400}
 .tk-hlasy{font-size:14px;color:var(--muted);margin-top:8px}
 .tk-nast{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin-top:10px}
 .tk-seg{display:flex;align-items:center;gap:6px;flex-wrap:wrap}

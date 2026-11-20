@@ -9,7 +9,7 @@ const $ = id => document.getElementById(id);
 const svg = $("svg");
 
 /* ---------------- nastavenia ---------------- */
-const NAST = {tempo:0.7, rola:true, kamarat:null, vysl:"Ťukaj"};
+const NAST = {tempo:0.7, rola:true, kamarat:null};
 try{ Object.assign(NAST, JSON.parse(localStorage.getItem("tukaj-nast")||"{}")); }catch(e){}
 const ulozNast = () => { try{ localStorage.setItem("tukaj-nast", JSON.stringify(NAST)); }catch(e){} };
 
@@ -62,7 +62,6 @@ function povedz(text, kto){
   try{
     const hlas = sk ? HLAS_SK : (HLAS_P[kto] || HLAS);
     if(!MA_REC || !hlas) throw 0;
-    if(sk) text = String(text).replace(/ťukaj/gi, NAST.vysl || "Ťukaj");   /* niektoré slovenské hlasy čítajú Ť tvrdo; zápis vyberá rodič */
     const ss = window.speechSynthesis, h = HLASY[kto] || HLASY.ema;
     const rychlost = sk ? 0.95 : NAST.tempo * h.rate;
     ss.cancel();
@@ -414,11 +413,9 @@ $("btnZmen").addEventListener("click", () => { stichni(); skryBubliny(); $("star
 function obnovTlacidla(){
   document.querySelectorAll("[data-tempo]").forEach(b=>b.setAttribute("aria-pressed", String(+b.dataset.tempo===NAST.tempo)));
   document.querySelectorAll("[data-rola]").forEach(b=>b.setAttribute("aria-pressed", String((b.dataset.rola==="1")===NAST.rola)));
-  document.querySelectorAll("[data-vysl]").forEach(b=>b.setAttribute("aria-pressed", String(b.dataset.vysl===NAST.vysl)));
 }
 document.querySelectorAll("[data-tempo]").forEach(b=>b.addEventListener("click", ()=>{ NAST.tempo = +b.dataset.tempo; ulozNast(); obnovTlacidla(); }));
 document.querySelectorAll("[data-rola]").forEach(b=>b.addEventListener("click", ()=>{ NAST.rola = b.dataset.rola==="1"; ulozNast(); obnovTlacidla(); }));
-document.querySelectorAll("[data-vysl]").forEach(b=>b.addEventListener("click", ()=>{ NAST.vysl = b.dataset.vysl; ulozNast(); obnovTlacidla(); povedz("Ťukaj na veci.", "sk"); }));
 obnovTlacidla();
 /* štart sa ukáže vždy (prvý ťuk zároveň odomkne hlas na iPade) */
 NAST.kamarat = null;
