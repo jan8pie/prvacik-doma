@@ -16,6 +16,17 @@ const ulozNast = () => { try{ localStorage.setItem("tukaj-nast", JSON.stringify(
 /* ---------------- hlas (rovnaký výber ako v slovníku) ---------------- */
 const MA_REC = "speechSynthesis" in window;
 let HLAS = null, HLAS_SK = null, hlasyHotove = false;
+/* Hlas pre každú postavu zvlášť: Ema ženský, Ben a Bot mužský, ak ich zariadenie má.
+   Firefox vo Windows nemení výšku hlasu (pitch), preto bez tohto výberu hovorila Ema mužským hlasom. */
+let HLAS_P = {};
+const ZENSKE = /female|hazel|zira|susan|libby|sonia|maisie|jenny|aria|ana\b|emma|michelle|samantha|karen|serena|kate|moira|tessa|fiona|martha|victoria|allison|ava|nicky|catherine|natasha|clara|heera/i;
+const MUZSKE = /\bmale|george|david|mark|ryan|guy|daniel|arthur|oliver|thomas|alex|aaron|fred|james|william|christopher|eric|brian|liam|tom\b|rishi/i;
+const jeZensky = v => ZENSKE.test(v.name) && !/\bmale/i.test(v.name.replace(/female/i,""));
+const jeMuzsky = v => MUZSKE.test(v.name) && !/female/i.test(v.name);
+function hlasPodla(en, test){
+  const vhodne = en.filter(test);
+  return najlepsi(vhodne.filter(v=>jazyk(v)==="en-gb")) || najlepsi(vhodne.filter(v=>jazyk(v)==="en-us")) || najlepsi(vhodne) || null;
+}
 const kvalita = v => (/google|natural|neural|online|premium|enhanced/i.test(v.name) ? 2 : 0) + (v.localService ? 1 : 0)
                     - (/novelty|whisper|bad news|bells|bubbles|boing|cellos|zarvox|trinoids|jester|organ|superstar|wobble|albert|bahh|fred|junior|ralph|kathy/i.test(v.name) ? 5 : 0);
 const najlepsi = zoz => zoz.sort((a,b)=>kvalita(b)-kvalita(a))[0];
@@ -26,6 +37,10 @@ function vyberHlasy(){
   const en = vsetky.filter(v => /^en([-_]|$)/i.test(v.lang));
   HLAS = najlepsi(en.filter(v=>jazyk(v)==="en-gb")) || najlepsi(en.filter(v=>jazyk(v)==="en-us")) || najlepsi(en) || null;
   HLAS_SK = najlepsi(vsetky.filter(v => /^sk([-_]|$)/i.test(v.lang))) || null;
+  const zena = hlasPodla(en, jeZensky), muz = hlasPodla(en, jeMuzsky);
+  HLAS_P = { ema: zena || HLAS, ben: muz || HLAS, bot: muz || HLAS };
+  const info = document.getElementById("hlasyInfo"), krat = v => v ? v.name.replace(/^(Microsoft|Google)\s+/,"").replace(/\s+-\s+.*$/,"") : "žiadny";
+  if(info) info.textContent = "Hlasy na tomto zariadení: Ema – " + krat(HLAS_P.ema) + ", Ben – " + krat(HLAS_P.ben) + ", Bot – " + krat(HLAS_P.bot) + ".";
   ukazOznam();
 }
 if(MA_REC){
@@ -40,12 +55,12 @@ function ukazOznam(){
   el.hidden = true;
 }
 /* Výška hlasu odlišuje postavy. Bot je hlbší a pomalší. */
-const HLASY = { ema:{pitch:1.3, rate:1}, ben:{pitch:0.9, rate:1}, bot:{pitch:0.55, rate:0.9}, sk:{pitch:1, rate:1} };
+const HLASY = { ema:{pitch:1.25, rate:1}, ben:{pitch:0.95, rate:1}, bot:{pitch:0.55, rate:0.9}, sk:{pitch:1, rate:1} };
 let hovorId = 0;
 function povedz(text, kto){
   const id = ++hovorId, sk = kto==="sk";
   try{
-    const hlas = sk ? HLAS_SK : HLAS;
+    const hlas = sk ? HLAS_SK : (HLAS_P[kto] || HLAS);
     if(!MA_REC || !hlas) throw 0;
     const ss = window.speechSynthesis, h = HLASY[kto] || HLASY.ema;
     const rychlost = sk ? 0.95 : NAST.tempo * h.rate;
