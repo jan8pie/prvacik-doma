@@ -40,6 +40,169 @@ window.KARTY = [
    ========================================================= */
 
 /* =========================================================
+   TÝŽDEŇ 30. 11. – 6. 12. 2026
+   Nové písmeno ani číslo nie je potvrdené (stav.js 19. 11.), preto sada upevňuje
+   O (hláska na začiatku a na konci, rýmy, čítanie slov s O) a číslo 7 (rozklad,
+   príbehové úlohy, porovnávanie). ANJ: zvieratá na farme s číslami a pokynmi, 3 karty.
+   Mikuláš v stredu (čižmičky), v sobotu pokus s tieňmi. mat-skaceme-6 presunutá na 9. 12.
+   ========================================================= */
+
+/* ---------- 5. 12. 2026 (sobota, víkendová rodinná karta) ---------- */
+{ id:"cap-tiene-pokus", datum:"2026-12-05", predmet:"CAP", obr:"🔦", kod:"CAP-IN-2",
+  nazov:"Tieňové divadlo: kedy je tieň veľký a kedy malý?",
+  uvod:"Večery sú teraz dlhé, a tak je čas na tieňové divadlo. Dieťa najprv tipne: bude tieň väčší, keď je hračka blízko pri baterke, alebo ďaleko od nej? Potom to spolu skúsite na stene.",
+  meta:["celá rodina","10 minút","baterka alebo lampa, svetlá stena, hračka"],
+  stdn:"ŠVP Človek a príroda, cieľ 1: „Formulovať predpoklad a zdôvodniť ho skúsenosťou.“",
+  bloky:[
+    {typ:"rozhovor", zacni:"„Keď dám hračku blízko k baterke, bude tieň na stene veľký, alebo malý? Tipni si a povedz prečo.“",
+     otazky:["Čo vidíš na stene? Aký tvar má tieň?","Čo sa stalo s tieňom, keď sme hračku posunuli bližšie k baterke? Mal si pravdu?","Ako by si urobil tieň veľký ako obor? A malý ako myška?"],
+     preteba:"Čím je vec bližšie pri svetle, tým je tieň väčší, lebo zakryje viac svetla. Netreba to vysvetľovať, stačí, keď to dieťa uvidí a povie po svojom. Na vychádzke za tmy si všimnite aj tiene od pouličných lámp."},
+    {typ:"spolu", text:"Zhasnite a baterkou svieťte na svetlú stenu. Najprv tieň hračky: dieťa ju drží blízko pri baterke, potom blízko pri stene. Kedy je tieň veľký? Potom tieňové zvieratká z rúk: zajac, pes, vtáčik. Na koniec krátke divadlo: tieňový zajac a tieňový pes sa stretnú a niečo si povedia. Baterku drží dospelý a nikto nesvieti nikomu do očí."},
+    {typ:"hadanka", text:"Chodím stále s tebou, keď svieti slnko. Keď zhasneš svetlo, zmiznem. Kto som?", odpoved:"Tieň"}
+  ]},
+
+/* ---------- 4. 12. 2026 (piatok, opakovanie) ---------- */
+{ id:"sjl-co-uz-viem-mij", datum:"2026-12-04", predmet:"SJL", obr:"🌟", kod:"SJL-RV-1",
+  nazov:"Čo už viem: M, I a J",
+  uvod:"Krátke opakovanie spred mesiaca a spred dvoch týždňov: slabiky s I, slová s M a vety s J. Dieťa číta samo, rodič prečíta dve hádanky a na konci sa porozprávate, čo išlo najľahšie.",
+  meta:["dieťa samo aj s rodičom","5 minút","tablet so zvukom, k listu ceruzka"],
+  stdn:"ŠVP SJL, Elementárne čítanie: „čítanie slabík, slov, viet a krátkych textov s postupne sa zvyšujúcou náročnosťou“",
+  bloky:[
+    {typ:"hadanka", text:"Svieti v noci na oblohe a začína sa na M. Čo je to?", odpoved:"Mesiac 🌙"},
+    {typ:"pocuvanie", citanie:true, jazyk:"sk-SK", text:"Prečítaj nahlas. Potom ťukni na kartičku a skontroluj sa.",
+     slova:[["","mi"],["","lí"],["","Ema"],["","lama"],["","jama"],["","Ja jem."],["","Mama je milá."],["","Emil má malé jojo."]]},
+    {typ:"hadanka", text:"Je malá a ostrá a šije sa ňou. Začína sa na I. Čo je to?", odpoved:"Ihla 🪡"},
+    {typ:"rozhovor", zacni:"„Pozri, koľko písmen už poznáš: A, M, E, L, I, J, O. Pamätáš si, ktoré bolo prvé?“",
+     otazky:["Čo z toho ti dnes išlo najľahšie?","Ktoré slovo si čítal dvakrát? Čo ti pomohlo?","Čo by si chcel ešte trénovať? Vymysli pre mňa úlohu s písmenom J."],
+     preteba:"Opakovanie po čase pomáha, aby sa staršie písmená nestratili. Nehodnoťte, nechajte dieťa povedať samo, čo mu ide. Keď niečo nešlo, vráťte sa k tomu o pár dní hravo, nie hneď. Prvé písmeno bolo A."},
+    {typ:"tlac", nadpis:"Píšeme", text:"Písané i a I na opakovanie: obťahovanie podľa šípky, bodky, potom samo, na konci slabiky a slová. Bodku nad i dávame až po dopísaní slova.", poznamka:"A4, čiernobiele. Zhora nadol je pomoc čoraz menšia. Píšte mäkkou ceruzkou.", subor:"sjl-pisanie-i.pdf"}
+  ]},
+
+/* ---------- 3. 12. 2026 (štvrtok) ---------- */
+{ id:"anj-teacher-says-farm", datum:"2026-12-03", predmet:"ANJ", obr:"👏", kod:"ANJ-RE-1", slovnik:"u3",
+  nazov:"Teacher says: show me a duck!",
+  uvod:"Známe pokyny stand up, sit down a clap your hands dostali zvieratká: „Show me a duck!“ Dieťa ukáže kačku pohybom. Platí len pokyn, pred ktorým zaznie „Teacher says“. Potom je učiteľom dieťa.",
+  meta:["spolu s rodičom","5 minút","tablet so zvukom, miesto na pohyb"],
+  stdn:"ŠVP ANJ, cieľ pre 1. cyklus: „Rozumieť krátkym inštrukciám.“",
+  bloky:[
+    {typ:"pocuvanie", text:"Vypočuj si pokyn a urob ho.",
+     slova:[["🧍","Stand up."],["👏","Clap your hands."],["🦆","Show me a duck."],["🐴","Show me a horse."],["🔄","Turn around."],["🪑","Sit down."]]},
+    {typ:"spolu", text:"Hra Teacher says: rodič je učiteľ a dáva pokyny. Keď povie „Teacher says: show me a cow“, dieťa ukáže kravu. Keď povie len „Show me a cow“, dieťa sa nehýbe. Kto sa pomýli, nevypadáva, ale stáva sa učiteľom. Nápady na pohyby: kačka kolíše krídlami, kôň cvála, sliepka zobe, ovečka poskakuje, prasiatko sa váľa."},
+    {typ:"hadanka", text:"I am small. I can swim. I live on a farm. What am I?", napoveda:"Som malá. Viem plávať. Bývam na farme.", odpoved:"Duck – kačka 🦆"}
+  ]},
+
+{ id:"mat-pravda-7", datum:"2026-12-03", predmet:"MAT", obr:"🤔", kod:"MAT-CO-2",
+  nazov:"Do vrecka: pravda, či nepravda?",
+  uvod:"Rodič povie vetu s číslami a dieťa rozhodne: pravda, či nepravda? Napríklad „Sedem je viac ako päť.“ Hrá sa kdekoľvek, v aute aj v rade v obchode, bez pomôcok a bez obrazovky.",
+  meta:["spolu s rodičom","2 minúty","nič"],
+  stdn:"ŠVP MAT, Čísla a operácie s číslami: „aplikovanie metód porovnávania – väčší, menší, rovný, najväčší, najmenší“",
+  bloky:[
+    {typ:"rozhovor", zacni:"„Teraz ťa budem chcieť nachytať. Poviem vetu a ty povieš: pravda, alebo nepravda.“",
+     otazky:["Sedem je viac ako päť. Pravda, či nepravda? A šesť je menej ako štyri?","Tri a štyri je spolu šesť. Pravda, či nepravda? Ako to opravíš?","Keď od siedmich uberiem sedem, ostane jeden. Pravda, či nepravda? Vymysli chyták pre mňa."],
+     preteba:"Nepravdivé vety sú schválne „skoro pravda“, o jedna vedľa. Keď dieťa povie nepravda, nech vetu aj opraví. Riešenie: pravda, nepravda · nepravda, je to 7 · nepravda, ostane 0."},
+    {typ:"spolu", text:"Ďalšie vety na cestu: Päť je menej ako sedem (pravda). Dva a dva sú štyri (pravda). Sedem bez jedného je päť (nepravda, je to 6). Nula je viac ako jeden (nepravda). Šesť a jeden je sedem (pravda). Striedajte sa: raz hovorí vetu rodič, raz dieťa. Za každý odhalený chyták si tlesknite."},
+    {typ:"hadanka", text:"Ježko Bodliak hovorí: „Mám 4 jablká a 3 hrušky, takže mám 7 jabĺk.“ Je to pravda?", odpoved:"Nie. Má spolu 7 kúskov ovocia, ale jabĺk má len 4."}
+  ]},
+
+/* ---------- 2. 12. 2026 (streda) ---------- */
+{ id:"anj-whats-missing-farm", datum:"2026-12-02", predmet:"ANJ", obr:"🐴", kod:"ANJ-PR-1", slovnik:"u3",
+  nazov:"What's missing? Ktoré zvieratko zmizlo?",
+  uvod:"Pamäťová hra so zvieratkami z farmy. Na stole stoja štyri hračky, dieťa zavrie oči a jedna zmizne. Ktorá? Dieťa odpovie po anglicky: „The pig!“ Slovíčka si najprv zopakuje s tabletom.",
+  meta:["spolu s rodičom","5 minút","tablet so zvukom, 4 – 6 hračiek alebo obrázkov zvieratiek"],
+  stdn:"ŠVP ANJ, Ústny prejav: „Zrozumiteľne vysloviť jednotlivé hlásky a obmedzený počet naučených slov a slovných spojení.“",
+  bloky:[
+    {typ:"spolu", text:"Rodič položí na stôl 4 zvieratká alebo obrázky a dieťa ich pomenuje po anglicky. Rodič povie: „Close your eyes.“ Dieťa zavrie oči a rodič jedno zvieratko schová. „Open your eyes. What's missing?“ Dieťa odpovie: „The duck!“ Keď sa darí, pridajte piate a šieste zvieratko alebo schovajte dve naraz. Potom schováva dieťa a háda rodič."},
+    {typ:"pocuvanie", text:"Zopakuj si slovíčka. Ťukni, vypočuj si a povedz nahlas.",
+     slova:[["🐄","a cow"],["🐷","a pig"],["🐑","a sheep"],["🦆","a duck"],["🐴","a horse"],["🐔","a hen"],["🙈","Close your eyes."],["❓","What's missing?"]]},
+    {typ:"hadanka", text:"Cow, pig, duck, hen. And now: cow, pig, hen. What's missing?", napoveda:"Najprv krava, prasiatko, kačka, sliepka. Teraz krava, prasiatko, sliepka. Čo chýba?", odpoved:"Duck – kačka 🦆"}
+  ]},
+
+{ id:"mat-mikulas-7", datum:"2026-12-02", predmet:"MAT", obr:"🥾", kod:"MAT-CO-5",
+  nazov:"Mikulášske čižmičky: koľko je spolu?",
+  uvod:"V sobotu večer sa čistia čižmičky pre Mikuláša. Dnes si na to zahráme: do dvoch čižmičiek dávame oriešky a mandarínky a rátame, koľko je spolu a koľko ostane. Na tablete sa kocky spájajú, doma dieťa samo vymýšľa úlohy.",
+  meta:["dieťa samo aj s rodičom","8 minút","tablet, 2 papuče alebo topánky, 7 orieškov"],
+  stdn:"ŠVP MAT, Čísla a operácie s číslami: „analyzovanie a navrhovanie metód riešenia jednoduchých slovných úloh na sčítanie a odčítanie – zväčšenie/zmenšenie čísla o niekoľko jednotiek“",
+  bloky:[
+    {typ:"hadanka", text:"Mikuláš dal do jednej čižmičky 3 mandarínky a do druhej 4 mandarínky. Koľko mandarínok je v oboch čižmičkách spolu?", odpoved:"7 mandarínok (3 + 4 = 7)"},
+    {typ:"hadanka", text:"V čižmičke bolo 7 orieškov. Veverička si 2 oriešky zobrala. Koľko orieškov ostalo v čižmičke?", odpoved:"5 orieškov (7 − 2 = 5)"},
+    {typ:"aktivita", text:"Koľko kociek je spolu? Dve kôpky kociek sa spoja do jednej. Pri Výzve dieťa najprv odhadne.",
+     hra:{druh:"kocky", rezim:"spoj", urovne:[["●","Ľahšie",{max:6}],["●●","Bežné",{max:7}],["●●●","Výzva",{max:8}]], predvolena:1, kol:4}},
+    {typ:"spolu", text:"Čižmičková hra: postavte vedľa seba dve papuče. Rodič do nich rozdelí oriešky a vymyslí príbeh: „Do jednej dal Mikuláš 2 oriešky, do druhej 5.“ Dieťa zráta, koľko je spolu, a povie príklad 2 + 5 = 7. Potom príbeh vymýšľa dieťa a ráta rodič. Spolu najviac 7 orieškov. Na koniec spolu vyčistite naozajstné čižmičky na sobotu."}
+  ]},
+
+{ id:"sjl-citame-o", datum:"2026-12-02", predmet:"SJL", obr:"🪀", pismenka:"AMELIJO:postav", kod:"SJL-RV-1",
+  nazov:"Čítame slová s O: jojo, molo, olej",
+  uvod:"S písmenom O pribudli slová jojo, molo, olej aj mená Ola a Lola. Dieťa ich číta samo nahlas, na konci aj dlhšiu vetu, a tablet ho skontroluje. Potom minútová naháňačka za písmenom O v starom letáku. K tomu list na celý týždeň.",
+  meta:["dieťa samo aj s rodičom","5 minút","tablet so zvukom, starý leták, fixka"],
+  stdn:"ŠVP SJL, Elementárne čítanie: „čítanie slabík, slov, viet a krátkych textov s postupne sa zvyšujúcou náročnosťou“",
+  bloky:[
+    {typ:"hadanka", text:"Poviem ti slovo po slabikách: o – lej. Je vo fľaši a mama na ňom smaží. Čo je to?", odpoved:"Olej"},
+    {typ:"pocuvanie", citanie:true, jazyk:"sk-SK", text:"Najprv prečítaj nahlas. Potom ťukni na kartičku a skontroluj sa.",
+     slova:[["","molo"],["","jojo"],["","olej"],["","oleje"],["","Lola"],["","Ema a Ola"],["","Mamo, mám jojo."],["","Lola je moja malá lama."]]},
+    {typ:"spolu", text:"Naháňačka za O: dajte dieťaťu starý leták alebo noviny a fixku. Za jednu minútu zakrúžkuje čo najviac písmen O, malých aj veľkých. Potom spolu hľadajte slovo, ktoré dieťa vie prečítať celé, napríklad mama, Ema alebo Ola. Kto chce, môže skladať slová aj v Písmenkových kockách (tlačidlo nižšie)."},
+    {typ:"tlac", urovne:3, text:"List na celý týždeň: kde počuješ O, rovnaké slabiky, slová k obrázkom a vety s O. Výzva: slovná pyramída, prehádzané písmená a chyták s hlúpou vetou.", subor:"sjl-citame-o.pdf"},
+    {typ:"tlac", nadpis:"Píšeme", text:"Písané j a J: obťahovanie podľa šípky, bodky, potom samo, na konci slabiky a slová. Hodí sa k slovu jojo z dnešného čítania.", poznamka:"A4, čiernobiele. Zhora nadol je pomoc čoraz menšia. Píšte mäkkou ceruzkou.", subor:"sjl-pisanie-j.pdf"}
+  ]},
+
+/* ---------- 1. 12. 2026 (utorok) ---------- */
+{ id:"anj-how-many-farm", datum:"2026-12-01", predmet:"ANJ", obr:"🦆", kod:"ANJ-RE-2", slovnik:"u3",
+  nazov:"How many ducks? Rátame zvieratká z farmy",
+  uvod:"Čísla one až six a zvieratká z farmy spolu: „Three ducks.“ Dieťa počúva, opakuje a ráta po anglicky. Zaujímavosť: ovečka sa povie sheep, jedna aj päť.",
+  meta:["spolu s rodičom","5 minút","tablet so zvukom, hračky alebo obrázky zvieratiek"],
+  stdn:"ŠVP ANJ, Počúvanie s porozumením: „Rozoznať bežné, známe slová za predpokladu, že sú vyslovené zreteľne a pomaly v známom kontexte.“",
+  bloky:[
+    {typ:"pocuvanie", text:"Vypočuj si, zopakuj a ukáž na prstoch, koľko je zvieratiek.",
+     slova:[["🐄","One cow."],["🐷","Two pigs."],["🦆","Three ducks."],["🐔","Four hens."],["🐑","Five sheep."],["🐴","Six horses."]]},
+    {typ:"hadanka", text:"I can see two pink pigs and one white sheep. How many animals?", napoveda:"Vidím dve ružové prasiatka a jednu bielu ovečku. Koľko je zvieratiek?", odpoved:"Three – tri 🐷🐷🐑"},
+    {typ:"spolu", text:"Farma na stole: rozložte hračky alebo papieriky so zvieratkami, z každého druhu iný počet. Rodič sa pýta: „How many ducks?“ Dieťa ráta po anglicky a odpovie: „Three ducks.“ Potom sa pýta dieťa a rodič odpovedá, niekedy schválne zle, aby ho dieťa opravilo. Ak rodič anglicky nevie, stačí pustiť vety z tabletu."}
+  ]},
+
+{ id:"sjl-rymy-lama", datum:"2026-12-01", predmet:"SJL", obr:"🦙", kod:"SJL-PP-2",
+  nazov:"Rýmovačky: mama, lama, jama",
+  uvod:"Mama, lama, jama znejú na konci rovnako, rýmujú sa. Dieťa najprv počúva, či sa dve slová rýmujú, potom samo hľadá rým. Stačia uši, tablet netreba. K tomu list na písanie písmena L.",
+  meta:["spolu s rodičom","5 minút","lopta alebo plyšák, k listu ceruzka"],
+  stdn:"ŠVP SJL, Písaná produkcia: „sluchové identifikovanie a rozlišovanie zvukov, slov, slabík, hlások“",
+  bloky:[
+    {typ:"rozhovor", zacni:"„Počúvaj: mama, lama. Znie to na konci rovnako? Tak to sa rýmuje.“",
+     otazky:["Rýmuje sa mama a lama? A mama a auto?","Čo sa rýmuje so slovom jama: lama, oko, alebo myš?","Vymeň prvú hlásku: z mama urob lama. Čo vznikne zo slova molo, keď namiesto m povieš s?"],
+     preteba:"Rýmy deti najprv počujú, až potom vymýšľajú. Nevadí, keď dieťa vymyslí slovo, ktoré neexistuje, napríklad pama: ak sa rýmuje, je to dobre. Riešenie: áno, nie · lama · solo."},
+    {typ:"hadanka", text:"Mám dlhý krk a hustú vlnu. Rýmujem sa so slovom mama. Kto som?", odpoved:"Lama 🦙"},
+    {typ:"spolu", text:"Rýmovačka s loptou: rodič hodí loptu alebo plyšáka a povie slovo. Dieťa chytí a povie slovo, ktoré sa rýmuje. Začnite ľahko: mama (lama, jama), mak (rak, vlak, drak), nos (kos), les (pes), myška (šiška). Keď dieťa rým nenájde, povie ho rodič a dieťa zopakuje. Na koniec hádže dieťa a slová vymýšľa ono."},
+    {typ:"tlac", nadpis:"Píšeme", text:"Písané l a L na jednej strane. Najprv obťahovanie sivých písmen podľa šípky, potom bodky, potom samo. Na konci slabiky a krátke slová. Stačí kúsok denne.", poznamka:"A4, čiernobiele. Zhora nadol je pomoc čoraz menšia. Píšte mäkkou ceruzkou.", subor:"sjl-pisanie-l.pdf"}
+  ]},
+
+/* ---------- 30. 11. 2026 (pondelok) ---------- */
+{ id:"mat-rozklad-7", datum:"2026-11-30", predmet:"MAT", obr:"👝", kod:"MAT-CO-4",
+  nazov:"Sedem do vrecúška: rozklad čísla 7",
+  uvod:"Sedem gombíkov, časť je vo vrecúšku a časť vonku. Koľko sa skrýva vnútri? Dieťa rozkladá čísla na tablete, doma hrá vrecúškovú hru a list na celý týždeň precvičí sedmičku zo všetkých strán.",
+  meta:["dieťa samo aj s rodičom","8 minút","tablet, 7 gombíkov alebo fazúľ, vrecúško alebo ponožka"],
+  stdn:"ŠVP MAT, Čísla a operácie s číslami: „modelovanie a využívanie rôznych rozkladov čísel“",
+  bloky:[
+    {typ:"aktivita", text:"Rozlož číslo na dve časti. Koľko kociek chýba?",
+     hra:{druh:"rozklad", urovne:[["●","Ľahšie",6],["●●","Bežné",7],["●●●","Výzva",8]], predvolena:1, kol:3}},
+    {typ:"spolu", text:"Vrecúšková hra: rodič má 7 gombíkov. Dieťa zavrie oči a rodič niekoľko gombíkov skryje do vrecúška alebo ponožky, ostatné nechá na stole. Dieťa spočíta gombíky na stole a háda, koľko je vo vrecúšku. Potom ich vysypete a skontrolujete. Povedzte to aj ako príklad: 4 a 3 je spolu 7. Potom skrýva dieťa a háda rodič."},
+    {typ:"rozhovor", zacni:"„Mám v dlaniach 7 fazúľ. V tejto ruke sú 2. Koľko je v druhej?“",
+     otazky:["Na stole je 5 gombíkov a spolu ich je 7. Koľko je vo vrecúšku?","Ako ešte sa dá rozložiť 7 na dve kôpky? Povedz aspoň tri spôsoby.","Spolu je 7 gombíkov a vo vrecúšku je o 1 viac ako na stole. Koľko je vo vrecúšku?"],
+     preteba:"Kto vie, že 7 je 4 a 3, ľahko vypočíta 4 + 3 aj 7 − 4. Spôsoby rozkladu 7: 0 a 7, 1 a 6, 2 a 5, 3 a 4 a aj naopak. Riešenie tretej otázky: 4 vo vrecúšku a 3 na stole, dieťa môže skúšať s gombíkmi."},
+    {typ:"tlac", urovne:3, text:"List na celý týždeň: rozklad čísla 7 na dominách, vežiach a vo vrecúšku, tabuľka rozkladov a príklady s okienkom. Výzva: všetky spôsoby, myslím si číslo a rovnováha na oboch stranách.", subor:"mat-rozklad-7.pdf"}
+  ]},
+
+{ id:"sjl-o-kde-je", datum:"2026-11-30", predmet:"SJL", obr:"👂", pismenka:"AMELIJO:obrazok", kod:"SJL-PP-2",
+  nazov:"Kde počuješ O? Na začiatku, alebo na konci",
+  uvod:"Oblak má O na začiatku, auto na konci. Dieťa počúva slová z tabletu: keď je O na začiatku, tlesne, keď na konci, dupne. Potom skákacia hra v izbe a v Písmenkových kockách slabiky k obrázkom.",
+  meta:["dieťa samo aj s rodičom","5 minút","tablet so zvukom, k listu ceruzka"],
+  stdn:"ŠVP SJL, Elementárne čítanie: „sluchové identifikovanie a rozlišovanie zvukov, slov, slabík, hlások“",
+  bloky:[
+    {typ:"pocuvanie", jazyk:"sk-SK", text:"Ťukni na obrázok a vypočuj si slovo. Keď počuješ O na začiatku, tlesni. Keď na konci, dupni.",
+     slova:[["☁️","oblak"],["🚗","auto"],["🐝","osa"],["🥛","mlieko"],["🐑","ovca"],["🍎","jablko"],["👓","okuliare"],["🪶","pierko"]]},
+    {typ:"spolu", text:"Skákacia hra: dieťa stojí v strede izby. Rodič povie slovo. Keď je O na začiatku, dieťa skočí dopredu, keď na konci, skočí dozadu. Slová: oheň, ucho, opica, rádio, oblečenie, metro. Potom sa vymeňte, slovo hovorí dieťa a skáče rodič. Napokon otvorte Písmenkové kocky (tlačidlo nižšie) a skladajte slabiky k obrázkom."},
+    {typ:"rozhovor", zacni:"„Hádaj, kde sa schovalo O v slove auto. Na začiatku, alebo na konci?“",
+     otazky:["Kde počuješ O v slove osa? A v slove mlieko?","Povedz dve slová, ktoré majú O na konci. Pomôže ti, keď sa poobzeráš po kuchyni.","V slove oko počuješ O dvakrát. Vymyslíš ešte iné slovo, kde je O na začiatku aj na konci?"],
+     preteba:"Hlásku na konci slova deti počujú ťažšie ako na začiatku. Slovo vyslovte pomaly a koniec trochu natiahnite. Keď dieťa zaváha, zopakujte slovo, nie odpoveď. V kuchyni sú napríklad mlieko, kakao, sitko, vrecko. Na začiatku aj na konci je O napríklad v slove okno."},
+    {typ:"tlac", nadpis:"Píšeme", text:"Písané o a O ešte raz: obťahovanie podľa šípky, bodky, potom samo, na konci slabiky a slová s O. Kto list už má z minulého týždňa, nech skúsi spodnú polovicu bez pomoci.", poznamka:"A4, čiernobiele. Zhora nadol je pomoc čoraz menšia. Píšte mäkkou ceruzkou.", subor:"sjl-pisanie-o.pdf"}
+  ]},
+
+/* =========================================================
    TÝŽDEŇ 23. – 29. 11. 2026
    Jan 19. 11.: SJL je ešte na J, O príde teraz, preto sme karty s O z 16. – 18. 11.
    posunuli sem (pondelok až streda). MAT: 0 a číselný rad, potom 7 a plus a mínus do 7,
@@ -410,7 +573,7 @@ window.KARTY = [
      preteba:"Dĺžeň je čiarka nad samohláskou (á). Dlhú slabiku vyslovte natiahnuto („máá“). V šlabikári sú krátke a dlhé slabiky zvlášť."}
   ]},
 
-{ id:"mat-skaceme-6", datum:"2026-12-02", predmet:"MAT", obr:"🐰", kod:"MAT-CO-3",
+{ id:"mat-skaceme-6", datum:"2026-12-09", predmet:"MAT", obr:"🐰", kod:"MAT-CO-3",
   nazov:"Zajko skáče po číselnej osi do 6",
   uvod:"Sčítanie je skok doprava, odčítanie skok doľava. Dieťa najprv sčíta jahody na tablete a potom skáče po číslach 0 až 6 na zemi ako zajko po číselnej osi.",
   meta:["dieťa samo aj s rodičom","10 minút","tablet, papiere s číslami"],
