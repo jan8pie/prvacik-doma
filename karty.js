@@ -65,16 +65,17 @@ window.KARTY = [
 { id:"sjl-co-uz-viem-mij", datum:"2026-12-04", predmet:"SJL", obr:"🌟", kod:"SJL-RV-1",
   nazov:"Čo už viem: M, I a J",
   uvod:"Krátke opakovanie spred mesiaca a spred dvoch týždňov: slabiky s I, slová s M a vety s J. Dieťa číta samo, rodič prečíta dve hádanky a na konci sa porozprávate, čo išlo najľahšie.",
-  meta:["dieťa samo aj s rodičom","3 minúty","tablet so zvukom"],
+  meta:["dieťa samo aj s rodičom","5 minút","tablet so zvukom, k listu ceruzka"],
   stdn:"ŠVP SJL, Elementárne čítanie: „čítanie slabík, slov, viet a krátkych textov s postupne sa zvyšujúcou náročnosťou“",
   bloky:[
     {typ:"hadanka", text:"Svieti v noci na oblohe a začína sa na M. Čo je to?", odpoved:"Mesiac 🌙"},
     {typ:"pocuvanie", citanie:true, jazyk:"sk-SK", text:"Prečítaj nahlas. Potom ťukni na kartičku a skontroluj sa.",
-     slova:[["","mi"],["","lí"],["","Ema"],["","lama"],["","jama"],["","Ja jem."],["","Mama je milá."]]},
+     slova:[["","mi"],["","lí"],["","Ema"],["","lama"],["","jama"],["","Ja jem."],["","Mama je milá."],["","Emil má malé jojo."]]},
     {typ:"hadanka", text:"Je malá a ostrá a šije sa ňou. Začína sa na I. Čo je to?", odpoved:"Ihla 🪡"},
     {typ:"rozhovor", zacni:"„Pozri, koľko písmen už poznáš: A, M, E, L, I, J, O. Pamätáš si, ktoré bolo prvé?“",
      otazky:["Čo z toho ti dnes išlo najľahšie?","Ktoré slovo si čítal dvakrát? Čo ti pomohlo?","Čo by si chcel ešte trénovať? Vymysli pre mňa úlohu s písmenom J."],
-     preteba:"Opakovanie po čase pomáha, aby sa staršie písmená nestratili. Nehodnoťte, nechajte dieťa povedať samo, čo mu ide. Keď niečo nešlo, vráťte sa k tomu o pár dní hravo, nie hneď. Prvé písmeno bolo A."}
+     preteba:"Opakovanie po čase pomáha, aby sa staršie písmená nestratili. Nehodnoťte, nechajte dieťa povedať samo, čo mu ide. Keď niečo nešlo, vráťte sa k tomu o pár dní hravo, nie hneď. Prvé písmeno bolo A."},
+    {typ:"tlac", nadpis:"Píšeme", text:"Písané i a I na opakovanie: obťahovanie podľa šípky, bodky, potom samo, na konci slabiky a slová. Bodku nad i dávame až po dopísaní slova.", poznamka:"A4, čiernobiele. Zhora nadol je pomoc čoraz menšia. Píšte mäkkou ceruzkou.", subor:"sjl-pisanie-i.pdf"}
   ]},
 
 /* ---------- 3. 12. 2026 (štvrtok) ---------- */
@@ -131,15 +132,16 @@ window.KARTY = [
 
 { id:"sjl-citame-o", datum:"2026-12-02", predmet:"SJL", obr:"🪀", pismenka:"AMELIJO:postav", kod:"SJL-RV-1",
   nazov:"Čítame slová s O: jojo, molo, olej",
-  uvod:"S písmenom O pribudli slová jojo, molo, olej aj meno Ola. Dieťa ich číta samo nahlas a tablet ho skontroluje. Potom minútová naháňačka za písmenom O v starom letáku. K tomu list na celý týždeň.",
+  uvod:"S písmenom O pribudli slová jojo, molo, olej aj mená Ola a Lola. Dieťa ich číta samo nahlas, na konci aj dlhšiu vetu, a tablet ho skontroluje. Potom minútová naháňačka za písmenom O v starom letáku. K tomu list na celý týždeň.",
   meta:["dieťa samo aj s rodičom","5 minút","tablet so zvukom, starý leták, fixka"],
   stdn:"ŠVP SJL, Elementárne čítanie: „čítanie slabík, slov, viet a krátkych textov s postupne sa zvyšujúcou náročnosťou“",
   bloky:[
     {typ:"hadanka", text:"Poviem ti slovo po slabikách: o – lej. Je vo fľaši a mama na ňom smaží. Čo je to?", odpoved:"Olej"},
     {typ:"pocuvanie", citanie:true, jazyk:"sk-SK", text:"Najprv prečítaj nahlas. Potom ťukni na kartičku a skontroluj sa.",
-     slova:[["","mo"],["","lo"],["","molo"],["","jojo"],["","olej"],["","lom"],["","Ola má jojo."],["","Mama má olej."]]},
+     slova:[["","molo"],["","jojo"],["","olej"],["","oleje"],["","Lola"],["","Ema a Ola"],["","Mamo, mám jojo."],["","Lola je moja malá lama."]]},
     {typ:"spolu", text:"Naháňačka za O: dajte dieťaťu starý leták alebo noviny a fixku. Za jednu minútu zakrúžkuje čo najviac písmen O, malých aj veľkých. Potom spolu hľadajte slovo, ktoré dieťa vie prečítať celé, napríklad mama, Ema alebo Ola. Kto chce, môže skladať slová aj v Písmenkových kockách (tlačidlo nižšie)."},
-    {typ:"tlac", urovne:3, text:"List na celý týždeň: kde počuješ O, rovnaké slabiky, slová k obrázkom a vety s O. Výzva: slovná pyramída, prehádzané písmená a chyták s hlúpou vetou.", subor:"sjl-citame-o.pdf"}
+    {typ:"tlac", urovne:3, text:"List na celý týždeň: kde počuješ O, rovnaké slabiky, slová k obrázkom a vety s O. Výzva: slovná pyramída, prehádzané písmená a chyták s hlúpou vetou.", subor:"sjl-citame-o.pdf"},
+    {typ:"tlac", nadpis:"Píšeme", text:"Písané j a J: obťahovanie podľa šípky, bodky, potom samo, na konci slabiky a slová. Hodí sa k slovu jojo z dnešného čítania.", poznamka:"A4, čiernobiele. Zhora nadol je pomoc čoraz menšia. Píšte mäkkou ceruzkou.", subor:"sjl-pisanie-j.pdf"}
   ]},
 
 /* ---------- 1. 12. 2026 (utorok) ---------- */
@@ -188,7 +190,7 @@ window.KARTY = [
 { id:"sjl-o-kde-je", datum:"2026-11-30", predmet:"SJL", obr:"👂", pismenka:"AMELIJO:obrazok", kod:"SJL-PP-2",
   nazov:"Kde počuješ O? Na začiatku, alebo na konci",
   uvod:"Oblak má O na začiatku, auto na konci. Dieťa počúva slová z tabletu: keď je O na začiatku, tlesne, keď na konci, dupne. Potom skákacia hra v izbe a v Písmenkových kockách slabiky k obrázkom.",
-  meta:["dieťa samo aj s rodičom","5 minút","tablet so zvukom"],
+  meta:["dieťa samo aj s rodičom","5 minút","tablet so zvukom, k listu ceruzka"],
   stdn:"ŠVP SJL, Elementárne čítanie: „sluchové identifikovanie a rozlišovanie zvukov, slov, slabík, hlások“",
   bloky:[
     {typ:"pocuvanie", jazyk:"sk-SK", text:"Ťukni na obrázok a vypočuj si slovo. Keď počuješ O na začiatku, tlesni. Keď na konci, dupni.",
@@ -196,7 +198,8 @@ window.KARTY = [
     {typ:"spolu", text:"Skákacia hra: dieťa stojí v strede izby. Rodič povie slovo. Keď je O na začiatku, dieťa skočí dopredu, keď na konci, skočí dozadu. Slová: oheň, ucho, opica, rádio, oblečenie, metro. Potom sa vymeňte, slovo hovorí dieťa a skáče rodič. Napokon otvorte Písmenkové kocky (tlačidlo nižšie) a skladajte slabiky k obrázkom."},
     {typ:"rozhovor", zacni:"„Hádaj, kde sa schovalo O v slove auto. Na začiatku, alebo na konci?“",
      otazky:["Kde počuješ O v slove osa? A v slove mlieko?","Povedz dve slová, ktoré majú O na konci. Pomôže ti, keď sa poobzeráš po kuchyni.","V slove oko počuješ O dvakrát. Vymyslíš ešte iné slovo, kde je O na začiatku aj na konci?"],
-     preteba:"Hlásku na konci slova deti počujú ťažšie ako na začiatku. Slovo vyslovte pomaly a koniec trochu natiahnite. Keď dieťa zaváha, zopakujte slovo, nie odpoveď. V kuchyni sú napríklad mlieko, kakao, sitko, vrecko. Na začiatku aj na konci je O napríklad v slove okno."}
+     preteba:"Hlásku na konci slova deti počujú ťažšie ako na začiatku. Slovo vyslovte pomaly a koniec trochu natiahnite. Keď dieťa zaváha, zopakujte slovo, nie odpoveď. V kuchyni sú napríklad mlieko, kakao, sitko, vrecko. Na začiatku aj na konci je O napríklad v slove okno."},
+    {typ:"tlac", nadpis:"Píšeme", text:"Písané o a O ešte raz: obťahovanie podľa šípky, bodky, potom samo, na konci slabiky a slová s O. Kto list už má z minulého týždňa, nech skúsi spodnú polovicu bez pomoci.", poznamka:"A4, čiernobiele. Zhora nadol je pomoc čoraz menšia. Píšte mäkkou ceruzkou.", subor:"sjl-pisanie-o.pdf"}
   ]},
 
 /* =========================================================
