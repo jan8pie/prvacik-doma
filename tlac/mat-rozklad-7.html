@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="sk"><head><meta charset="utf-8"><title>Rozklad čísla 7 – pracovný list na týždeň (3 úrovne)</title>
+<link rel="stylesheet" href="list.css">
+<style>
+  .rady{display:grid;grid-template-columns:repeat(3,1fr);gap:3mm}
+  .rady>div{display:flex;gap:1.2mm;justify-content:center}
+  .rady span{width:11mm;height:11mm;border:1.4px solid #111;border-radius:2mm;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700}
+  .rady span.p{border-style:dashed}
+  .spolu{display:flex;flex-direction:column;gap:2.5mm}
+  .spolu>div{display:flex;align-items:center;gap:2mm;font-size:24px;font-weight:700}
+  .spolu .pic{width:10mm;height:10mm;stroke-width:5}
+  .spolu .sk{display:flex;gap:.6mm}
+  .spolu .eq{margin-left:auto;display:flex;align-items:center;gap:1.5mm;white-space:nowrap}
+  .spolu .okno{width:10.5mm;height:10.5mm}
+  .kocky-rad{display:flex;justify-content:space-around}
+  .kocky-rad>div{display:flex;flex-direction:column;align-items:center;gap:2mm;font-size:23px;font-weight:700}
+  .kocky-rad .eq{display:flex;align-items:center;gap:1.2mm;white-space:nowrap}
+  .kocky-rad .okno{width:10mm;height:10mm}
+  .priklady{display:grid;grid-template-columns:1fr 1fr 1fr;gap:4mm 6mm}
+  .priklady>div{display:flex;align-items:center;gap:1.5mm;font-size:25px;font-weight:700;white-space:nowrap}
+  .priklady .okno{width:11mm;height:11mm}
+  .hadanky{display:flex;flex-direction:column;gap:1.6mm}
+  .hadanky>div{display:flex;align-items:center;gap:4mm;font-size:18px;font-weight:700;border-bottom:1px dotted #bbb;padding-bottom:1.2mm}
+  .hadanky>div:last-child{border:none;padding-bottom:0}
+  .hadanky .tx{flex:1}
+  .trojica{display:flex;align-items:center;gap:8mm}
+  .trojica .priklady{flex:1;grid-template-columns:1fr 1fr;gap:3mm 5mm}
+  .trojica .priklady>div{font-size:22px}
+  .trojica .priklady .okno{width:10mm;height:10mm}
+  .bus{display:flex;align-items:center;gap:6mm}
+  .bus .eq{margin-left:auto;display:flex;align-items:center;gap:1.5mm;font-size:24px;font-weight:700}
+  .bus .eq .okno{width:10.5mm;height:10.5mm}
+  .pyr-rad{display:flex;justify-content:space-around}
+  .pyr{display:flex;flex-direction:column;align-items:center;gap:1mm}
+  .pyr>div{display:flex;gap:1mm}
+  .pyr span{width:13mm;height:10mm;border:1.4px solid #111;display:flex;align-items:center;justify-content:center;font-size:21px;font-weight:700}
+  .pyr span.p{border-style:dashed}
+  .znak .okno{width:9mm;height:9mm}
+  .chyba{display:flex;flex-direction:column;gap:2mm}
+  .chyba>div{display:flex;gap:2.5mm;font-size:24px;font-weight:700;justify-content:center}
+
+  .domina{display:flex;justify-content:space-around;align-items:flex-end}
+  .domina>div{display:flex;flex-direction:column;align-items:center;gap:2mm;font-size:20px;font-weight:700}
+  .domina .okno{width:10.5mm;height:10.5mm}
+  .veze{display:grid;grid-template-columns:1fr 1fr;gap:3mm 8mm}
+  .veze>div{display:flex;align-items:center;gap:4mm;justify-content:center}
+  .veze .okno{width:10.5mm;height:10.5mm}
+  .vrec .pic.vr{width:14mm;height:14mm}
+  .linka7{display:flex;gap:6mm;align-items:center}
+  .linka7 .prazdne7{flex:1;height:24mm;border-bottom:1.4px solid #111}
+  .tab7{display:flex;align-items:center;gap:4mm}
+  .tab7 .cel{width:14mm;height:14mm;border:2px solid #111;border-radius:2mm;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700}
+  .tab7 table{border-collapse:collapse}
+  .tab7 td{width:11mm;height:11mm;border:1.4px solid #111;text-align:center;font-size:22px;font-weight:700}
+  .tab7 td.p{border-style:dashed}
+  .rovn{display:grid;grid-template-columns:1fr 1fr;gap:4mm 8mm}
+  .rovn>div{display:flex;align-items:center;gap:1.5mm;font-size:24px;font-weight:700;white-space:nowrap}
+  .rovn .okno{width:11mm;height:11mm}
+  .chytak{display:flex;flex-direction:column;gap:3mm;font-size:19px;font-weight:700}
+  .chytak .r{display:flex;align-items:center;gap:3mm}
+  .chytak .an{display:flex;gap:2mm;font-size:15px}
+  .chytak .an span{border:1.4px solid #111;border-radius:99px;padding:.3mm 3mm}
+  .chytak .okno{width:10.5mm;height:10.5mm}
+</style></head>
+<body>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 1 – ĽAHŠIE                                                     -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="1">
+  <header class="hlava" data-predmet="Matematika">Sedem do vrecúška</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Dokresli bodky na prázdnu polovicu domina, aby bolo spolu 7. Napíš, koľko bodiek si dokreslil.</span></div>
+    <div class="plocha domina">
+      <div><i domino="3 -"></i><span class="okno"></span></div>
+      <div><i domino="5 -"></i><span class="okno"></span></div>
+      <div><i domino="1 -"></i><span class="okno"></span></div>
+      <div><i domino="6 -"></i><span class="okno"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Každá veža má mať 7 kociek. Koľko kociek chýba? Napíš.</span></div>
+    <div class="plocha veze">
+      <div><i veza="4" n="7" class="lezi"></i><span class="okno"></span></div>
+      <div><i veza="6" n="7" class="lezi"></i><span class="okno"></span></div>
+      <div><i veza="2" n="7" class="lezi"></i><span class="okno"></span></div>
+      <div><i veza="7" n="7" class="lezi"></i><span class="okno"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Spolu je vždy 7 jahôd. Niektoré sa skryli do vrecúška. Koľko jahôd je vo vrecúšku?</span></div>
+    <div class="plocha spolu vrec">
+      <div><span class="sk"><i o="jahoda" n="5"></i></span>+<i o="vrecusko" class="vr"></i><span class="eq">5 + <span class="okno"></span> = 7</span></div>
+      <div><span class="sk"><i o="jahoda" n="3"></i></span>+<i o="vrecusko" class="vr"></i><span class="eq">3 + <span class="okno"></span> = 7</span></div>
+      <div><span class="sk"><i o="jahoda" n="1"></i></span>+<i o="vrecusko" class="vr"></i><span class="eq">1 + <span class="okno"></span> = 7</span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Obťahuj sedmičky. Potom napíš sedmičky sama alebo sám.</span></div>
+    <div class="plocha linka7"><i obtiahni="7" w="64"></i><i obtiahni="7" w="64"></i><span class="prazdne7"></span></div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> List patrí k celému týždňu, netreba ho urobiť naraz. V úlohách 1 a 2 môže dieťa dopočítavať po jednom: „štyri, päť, šesť, sedem“ a rátať prsty. V úlohe 3 pomôžu gombíky: 7 na stole, časť schovať do dlane.
+      <b>Riešenie:</b> 1 – 4, 2, 6, 1 · 2 – 3, 1, 5, 0 · 3 – 2, 4, 6.
+      <span class="std">MAT-CO-4 · ŠVP MAT, Čísla a operácie s číslami: „modelovanie a využívanie rôznych rozkladov čísel“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 2 – BEŽNÉ                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="2">
+  <header class="hlava" data-predmet="Matematika">Sedem na dve časti</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Rozlož číslo 7 na dve časti. Hore a dole je spolu vždy 7. Dopíš prázdne políčka.</span></div>
+    <div class="plocha tab7">
+      <span class="cel">7</span>
+      <table><tr><td>0</td><td>1</td><td>2</td><td class="p"></td><td class="p"></td><td>5</td><td class="p"></td><td>7</td></tr><tr><td class="p"></td><td class="p"></td><td class="p"></td><td>4</td><td>3</td><td class="p"></td><td>1</td><td class="p"></td></tr></table>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Dopíš číslo do okienka.</span></div>
+    <div class="plocha priklady">
+      <div>3 + <span class="okno"></span> = 7</div>
+      <div><span class="okno"></span> + 2 = 7</div>
+      <div>7 − <span class="okno"></span> = 4</div>
+      <div>6 + 1 = <span class="okno"></span></div>
+      <div>7 − 7 = <span class="okno"></span></div>
+      <div>5 + <span class="okno"></span> = 7</div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Porovnaj. Napíš znak &lt;, &gt; alebo =.</span></div>
+    <div class="plocha priklady">
+      <div>3 + 4 <span class="okno"></span> 6</div>
+      <div>7 − 2 <span class="okno"></span> 5</div>
+      <div>2 + 4 <span class="okno"></span> 7</div>
+      <div>7 − 1 <span class="okno"></span> 5</div>
+      <div>1 + 6 <span class="okno"></span> 7</div>
+      <div>7 − 3 <span class="okno"></span> 2</div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Veverička mala 7 orieškov. 4 oriešky schovala do dutiny. Koľko orieškov jej ostalo? Napíš príklad.</span></div>
+    <div class="plocha bus">
+      <i o="vevericka" class="l"></i><span class="sk"><i o="oriesok" n="7"></i></span>
+      <span class="eq"><span class="okno"></span> − <span class="okno"></span> = <span class="okno"></span></span>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> List patrí k celému týždňu, stačia jedna alebo dve úlohy denne. V úlohe 1 sú všetky rozklady sedmičky: keď hore číslo rastie, dole klesá. V úlohe 2 pomôže otázka „koľko chýba do siedmich?“. Pri porovnávaní najprv vypočítajte ľavú stranu.
+      <b>Riešenie:</b> 1 – dole 7, 6, 5, hore 3, 4, dole 2, hore 6, dole 0 · 2 – 4, 5, 3, 7, 0, 2 · 3 – &gt;, =, &lt;, &gt;, =, &gt; · 4 – 7 − 4 = 3.
+      <span class="std">MAT-CO-4 · ŠVP MAT, Čísla a operácie s číslami: „modelovanie a využívanie rôznych rozkladov čísel“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 3 – VÝZVA                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="3">
+  <header class="hlava" data-predmet="Matematika">Všetky cesty k sedmičke</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Sova Hu rozdeľuje 7 jahôd na dva taniere. Nájdi všetky spôsoby. Koľko ich je?</span></div>
+    <div class="plocha" style="display:flex;flex-direction:column;gap:3mm">
+      <div class="priklady" style="grid-template-columns:repeat(4,1fr);gap:3mm 4mm">
+        <div style="font-size:21px"><span class="okno"></span>+<span class="okno"></span>=7</div><div style="font-size:21px"><span class="okno"></span>+<span class="okno"></span>=7</div><div style="font-size:21px"><span class="okno"></span>+<span class="okno"></span>=7</div><div style="font-size:21px"><span class="okno"></span>+<span class="okno"></span>=7</div><div style="font-size:21px"><span class="okno"></span>+<span class="okno"></span>=7</div><div style="font-size:21px"><span class="okno"></span>+<span class="okno"></span>=7</div><div style="font-size:21px"><span class="okno"></span>+<span class="okno"></span>=7</div><div style="font-size:21px"><span class="okno"></span>+<span class="okno"></span>=7</div>
+      </div>
+      <div class="hadanky"><div><span class="tx">Počet spôsobov:</span><span class="okno"></span></div></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Myslím si číslo. Uhádneš ho?</span></div>
+    <div class="plocha hadanky">
+      <div><span class="tx">Keď k nemu pridám 3, mám 7.</span><span class="okno"></span></div>
+      <div><span class="tx">Keď od neho uberiem 2, mám 5.</span><span class="okno"></span></div>
+      <div><span class="tx">Keď ho pridám k nemu samému, mám 6.</span><span class="okno"></span></div>
+      <div><span class="tx">Je o 1 väčšie ako 7.</span><span class="okno"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Rovnováha: na oboch stranách musí byť spolu rovnako. Dopíš číslo.</span></div>
+    <div class="plocha rovn">
+      <div>3 + 4 = 5 + <span class="okno"></span></div>
+      <div>6 + 1 = <span class="okno"></span> + 5</div>
+      <div>2 + <span class="okno"></span> = 4 + 3</div>
+      <div>7 − 1 = 3 + <span class="okno"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Chyták: robot Bip hovorí: „Sedem sa dá rozložiť len na 3 a 4.“ Má pravdu?</span></div>
+    <div class="plocha chytak">
+      <div class="r">Zakrúžkuj: <span class="an"><span>áno</span><span>nie</span></span></div>
+      <div class="r">Napíš iný rozklad: 7 = <span class="okno"></span> + <span class="okno"></span></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Výzva je pre deti, ktoré sedmičku už rozkladajú bez prstov. V úlohe 1 pomáha postupovať po poriadku: 0 + 7, 1 + 6, 2 + 5… Úloha 3 je príprava na rovnosť: znak = znamená „spolu rovnako“, nie „výsledok je“. Posledná hádanka v úlohe 2 ide o krok ďalej, k číslu 8.
+      <b>Riešenie:</b> 1 – 0 + 7, 1 + 6, 2 + 5, 3 + 4, 4 + 3, 5 + 2, 6 + 1, 7 + 0, spolu 8 spôsobov · 2 – 4, 7, 3, 8 · 3 – 2, 2, 5, 3 · 4 – nie, napr. 7 = 2 + 5 alebo 1 + 6.
+      <span class="std">MAT-CO-3 · ŠVP MAT, Čísla a operácie s číslami: „znalosť a používanie statických a dynamických modelov sčítania a odčítania“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<script src="obrazky.js"></script><script src="nastroje.js"></script>
+</body></html>
