@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="sk"><head><meta charset="utf-8"><title>Čítame s S – pracovný list na týždeň (3 úrovne)</title>
+<link rel="stylesheet" href="list.css">
+<style>
+  .naj{display:grid;grid-template-columns:repeat(8,1fr);gap:2mm}
+  .naj>div{display:flex;flex-direction:column;align-items:center;gap:1.5mm}
+  .naj .pic{width:16mm;height:16mm}
+  .iny{display:grid;grid-template-columns:1fr 1fr;gap:1.5mm 6mm;padding:2.5mm 3mm}
+  .iny>div{display:flex;gap:2.5mm;font-size:21px;font-weight:700;justify-content:center;align-items:center}
+  .iny span{padding:.8mm 2.2mm}
+  .kresby{display:grid;grid-template-columns:1fr 1fr;gap:6mm}
+  .kresby>div{display:flex;flex-direction:column;align-items:center;gap:2mm;font-size:27px;font-weight:700}
+  .kresby .kresli{width:100%;height:30mm}
+  .spoj{display:grid;grid-template-columns:1fr 1fr;gap:2mm 30mm;align-items:center}
+  .spoj>div{display:flex;align-items:center;gap:3mm;font-size:22px;font-weight:700}
+  .spoj>div.pr{flex-direction:row-reverse}
+  .spoj .bod{width:3.6mm;height:3.6mm;border-radius:50%;background:#111;flex:none}
+  .spoj .pic{width:13mm;height:13mm}
+  .spoj .pic.mala{width:9mm;height:9mm}
+  .zloz{display:flex;flex-direction:column;gap:3mm}
+  .zloz>div{display:flex;align-items:center;gap:2.5mm}
+  .zloz .slovo{padding:0 3mm;height:11mm;border:1.4px solid #111;border-radius:2.5mm;font-size:22px;font-weight:700;display:flex;align-items:center;background:#fff}
+  .pis{border-bottom:1.2px solid #111}
+  .zloz .pis{flex:1;min-width:30mm;height:10mm;margin-left:3mm}
+  .pravda{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:2.5mm 5mm}
+  .pravda>div{display:flex;align-items:center;gap:2mm;border:1px solid #bbb;border-radius:3mm;padding:1.5mm 2.5mm}
+  .pravda .sc{display:flex;align-items:center;width:23mm;justify-content:center;flex:none}
+  .pravda .sc .pic{width:11mm;height:11mm}
+  .pravda .sc .pic.mala{width:8mm;height:8mm}
+  .pravda .v{font-size:17px;font-weight:700;flex:1;line-height:1.15}
+  .pravda .an{display:flex;flex-direction:column;gap:1mm;font-size:13px;flex:none;text-align:center}
+  .pravda .an span{border:1.4px solid #111;border-radius:99px;padding:.2mm 3mm}
+  .zmen{display:grid;grid-template-columns:1fr 1fr;gap:3mm 8mm}
+  .zmen>div{display:flex;align-items:center;gap:2mm;font-size:23px;font-weight:700;min-width:0}
+  .zmen .sip{font-size:15px;font-weight:400;color:#444;white-space:nowrap}
+  .zmen .pis{flex:1;min-width:0;height:10mm}
+  .tajne{display:flex;flex-direction:column;gap:2.5mm}
+  .tajne>div{display:flex;align-items:center;gap:2.5mm}
+  .tajne .pic{width:14mm;height:14mm}
+  .tajne .sip{font-size:20px;margin:0 2mm}
+  .tajne .okno{width:10.5mm;height:11.5mm}
+  .slov{display:flex;gap:2.5mm;justify-content:center;flex-wrap:wrap;margin-bottom:2mm}
+  .slov span{padding:0 3mm;height:10.5mm;border:1.4px solid #111;border-radius:2.5mm;font-size:21px;font-weight:700;display:flex;align-items:center}
+  .dopln{display:grid;grid-template-columns:1fr 1fr;gap:3mm 10mm}
+  .dopln>div{display:flex;align-items:flex-end;gap:2mm;font-size:23px;font-weight:700}
+  .dopln .pis{min-width:16mm;width:16mm;height:9mm}
+  .dopln .moz{display:flex;gap:3mm;justify-content:center;font-size:21px;font-weight:700;grid-column:1/3}
+  .dopln .moz span{border:1.4px solid #111;border-radius:2.5mm;padding:0 3.5mm}
+  .vety .pis{display:block;width:100%;height:10.5mm;min-width:0}
+
+  .kde{display:grid;grid-template-columns:repeat(6,1fr);gap:2mm}
+  .kde>div{display:flex;flex-direction:column;align-items:center;gap:2mm}
+  .kde .pic{width:17mm;height:17mm}
+  .kde .pas{display:flex;gap:1mm;align-items:center}
+  .kde .pas span{width:6.5mm;height:6.5mm;border:1.4px solid #111;border-radius:1mm}
+  .kde .pas span.s{width:8mm;height:0;border-width:0 0 1.4px 0;border-style:dashed;border-radius:0}
+  .medz{display:grid;grid-template-columns:1fr 1fr;gap:4mm 10mm}
+  .medz>div{display:flex;align-items:flex-end;gap:.8mm;font-size:26px;font-weight:700}
+  .medz .pis{width:9mm;min-width:9mm;flex:none;height:9mm}
+  .medz .pic{width:11mm;height:11mm;margin-right:3mm}
+  .slr{display:grid;grid-template-columns:1fr 1fr;gap:3mm 10mm}
+  .slr>div{display:flex;align-items:center;gap:2.5mm;font-size:24px;font-weight:700}
+  .slr b{min-width:26mm}
+  .najdi{font-size:27px;font-weight:700;line-height:1.7;letter-spacing:.5px;text-align:center}
+  .najdi .koniec{display:flex;justify-content:center;align-items:center;gap:3mm;font-size:17px;font-weight:400;margin-top:1mm}
+  .najdi .okno{width:11mm;height:11mm}
+  .pyr-rad{display:flex;justify-content:space-around}
+  .pyr{display:flex;flex-direction:column;align-items:flex-start;gap:1.2mm}
+  .pyr>div{display:flex;gap:1mm}
+  .pyr span{width:11mm;height:11mm;border:1.4px solid #111;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700}
+  .pyr span.p{border-style:dashed}
+  .prehad{display:grid;grid-template-columns:1fr 1fr;gap:3mm 8mm}
+  .prehad>div{display:flex;align-items:center;gap:2mm;min-width:0}
+  .prehad .kus{display:flex;gap:1mm}
+  .prehad .kus span{width:8.5mm;height:9.5mm;border:1.4px solid #111;border-radius:1.5mm;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700}
+  .prehad .pis{flex:1;min-width:0;height:9.5mm}
+  .hlupe{display:grid;grid-template-columns:1fr 1fr;gap:2.5mm 6mm}
+  .hlupe>div{font-size:22px;font-weight:700;border:1px solid #bbb;border-radius:3mm;padding:2mm 3mm;text-align:center}
+</style></head>
+<body>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 1 – ĽAHŠIE                                                     -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="1">
+  <header class="hlava" data-predmet="Slovenský jazyk">Kde počuješ S?</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Povedz nahlas, čo je na obrázku. Kde počuješ S? Urob krížik do prvého okienka, keď je S na začiatku, a do posledného, keď je na konci.</span></div>
+    <div class="plocha kde">
+      <div><i o="sova"></i><span class="pas"><span></span><span class="s"></span><span></span></span></div><div><i o="ananas"></i><span class="pas"><span></span><span class="s"></span><span></span></span></div><div><i o="slnko"></i><span class="pas"><span></span><span class="s"></span><span></span></span></div><div><i o="pes"></i><span class="pas"><span></span><span class="s"></span><span></span></span></div><div><i o="syr"></i><span class="pas"><span></span><span class="s"></span><span></span></span></div><div><i o="slimak"></i><span class="pas"><span></span><span class="s"></span><span></span></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Prečítaj slabiky nahlas. Spoj rovnaké slabiky čiarou.</span></div>
+    <div class="plocha spoj">
+      <div><span>sa</span><span class="bod"></span></div><div class="pr"><span>se</span><span class="bod"></span></div>
+      <div><span>so</span><span class="bod"></span></div><div class="pr"><span>si</span><span class="bod"></span></div>
+      <div><span>se</span><span class="bod"></span></div><div class="pr"><span>sa</span><span class="bod"></span></div>
+      <div><span>si</span><span class="bod"></span></div><div class="pr"><span>so</span><span class="bod"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Prečítaj slovo. Spoj ho s obrázkom.</span></div>
+    <div class="plocha spoj">
+      <div><span>osa</span><span class="bod"></span></div><div class="pr"><i o="misa"></i><span class="bod"></span></div>
+      <div><span>misa</span><span class="bod"></span></div><div class="pr"><i o="lama"></i><span class="bod"></span></div>
+      <div><span>mama</span><span class="bod"></span></div><div class="pr"><i o="osa"></i><span class="bod"></span></div>
+      <div><span>lama</span><span class="bod"></span></div><div class="pr"><i o="mama"></i><span class="bod"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>V slovách chýba písmeno S. Dopíš ho a slovo prečítaj.</span></div>
+    <div class="plocha medz">
+      <div><i o="osa"></i>o<span class="pis"></span>a</div>
+      <div><i o="misa"></i>mi<span class="pis"></span>a</div>
+      <div><span class="pis"></span>ama</div>
+      <div><span class="pis"></span>ila</div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> List patrí k celému týždňu, netreba ho urobiť naraz. V úlohe 1 sa nič nečíta: obrázky sú sova, ananás, slnko, pes, syr a slimák. Slovo vyslovte pomaly, koniec trochu natiahnite. Ostatné úlohy dieťa číta samo a nahlas, vy ho nepredbiehajte.
+      <b>Riešenie:</b> 1 – na začiatku: sova, slnko, syr, slimák; na konci: ananás, pes · 3 – osa, misa, mama, lama podľa obrázkov · 4 – osa, misa, sama, sila.
+      <span class="std">SJL-RV-1 · ŠVP SJL, Elementárne čítanie: „čítanie slabík, slov, viet a krátkych textov s postupne sa zvyšujúcou náročnosťou“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 2 – BEŽNÉ                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="2">
+  <header class="hlava" data-predmet="Slovenský jazyk">Čítame slová a vety s S</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Ktoré písmeno chýba? Dopíš S alebo J. Potom vetu prečítaj.</span></div>
+    <div class="plocha dopln">
+      <div class="moz"><span>S</span><span>J</span></div>
+      <div>O<span class="pis"></span>a je malá.</div>
+      <div><span class="pis"></span>a mám jojo.</div>
+      <div>Samo <span class="pis"></span>e sám.</div>
+      <div>Mama má <span class="pis"></span>alám.</div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Prečítaj slovo a vytlieskaj ho. Vyfarbi toľko krúžkov, koľko má slabík.</span></div>
+    <div class="plocha slr">
+      <div><b>som</b><span class="kruzok"></span><span class="kruzok"></span><span class="kruzok"></span></div>
+      <div><b>osem</b><span class="kruzok"></span><span class="kruzok"></span><span class="kruzok"></span></div>
+      <div><b>solíme</b><span class="kruzok"></span><span class="kruzok"></span><span class="kruzok"></span></div>
+      <div><b>maslo</b><span class="kruzok"></span><span class="kruzok"></span><span class="kruzok"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Prečítaj a nakresli.</span></div>
+    <div class="plocha kresby">
+      <div><span class="kresli"></span>Osa je malá.</div>
+      <div><span class="kresli"></span>Samo má salám.</div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Prečítaj vety. Zakrúžkuj každé S, malé aj veľké. Koľko ich je?</span></div>
+    <div class="plocha najdi">
+      Samo je sám. Mila sa smeje. Ema má maslo.
+      <div class="koniec">Počet S: <span class="okno"></span></div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> List patrí k celému týždňu, stačí jedna alebo dve úlohy denne. Dieťa číta samo a nahlas. Keď sa pomýli, nechajte ho prečítať vetu ešte raz, bez opravovania. V úlohe 2 pomáha tlieskať: jeden tlesk je jedna slabika (mas-lo).
+      <b>Riešenie:</b> 1 – Osa je malá · Ja mám jojo · Samo je sám · Mama má salám · 2 – som 1, osem 2, solíme 3, maslo 2 · 4 – 5 (Samo, sám, sa, smeje, maslo).
+      <span class="std">SJL-RV-1 · ŠVP SJL, Elementárne čítanie: „čítanie slabík, slov, viet a krátkych textov s postupne sa zvyšujúcou náročnosťou“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<!-- =================================================================== -->
+<!-- ÚROVEŇ 3 – VÝZVA                                                      -->
+<!-- =================================================================== -->
+<div class="list" data-uroven="3">
+  <header class="hlava" data-predmet="Slovenský jazyk">Čarovné S a chytáky</header>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">1</span><span>Čarovné S: vymeň prvé písmeno za S. Napíš nové slovo a prečítaj ho.</span></div>
+    <div class="plocha zmen">
+      <div>mama <span class="sip">→ S</span><span class="pis"></span></div>
+      <div>Mila <span class="sip">→ S</span><span class="pis"></span></div>
+      <div>mám <span class="sip">→ S</span><span class="pis"></span></div>
+      <div>jem <span class="sip">→ S</span><span class="pis"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">2</span><span>Písmená sa poprehadzovali. Poskladaj slovo a napíš ho.<span class="pozn">Pozor, z jedného riadku sa dajú zložiť dve slová.</span></span></div>
+    <div class="plocha prehad">
+      <div><span class="kus"><span>a</span><span>s</span><span>o</span></span><span class="pis"></span></div>
+      <div><span class="kus"><span>s</span><span>i</span><span>a</span><span>m</span></span><span class="pis"></span></div>
+      <div><span class="kus"><span>m</span><span>e</span><span>o</span><span>s</span></span><span class="pis"></span></div>
+      <div><span class="kus"><span>l</span><span>a</span><span>m</span><span>s</span><span>a</span></span><span class="pis"></span></div>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">3</span><span>Nájdi všetky spôsoby: zlož z písmen čo najviac slov. Každé písmeno smieš v slove použiť len raz.</span></div>
+    <div class="plocha vety">
+      <div class="slov"><span>S</span><span>A</span><span>M</span><span>O</span></div>
+      <span class="pis"></span><span class="pis"></span>
+    </div>
+  </section>
+
+  <section class="uloha">
+    <div class="zadanie"><span class="c">4</span><span>Chyták: dve vety sú hlúposť. Prečítaj ich a prečiarkni. Povedz, prečo sú hlúpe.</span></div>
+    <div class="plocha hlupe">
+      <div>Ema je sama.</div>
+      <div>Osa je misa.</div>
+      <div>Samo má salám.</div>
+      <div>Maslo sa smeje.</div>
+    </div>
+  </section>
+
+  <footer class="pata">
+    <div class="rodic"><b>Pre rodiča:</b> Výzva je pre deti, ktoré už čítajú slová plynulo. V úlohách 2 a 3 je viac správnych riešení, platí každé skutočné slovo. Pri úlohe 3 stačí, keď dieťa nájde dve alebo tri slová, môže si písmená napísať na papieriky a prekladať ich.
+      <b>Riešenie:</b> 1 – sama, Sila (aj sila), sám, sem · 2 – osa, misa aj sami, osem, slama · 3 – napr. Samo, som, osa, sa, so, ma, mo · 4 – hlúposť je Osa je misa a Maslo sa smeje.
+      <span class="std">SJL-RV-1 · ŠVP SJL, Elementárne čítanie: „čítanie slabík, slov, viet a krátkych textov s postupne sa zvyšujúcou náročnosťou“</span></div>
+    <div class="darilo"></div>
+  </footer>
+</div>
+
+<script src="obrazky.js"></script><script src="nastroje.js"></script>
+</body></html>
