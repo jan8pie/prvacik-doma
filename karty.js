@@ -130,18 +130,18 @@ window.KARTY = [
     {typ:"spolu", text:"Čižmičková hra: postavte vedľa seba dve papuče. Rodič do nich rozdelí oriešky a vymyslí príbeh: „Do jednej dal Mikuláš 2 oriešky, do druhej 5.“ Dieťa zráta, koľko je spolu, a povie príklad 2 + 5 = 7. Potom príbeh vymýšľa dieťa a ráta rodič. Spolu najviac 7 orieškov. Na koniec spolu vyčistite naozajstné čižmičky na sobotu."}
   ]},
 
-{ id:"sjl-citame-o", datum:"2026-12-02", predmet:"SJL", obr:"🪀", pismenka:"AMELIJO:postav", kod:"SJL-RV-1",
-  nazov:"Čítame slová s O: jojo, molo, olej",
-  uvod:"S písmenom O pribudli slová jojo, molo, olej aj mená Ola a Lola. Dieťa ich číta samo nahlas, na konci aj dlhšiu vetu, a tablet ho skontroluje. Potom minútová naháňačka za písmenom O v starom letáku. K tomu list na celý týždeň.",
-  meta:["dieťa samo aj s rodičom","5 minút","tablet so zvukom, starý leták, fixka"],
+{ id:"sjl-citame-s", datum:"2026-12-02", predmet:"SJL", obr:"🧈", pismenka:"AMELIJOS:postav", kod:"SJL-RV-1",
+  nazov:"Čítame slová a vety s S: osa, maslo, salám",
+  uvod:"S písmenom S pribudli slová osa, maslo, salám aj dlhšie solíme. Dieťa ich číta samo nahlas, na konci celé vety, a tablet ho skontroluje. Potom minútové hľadanie S na obaloch v kuchyni. K tomu list na celý týždeň.",
+  meta:["dieťa samo aj s rodičom","5 minút","tablet so zvukom, 3 obaly z kuchyne"],
   stdn:"ŠVP SJL, Elementárne čítanie: „čítanie slabík, slov, viet a krátkych textov s postupne sa zvyšujúcou náročnosťou“",
   bloky:[
-    {typ:"hadanka", text:"Poviem ti slovo po slabikách: o – lej. Je vo fľaši a mama na ňom smaží. Čo je to?", odpoved:"Olej"},
     {typ:"pocuvanie", citanie:true, jazyk:"sk-SK", text:"Najprv prečítaj nahlas. Potom ťukni na kartičku a skontroluj sa.",
-     slova:[["","molo"],["","jojo"],["","olej"],["","oleje"],["","Lola"],["","Ema a Ola"],["","Mamo, mám jojo."],["","Lola je moja malá lama."]]},
-    {typ:"spolu", text:"Naháňačka za O: dajte dieťaťu starý leták alebo noviny a fixku. Za jednu minútu zakrúžkuje čo najviac písmen O, malých aj veľkých. Potom spolu hľadajte slovo, ktoré dieťa vie prečítať celé, napríklad mama, Ema alebo Ola. Kto chce, môže skladať slová aj v Písmenkových kockách (tlačidlo nižšie)."},
-    {typ:"tlac", urovne:3, text:"List na celý týždeň: kde počuješ O, rovnaké slabiky, slová k obrázkom a vety s O. Výzva: slovná pyramída, prehádzané písmená a chyták s hlúpou vetou.", subor:"sjl-citame-o.pdf"},
-    {typ:"tlac", nadpis:"Píšeme", text:"Písané j a J: obťahovanie podľa šípky, bodky, potom samo, na konci slabiky a slová. Hodí sa k slovu jojo z dnešného čítania.", poznamka:"A4, čiernobiele. Zhora nadol je pomoc čoraz menšia. Píšte mäkkou ceruzkou.", subor:"sjl-pisanie-j.pdf"}
+     slova:[["","som"],["","osem"],["","maslo"],["","salám"],["","solíme"],["","Samo je sám."],["","Mila sa smeje."],["","Mama má maslo a salám."]]},
+    {typ:"hadanka", text:"Poviem ti slovo po slabikách: mas – lo. Je žlté a mäkké a natierame ho na chlieb. Čo je to?", odpoved:"Maslo 🧈"},
+    {typ:"spolu", text:"Naháňačka za S v kuchyni: dajte dieťaťu tri obaly, napríklad od soli, syra a cestovín. Za jednu minútu ukáže každé písmeno S, malé aj veľké. Potom spolu hľadajte slovo, ktoré dieťa vie prečítať celé, napríklad maslo alebo salám. Kto chce, môže skladať slová aj v Písmenkových kockách (tlačidlo nižšie)."},
+    {typ:"tlac", urovne:3, text:"List na celý týždeň: kde počuješ S, rovnaké slabiky, slová k obrázkom a vety s S. Výzva: čarovné S, prehádzané písmená a chyták s hlúpou vetou.", subor:"sjl-citame-s.pdf"},
+    {typ:"tlac", nadpis:"Píšeme", text:"Písané o a O ešte raz: obťahovanie podľa šípky, bodky, potom samo, na konci slabiky a slová. Hodí sa k slovám osa a osem z dnešného čítania. Kto list už má, nech skúsi spodnú polovicu bez pomoci.", poznamka:"A4, čiernobiele. Zhora nadol je pomoc čoraz menšia. Píšte mäkkou ceruzkou.", subor:"sjl-pisanie-o.pdf"}
   ]},
 
 /* ---------- 1. 12. 2026 (utorok) ---------- */
@@ -187,19 +187,22 @@ window.KARTY = [
     {typ:"tlac", urovne:3, text:"List na celý týždeň: rozklad čísla 7 na dominách, vežiach a vo vrecúšku, tabuľka rozkladov a príklady s okienkom. Výzva: všetky spôsoby, myslím si číslo a rovnováha na oboch stranách.", subor:"mat-rozklad-7.pdf"}
   ]},
 
-{ id:"sjl-o-kde-je", datum:"2026-11-30", predmet:"SJL", obr:"👂", pismenka:"AMELIJO:obrazok", kod:"SJL-PP-2",
-  nazov:"Kde počuješ O? Na začiatku, alebo na konci",
-  uvod:"Oblak má O na začiatku, auto na konci. Dieťa počúva slová z tabletu: keď je O na začiatku, tlesne, keď na konci, dupne. Potom skákacia hra v izbe a v Písmenkových kockách slabiky k obrázkom.",
+{ id:"sjl-s-slnko-sova", datum:"2026-11-30", predmet:"SJL", obr:"☀️", pismenka:"AMELIJOS:obrazok", kod:"SJL-PP-2",
+  nazov:"Písmeno S: slnko, sova, syr",
+  uvod:"Nové písmeno týždňa. S znie ako syčanie hada: sss. Najprv hra pre uši, čo sa začína na S, potom prvé slabiky a slová s S na čítanie, hádanka a hadia hra v izbe. K tomu nový list na písanie s, S.",
   meta:["dieťa samo aj s rodičom","5 minút","tablet so zvukom, k listu ceruzka"],
   stdn:"ŠVP SJL, Elementárne čítanie: „sluchové identifikovanie a rozlišovanie zvukov, slov, slabík, hlások“",
   bloky:[
-    {typ:"pocuvanie", jazyk:"sk-SK", text:"Ťukni na obrázok a vypočuj si slovo. Keď počuješ O na začiatku, tlesni. Keď na konci, dupni.",
-     slova:[["☁️","oblak"],["🚗","auto"],["🐝","osa"],["🥛","mlieko"],["🐑","ovca"],["🍎","jablko"],["👓","okuliare"],["🪶","pierko"]]},
-    {typ:"spolu", text:"Skákacia hra: dieťa stojí v strede izby. Rodič povie slovo. Keď je O na začiatku, dieťa skočí dopredu, keď na konci, skočí dozadu. Slová: oheň, ucho, opica, rádio, oblečenie, metro. Potom sa vymeňte, slovo hovorí dieťa a skáče rodič. Napokon otvorte Písmenkové kocky (tlačidlo nižšie) a skladajte slabiky k obrázkom."},
-    {typ:"rozhovor", zacni:"„Hádaj, kde sa schovalo O v slove auto. Na začiatku, alebo na konci?“",
-     otazky:["Kde počuješ O v slove osa? A v slove mlieko?","Povedz dve slová, ktoré majú O na konci. Pomôže ti, keď sa poobzeráš po kuchyni.","V slove oko počuješ O dvakrát. Vymyslíš ešte iné slovo, kde je O na začiatku aj na konci?"],
-     preteba:"Hlásku na konci slova deti počujú ťažšie ako na začiatku. Slovo vyslovte pomaly a koniec trochu natiahnite. Keď dieťa zaváha, zopakujte slovo, nie odpoveď. V kuchyni sú napríklad mlieko, kakao, sitko, vrecko. Na začiatku aj na konci je O napríklad v slove okno."},
-    {typ:"tlac", nadpis:"Píšeme", text:"Písané o a O ešte raz: obťahovanie podľa šípky, bodky, potom samo, na konci slabiky a slová s O. Kto list už má z minulého týždňa, nech skúsi spodnú polovicu bez pomoci.", poznamka:"A4, čiernobiele. Zhora nadol je pomoc čoraz menšia. Píšte mäkkou ceruzkou.", subor:"sjl-pisanie-o.pdf"}
+    {typ:"aktivita", text:"Ťukni na obrázky, ktoré sa začínajú na S. Keď ťukneš, obrázok sa ozve.",
+     hra:{druh:"vyber", spravne:"S", polozky:[["☀️","slnko"],["🦉","sova"],["🍎","jablko"],["🧀","syr"],["🐝","osa"],["🐌","slimák"],["🐱","mačka"],["❤️","srdce"]]}},
+    {typ:"pocuvanie", citanie:true, jazyk:"sk-SK", text:"Prečítaj nahlas. Potom ťukni na kartičku a skontroluj sa.",
+     slova:[["","sa"],["","so"],["","se"],["","si"],["","osa"],["","misa"],["","sama"],["","Samo"]]},
+    {typ:"hadanka", text:"Ráno vychádza, večer zapadá. Svieti a hreje. Začína sa na S. Čo je to?", odpoved:"Slnko ☀️"},
+    {typ:"spolu", text:"Hadia hra: rodič hovorí slová. Keď sa slovo začína na S, dieťa zasyčí sss a plazí sa po zemi ako had. Keď nie, sedí ticho ako myška. Slová: sneh, mama, sane, lopta, sukňa, stôl, auto, sliepka. Potom sa vymeňte. Napokon otvorte Písmenkové kocky (tlačidlo nižšie) a skladajte slabiky k obrázkom."},
+    {typ:"tlac", nadpis:"Píšeme", text:"Nové písané s a S na jednej strane. Najprv obťahovanie sivých písmen podľa šípky, potom bodky, potom samo. Na konci slabiky sa, se, so, Sa a slová osa, misa, Samo, sila. Stačí kúsok denne.", poznamka:"A4, čiernobiele. Zhora nadol je pomoc čoraz menšia. Píšte mäkkou ceruzkou.", subor:"sjl-pisanie-s.pdf"},
+    {typ:"rozhovor", zacni:"„Počúvaj, ako syčí had: sss. Takto znie písmeno S. Počuješ ho v slove slnko?“",
+     otazky:["Začína sa na S slovo sova? A slovo mama?","Povedz tri veci, ktoré sa začínajú na S. Pomôže ti, keď sa pozrieš do kuchyne.","Kde počuješ S v slove osa: na začiatku, v strede, alebo na konci? A v slove ananás?"],
+     preteba:"S vyslovujte krátko a ostro ako syčanie, nie „es“. V kuchyni sú napríklad soľ, syr, stôl, sitko. V slove osa je S v strede, v slove ananás na konci. Malé písané s sa píše bez zdvihnutia ceruzky, veľké S sa začína hore slučkou."}
   ]},
 
 /* =========================================================
